@@ -1,129 +1,136 @@
-
-#Author: Chathurani Ranathunge
-#email: ranathca@evms.edu
-
 # Visulaize missing data distribution -------------------------------------
-#This function visualizes the distribution of missing data in a heatmap
-heatmap.NA <- function(df, 
-                       reorder.x = FALSE, 
-                       reorder.y = FALSE, 
-                       x.FUN = mean, 
-                       y.FUN = mean, 
-                       na.rm = T, 
+#' Visulaize missing data distribution
+#' @author Chathurani Ranathunge
+#' @description This function visualizes the distribution of missing data using
+#' a heatmap
+#' @export
+heatmap.NA <- function(df,
+                       reorder.x = FALSE,
+                       reorder.y = FALSE,
+                       x.FUN = mean,
+                       y.FUN = mean,
+                       na.rm = T,
                        col.na = "black",
-                       col.val = "grey", 
-                       plot.title.size = 5, 
-                       x.text.size = 2, 
+                       col.val = "grey",
+                       plot.title.size = 5,
+                       x.text.size = 2,
                        y.text.size = 1,
-                       save = TRUE, 
-                       filetype = "pdf", 
-                       filename = "MissingData_heatmap", 
+                       save = TRUE,
+                       filetype = "pdf",
+                       filename = "MissingData_heatmap",
                        width = 15,
-                       height = 15, 
+                       height = 15,
                        dpi = 80){
-  
-  
-  #Convert the data into long format for plotting and make necessary changes 
+
+
+  #Convert the data into long format for plotting and make necessary changes
   #i.e. adding column headers etc.
-  hmap_data <- reshape2::melt(df, na.rm = FALSE)  
+  hmap_data <- reshape2::melt(df, na.rm = FALSE)
   hmap_data$mjprot <- sapply(strsplit(as.character(hmap_data[,1]),';'),
                              getElement,1)
   hmap_data[1] <- NULL
   hmap_df <- as.data.frame(hmap_data)
-  colnames(hmap_df) <- c( "sample", 
-                          "value", 
+  colnames(hmap_df) <- c( "sample",
+                          "value",
                           "protgroup")
-  
+
   #Options for arranging the rows and the columns of the heat map
   if(reorder.x == TRUE & reorder.y == TRUE){
-    hmap <- ggplot2::ggplot(hmap_df, 
-                            ggplot2::aes(x = reorder(sample, 
-                                                     value, 
-                                                     na.rm = na.rm, 
-                                                     FUN = x.FUN), 
-                                         y = reorder(protgroup, 
-                                                     value, 
-                                                     na.rm = na.rm, 
-                                                     FUN = y.FUN), 
-                                         fill = value)) 
-    
-    }else if(reorder.x==FALSE & reorder.y == TRUE){
-    hmap <- ggplot2::ggplot(hmap_df, 
-                            ggplot2::aes(x = sample, 
-                                         y = reorder(protgroup, 
-                                                     value, 
-                                                     na.rm = na.rm, 
-                                                     FUN = y.FUN), 
-                                         fill = value)) 
-    
-    }else if(reorder.x== TRUE & reorder.y == FALSE){
-    hmap <- ggplot2::ggplot(hmap_df, 
-                            ggplot2::aes(x = reorder(sample, 
-                                                     value, 
-                                                     na.rm = na.rm, 
-                                                     FUN = x.FUN), 
-                                         y = protgroup, 
-                                         fill = value)) 
+    hmap <- ggplot2::ggplot(hmap_df,
+                            ggplot2::aes(x = reorder(sample,
+                                                     value,
+                                                     na.rm = na.rm,
+                                                     FUN = x.FUN),
+                                         y = reorder(protgroup,
+                                                     value,
+                                                     na.rm = na.rm,
+                                                     FUN = y.FUN),
+                                         fill = value))
 
-    }else{     
-      
-    hmap <- ggplot2::ggplot(hmap_df, 
-                            ggplot2::aes(x = sample, 
-                                         y = protgroup, 
-                                         fill = value)) 
+    }else if(reorder.x==FALSE & reorder.y == TRUE){
+    hmap <- ggplot2::ggplot(hmap_df,
+                            ggplot2::aes(x = sample,
+                                         y = reorder(protgroup,
+                                                     value,
+                                                     na.rm = na.rm,
+                                                     FUN = y.FUN),
+                                         fill = value))
+
+    }else if(reorder.x== TRUE & reorder.y == FALSE){
+    hmap <- ggplot2::ggplot(hmap_df,
+                            ggplot2::aes(x = reorder(sample,
+                                                     value,
+                                                     na.rm = na.rm,
+                                                     FUN = x.FUN),
+                                         y = protgroup,
+                                         fill = value))
+
+    }else{
+
+    hmap <- ggplot2::ggplot(hmap_df,
+                            ggplot2::aes(x = sample,
+                                         y = protgroup,
+                                         fill = value))
     }
-  
+
   #Create heat map
-  hmap <- hmap + 
+  hmap <- hmap +
     ggplot2::geom_tile()+
-    ggplot2::scale_fill_gradient(high = col.val, 
-                                 low = col.val, 
+    ggplot2::scale_fill_gradient(high = col.val,
+                                 low = col.val,
                                  na.value = col.na)+
     ggplot2::theme(plot.background = element_blank(),
                    panel.border = element_blank(),
-                   plot.title = element_text(color = "Black", 
-                                             size = plot.title.size, 
+                   plot.title = element_text(color = "Black",
+                                             size = plot.title.size,
                                              face="bold"),
-                   axis.text.x = element_text(angle = 90, 
+                   axis.text.x = element_text(angle = 90,
                                               size = x.text.size),
                    axis.text.y=element_text(size = y.text.size),
                    axis.ticks.y = element_blank(),
                    axis.ticks.x = element_blank(),
                    legend.position = "none")+
     ggplot2::xlab("") + ggplot2::ylab("")
-  
+
 #Save the heatmap as a pdf
 if(save == TRUE){
-  ggplot2::ggsave(paste0(filename,".",filetype), 
-                  hmap, 
-                  dpi = dpi, 
-                  width = width, 
-                  height = height)  
+  ggplot2::ggsave(paste0(filename,".",filetype),
+                  hmap,
+                  dpi = dpi,
+                  width = width,
+                  height = height)
   }else{
     return(hmap)
   }
   }
 
 # Impute missing data -----------------------------------------------------
-#This function imputes missing data using a user-specified imputation method
-impute.NA <- function(x, 
-                      method = "minProb", 
-                      tune.sigma = 1, 
-                      q = 0.001, 
-                      maxiter = 6, 
-                      ntree = 20, 
-                      verbose= TRUE, 
-                      nPcs = 2, 
-                      center = TRUE, 
+#' Impute missing data
+#' @author Chathurani Ranathunge
+#' @description This function imputes missing data using a user-specified
+#' imputation method
+#' @export
+
+
+
+impute.NA <- function(x,
+                      method = "minProb",
+                      tune.sigma = 1,
+                      q = 0.001,
+                      maxiter = 6,
+                      ntree = 20,
+                      verbose= TRUE,
+                      nPcs = 2,
+                      center = TRUE,
                       imp_var = FALSE){
 
 
-#Run imputeLCMD function imputeMinProb 
+#Run imputeLCMD function imputeMinProb
   impute.Min.Prob <<- function (dataSet.mvs, q = 0.01, tune.sigma = 1){
     nSamples = dim(dataSet.mvs)[2]
     nFeatures = dim(dataSet.mvs)[1]
     dataSet.imputed = dataSet.mvs
-    min.samples = apply(dataSet.imputed, 2, quantile, prob = q, 
+    min.samples = apply(dataSet.imputed, 2, quantile, prob = q,
                         na.rm = T)
     count.NAs = apply(!is.na(dataSet.mvs), 1, sum)
     count.NAs = count.NAs/nSamples
@@ -132,102 +139,107 @@ impute.NA <- function(x,
     sd.temp = median(protSD, na.rm = T) * tune.sigma
     print(sd.temp)
     for (i in 1:(nSamples)) {
-      dataSet.to.impute.temp = rnorm(nFeatures, 
-                                     mean = min.samples[i], 
+      dataSet.to.impute.temp = rnorm(nFeatures,
+                                     mean = min.samples[i],
                                      sd = sd.temp)
-      dataSet.imputed[which(is.na(dataSet.mvs[, i])), i] = 
+      dataSet.imputed[which(is.na(dataSet.mvs[, i])), i] =
         dataSet.to.impute.temp[which(is.na(dataSet.mvs[,i]))]
     }
     return(dataSet.imputed)
   }
-  
 
-#Run imputeLCMD function imputeMinDet 
+
+#Run imputeLCMD function imputeMinDet
   impute.MinDet <<- function (dataSet.mvs, q = 0.01){
     nSamples = dim(dataSet.mvs)[2]
     dataSet.imputed = dataSet.mvs
-    lowQuantile.samples = apply(dataSet.imputed, 2, quantile, 
+    lowQuantile.samples = apply(dataSet.imputed, 2, quantile,
                                 prob = q, na.rm = T)
     for (i in 1:(nSamples)) {
       dataSet.imputed[which(is.na(dataSet.mvs[, i])), i] = lowQuantile.samples[i]
     }
     return(dataSet.imputed)
-  }   
-  
+  }
+
 #Run the user-specified imputation method
-  
+
   if (method == "minDet"){
-    df_imputed_mindet <- impute.MinDet(x, 
-                                       q = q)    
-    return(df_imputed_mindet) 
-    
+    df_imputed_mindet <- impute.MinDet(x,
+                                       q = q)
+    return(df_imputed_mindet)
+
     }else if(method == "RF"){
-    df_imp_temp <- missForest::missForest(x, 
-                                          maxiter = maxiter, 
-                                          ntree = ntree, 
+    df_imp_temp <- missForest::missForest(x,
+                                          maxiter = maxiter,
+                                          ntree = ntree,
                                           verbose= verbose)
-    df_imputed_RF <- df_imp_temp$ximp  
+    df_imputed_RF <- df_imp_temp$ximp
     return(df_imputed_RF)
-    
+
     }else if (method == "kNN"){
     df_imputed_knn <- VIM::kNN(x, imp_var = imp_var)
     rownames(df_imputed_knn) <- rownames(x)
     return(df_imputed_knn)
-    
+
     }else if (method == "SVD") {
     x[is.nan(x)] <- NA
-    df_imp_temp <- pcaMethods::pca(object = x, 
-                                   method = "svdImpute", 
-                                   nPcs = nPcs, 
-                                   center = center, 
+    df_imp_temp <- pcaMethods::pca(object = x,
+                                   method = "svdImpute",
+                                   nPcs = nPcs,
+                                   center = center,
                                    verbose= verbose)
     df_imputed_svd <- completeObs(df_imp_temp)
     return(df_imputed_svd)
-  
+
     }else if (method == "minProb"){
-    df_imputed_minprob<- impute.Min.Prob(x, 
-                                         q = q, 
+    df_imputed_minprob<- impute.Min.Prob(x,
+                                         q = q,
                                          tune.sigma = tune.sigma)
-    return(df_imputed_minprob)    
+    return(df_imputed_minprob)
     }
-  }    
+  }
 
 
 # Visualize the imputation effects ----------------------------------------
-#This function compares imputed data to original data with a user-defined plot.
+#' Visualize the imputation effects
+#' @author Chathurani Ranathunge
+#' @description This function compares imputed data to original data with a
+#' user-defined plot.
+#' @export
+
 #Options: Global density plot, Sample-wise density plot
 impute.densplot <- function(original,
-                            imputed, 
-                            global = TRUE, 
-                            alpha=0.25, 
-                            lwd = 0.1, 
-                            xlabel = "Intensity", 
-                            ylabel="Density", 
-                            xlab.size = 7, 
-                            ylab.size =7, 
-                            col1 ="blue", 
-                            col2="red", 
+                            imputed,
+                            global = TRUE,
+                            alpha=0.25,
+                            lwd = 0.1,
+                            xlabel = "Intensity",
+                            ylabel="Density",
+                            xlab.size = 7,
+                            ylab.size =7,
+                            col1 ="blue",
+                            col2="red",
                             strip.txt.size = 5,
-                            strip.ln.col = "grey", 
-                            strip.ln.size = 0.5, 
-                            nrow = 15, ncol = 5, 
-                            dpi = 80, 
-                            filename= "Impute_densityplot", 
-                            filetype="pdf", 
-                            width = 7, 
-                            height= 7, 
+                            strip.ln.col = "grey",
+                            strip.ln.size = 0.5,
+                            nrow = 15, ncol = 5,
+                            dpi = 80,
+                            filename= "Impute_densityplot",
+                            filetype="pdf",
+                            width = 7,
+                            height= 7,
                             save = TRUE){
-  
+
   #Make necessary changes and combine data frames before plotting
-  orig_data <- reshape2::melt(original, na.rm = FALSE) 
+  orig_data <- reshape2::melt(original, na.rm = FALSE)
   orig_data$mjprot <- sapply(strsplit(as.character(orig_data[,1]),';'),
                               getElement,1)
   orig_data[1] <- NULL
   orig_df1 <- as.data.frame(orig_data)
   colnames(orig_df1) <- c( "sample", "value", "protgroup")
   orig_df1$stage <- "Before imputation"
-  
-  imp_data <- reshape2::melt(imputed, na.rm = FALSE) 
+
+  imp_data <- reshape2::melt(imputed, na.rm = FALSE)
   imp_data$mjprot <- sapply(strsplit(as.character(imp_data[,1]),';'),
                               getElement,1)
   imp_data[1] <- NULL
@@ -235,43 +247,43 @@ impute.densplot <- function(original,
   colnames(imp_df1) <- c( "sample", "value", "protgroup")
   imp_df1$stage <- "After imputation"
   dplot_data <- rbind(orig_df1, imp_df1)
-  
+
   #Plot global density plot
   if(global ==TRUE){
     g_densityplot <- ggplot2::ggplot(dplot_data,
-                                     ggplot2::aes(x=value)) + 
-      ggplot2::geom_density(ggplot2::aes(fill = factor(stage, 
+                                     ggplot2::aes(x=value)) +
+      ggplot2::geom_density(ggplot2::aes(fill = factor(stage,
                                                        levels = c(
-                                                         "Before imputation", 
+                                                         "Before imputation",
                                                          "After imputation"))),
-                            alpha=alpha, 
+                            alpha=alpha,
                             lwd = lwd )+
-      ggplot2::xlab(xlabel) + 
+      ggplot2::xlab(xlabel) +
       ggplot2::ylab(ylabel)+
       ggplot2::scale_fill_manual(values=c(col1,col2))+
       ggplot2::theme_classic()+
       ggplot2::theme(legend.title = element_blank(),
                      axis.title.x = element_text(size = xlab.size),
                      axis.title.y = element_text(size = ylab.size))
-    
-    
+
+
     if(save == TRUE){
-      ggplot2::ggsave(paste0(filename,".",filetype), 
-                      g_densityplot, 
-                      dpi = dpi, 
-                      width = width, 
+      ggplot2::ggsave(paste0(filename,".",filetype),
+                      g_densityplot,
+                      dpi = dpi,
+                      width = width,
                       height = height)
       }else{
         return(g_densityplot)
         }
   }else{
     s_densplot <- ggplot2::ggplot(dplot_data,
-                                  ggplot2::aes(x = value)) + 
-      ggplot2::geom_density(ggplot2::aes(fill = factor(stage, 
+                                  ggplot2::aes(x = value)) +
+      ggplot2::geom_density(ggplot2::aes(fill = factor(stage,
                                                      levels=c(
-                                                       "Before imputation", 
+                                                       "Before imputation",
                                                        "After imputation"))),
-                            alpha = alpha, 
+                            alpha = alpha,
                             lwd = lwd )+
       ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel)+
       ggplot2::scale_fill_manual(values = c(col1, col2))+
@@ -280,15 +292,15 @@ impute.densplot <- function(original,
                      axis.title.x = element_blank(),
                      axis.title.y= element_blank(),
                      strip.text = element_text(size = strip.txt.size),
-                     strip.background = element_rect(colour = strip.ln.col, 
+                     strip.background = element_rect(colour = strip.ln.col,
                                                      size = strip.ln.size))+
-      ggplot2::facet_wrap(~sample, 
-                          nrow = nrow, 
+      ggplot2::facet_wrap(~sample,
+                          nrow = nrow,
                           ncol = ncol,
                           strip.position = "top")
     if(save == TRUE){
       ggplot2::ggsave(paste0(filename,".", filetype),
-                      s_densplot, 
+                      s_densplot,
                       dpi = dpi,
                       width = width,
                       height = height)

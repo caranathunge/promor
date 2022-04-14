@@ -1,39 +1,43 @@
-
-#Author: Chathurani Ranathunge
-#email: ranathca@evms.edu
-
 # Normalize intensities ----------------------------------------------------
-#Normalize data using a user-specified normalization method
-normalize.data <- function(x, 
+#' Normalize intensities
+#' @author Chathurani Ranathunge
+#' @description This function normalizes data using a user-specified
+#' normalization method.
+#' @export
+
+normalize.data <- function(x,
                       method = "quantile"){
-  norm_df <- limma::normalizeBetweenArrays(x, 
+  norm_df <- limma::normalizeBetweenArrays(x,
                                            method = method)
   return(norm_df)
 }
 
 # Visualize normalization effects -----------------------------------------
-#Visualize the impact of normalization with box plots or density plots
-
-norm.plot <- function(normalized, 
-                      original, 
-                      type = "box", 
+#' Visualize the effect of normaliztion on the data
+#' @author Chathurani Ranathunge
+#' @description This function helps visualize the impact of normalization with
+#' box plots or density plots
+#' @export
+norm.plot <- function(normalized,
+                      original,
+                      type = "box",
                       alpha = 0.25,
-                      lwd = 0.1, 
-                      xlabel = "", 
-                      ylabel="", 
-                      xlab.size = 7, 
-                      ylab.size = 7, 
-                      palette = "YlGnBu", 
+                      lwd = 0.1,
+                      xlabel = "",
+                      ylabel="",
+                      xlab.size = 7,
+                      ylab.size = 7,
+                      palette = "YlGnBu",
                       strip.txt.size = 5,
-                      strip.ln.size = 0.5, 
+                      strip.ln.size = 0.5,
                       lab.text.size = 5,
-                      save = FALSE, 
-                      filename = "Norm_plot", 
-                      filetype = "pdf", 
-                      dpi = 80, 
-                      width = 7, 
+                      save = FALSE,
+                      filename = "Norm_plot",
+                      filetype = "pdf",
+                      dpi = 80,
+                      width = 7,
                       height = 7){
-  
+
   #Pre-prossesing data for plotting
   norm1 <- reshape2::melt(normalized, na.rm = FALSE)
   norm1$normstage <- "After normalization"
@@ -43,16 +47,16 @@ norm.plot <- function(normalized,
   colnames(plot_data) <- c("prot", "sample", "intensity", "normstage")
   plot_data$group<- sapply(strsplit(as.character(plot_data[,"sample"]),'_'),
                            getElement,1)
-  plot_data$normstage <- factor(plot_data$normstage, 
-                                levels = c("Before normalization", 
+  plot_data$normstage <- factor(plot_data$normstage,
+                                levels = c("Before normalization",
                                            "After normalization"))
-  
+
   if(type == "density"){
-    norm_plot<- ggplot2::ggplot(plot_data, 
-                            ggplot2::aes(x = intensity, 
-                                         color = sample)) + 
+    norm_plot<- ggplot2::ggplot(plot_data,
+                            ggplot2::aes(x = intensity,
+                                         color = sample)) +
       ggplot2::geom_density(lwd = lwd)+
-      ggplot2::xlab(xlabel) + 
+      ggplot2::xlab(xlabel) +
       ggplot2::ylab(ylabel)+
       #ggplot2::scale_fill_brewer(palette = palette)+
       ggplot2::theme_classic()+
@@ -65,28 +69,28 @@ norm.plot <- function(normalized,
             axis.title.x = element_text(size = xlab.size),
             axis.title.y= element_text(size = ylab.size),
             strip.text = element_text(size= strip.txt.size),
-            strip.background = element_rect(colour = "grey", 
+            strip.background = element_rect(colour = "grey",
                                             size = strip.ln.size))+
       ggplot2::facet_wrap( ~normstage)
-    
-    
+
+
 #Default: Boxplots
-    
+
   }else{
-    norm_plot<- ggplot2::ggplot(plot_data, 
-                            ggplot2::aes(x = sample, 
-                                         y = intensity, 
+    norm_plot<- ggplot2::ggplot(plot_data,
+                            ggplot2::aes(x = sample,
+                                         y = intensity,
                                          fill = group)) +
-      geom_boxplot(color = "grey30",  
-                   alpha = 0.9, 
-                   outlier.shape = 1, 
-                   outlier.stroke = 0.1, 
-                   outlier.size = 0.2, 
-                   outlier.color = "grey30", 
+      geom_boxplot(color = "grey30",
+                   alpha = 0.9,
+                   outlier.shape = 1,
+                   outlier.stroke = 0.1,
+                   outlier.size = 0.2,
+                   outlier.color = "grey30",
                    lwd = lwd)+
       ggplot2::coord_flip()+
       ggplot2::facet_wrap( ~normstage)+
-      ggplot2::xlab(xlabel) + 
+      ggplot2::xlab(xlabel) +
       ggplot2::ylab(ylabel)+
       ggplot2::scale_fill_brewer(palette = palette)+
       ggplot2::theme_classic()+
@@ -99,17 +103,17 @@ norm.plot <- function(normalized,
             axis.title.x = element_text(size = xlab.size),
             axis.title.y= element_text(size = ylab.size),
             strip.text = element_text(size= strip.txt.size),
-            strip.background = element_rect(colour = "grey", 
+            strip.background = element_rect(colour = "grey",
                                             size = strip.ln.size))
-    
+
   }
   if(save == TRUE){
-    ggsave(paste0(filename,".", filetype), 
-           norm_plot, 
-           dpi = dpi, 
-           width = width, 
+    ggsave(paste0(filename,".", filetype),
+           norm_plot,
+           dpi = dpi,
+           width = width,
            height = height)
     }else{
       return(norm_plot)
-    }      
+    }
   }

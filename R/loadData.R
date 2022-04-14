@@ -1,11 +1,9 @@
-
-#Author: Chathurani Ranathunge
-#email: ranathca@evms.edu
-
-#' Load the data -----------------------------------------------------------
-#' The protein intensity data is in the proteinGroups.txt file produced by MaxQuant.
+#Load data -----------------------------------------------------------
+#' Load input data
+#' @description This function loads the proteinGroups.txt file produced by
+#' MaxQuant.
+#' @author Chathurani Ranathunge
 #' @export
-
 load.data <- function(file.path = "") {
    input = read.csv(file.path,
               sep = "\t",
