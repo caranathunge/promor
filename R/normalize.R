@@ -1,8 +1,9 @@
 # Normalize intensities ----------------------------------------------------
-#' Normalize intensities
+#' Normalize intensity data
 #' @author Chathurani Ranathunge
 #' @description This function normalizes data using a user-specified
 #' normalization method.
+#' @import limma
 #' @export
 
 normalize.data <- function(x,
@@ -16,7 +17,9 @@ normalize.data <- function(x,
 #' Visualize the effect of normaliztion on the data
 #' @author Chathurani Ranathunge
 #' @description This function helps visualize the impact of normalization with
-#' box plots or density plots
+#' box plots or density plots.
+#' @importFrom reshape2 melt
+#' @import ggplot2
 #' @export
 norm.plot <- function(normalized,
                       original,

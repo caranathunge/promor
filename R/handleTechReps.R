@@ -5,6 +5,9 @@
 #' @description This function makes scatter plots to visualize the
 #' correlation between a given pair of technical replicates (1 vs 2)
 #' for each sample.
+#' @importFrom reshape2 melt
+#' @import ggplot2
+#' @import gridExtra
 #' @export
 corr.plot<- function(x,
                      rep1,
@@ -34,9 +37,9 @@ sub_df<-lapply(sample_name,
 
 #Only keep the samples with at least 2 replicates for plotting TR1 v TR2
 if(rep1 == 3  || rep2 == 3){
-  plot_data<-Filter(function(c) ncol(c) == 3, sub_df)
+  plot_data <- Filter(function(c) ncol(c) == 3, sub_df)
 }else{
-  plot_data<-Filter(function(c) ncol(c) >= 2, sub_df)
+  plot_data <- Filter(function(c) ncol(c) >= 2, sub_df)
 }
 
 #Create a list of scatter plots and print/save
@@ -64,7 +67,10 @@ plot_list<-lapply(1:length(plot_data), function(t)
 )
 if(save == TRUE){
 ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",filetype),
-                marrangeGrob(grobs = plot_list, nrow=nrow, ncol=ncol, top=""),
+                marrangeGrob(grobs = plot_list,
+                             nrow = nrow,
+                             ncol = ncol,
+                             top=""),
                 dpi = dpi)
 }else{
   return(plot_list)
@@ -89,6 +95,7 @@ rem.sample <- function(x, rem =""){
 #' @author Chathurani Ranathunge
 #' @description This function computes average intensities across
 #' technical replicates for each sample.
+#' @import limma
 #' @export
 aver.techreps <- function(x){
   #Convert dataframe back to a matrix as dataframes don't allow multiple
@@ -96,10 +103,12 @@ aver.techreps <- function(x){
   x_mat<- as.matrix(x)
 
   #substitute technical replicates with the sample name in the vector.
-  #Now each sample, all technical replicates are labelled the same way.
-  colnames(x_mat)<-gsub("\\_0\\d\\_","\\_", colnames(x_mat))
+  #Now in each sample, all technical replicates are labelled the same way.
+  colnames(x_mat) <- gsub("\\_0\\d\\_","\\_", colnames(x_mat))
 
   #Average across technical replicates
-  x_ave = limma::avearrays(x_mat, ID=colnames(x_mat), weights = NULL)
+  x_ave = limma::avearrays(x_mat,
+                           ID = colnames(x_mat),
+                           weights = NULL)
   return(x_ave)
 }

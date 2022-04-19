@@ -2,14 +2,61 @@
 % Please edit documentation in R/createDF.R
 \name{create.df}
 \alias{create.df}
-\title{Create data frame with LFQ intensities}
+\title{Create a data frame of protein intensities}
 \usage{
-create.df(x, zeroNA = TRUE, logtr = TRUE, base = 2)
+create.df(
+  file.path,
+  filter.prot = TRUE,
+  uniq.pep = 2,
+  zero.NA = TRUE,
+  log.tr = TRUE,
+  base = 2
+)
+}
+\arguments{
+\item{file.path}{File path to proteinGroups.txt file produced by MaxQuant.}
+
+\item{filter.prot}{Logical. If \code{TRUE} (default), filters out reverse proteins,
+proteins only identified by site, potential contaminants, and proteins
+identified with less than the minimum number of unique peptides indicated by
+\code{uniq.pep}.}
+
+\item{uniq.pep}{Numerical. The minimum number of unique peptides required to identify a
+protein (default is 2). Proteins that are identified by less than this number
+of unique peptides are filtered out.}
+
+\item{zero.NA}{Logical. If \code{TRUE} (default), zeros are considered missing
+values and replaced with NAs.}
+
+\item{log.tr}{Logical. If \code{TRUE} (default), intensity values are log
+transformed to the base indicated by \code{base}.}
+
+\item{base}{Numerical. Logarithm base. Default is 2.}
+}
+\value{
+A \code{raw.df} object which is a data frame containing selected
+proteins as rows and sample LFQ intensities as columns.
 }
 \description{
-This function creates a data frame with LFQ intensities from the filtered
-proteins from filter.prot function. Then converts zeros to NA.
+This function creates a data frame of label-free quantitative
+(LFQ) protein intensities from MaxQuant's proteinGroups.txt file.
 }
-\author{
-Chathurani Ranathunge
+\details{
+\itemize{\item This function first reads in the proteinGroups.txt file
+produced by MaxQuant.
+\item It filters out reverse proteins, proteins that were
+only identified by site, and potential contaminants.
+\item Then it removes proteins identified with less than
+the number of unique peptides indicated by \code{uniq.pep} from the the
+data frame.
+\item Next, it extracts the LFQ intensity columns and the selected protein
+rows from the data  frame.
+\item Converts missing values (zeros) to NAs.
+\item Finally, the function log transforms the LFQ intensity values.}
+}
+\examples{
+\dontrun{
+raw <- create.df(file.path = "./proteinGroups.txt")
+raw <- create.df(file.path = "./proteinGroups.txt", uniq.pep = 4)
+}
 }

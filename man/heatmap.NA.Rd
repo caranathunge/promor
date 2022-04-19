@@ -2,7 +2,7 @@
 % Please edit documentation in R/handleNA.R
 \name{heatmap.NA}
 \alias{heatmap.NA}
-\title{Visualize missing data distribution}
+\title{Visulaize missing data distribution}
 \usage{
 heatmap.NA(
   df,

@@ -1,8 +1,10 @@
-# Visulaize missing data distribution -------------------------------------
+# Visualize missing data distribution -------------------------------------
 #' Visulaize missing data distribution
 #' @author Chathurani Ranathunge
 #' @description This function visualizes the distribution of missing data using
 #' a heatmap
+#' @importFrom reshape2 melt
+#' @import ggplot2
 #' @export
 heatmap.NA <- function(df,
                        reorder.x = FALSE,
@@ -108,7 +110,10 @@ if(save == TRUE){
 #' Impute missing data
 #' @author Chathurani Ranathunge
 #' @description This function imputes missing data using a user-specified
-#' imputation method
+#' imputation method.
+#' @importFrom missForest missForest
+#' @importFrom pcaMethods pca
+#' @importFrom VIM kNN
 #' @export
 
 
@@ -192,7 +197,7 @@ impute.NA <- function(x,
     return(df_imputed_svd)
 
     }else if (method == "minProb"){
-    df_imputed_minprob<- impute.Min.Prob(x,
+    df_imputed_minprob <- impute.Min.Prob(x,
                                          q = q,
                                          tune.sigma = tune.sigma)
     return(df_imputed_minprob)
@@ -205,6 +210,8 @@ impute.NA <- function(x,
 #' @author Chathurani Ranathunge
 #' @description This function compares imputed data to original data with a
 #' user-defined plot.
+#' @importFrom reshape2 melt
+#' @import ggplot2
 #' @export
 
 #Options: Global density plot, Sample-wise density plot

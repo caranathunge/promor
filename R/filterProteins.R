@@ -1,30 +1,25 @@
-# Filter proteins ---------------------------------------------------------
-#' Filter proteins
-#' @author Chathurani Ranathunge
-#' @description
-#' This function filters out proteins with a "+" sign for "Reverse",
-#' "Only identified by site", and "Potential contaminants" columns in the
-#' proteinGroups.txt file.
-#' It also removes proteins identified with less than two unique peptides.
-#' @export
-filter.prot <- function(x){
-  raw_1 = subset(x,
-                x$Only.identified.by.site !="+" &
-                x$Reverse !="+" & x$Potential.contaminant !="+" &
-                x$Unique.peptides > 2)
-  return(raw_1)
-}
-
 # Filter missing data -----------------------------------------------------
-#' Filter missing data
-#' @author Chathurani Ranathunge
-#' @description This function removes proteins (rows) that are absent (NA)
-#' across all samples and samples (columns) with no protein data
+#' Filter out proteins and/ or samples that do not have valid data
+#' @description This function removes proteins (rows) that have missing data
+#'  (NAs) across all samples and samples (columns) with missing data across all
+#'  proteins
+#' @param df A \code{raw.df} object (output from \code{\link {create.df}}).
+#' @details \itemize{\item This function first removes proteins (rows) with
+#' missing values (NAs) across all samples.
+#' \item Then if present, it removes samples (columns) with missing data
+#' across all proteins }
+#' @examples
+#' \dontrun{
+#' raw <- create.df(file.path = "./proteinGroups.txt")
+#' raw_1 <- filter.NA(raw)
+#' }
+#' @return A \code{raw.df} object or a data frame with empty rows and
+#' columns (all NAs) removed.
 #' @export
 
-filter.NA <- function(x){
+filter.NA <- function(df){
     #Remove proteins (rows) with missing values (NA) across all samples
-    raw_2 <- x[rowSums(is.na(x)) != ncol(x), ]
+    raw_2 <- df[rowSums(is.na(df)) != ncol(df), ]
     #Remove samples (columns) with missing values (NA) across all proteins
     raw_2<- raw_2[, colSums(is.na(raw_2)) != nrow(raw_2)]
     return(raw_2)

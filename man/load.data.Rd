@@ -2,14 +2,27 @@
 % Please edit documentation in R/loadData.R
 \name{load.data}
 \alias{load.data}
-\title{Load input data}
+\title{Import data}
 \usage{
-load.data(file.path = "")
+load.data(file)
+}
+\arguments{
+\item{file}{File path to proteinGroups.txt file produced by MaxQuant.}
+}
+\value{
+A data frame that includes all the rows and columns from the
+proteinGroups.txt file.
 }
 \description{
-This function loads the proteinGroups.txt file produced by
+Import the proteinGroups.txt file produced by
 MaxQuant.
 }
-\author{
-Chathurani Ranathunge
+\details{
+This function reads the proteinGroups.txt file produced by MaxQuant
+and saves the data in a data frame.
+}
+\examples{
+\dontrun{
+input <- load.data("./proteinGroups.txt")
+}
 }

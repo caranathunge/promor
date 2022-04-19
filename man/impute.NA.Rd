@@ -19,7 +19,7 @@ impute.NA(
 }
 \description{
 This function imputes missing data using a user-specified
-imputation method
+imputation method.
 }
 \author{
 Chathurani Ranathunge

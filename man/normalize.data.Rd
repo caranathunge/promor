@@ -2,7 +2,7 @@
 % Please edit documentation in R/normalize.R
 \name{normalize.data}
 \alias{normalize.data}
-\title{Normalize intensities}
+\title{Normalize intensity data}
 \usage{
 normalize.data(x, method = "quantile")
 }

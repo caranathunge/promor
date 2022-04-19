@@ -2,14 +2,31 @@
 % Please edit documentation in R/filterProteins.R
 \name{filter.NA}
 \alias{filter.NA}
-\title{Filter missing data}
+\title{Filter out proteins and/ or samples that do not have valid data}
 \usage{
-filter.NA(x)
+filter.NA(df)
+}
+\arguments{
+\item{df}{A \code{raw.df} object (output from \code{\link {create.df}}).}
+}
+\value{
+A \code{raw.df} object or a data frame with empty rows and
+columns (all NAs) removed.
 }
 \description{
-This function removes proteins (rows) that are absent (NA)
-across all samples and samples (columns) with no protein data
+This function removes proteins (rows) that have missing data
+(NAs) across all samples and samples (columns) with missing data across all
+proteins
 }
-\author{
-Chathurani Ranathunge
+\details{
+\itemize{\item This function first removes proteins (rows) with
+missing values (NAs) across all samples.
+\item Then if present, it removes samples (columns) with missing data
+across all proteins }
+}
+\examples{
+\dontrun{
+raw <- create.df(file.path = "./proteinGroups.txt")
+raw_1 <- filter.NA(raw)
+}
 }

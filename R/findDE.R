@@ -3,6 +3,7 @@
 #' @author Chathurani Ranathunge
 #' @description This function identifies significantly differentially expressed
 #' proteins between two groups with LIMMA
+#' @import limma
 #' @export
 find.DEP <- function(x,
                      save.output = TRUE,
@@ -46,6 +47,8 @@ return(fit)
 #' @author Chathurani Ranathunge
 #' @description This function help visualize the results from the differential
 #' expression analysis using a volcano plot.
+#' @import limma
+#' @import ggplot2
 #' @export
 volcano.plot <- function(x,
                          adjust.method = "BH",
@@ -161,6 +164,9 @@ if (save == TRUE){
 #' @author Chathurani Ranathunge
 #' @description This function help visualize the results from the differential
 #' expression analysis using a heat map.
+#' @import limma
+#' @import ggplot2
+#' @importFrom reshape2 melt
 #' @export
 heatmap.DE <- function(x,
                        y,

@@ -28,7 +28,7 @@ norm.plot(
 }
 \description{
 This function helps visualize the impact of normalization with
-box plots or density plots
+box plots or density plots.
 }
 \author{
 Chathurani Ranathunge
