@@ -4,12 +4,41 @@
 \alias{filterby.groupNA}
 \title{Filter proteins by group level missing data}
 \usage{
-filterby.groupNA(x, set.na = 0.33)
+filterby.groupNA(df, set.na = 0.33)
+}
+\arguments{
+\item{df}{A \code{raw.df} object (output of \code{\link{create.df}})}
+
+\item{set.na}{The percentage of missing data allowed in any group.
+Default is 0.33.}
+}
+\value{
+A \code{raw.df} object or a data frame of filtered proteins
+as rows and sample LFQ intensities as columns.
 }
 \description{
-This function filters out proteins with more than 33\% missing
-data in each group.
+This function filters out proteins that exceed a given
+missing data percentage in each group.
 }
-\author{
-Chathurani Ranathunge
+\details{
+This function assumes that column headers in the \code{raw.df}
+object provided as \code{df} follow "Group_UniqueSampleID" notation.
+\itemize{\item It first
+extracts group or condition information from column headers and assigns
+samples to different groups.
+\item It then removes proteins (rows) from the data frame if the percentage
+of NAs in any one of the given groups exceeds the threshold indicated by
+\code{set.na} (default is 0.33)}
+}
+\examples{
+ \dontrun{
+ ## Create a raw.df object from a proteinGroups.txt file.
+ raw <- create.df(file.path = "./proteinGroups.txt")
+
+ ## Missing data percentage allowed in each group = 0.33
+ raw_filtered <- filterby.groupNA(raw)
+
+ ## Missing data percentage allowed in each group = 0.5
+ raw_filtered1 <- filterby.groupNA(raw, set.na = 0.5)
+ }
 }

@@ -2,19 +2,21 @@
 #' Create a data frame of protein intensities
 #' @description This function creates a data frame of label-free quantitative
 #' (LFQ) protein intensities from MaxQuant's proteinGroups.txt file.
+#'
 #' @param file.path File path to proteinGroups.txt file produced by MaxQuant.
-#' @param filter.prot Logical. If \code{TRUE} (default), filters out reverse proteins,
-#'  proteins only identified by site, potential contaminants, and proteins
-#'  identified with less than the minimum number of unique peptides indicated by
-#'  \code{uniq.pep}.
-#' @param uniq.pep Numerical. The minimum number of unique peptides required to identify a
-#' protein (default is 2). Proteins that are identified by less than this number
-#' of unique peptides are filtered out.
+#' @param filter.prot Logical. If \code{TRUE} (default), filters out
+#' reverse proteins, proteins only identified by site, potential contaminants,
+#' and proteins identified with less than the minimum number of unique peptides
+#' indicated by \code{uniq.pep}.
+#' @param uniq.pep Numerical. The minimum number of unique peptides required to
+#' identify a protein (default is 2). Proteins that are identified by less than
+#' this number of unique peptides are filtered out.
 #' @param zero.NA Logical. If \code{TRUE} (default), zeros are considered missing
 #' values and replaced with NAs.
 #' @param log.tr Logical. If \code{TRUE} (default), intensity values are log
 #' transformed to the base indicated by \code{base}.
 #' @param base Numerical. Logarithm base. Default is 2.
+#'
 #' @details
 #' \itemize{\item This function first reads in the proteinGroups.txt file
 #' produced by MaxQuant.
@@ -27,12 +29,14 @@
 #' rows from the data  frame.
 #' \item Converts missing values (zeros) to NAs.
 #' \item Finally, the function log transforms the LFQ intensity values.}
+#'
 #' @return A \code{raw.df} object which is a data frame containing selected
 #' proteins as rows and sample LFQ intensities as columns.
+#'
 #' @examples
 #' \dontrun{
 #' raw <- create.df(file.path = "./proteinGroups.txt")
-#' raw <- create.df(file.path = "./proteinGroups.txt", uniq.pep = 4)
+#' raw_1 <- create.df(file.path = "./proteinGroups.txt", uniq.pep = 4)
 #' }
 #' @export
 
@@ -54,7 +58,6 @@ create.df <- function(file.path,
                 df$Only.identified.by.site !="+" &
                   df$Reverse !="+" & df$Potential.contaminant !="+" &
                   df$Unique.peptides > uniq.pep)
-    return(df)
   }else{
     warning("Proteins have not been filtered")
   }
@@ -80,10 +83,10 @@ create.df <- function(file.path,
   #log2 transform the data
   if(log.tr == TRUE){
     df<- log(df, base)
-    return(df)
   }else{
     warning("Intensities have not been log transformed")
-    return(df)
   }
+  return(df)
 }
+
 

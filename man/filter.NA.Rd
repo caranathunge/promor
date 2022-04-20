@@ -7,11 +7,11 @@
 filter.NA(df)
 }
 \arguments{
-\item{df}{A \code{raw.df} object (output from \code{\link {create.df}}).}
+\item{df}{A \code{raw.df} object (output of \code{\link {create.df}}).}
 }
 \value{
-A \code{raw.df} object or a data frame with empty rows and
-columns (all NAs) removed.
+A \code{raw.df} object or a data frame with no empty (all NAs) rows
+or columns.
 }
 \description{
 This function removes proteins (rows) that have missing data

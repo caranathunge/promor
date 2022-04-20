@@ -1,32 +1,73 @@
-# Visualize missing data distribution -------------------------------------
-#' Visulaize missing data distribution
-#' @author Chathurani Ranathunge
-#' @description This function visualizes the distribution of missing data using
-#' a heatmap
+# Visualize missing data -------------------------------------
+#' Visualize missing data
+#' @description This function visualizes the patterns of missing value
+#' occurrence using a heatmap.
+#'
 #' @importFrom reshape2 melt
 #' @import ggplot2
+#'
+#' @param df A \code{raw.df} object (output from \code{create.df}).
+#' @param reorder.x Logical. If \code{TRUE} samples on the x axis are reordered
+#' using the function given in \code{x.FUN}. Default is \code{FALSE}.
+#' @param reorder.y Logical. If \code{TRUE} proteins in the y axis are reordered
+#' using the function given in \code{y.FUN}. Default is \code{FALSE}.
+#' @param x.FUN Function to reorder samples along the x axis. Possible options
+#' include \code{mean} and \code{sum}. Default is \code{mean}.
+#' @param y.FUN Function to reorder proteins along the y axis. Possible options
+#' include \code{mean} and \code{sum}. Default is \code{mean}.
+#' @param col.na Color assigned for missing values (NAs). Default is "Black."
+#' @param col.val Color assigned for valid values. Default is "Grey."
+#' @param text.size Text size for axis labels. Default is \code{10}.
+#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' working directory.
+#' @param file.type File type to save the heatmap. Default is \code{"pdf"}.
+#' @param file.name File name to save the heatmap.
+#' Default is \code{"MissingData_heatmap"}.
+#' @param plot.width Width of the plot. Default is \code{15}.
+#' @param plot.height Height of the plot. Default is \code{15}.
+#' @param dpi Plot resolution. Default is \code{80}.
+#'
+#' @details
+#' This function visualizes patterns of missing value occurrence using a
+#' heatmap. User can choose to reorder the axes using the available functions
+#' (\code{x.FUN}, \code{y.FUN}) to better understand the underlying cause of
+#' missing data.
+#'
+#' @return A \code{ggplot2} plot object.
+#'
+#' @examples
+#' \dontrun{
+#' ## Create a raw.df object from a proteinGroups.txt file.
+#' raw <- create.df(file.path = "./proteinGroups.txt")
+#'
+#' ## Missing data heatmap with default settings.
+#' heatmap.NA(raw)
+#'
+#' ## Missing data heatmap with x and y axes reordered by sum of intensity.
+#' heatmap.NA(raw, reorder.x = TRUE, reorder.y = TRUE, x.FUN = sum,
+#' y.FUN = sum)
+#' }
+#'
 #' @export
 heatmap.NA <- function(df,
                        reorder.x = FALSE,
                        reorder.y = FALSE,
                        x.FUN = mean,
                        y.FUN = mean,
-                       na.rm = T,
                        col.na = "black",
                        col.val = "grey",
-                       plot.title.size = 5,
-                       x.text.size = 2,
-                       y.text.size = 1,
+                       text.size = 10,
                        save = TRUE,
-                       filetype = "pdf",
-                       filename = "MissingData_heatmap",
-                       width = 15,
-                       height = 15,
+                       file.type = "pdf",
+                       file.name = "MissingData_heatmap",
+                       plot.width = 15,
+                       plot.height = 15,
                        dpi = 80){
 
 
   #Convert the data into long format for plotting and make necessary changes
   #i.e. adding column headers etc.
+  df <- as.matrix(df)
   hmap_data <- reshape2::melt(df, na.rm = FALSE)
   hmap_data$mjprot <- sapply(strsplit(as.character(hmap_data[,1]),';'),
                              getElement,1)
@@ -41,11 +82,11 @@ heatmap.NA <- function(df,
     hmap <- ggplot2::ggplot(hmap_df,
                             ggplot2::aes(x = reorder(sample,
                                                      value,
-                                                     na.rm = na.rm,
+                                                     na.rm = TRUE,
                                                      FUN = x.FUN),
                                          y = reorder(protgroup,
                                                      value,
-                                                     na.rm = na.rm,
+                                                     na.rm = TRUE,
                                                      FUN = y.FUN),
                                          fill = value))
 
@@ -54,7 +95,7 @@ heatmap.NA <- function(df,
                             ggplot2::aes(x = sample,
                                          y = reorder(protgroup,
                                                      value,
-                                                     na.rm = na.rm,
+                                                     na.rm = TRUE,
                                                      FUN = y.FUN),
                                          fill = value))
 
@@ -62,7 +103,7 @@ heatmap.NA <- function(df,
     hmap <- ggplot2::ggplot(hmap_df,
                             ggplot2::aes(x = reorder(sample,
                                                      value,
-                                                     na.rm = na.rm,
+                                                     na.rm = TRUE,
                                                      FUN = x.FUN),
                                          y = protgroup,
                                          fill = value))
@@ -83,12 +124,9 @@ heatmap.NA <- function(df,
                                  na.value = col.na)+
     ggplot2::theme(plot.background = element_blank(),
                    panel.border = element_blank(),
-                   plot.title = element_text(color = "Black",
-                                             size = plot.title.size,
-                                             face="bold"),
                    axis.text.x = element_text(angle = 90,
-                                              size = x.text.size),
-                   axis.text.y=element_text(size = y.text.size),
+                                              size = text.size),
+                   axis.text.y=element_text(size = text.size),
                    axis.ticks.y = element_blank(),
                    axis.ticks.x = element_blank(),
                    legend.position = "none")+
@@ -96,11 +134,11 @@ heatmap.NA <- function(df,
 
 #Save the heatmap as a pdf
 if(save == TRUE){
-  ggplot2::ggsave(paste0(filename,".",filetype),
+  ggplot2::ggsave(paste0(file.name,".",file.type),
                   hmap,
                   dpi = dpi,
-                  width = width,
-                  height = height)
+                  width = plot.width,
+                  height = plot.height)
   }else{
     return(hmap)
   }
