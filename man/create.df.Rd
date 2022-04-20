@@ -16,14 +16,14 @@ create.df(
 \arguments{
 \item{file.path}{File path to proteinGroups.txt file produced by MaxQuant.}
 
-\item{filter.prot}{Logical. If \code{TRUE} (default), filters out reverse proteins,
-proteins only identified by site, potential contaminants, and proteins
-identified with less than the minimum number of unique peptides indicated by
-\code{uniq.pep}.}
+\item{filter.prot}{Logical. If \code{TRUE} (default), filters out
+reverse proteins, proteins only identified by site, potential contaminants,
+and proteins identified with less than the minimum number of unique peptides
+indicated by \code{uniq.pep}.}
 
-\item{uniq.pep}{Numerical. The minimum number of unique peptides required to identify a
-protein (default is 2). Proteins that are identified by less than this number
-of unique peptides are filtered out.}
+\item{uniq.pep}{Numerical. The minimum number of unique peptides required to
+identify a protein (default is 2). Proteins that are identified by less than
+this number of unique peptides are filtered out.}
 
 \item{zero.NA}{Logical. If \code{TRUE} (default), zeros are considered missing
 values and replaced with NAs.}
@@ -57,6 +57,6 @@ rows from the data  frame.
 \examples{
 \dontrun{
 raw <- create.df(file.path = "./proteinGroups.txt")
-raw <- create.df(file.path = "./proteinGroups.txt", uniq.pep = 4)
+raw_1 <- create.df(file.path = "./proteinGroups.txt", uniq.pep = 4)
 }
 }

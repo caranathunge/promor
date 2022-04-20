@@ -2,7 +2,7 @@
 % Please edit documentation in R/handleNA.R
 \name{heatmap.NA}
 \alias{heatmap.NA}
-\title{Visulaize missing data distribution}
+\title{Visualize missing data}
 \usage{
 heatmap.NA(
   df,
@@ -10,24 +10,76 @@ heatmap.NA(
   reorder.y = FALSE,
   x.FUN = mean,
   y.FUN = mean,
-  na.rm = T,
   col.na = "black",
   col.val = "grey",
-  plot.title.size = 5,
-  x.text.size = 2,
-  y.text.size = 1,
+  text.size = 10,
   save = TRUE,
-  filetype = "pdf",
-  filename = "MissingData_heatmap",
-  width = 15,
-  height = 15,
+  file.type = "pdf",
+  file.name = "MissingData_heatmap",
+  plot.width = 15,
+  plot.height = 15,
   dpi = 80
 )
 }
-\description{
-This function visualizes the distribution of missing data using
-a heatmap
+\arguments{
+\item{df}{A \code{raw.df} object (output from \code{create.df}).}
+
+\item{reorder.x}{Logical. If \code{TRUE} samples on the x axis are reordered
+using the function given in \code{x.FUN}. Default is \code{FALSE}.}
+
+\item{reorder.y}{Logical. If \code{TRUE} proteins in the y axis are reordered
+using the function given in \code{y.FUN}. Default is \code{FALSE}.}
+
+\item{x.FUN}{Function to reorder samples along the x axis. Possible options
+include \code{mean} and \code{sum}. Default is \code{mean}.}
+
+\item{y.FUN}{Function to reorder proteins along the y axis. Possible options
+include \code{mean} and \code{sum}. Default is \code{mean}.}
+
+\item{col.na}{Color assigned for missing values (NAs). Default is "Black."}
+
+\item{col.val}{Color assigned for valid values. Default is "Grey."}
+
+\item{text.size}{Text size for axis labels. Default is \code{10}.}
+
+\item{save}{Logical. If \code{TRUE} (default) saves a copy of the plot in the
+working directory.}
+
+\item{file.type}{File type to save the heatmap. Default is \code{"pdf"}.}
+
+\item{file.name}{File name to save the heatmap.
+Default is \code{"MissingData_heatmap"}.}
+
+\item{plot.width}{Width of the plot. Default is \code{15}.}
+
+\item{plot.height}{Height of the plot. Default is \code{15}.}
+
+\item{dpi}{Plot resolution. Default is \code{80}.}
 }
-\author{
-Chathurani Ranathunge
+\value{
+A \code{ggplot2} plot object.
+}
+\description{
+This function visualizes the patterns of missing value
+occurrence using a heatmap.
+}
+\details{
+This function visualizes patterns of missing value occurrence using a
+heatmap. User can choose to reorder the axes using the available functions
+(\code{x.FUN}, \code{y.FUN}) to better understand the underlying cause of
+missing data.
+}
+\examples{
+\dontrun{
+## Create a raw.df object from a proteinGroups.txt file.
+raw <- create.df(file.path = "./proteinGroups.txt")
+
+## Missing data heatmap with default settings.
+heatmap.NA(raw)
+
+## Missing data heatmap with x and y axes reordered by sum of intensity.
+heatmap.NA(raw, reorder.x = TRUE, reorder.y = TRUE, x.FUN = sum,
+y.FUN = sum)
+}
+
 }
