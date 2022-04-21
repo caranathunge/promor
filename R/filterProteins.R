@@ -109,11 +109,11 @@ filterby.groupNA <- function(df,
 #' @param save Logical. If \code{TRUE} (default), it saves the output in a text
 #' file named "Group_\code{pres.group}_only.txt."
 #'
-#' @details This function assumes that column headers in the \code{raw.df}
-#'  object provided as \code{df} follow "Group_UniqueSampleID" notation.
-#'  \itemize{\item Given a pair of groups, \code{onegroup.only} function
-#'  finds proteins that are only expressed in \code{pres.group} while
-#'  completely absent or not expressed in \code{abs.group}.}
+#' @details Note: \code{onegroup.only} function assumes that column headers in
+#' the \code{raw.df} object provided as \code{df} follow "Group_UniqueSampleID"
+#' notation. \itemize{\item Given a pair of groups, \code{onegroup.only}
+#' function finds proteins that are only expressed in \code{pres.group} while
+#' completely absent or not expressed in \code{abs.group}.}
 #'
 #' @return A list of majority protein IDs.
 #'

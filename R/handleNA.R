@@ -137,8 +137,8 @@ if(save == TRUE){
   ggplot2::ggsave(paste0(file.name,".",file.type),
                   hmap,
                   dpi = dpi,
-                  width = plot.width,
-                  height = plot.height)
+                  plot.width = plot.widthwidth,
+                  plot.height = plot.height)
   }else{
     return(hmap)
   }
@@ -152,29 +152,59 @@ if(save == TRUE){
 #' @importFrom pcaMethods pca
 #' @importFrom VIM kNN
 #'
-#' @param df A \code{raw.df} object (output of \code{\link{create.df}}).
+#' @param df A \code{raw.df} object (output of \code{\link{create.df}})
+#' containing missing values.
 #' @param method Imputation method to use. Default is \code{"minProb"}.
 #' Available methods: \code{"minDet", "RF", "kNN", and "SVD"}.
 #' @param tune.sigma A scalar used in the \code{"minProb"} method for
 #' controlling the standard deviation of the Gaussian distribution
-#' from which random values are drawn for imputation. Default is 1.
-#' #' @param q A scalar used in \code{"minProb"} and \code{"minDet"} methods
+#' from which random values are drawn for imputation.\cr
+#' Default is 1.
+#' @param q A scalar used in \code{"minProb"} and \code{"minDet"} methods
 #' to obtain a low intensity value for imputation. \code{q} should be set to a
 #' very low value. Default is 0.01.
 #' @param maxiter Maximum number of iterations to be performed when using the
-#' \code{"RF"} method.
+#' \code{"RF"} method. Default is \code{10}.
 #' @param ntree Number of trees to grow in each forest when using the
-#' \code{"RF"} method.
+#' \code{"RF"} method. Default is \code{20}.
 #' @param nPcs Number of principal components to calculate when using the
 #' \code{"SVD"} method. Default is 2.
-#' @param center
-#' @param imp_var
 #'
-#' @details
+#' @details \code{impute.NA} function imputes missing values using a
+#' user-specified imputation method from the available options, \code{minProb},
+#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
 #'
+#' @seealso More information on the available imputation methods can be found
+#' in their respective packages.\itemize{\item For \code{minProb} and
+#' \code{minDet} methods, see \code{\link{imputeLCMD}} package.
+#' \item For Random Forest (\code{RF}) method, see \code{\link{missForest}}
+#' package.
+#' \item For \code{kNN} method, see \code{\link{VIM}} package.
+#' \item For \code{SVD} method, see \code{\link{pcaMethods}} package.}
+#'
+#' @return An \code{imp.df} object, which is a data frame of intensities with no
+#' missing values.
 #' @examples
 #' \dontrun{
+#' ## Create a raw.df object from a proteinGroups.txt file.
+#' raw <- create.df(file.path = "./proteinGroups.txt")
 #'
+#' ## Impute missing values in the data frame using the default minProb
+#' method.
+#' imp_raw <- impute.NA(raw)
+#'
+#' ## Using the RF method with the number of iterations set at 5,
+#' and the number of trees set at 100.
+#' imp_raw <- impute.NA(raw, method = "RF", maxiter = 5, ntree = 100 )
+#'
+#' ## Using the kNN method.
+#' imp_raw <- impute.NA(raw, method = "kNN")
+#'
+#' ## Using the SVD method with nPCs set to 3.
+#' imp_raw <- impute.NA(raw, method = "SVD", nPCs = 3)
+#'
+#' ## Using the minDet method with q set at 0.001.
+#' imp_raw <- impute.NA(raw, method = "minDet", q = 0.001)
 #'
 #' }
 #'
@@ -186,11 +216,8 @@ impute.NA <- function(df,
                       method = "minProb",
                       tune.sigma = 1,
                       q = 0.01,
-                      maxiter = 6,
-                      ntree = 20,
-                      nPcs = 2,
-                      center = TRUE,
-                      imp_var = FALSE){
+                      maxiter = 10,
+                      ntree = 20){
 
 
 #Run imputeLCMD function imputeMinProb
@@ -210,8 +237,11 @@ impute.NA <- function(df,
       dataSet.to.impute.temp = rnorm(nFeatures,
                                      mean = min.samples[i],
                                      sd = sd.temp)
-      dataSet.imputed[which(is.na(dataSet.mvs[, i])), i] =
-        dataSet.to.impute.temp[which(is.na(dataSet.mvs[,i]))]
+      dataSet.imputed[
+        which(
+          is.na(
+            dataSet.mvs[, i])), i] = dataSet.to.impute.temp[which(
+              is.na(dataSet.mvs[,i]))]
     }
     return(dataSet.imputed)
   }
@@ -224,7 +254,8 @@ impute.NA <- function(df,
     lowQuantile.samples = apply(dataSet.imputed, 2, quantile,
                                 prob = q, na.rm = T)
     for (i in 1:(nSamples)) {
-      dataSet.imputed[which(is.na(dataSet.mvs[, i])), i] = lowQuantile.samples[i]
+      dataSet.imputed[which(
+        is.na(dataSet.mvs[, i])), i] = lowQuantile.samples[i]
     }
     return(dataSet.imputed)
   }
@@ -245,7 +276,7 @@ impute.NA <- function(df,
     return(df_imputed_RF)
 
     }else if (method == "kNN"){
-    df_imputed_knn <- VIM::kNN(df, imp_var = imp_var)
+    df_imputed_knn <- VIM::kNN(df, imp_var = FALSE)
     rownames(df_imputed_knn) <- rownames(df)
     return(df_imputed_knn)
 
@@ -254,8 +285,7 @@ impute.NA <- function(df,
     df_imp_temp <- pcaMethods::pca(object = df,
                                    method = "svdImpute",
                                    nPcs = nPcs,
-                                   center = center,
-                                   verbose= verbose)
+                                   verbose= TRUE)
     df_imputed_svd <- completeObs(df_imp_temp)
     return(df_imputed_svd)
 
@@ -269,36 +299,82 @@ impute.NA <- function(df,
 
 
 # Visualize the imputation effects ----------------------------------------
-#' Visualize the imputation effects
-#' @author Chathurani Ranathunge
-#' @description This function compares imputed data to original data with a
-#' user-defined plot.
+#' Visualize the impact of imputation
+#' @description This function generates density plots to visualize the impact of
+#' missing data imputation on the data.
 #' @importFrom reshape2 melt
 #' @import ggplot2
+#'
+#' @param original A \code{raw.df} object (output of \code{\link{create.df}})
+#' containing missing values.
+#' @param imputed An \code{imp.df} object obtained from running \code{impute.NA}
+#'  on the same data frame provided as \code{original}.
+#' @param global Logical. If \code{TRUE} ({default}), a global density plot is
+#' produced. If \code{FALSE}, sample-wise density plots are produced.
+#' @param text.size Text size for plot labels, axis labels etc. Default is
+#' \code{10}.
+#' @param orig.col Fill color for the \code{original} data set.\cr
+#' Default is "Blue."
+#' @param imp.col Fill color color for the \code{imputed} data set.\cr
+#' Default is "Red."
+#' @param nrow Required if \code{global = FALSE} to indicate the number of plots
+#' to print in a single row.
+#' @param ncol Required if \code{global = FALSE} to indicate the number of plots
+#' to print in a single column.
+#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' working directory.
+#' @param file.name file.name File name to save the density plot/s.
+#' Default is \code{"Impute_plot."}
+#' @param file.type File type to save the density plot/s.
+#' Default is \code{"pdf"}.
+#' @param plot.width Width of the plot. Default is \code{7}.
+#' @param plot.height Height of the plot. Default is \code{7}.
+#' @param dpi Plot resolution. Default is \code{80}.
+#'
+#' @details
+#' \itemize{\item Given two data frames, one with missing values
+#' (\code{raw.df} object) and the other, an imputed data frame
+#' (\code{imp.df} object) of the same data set, \code{impute.plot}
+#' generates global or sample-wise density plots to visualize the
+#' impact of imputation on the data set.
+#' \item Note, when sample-wise option is selected (\code{global = FALSE}),
+#' \code{nrow} * \code{ncol} should match the number of samples in the
+#' data frame.}
+#'
+#' @return A \code{ggplot2} plot object.
+#'
+#' @examples
+#' \dontrun{
+#' ## Create a raw.df object from a proteinGroups.txt file.
+#' raw <- create.df(file.path = "./proteinGroups.txt")
+#'
+#' ## Impute missing values in the data frame.
+#' imp_raw <- impute.NA(raw)
+#'
+#' ## Visualize the impact of missing data imputation with a global density plot.
+#' impute.plot(original = raw, imputed = imp_raw)
+#'
+#' ## Make sample-wise density plots for a data set of 25 samples.
+#' impute.plot(raw, imp_raw, global = FALSE, nrow = 5, ncol = 5)
+#'
+#' }
 #' @export
 
 #Options: Global density plot, Sample-wise density plot
-impute.densplot <- function(original,
+impute.plot <- function(original,
                             imputed,
                             global = TRUE,
-                            alpha=0.25,
-                            lwd = 0.1,
-                            xlabel = "Intensity",
-                            ylabel="Density",
-                            xlab.size = 7,
-                            ylab.size =7,
-                            col1 ="blue",
-                            col2="red",
-                            strip.txt.size = 5,
-                            strip.ln.col = "grey",
-                            strip.ln.size = 0.5,
-                            nrow = 15, ncol = 5,
-                            dpi = 80,
-                            filename= "Impute_densityplot",
-                            filetype="pdf",
-                            width = 7,
-                            height= 7,
-                            save = TRUE){
+                            text.size = 10,
+                            orig.col = "blue",
+                            imp.col = "red",
+                            nrow,
+                            ncol,
+                            save = TRUE,
+                            file.name = "Impute_plot",
+                            file.type ="pdf",
+                            plot.width = 7,
+                            plot.height = 7,
+                            dpi = 80){
 
   #Make necessary changes and combine data frames before plotting
   orig_data <- reshape2::melt(original, na.rm = FALSE)
@@ -326,23 +402,23 @@ impute.densplot <- function(original,
                                                        levels = c(
                                                          "Before imputation",
                                                          "After imputation"))),
-                            alpha=alpha,
-                            lwd = lwd )+
-      ggplot2::xlab(xlabel) +
-      ggplot2::ylab(ylabel)+
-      ggplot2::scale_fill_manual(values=c(col1,col2))+
+                            alpha = 0.25,
+                            lwd = 0.1 )+
+      ggplot2::xlab("Intensity") +
+      ggplot2::ylab("Density")+
+      ggplot2::scale_fill_manual(values=c(orig.col,imp.col))+
       ggplot2::theme_classic()+
       ggplot2::theme(legend.title = element_blank(),
-                     axis.title.x = element_text(size = xlab.size),
-                     axis.title.y = element_text(size = ylab.size))
+                     axis.title.x = element_text(size = text.size),
+                     axis.title.y = element_text(size = text.size))
 
 
     if(save == TRUE){
-      ggplot2::ggsave(paste0(filename,".",filetype),
+      ggplot2::ggsave(paste0(file.name,".",file.type),
                       g_densityplot,
                       dpi = dpi,
-                      width = width,
-                      height = height)
+                      plot.width = plot.width,
+                      plot.height = plot.height)
       }else{
         return(g_densityplot)
         }
@@ -353,27 +429,27 @@ impute.densplot <- function(original,
                                                      levels=c(
                                                        "Before imputation",
                                                        "After imputation"))),
-                            alpha = alpha,
-                            lwd = lwd )+
-      ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel)+
-      ggplot2::scale_fill_manual(values = c(col1, col2))+
+                            alpha =   0.25,
+                            lwd = 0.1 )+
+      ggplot2::xlab("Intensity") + ggplot2::ylab("Density")+
+      ggplot2::scale_fill_manual(values = c(orig.col, imp.col))+
       ggplot2::theme_classic()+
       ggplot2::theme(legend.title = element_blank(),
                      axis.title.x = element_blank(),
                      axis.title.y= element_blank(),
-                     strip.text = element_text(size = strip.txt.size),
-                     strip.background = element_rect(colour = strip.ln.col,
-                                                     size = strip.ln.size))+
+                     strip.text = element_text(size = text.size),
+                     strip.background = element_rect(colour = "grey",
+                                                     size = 0.5))+
       ggplot2::facet_wrap(~sample,
                           nrow = nrow,
                           ncol = ncol,
                           strip.position = "top")
     if(save == TRUE){
-      ggplot2::ggsave(paste0(filename,".", filetype),
+      ggplot2::ggsave(paste0(file.name,".", file.type),
                       s_densplot,
                       dpi = dpi,
-                      width = width,
-                      height = height)
+                      plot.width = plot.width,
+                      plot.height = plot.height)
       }else{
         return(s_densplot)
       }

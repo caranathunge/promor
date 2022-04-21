@@ -4,11 +4,48 @@
 #' @description This function normalizes data using a user-specified
 #' normalization method.
 #' @import limma
+#'
+#' @param df A \code{raw.df} object, or ideally, an \code{imp.df} object with
+#' missing values imputed.
+#' @param method Name of the normalization method to use. Choices are
+#' \code{"none", "scale", "quantile" or "cyclicloess."}
+#' Default is \code{"quantile."}
+#'
+#' @details \code{normalize.data} normalizes intensity values to achieve
+#' consistency among samples. The function assumes that the intensities in the
+#' data frame have been log-transformed, therefore, it is important to make sure
+#' that \code{create.df} was run with \code{log.tr = TRUE} when creating the
+#' \code{raw.df} object.
+#'
+#' @return A \code{norm.df} object, which is a data frame with
+#' normalized intensities.
+#'
+#' @seealso See \code{\link{normalizeBetweenArrays}} in the R package
+#' \code{limma} for more information on the different normalization methods
+#' available.
+#'
+#'
+#' @examples
+#' \dontrun{
+#' ## Create a raw.df object from a proteinGroups.txt file.
+#' raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+#'
+#' ## Normalize a data set
+#' raw_nm <- normalize.data(raw, method = "cyclicloess")
+#'
+#' ##Normalize an imputed data set
+#' raw_imp <- impute.NA(raw)
+#' raw_nm <- normalize.data(raw_imp)
+#'
+#' }
+#'
+#'
+
 #' @export
 
-normalize.data <- function(x,
+normalize.data <- function(df,
                       method = "quantile"){
-  norm_df <- limma::normalizeBetweenArrays(x,
+  norm_df <- limma::normalizeBetweenArrays(df,
                                            method = method)
   return(norm_df)
 }
@@ -16,30 +53,46 @@ normalize.data <- function(x,
 # Visualize normalization effects -----------------------------------------
 #' Visualize the effect of normaliztion on the data
 #' @author Chathurani Ranathunge
-#' @description This function helps visualize the impact of normalization with
-#' box plots or density plots.
+#' @description This function visualizes the impact of normalization with
+#' plots.
 #' @importFrom reshape2 melt
 #' @import ggplot2
+#'
+
+#' @param original A \code{raw.df} object (output of \code{\link{create.df}})
+#' containing missing values or a \code{imp.df} object after imputing the
+#' missing values.
+#' @param normalized A \code{norm.df} object after normalizing the data frame
+#' provided as \code{original}.
+#' @param type Type of plot to generate. Choices are "box" or "density." Default
+#' is \code{"box."}
+#' @param text.size Text size for plot labels, axis labels etc. Default is
+#' \code{10}.
+#' @param palette Color palette for plots. Default is \code{"YlGnBu."}
+#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' working directory.
+#' @param file.name file.name File name to save the plot.
+#' Default is \code{"Norm_plot."}
+#' @param file.type File type to save the plot.
+#' Default is \code{"pdf"}.
+#' @param plot.width Width of the plot. Default is \code{7}.
+#' @param plot.height Height of the plot. Default is \code{7}.
+#' @param dpi Plot resolution. Default is \code{80}.
+#'
+#' @details
+#' @return
 #' @export
-norm.plot <- function(normalized,
-                      original,
+norm.plot <- function(original,
+                      normalized,
                       type = "box",
-                      alpha = 0.25,
-                      lwd = 0.1,
-                      xlabel = "",
-                      ylabel="",
-                      xlab.size = 7,
-                      ylab.size = 7,
+                      text.size = 10,
                       palette = "YlGnBu",
-                      strip.txt.size = 5,
-                      strip.ln.size = 0.5,
-                      lab.text.size = 5,
                       save = FALSE,
-                      filename = "Norm_plot",
-                      filetype = "pdf",
+                      file.name = "Norm_plot",
+                      file.type = "pdf",
                       dpi = 80,
-                      width = 7,
-                      height = 7){
+                      plot.width = 7,
+                      plot.height = 7){
 
   #Pre-prossesing data for plotting
   norm1 <- reshape2::melt(normalized, na.rm = FALSE)
@@ -58,22 +111,22 @@ norm.plot <- function(normalized,
     norm_plot<- ggplot2::ggplot(plot_data,
                             ggplot2::aes(x = intensity,
                                          color = sample)) +
-      ggplot2::geom_density(lwd = lwd)+
-      ggplot2::xlab(xlabel) +
-      ggplot2::ylab(ylabel)+
+      ggplot2::geom_density(lwd = 0.1)+
+      ggplot2::xlab("") +
+      ggplot2::ylab("")+
       #ggplot2::scale_fill_brewer(palette = palette)+
       ggplot2::theme_classic()+
       ggplot2::theme(legend.position = "none",
-            text= element_text(size = lab.text.size),
+            text= element_text(size = text.size),
             axis.line.x = element_line(size = 0.1),
             axis.line.y = element_line(size = 0.1),
             axis.ticks.x = element_line(size = 0.1),
             axis.ticks.y = element_line(size = 0.1),
-            axis.title.x = element_text(size = xlab.size),
-            axis.title.y= element_text(size = ylab.size),
-            strip.text = element_text(size= strip.txt.size),
+            axis.title.x = element_text(size = text.size),
+            axis.title.y= element_text(size = text.size),
+            strip.text = element_text(size= text.size),
             strip.background = element_rect(colour = "grey",
-                                            size = strip.ln.size))+
+                                            size = 0.5))+
       ggplot2::facet_wrap( ~normstage)
 
 
@@ -90,32 +143,32 @@ norm.plot <- function(normalized,
                    outlier.stroke = 0.1,
                    outlier.size = 0.2,
                    outlier.color = "grey30",
-                   lwd = lwd)+
+                   lwd = 0.1)+
       ggplot2::coord_flip()+
       ggplot2::facet_wrap( ~normstage)+
-      ggplot2::xlab(xlabel) +
-      ggplot2::ylab(ylabel)+
+      ggplot2::xlab("") +
+      ggplot2::ylab("")+
       ggplot2::scale_fill_brewer(palette = palette)+
       ggplot2::theme_classic()+
-      ggplot2::theme(text= element_text(size = lab.text.size),
+      ggplot2::theme(text= element_text(size = text.size),
             legend.title = element_blank(),
             axis.line.x = element_line(size = 0.1),
             axis.line.y = element_line(size = 0.1),
             axis.ticks.x = element_line(size = 0.1),
             axis.ticks.y = element_line(size = 0.1),
-            axis.title.x = element_text(size = xlab.size),
-            axis.title.y= element_text(size = ylab.size),
-            strip.text = element_text(size= strip.txt.size),
+            axis.title.x = element_text(size = text.size),
+            axis.title.y= element_text(size = text.size),
+            strip.text = element_text(size= text.size),
             strip.background = element_rect(colour = "grey",
-                                            size = strip.ln.size))
+                                            size = 0.5))
 
   }
   if(save == TRUE){
-    ggsave(paste0(filename,".", filetype),
+    ggsave(paste0(file.name,".", file.type),
            norm_plot,
            dpi = dpi,
-           width = width,
-           height = height)
+           width = plot.width,
+           height = plot.height)
     }else{
       return(norm_plot)
     }

@@ -4,11 +4,51 @@
 \alias{normalize.data}
 \title{Normalize intensity data}
 \usage{
-normalize.data(x, method = "quantile")
+normalize.data(df, method = "quantile")
+}
+\arguments{
+\item{df}{A \code{raw.df} object, or ideally, an \code{imp.df} object with
+missing values imputed.}
+
+\item{method}{Name of the normalization method to use. Choices are
+\code{"none", "scale", "quantile" or "cyclicloess."}
+Default is \code{"quantile."}}
+}
+\value{
+A \code{norm.df} object, which is a data frame with
+normalized intensities.
 }
 \description{
 This function normalizes data using a user-specified
 normalization method.
+}
+\details{
+\code{normalize.data} normalizes intensity values to achieve
+consistency among samples. The function assumes that the intensities in the
+data frame have been log-transformed, therefore, it is important to make sure
+that \code{create.df} was run with \code{log.tr = TRUE} when creating the
+\code{raw.df} object.
+}
+\examples{
+\dontrun{
+## Create a raw.df object from a proteinGroups.txt file.
+raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+
+## Normalize a data set
+raw_nm <- normalize.data(raw, method = "cyclicloess")
+
+##Normalize an imputed data set
+raw_imp <- impute.NA(raw)
+raw_nm <- normalize.data(raw_imp)
+
+}
+
+
+}
+\seealso{
+See \code{\link{normalizeBetweenArrays}} in the R package
+\code{limma} for more information on the different normalization methods
+available.
 }
 \author{
 Chathurani Ranathunge

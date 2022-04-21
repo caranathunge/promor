@@ -5,30 +5,56 @@
 \title{Visualize the effect of normaliztion on the data}
 \usage{
 norm.plot(
-  normalized,
   original,
+  normalized,
   type = "box",
-  alpha = 0.25,
-  lwd = 0.1,
-  xlabel = "",
-  ylabel = "",
-  xlab.size = 7,
-  ylab.size = 7,
+  text.size = 10,
   palette = "YlGnBu",
-  strip.txt.size = 5,
-  strip.ln.size = 0.5,
-  lab.text.size = 5,
   save = FALSE,
-  filename = "Norm_plot",
-  filetype = "pdf",
+  file.name = "Norm_plot",
+  file.type = "pdf",
   dpi = 80,
-  width = 7,
-  height = 7
+  plot.width = 7,
+  plot.height = 7
 )
 }
+\arguments{
+\item{original}{A \code{raw.df} object (output of \code{\link{create.df}})
+containing missing values or a \code{imp.df} object after imputing the
+missing values.}
+
+\item{normalized}{A \code{norm.df} object after normalizing the data frame
+provided as \code{original}.}
+
+\item{type}{Type of plot to generate. Choices are "box" or "density." Default
+is \code{"box."}}
+
+\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\code{10}.}
+
+\item{palette}{Color palette for plots. Default is \code{"YlGnBu."}}
+
+\item{save}{Logical. If \code{TRUE} (default) saves a copy of the plot in the
+working directory.}
+
+\item{file.name}{file.name File name to save the plot.
+Default is \code{"Norm_plot."}}
+
+\item{file.type}{File type to save the plot.
+Default is \code{"pdf"}.}
+
+\item{dpi}{Plot resolution. Default is \code{80}.}
+
+\item{plot.width}{Width of the plot. Default is \code{7}.}
+
+\item{plot.height}{Height of the plot. Default is \code{7}.}
+}
+\value{
+
+}
 \description{
-This function helps visualize the impact of normalization with
-box plots or density plots.
+This function visualizes the impact of normalization with
+plots.
 }
 \author{
 Chathurani Ranathunge
