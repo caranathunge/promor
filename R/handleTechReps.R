@@ -1,4 +1,3 @@
-
 # Scatter plots : correlation between technical replicates ----------------
 #' Correlation between technical replicates
 #' @author Chathurani Ranathunge
@@ -84,7 +83,7 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",filetype),
 #' @description This function removes user-specified samples (columns)
 #' from the database
 #' @export
-rem.sample <- function(x, rem =""){
+rem.sample <- function(x, rem){
   x_rem <- x[, -grep(rem, colnames(x))]
   return(x_rem)
 }

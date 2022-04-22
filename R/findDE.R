@@ -1,30 +1,70 @@
 # Identify differentially expressed proteins with LIMMA -------------------
 #' Identify differentially expressed proteins between groups
 #' @author Chathurani Ranathunge
-#' @description This function identifies significantly differentially expressed
-#' proteins between two groups with LIMMA
+#' @description This function performs differential expression analysis
+#' on protein intensity data with LIMMA.
 #' @import limma
-#' @export
-find.DEP <- function(x,
-                     save.output = TRUE,
-                     filename = "LIMMA_output",
-                     save.tophits = TRUE,
-                     ntop = 20){
 
-group <- factor(c(sapply(strsplit(colnames(x), "_"),
+#'
+#' @param df A \code{norm.df} object.
+#' @param save.output Logical. If \code{TRUE} (default) saves results from the
+#' differential expression analysis in a text file labeled "LIMMA_output.txt"
+#' in the working directory.
+#' @param save.tophits Logical. If \code{TRUE} (default) saves \code{n.top}
+#' number of top hits from the differential expression analysis in a text file
+#' labeled "TopHits.txt" in the working directory.
+#' @param n.top The number of top differentially expressed proteins to save in
+#' the "TopHits.txt" file. Default is \code{20}.
+#'
+#' @details \itemize{\item
+#' It is important that the data is first log-transformed, ideally,
+#' imputed, and normalized before performing differential expression analysis.
+#' \item \code{save.output} saves the complete results table from the
+#' differential expression analysis.
+#' \item \code{save.tophits} first subsets the results to those with absolute
+#' log fold change of more than 1, performs multiple correction with
+#' "Benjamini Hochberg" method and outputs the top results based on lowest
+#' p-value and adjusted p-value.}
+#'
+#' @return A \code{fit.df} object, which is similar to a \code{LIMMA}
+#' \code{fit} object.
+#'
+#' @seealso \itemize{\item\code{normalize.data}
+#' \item\code{lmFit}, \code{eBayes},
+#' \code{topTable}, and \code{write.table} functions from the
+#' \code{LIMMA} package.}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' #Normalize an already imputed data set.
+#' raw_nm <- normalize.data(raw_imp)
+#'
+#' #Perform differential expression analysis.
+#' fit <- find.DEP(raw_nm)
+#'
+#' }
+#'
+#' @export
+find.DEP <- function(df,
+                     save.output = TRUE,
+                     save.tophits = TRUE,
+                     n.top = 20){
+
+group <- factor(c(sapply(strsplit(colnames(df), "_"),
                          getElement,1)))
 
-#create a design based on the cancer stage
+#create a design based on groups
 design <- model.matrix(~group)
 #Fit the model to the protein intensity data based on the experimental design
-fit <- limma::lmFit(x, design)
+fit <- limma::lmFit(df, design)
 fit <- limma::eBayes(fit,
                      robust = T,
                      trend = T)
 if (save.output == TRUE){
   #Write the results of the DE analysis to a text file (tab-separated)
   limma::write.fit(fit,
-            file = paste0(filename,".txt"))
+            file = "LIMMA_outout.txt")
   }
 
 if(save.tophits == TRUE){
@@ -34,52 +74,114 @@ if(save.tophits == TRUE){
                                n = length(fit$df.total))
   results_DE<- results_DE[abs(results_DE$logFC) > 1,]
   results_DE <- results_DE[order(results_DE$P.Value, results_DE$adj.P.Val),]
-  write.table(results_DE[1: ntop,],
+  write.table(results_DE[1: n.top,],
               file = "TopHits.txt",
               sep = "\t")
-  print(results_DE[1: ntop,])
+  print(results_DE[1: n.top,])
 }
 return(fit)
 }
 
-# Visualize results from DE analysis with volcano plots -------------------
+# Visualize differentially expressed proteins with volcano plots -------------------
 #' Volcano plot
 #' @author Chathurani Ranathunge
-#' @description This function help visualize the results from the differential
-#' expression analysis using a volcano plot.
+#' @description This function generates volcano plots to visualize
+#' differentially expressed proteins between groups.
 #' @import limma
 #' @import ggplot2
+#'
+#' @param fit.df A \code{fit.df} object from performing \code{find.DEP}.
+#' @param adj.method Method used for adjusting the p-values for multiple
+#' testing. Default is \code{"BH."}.
+#' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
+#' 0.05.
+#' @param FC Minimum absolute log-fold change to use as threshold for
+#' differential expression.
+#' @param line.FC Logical. If \code{TRUE}(default), a dotted line will be shown
+#' to indicate the \code{FC} threshold in the plot.
+#' @param line.P Logical. If \code{TRUE}(default), a dotted line will be shown
+#' to indicate the p-value \code{cutoff.}
+#' @param file.name File name to save the plot. Default is "Volcano_plot."
+#' @param file.type File type to save the plot. Default is \code{"pdf".}
+#' @param plot.height Height of the plot. Default is 7.
+#' @param plot.width Width of the plot. Default is 7.
+#' @param sig Criteria to denote significance. Choices are \code{"adjP"}
+#' (default) for adjusted p-value or \code{"P"} for p-value.
+#' @param nsig.col Color of the dots representing significant hits. Default is
+#' "Red."
+#' @param sig.col Color of dots representing non-significant hits. Default is
+#' "Black."
+#' @param ln.col Line color for lines when \code{line.FC = TRUE} and/or
+#' \code{line.P = TRUE.} Default is "Black."
+#' @param label.top Logical. If \code{TRUE} (default), labels are added to the
+#' dots to indicate protein names.
+#' @param n.top The number of top hits to label with protein name when
+#' \code{label.top = TRUE.} Default is \code{10}.
+#' @param dpi Plot resolution. Default is \code{80.}
+#' @param save Logical. If \code{TRUE} (default), saves a copy of the plot in the
+#' working directory.
+#'
+#' @details \itemize{\item Volcano plots show log-2-fold change on the x-axis and
+#' -log10(p-value) on the y-axis.\item \code{volcano.plot} requires a
+#' \code{fit.df} object from performing differential expression analysis
+#' with \code{fit.DEP.}
+#' \item User has the option to choose the criterion to denote significance.}
+#'
+#' @return
+#' A \code{ggplot2} plot object.
+#'
+#' @seealso
+#' \itemize{
+#' \item \code{find.DEP}
+#' \item \code{topTable} and \code{lmFit} functions from the
+#' \code{LIMMA} package.}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' #Perform differential expression analysis.
+#' fit <- find.DEP(raw_nm)
+#'
+#' #Create a volcano plot with default settings.
+#' volcano.plot(fit)
+#'
+#' #Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
+#' volcanoplot(fit, cutoff = 0.05, sig = "P", FC = 1)
+#'
+#' }
+#'
 #' @export
-volcano.plot <- function(x,
-                         adjust.method = "BH",
+volcano.plot <- function(fit.df,
+                         adj.method = "BH",
                          cutoff = 0.05,
                          FC = 1,
                          line.FC = TRUE,
                          line.P = TRUE,
-                         filename = "Volcano_plot",
-                         filetype = "pdf",
-                         height = 2,
-                         width = 2,
-                         col.by = "adjP",
+                         file.name = "Volcano_plot",
+                         file.type = "pdf",
+                         plot.height = 7,
+                         plot.width = 7,
+                         sig = "adjP",
                          nsig.col = "black",
                          sig.col = "red",
                          ln.col = "red",
                          label.top = FALSE,
-                         label.n = 10,
+                         n.top = 10,
                          dpi = 80,
-                         save= FALSE){
+                         save = TRUE){
 
 #Extract the required data from the fit object to make our own volcano plot
-res_DE <- limma::topTable(x,
-                   coef = colnames(x)[2],
-                   n = length(x$df.total))
+res_DE <- limma::topTable(fit.df,
+                          adjust.method =  adj.method,
+                          coef = colnames(fit.df)[2],
+                          n = length(fit.df$df.total))
 
 #Add a new column based on adj.Pval significance status
 res_DE$DEAP <- res_DE$adj.P.Val < cutoff & abs(res_DE$logFC) > FC
 #Add a new column based on P value significance status alone
 res_DE$DEP <- res_DE$P.Value < cutoff & abs(res_DE$logFC) > FC
 
-  if(col.by == "P"){
+  if(sig == "P"){
     res_DE <- res_DE[order(-res_DE$DEP,res_DE$adj.P.Val),]
     DE_volcanoplot <- ggplot2::ggplot(res_DE,
                                       ggplot2::aes(x = logFC,
@@ -118,7 +220,7 @@ DE_volcanoplot <- DE_volcanoplot +
 
 if(line.FC == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
-    ggplot2::geom_vline(xintercept = c(-1, 1),
+    ggplot2::geom_vline(xintercept = c(-FC, FC),
                         colour = ln.col,
                         linetype = 2,
                         size = 0.2,
@@ -128,7 +230,7 @@ if(line.FC == TRUE){
 
 if(line.P == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
-    ggplot2::geom_hline(yintercept = -log10(0.05),
+    ggplot2::geom_hline(yintercept = -log10(cutoff),
                         colour = ln.col,
                         linetype = 2,
                         size = 0.2,
@@ -137,9 +239,9 @@ if(line.P == TRUE){
 
 if(label.top == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
-    ggplot2::geom_text(data = res_DE[1:label.n,],
+    ggplot2::geom_text(data = res_DE[1:n.top,],
                        label = sapply(strsplit(
-                         rownames(res_DE[1:label.n,]), ";"),getElement,1 ),
+                         rownames(res_DE[1:n.top,]), ";"),getElement,1 ),
                        hjust="inward",
                        vjust="outward",
                        check_overlap = FALSE,
@@ -148,11 +250,11 @@ if(label.top == TRUE){
 
 
 if (save == TRUE){
-    ggplot2::ggsave(paste0(filename,".", filetype),
+    ggplot2::ggsave(paste0(file.name,".", file.type),
                     DE_volcanoplot,
                     dpi = dpi,
-                    height = height,
-                    width = width)
+                    height = plot.height,
+                    width = plot.width)
   return(DE_volcanoplot)
   }else{
     return(DE_volcanoplot)
@@ -160,33 +262,78 @@ if (save == TRUE){
 }
 
 # Visualize DE proteins with a heat map -----------------------------------
-#' Heat map of differentially expressed proteins
+#' Heatmap of differentially expressed proteins
 #' @author Chathurani Ranathunge
-#' @description This function help visualize the results from the differential
-#' expression analysis using a heat map.
+#' @description This function generates a heatmap to visualize differentially
+#' expressed proteins between groups
+#'
 #' @import limma
 #' @import ggplot2
 #' @importFrom reshape2 melt
+#'
+#' @param fit.df A \code{fit.df} object from performing \code{find.DEP}.
+#' @param norm.df The \code{norm.df} object from which the \code{fit.df} object
+#' was obtained.
+#' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
+#' 0.05.
+#' @param FC Minimum absolute log-fold change to use as threshold for
+#' differential expression.
+#' @param sig Criteria to denote significance. Choices are \code{"adjP"}
+#' (default) for adjusted p-value or \code{"P"} for p-value.
+#' @param palette Color palette for plots. Default is \code{"YlGnBu."}
+#' @param save Logical. If \code{TRUE} (default), saves a copy of the plot in
+#' the working directory.
+#' @param file.name File name to save the plot. Default is "HeatmapDE."
+#' @param file.type File type to save the plot. Default is \code{"pdf".}
+#' @param dpi Plot resolution. Default is \code{80.}
+#' @param plot.height Height of the plot. Default is 7.
+#' @param plot.width Width of the plot. Default is 7.
+#'
+#' @details
+#' By default the tiles in the heatmap are reordered by intensity values
+#' along both axes (x axis = samples, y axis = proteins).
+#'
+#' @return A \code{ggplot2} plot object.
+#'
+#' @seealso
+#' \itemize{
+#' \item \code{find.DEP}
+#' \item \code{topTable} and \code{lmFit} functions from the
+#' \code{LIMMA} package.}
+#'
+#' @examples
+#' \dontrun{
+#' #Perform differential expression analysis.
+#' fit <- find.DEP(raw_nm)
+#'
+#' #Create a heatmap with default settings.
+#' heatmap.DE(fit, raw_nm)
+#'
+#' #Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
+#' heatmap.DE(fit, raw_nm, cutoff = 0.05, sig = "P", FC = 1)
+#'
+#' }
+#'
+#'
 #' @export
-heatmap.DE <- function(x,
-                       y,
+heatmap.DE <- function(fit.df,
+                       norm.df ,
                        cutoff = 0.05,
                        FC = 1,
-                       adj.P = 0.05,
-                       sig = "adj.P",
+                       sig = "adjP",
                        palette = "YlGnBu",
                        save = TRUE,
-                       filename = "HeatmapDE",
-                       filetype = "pdf",
+                       file.name = "HeatmapDE",
+                       file.type = "pdf",
                        dpi = 80,
-                       height = 7,
-                       width = 7){
+                       plot.height  = 7,
+                       plot.width = 7){
 
 
 #Extract the required data from the fit object
-exp_DE <- limma::topTable(x,
-                       coef = colnames(x)[2],
-                       n = length(x$df.total),
+exp_DE <- limma::topTable(fit.df,
+                       coef = colnames(fit.df)[2],
+                       n = length(fit.df$df.total),
                        adjust.method = "BH")
 
 
@@ -207,7 +354,7 @@ if (identical(top_proteins, character(0))){
 }else{
 
   #Extract intensity values for top proteins based on logFC and p-value cutoff
-top_intensity <- y[top_proteins,]
+top_intensity <- norm.df[top_proteins,]
 
 #Convert to long format for plotting
 top_intMelted <- reshape2::melt(top_intensity)
@@ -221,9 +368,9 @@ top_intMelted$stage <- sapply(strsplit(
   getElement,1)
 
 top_heatmap <- ggplot2::ggplot(top_intMelted,
-                               ggplot2::aes(x=reorder(sample, -Intensity),
-                                            y=reorder(protein, Intensity),
-                                            fill=Intensity))+
+                               ggplot2::aes(x = reorder(sample, -Intensity),
+                                            y = reorder(protein, Intensity),
+                                            fill = Intensity))+
   ggplot2::geom_tile(colour="white", size=0.1)+
   ggplot2::labs(x="", y="")+
   ggplot2::scale_y_discrete(expand=c(0, 0),
@@ -251,11 +398,11 @@ top_heatmap <- ggplot2::ggplot(top_intMelted,
                         scales = "free_x")
 
 if (save == TRUE){
-  ggplot2::ggsave(paste0(filename, ".", filetype),
+  ggplot2::ggsave(paste0(file.name, ".", file.type),
                   top_heatmap,
                   dpi = dpi,
-                  height = height,
-                  width = width)
+                  height = plot.height,
+                  width = plot.width)
   return(top_heatmap)
   }else{
     return(top_heatmap)

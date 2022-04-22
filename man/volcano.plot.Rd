@@ -5,29 +5,109 @@
 \title{Volcano plot}
 \usage{
 volcano.plot(
-  x,
-  adjust.method = "BH",
+  fit.df,
+  adj.method = "BH",
   cutoff = 0.05,
   FC = 1,
   line.FC = TRUE,
   line.P = TRUE,
-  filename = "Volcano_plot",
-  filetype = "pdf",
-  height = 2,
-  width = 2,
-  col.by = "adjP",
+  file.name = "Volcano_plot",
+  file.type = "pdf",
+  plot.height = 7,
+  plot.width = 7,
+  sig = "adjP",
   nsig.col = "black",
   sig.col = "red",
   ln.col = "red",
   label.top = FALSE,
-  label.n = 10,
+  n.top = 10,
   dpi = 80,
-  save = FALSE
+  save = TRUE
 )
 }
+\arguments{
+\item{fit.df}{A \code{fit.df} object from performing \code{find.DEP}.}
+
+\item{adj.method}{Method used for adjusting the p-values for multiple
+testing. Default is \code{"BH."}.}
+
+\item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
+0.05.}
+
+\item{FC}{Minimum absolute log-fold change to use as threshold for
+differential expression.}
+
+\item{line.FC}{Logical. If \code{TRUE}(default), a dotted line will be shown
+to indicate the \code{FC} threshold in the plot.}
+
+\item{line.P}{Logical. If \code{TRUE}(default), a dotted line will be shown
+to indicate the p-value \code{cutoff.}}
+
+\item{file.name}{File name to save the plot. Default is "Volcano_plot."}
+
+\item{file.type}{File type to save the plot. Default is \code{"pdf".}}
+
+\item{plot.height}{Height of the plot. Default is 7.}
+
+\item{plot.width}{Width of the plot. Default is 7.}
+
+\item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
+(default) for adjusted p-value or \code{"P"} for p-value.}
+
+\item{nsig.col}{Color of the dots representing significant hits. Default is
+"Red."}
+
+\item{sig.col}{Color of dots representing non-significant hits. Default is
+"Black."}
+
+\item{ln.col}{Line color for lines when \code{line.FC = TRUE} and/or
+\code{line.P = TRUE.} Default is "Black."}
+
+\item{label.top}{Logical. If \code{TRUE} (default), labels are added to the
+dots to indicate protein names.}
+
+\item{n.top}{The number of top hits to label with protein name when
+\code{label.top = TRUE.} Default is \code{10}.}
+
+\item{dpi}{Plot resolution. Default is \code{80.}}
+
+\item{save}{Logical. If \code{TRUE} (default), saves a copy of the plot in the
+working directory.}
+}
+\value{
+A \code{ggplot2} plot object.
+}
 \description{
-This function help visualize the results from the differential
-expression analysis using a volcano plot.
+This function generates volcano plots to visualize
+differentially expressed proteins between groups.
+}
+\details{
+\itemize{\item Volcano plots show log-2-fold change on the x-axis and
+-log10(p-value) on the y-axis.\item \code{volcano.plot} requires a
+\code{fit.df} object from performing differential expression analysis
+with \code{fit.DEP.}
+\item User has the option to choose the criterion to denote significance.}
+}
+\examples{
+\dontrun{
+
+#Perform differential expression analysis.
+fit <- find.DEP(raw_nm)
+
+#Create a volcano plot with default settings.
+volcano.plot(fit)
+
+#Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
+volcanoplot(fit, cutoff = 0.05, sig = "P", FC = 1)
+
+}
+
+}
+\seealso{
+\itemize{
+\item \code{find.DEP}
+\item \code{topTable} and \code{lmFit} functions from the
+\code{LIMMA} package.}
 }
 \author{
 Chathurani Ranathunge

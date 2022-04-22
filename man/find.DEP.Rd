@@ -4,17 +4,58 @@
 \alias{find.DEP}
 \title{Identify differentially expressed proteins between groups}
 \usage{
-find.DEP(
-  x,
-  save.output = TRUE,
-  filename = "LIMMA_output",
-  save.tophits = TRUE,
-  ntop = 20
-)
+find.DEP(df, save.output = TRUE, save.tophits = TRUE, n.top = 20)
+}
+\arguments{
+\item{df}{A \code{norm.df} object.}
+
+\item{save.output}{Logical. If \code{TRUE} (default) saves results from the
+differential expression analysis in a text file labeled "LIMMA_output.txt"
+in the working directory.}
+
+\item{save.tophits}{Logical. If \code{TRUE} (default) saves \code{n.top}
+number of top hits from the differential expression analysis in a text file
+labeled "TopHits.txt" in the working directory.}
+
+\item{n.top}{The number of top differentially expressed proteins to save in
+the "TopHits.txt" file. Default is \code{20}.}
+}
+\value{
+A \code{fit.df} object, which is similar to a \code{LIMMA}
+\code{fit} object.
 }
 \description{
-This function identifies significantly differentially expressed
-proteins between two groups with LIMMA
+This function performs differential expression analysis
+on protein intensity data with LIMMA.
+}
+\details{
+\itemize{\item
+It is important that the data is first log-transformed, ideally,
+imputed, and normalized before performing differential expression analysis.
+\item \code{save.output} saves the complete results table from the
+differential expression analysis.
+\item \code{save.tophits} first subsets the results to those with absolute
+log fold change of more than 1, performs multiple correction with
+"Benjamini Hochberg" method and outputs the top results based on lowest
+p-value and adjusted p-value.}
+}
+\examples{
+\dontrun{
+
+#Normalize an already imputed data set.
+raw_nm <- normalize.data(raw_imp)
+
+#Perform differential expression analysis.
+fit <- find.DEP(raw_nm)
+
+}
+
+}
+\seealso{
+\itemize{\item\code{normalize.data}
+\item\code{lmFit}, \code{eBayes},
+\code{topTable}, and \code{write.table} functions from the
+\code{LIMMA} package.}
 }
 \author{
 Chathurani Ranathunge

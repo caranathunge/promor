@@ -2,27 +2,84 @@
 % Please edit documentation in R/findDE.R
 \name{heatmap.DE}
 \alias{heatmap.DE}
-\title{Heat map of differentially expressed proteins}
+\title{Heatmap of differentially expressed proteins}
 \usage{
 heatmap.DE(
-  x,
-  y,
+  fit.df,
+  norm.df,
   cutoff = 0.05,
   FC = 1,
-  adj.P = 0.05,
-  sig = "adj.P",
+  sig = "adjP",
   palette = "YlGnBu",
   save = TRUE,
-  filename = "HeatmapDE",
-  filetype = "pdf",
+  file.name = "HeatmapDE",
+  file.type = "pdf",
   dpi = 80,
-  height = 7,
-  width = 7
+  plot.height = 7,
+  plot.width = 7
 )
 }
+\arguments{
+\item{fit.df}{A \code{fit.df} object from performing \code{find.DEP}.}
+
+\item{norm.df}{The \code{norm.df} object from which the \code{fit.df} object
+was obtained.}
+
+\item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
+0.05.}
+
+\item{FC}{Minimum absolute log-fold change to use as threshold for
+differential expression.}
+
+\item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
+(default) for adjusted p-value or \code{"P"} for p-value.}
+
+\item{palette}{Color palette for plots. Default is \code{"YlGnBu."}}
+
+\item{save}{Logical. If \code{TRUE} (default), saves a copy of the plot in
+the working directory.}
+
+\item{file.name}{File name to save the plot. Default is "HeatmapDE."}
+
+\item{file.type}{File type to save the plot. Default is \code{"pdf".}}
+
+\item{dpi}{Plot resolution. Default is \code{80.}}
+
+\item{plot.height}{Height of the plot. Default is 7.}
+
+\item{plot.width}{Width of the plot. Default is 7.}
+}
+\value{
+A \code{ggplot2} plot object.
+}
 \description{
-This function help visualize the results from the differential
-expression analysis using a heat map.
+This function generates a heatmap to visualize differentially
+expressed proteins between groups
+}
+\details{
+By default the tiles in the heatmap are reordered by intensity values
+along both axes (x axis = samples, y axis = proteins).
+}
+\examples{
+\dontrun{
+#Perform differential expression analysis.
+fit <- find.DEP(raw_nm)
+
+#Create a heatmap with default settings.
+heatmap.DE(fit, raw_nm)
+
+#Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
+heatmap.DE(fit, raw_nm, cutoff = 0.05, sig = "P", FC = 1)
+
+}
+
+
+}
+\seealso{
+\itemize{
+\item \code{find.DEP}
+\item \code{topTable} and \code{lmFit} functions from the
+\code{LIMMA} package.}
 }
 \author{
 Chathurani Ranathunge

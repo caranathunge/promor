@@ -2,7 +2,7 @@
 % Please edit documentation in R/normalize.R
 \name{norm.plot}
 \alias{norm.plot}
-\title{Visualize the effect of normaliztion on the data}
+\title{Visualize the effect of normalization}
 \usage{
 norm.plot(
   original,
@@ -10,7 +10,7 @@ norm.plot(
   type = "box",
   text.size = 10,
   palette = "YlGnBu",
-  save = FALSE,
+  save = TRUE,
   file.name = "Norm_plot",
   file.type = "pdf",
   dpi = 80,
@@ -20,7 +20,7 @@ norm.plot(
 }
 \arguments{
 \item{original}{A \code{raw.df} object (output of \code{\link{create.df}})
-containing missing values or a \code{imp.df} object after imputing the
+containing missing values or an \code{imp.df} object after imputing the
 missing values.}
 
 \item{normalized}{A \code{norm.df} object after normalizing the data frame
@@ -50,11 +50,37 @@ Default is \code{"pdf"}.}
 \item{plot.height}{Height of the plot. Default is \code{7}.}
 }
 \value{
-
+A \code{ggplot2} plot object.
 }
 \description{
-This function visualizes the impact of normalization with
-plots.
+This function visualizes the impact of normalization on
+the data with plots.
+}
+\details{
+Given two data frames, one with data prior to normalization
+(\code{original}) and one after normalization (\code{normalized}),
+\code{norm.plot} generates side-by-side plots to visualize the effect of
+normalization on the intensity data.
+}
+\examples{
+\dontrun{
+## Create a raw.df object from a proteinGroups.txt file.
+raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+
+## Normalize an imputed data set.
+raw_imp <- impute.NA(raw)
+raw_nm <- normalize.data(raw_imp)
+
+## Visualize normalization with box plots.
+norm.plot(raw_imp, raw_nm)
+
+## Visualize normalization with density plots.
+norm.plot(raw_imp, raw_nm, type = "density")
+}
+
+}
+\seealso{
+\code{\link{normalize.data}}
 }
 \author{
 Chathurani Ranathunge

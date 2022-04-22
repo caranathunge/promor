@@ -34,10 +34,10 @@ that \code{create.df} was run with \code{log.tr = TRUE} when creating the
 ## Create a raw.df object from a proteinGroups.txt file.
 raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 
-## Normalize a data set
+## Normalize a data set.
 raw_nm <- normalize.data(raw, method = "cyclicloess")
 
-##Normalize an imputed data set
+## Normalize an imputed data set.
 raw_imp <- impute.NA(raw)
 raw_nm <- normalize.data(raw_imp)
 
