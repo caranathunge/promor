@@ -116,7 +116,7 @@ norm.plot <- function(original,
                       plot.width = 7,
                       plot.height = 7){
 
-  #Set glabla variables to null
+  #Set global variables to null
   intensity <- value <- group <- NULL
 
   #Pre-prossesing data for plotting
