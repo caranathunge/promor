@@ -4,11 +4,36 @@
 \alias{aver.techreps}
 \title{Compute average intensity}
 \usage{
-aver.techreps(x)
+aver.techreps(df)
+}
+\arguments{
+\item{df}{A \code{raw.df} object containing technical replicates.}
+}
+\value{
+A \code{raw.df} object of averaged intensities.
 }
 \description{
 This function computes average intensities across
 technical replicates for each sample.
+}
+\details{
+\code{aver.techreps} assumes that sample names in the data frame
+follow the "Group_Sample_TechnicalReplicate" notation.
+}
+\examples{
+\dontrun{
+## Create a raw.df object from a proteinGroups.txt file.
+raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+
+#Compute average intensities across technical replicates.
+raw_1 <- aver.techreps(raw)
+}
+
+
+}
+\seealso{
+\code{\link[limma]{avearrays}} from \code{\link[limma]{limma}}
+package.
 }
 \author{
 Chathurani Ranathunge

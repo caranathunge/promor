@@ -10,7 +10,7 @@ find.DEP(df, save.output = TRUE, save.tophits = TRUE, n.top = 20)
 \item{df}{A \code{norm.df} object.}
 
 \item{save.output}{Logical. If \code{TRUE} (default) saves results from the
-differential expression analysis in a text file labeled "LIMMA_output.txt"
+differential expression analysis in a text file labeled "limma_output.txt"
 in the working directory.}
 
 \item{save.tophits}{Logical. If \code{TRUE} (default) saves \code{n.top}
@@ -21,12 +21,12 @@ labeled "TopHits.txt" in the working directory.}
 the "TopHits.txt" file. Default is \code{20}.}
 }
 \value{
-A \code{fit.df} object, which is similar to a \code{LIMMA}
+A \code{fit.df} object, which is similar to a \code{limma}
 \code{fit} object.
 }
 \description{
 This function performs differential expression analysis
-on protein intensity data with LIMMA.
+on protein intensity data with limma.
 }
 \details{
 \itemize{\item
@@ -53,9 +53,11 @@ fit <- find.DEP(raw_nm)
 }
 \seealso{
 \itemize{\item\code{normalize.data}
-\item\code{lmFit}, \code{eBayes},
-\code{topTable}, and \code{write.table} functions from the
-\code{LIMMA} package.}
+\item\code{\link[limma:lmFit]{lmFit}},
+\code{\link[limma:eBayes]{eBayes}},
+\code{\link[limma:topTable]{topTable}}, and
+\code{\link[limma:write.fit]{write.fit}} functions from the
+\code{\link[limma]{limma}} package.}
 }
 \author{
 Chathurani Ranathunge

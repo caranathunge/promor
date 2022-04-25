@@ -10,7 +10,8 @@ impute.NA(
   tune.sigma = 1,
   q = 0.01,
   maxiter = 10,
-  ntree = 20
+  ntree = 20,
+  nPcs = 2
 )
 }
 \arguments{
@@ -78,10 +79,14 @@ imp_raw <- impute.NA(raw, method = "minDet", q = 0.001)
 }
 \seealso{
 More information on the available imputation methods can be found
-in their respective packages.\itemize{\item For \code{minProb} and
-\code{minDet} methods, see \code{\link{imputeLCMD}} package.
-\item For Random Forest (\code{RF}) method, see \code{\link{missForest}}
-package.
-\item For \code{kNN} method, see \code{\link{VIM}} package.
-\item For \code{SVD} method, see \code{\link{pcaMethods}} package.}
+in their respective packages.
+\itemize{\item For \code{minProb} and
+\code{minDet} methods, see
+\code{imputeLCMD} package.
+\item For Random Forest (\code{RF}) method, see
+\code{\link[missForest]{missForest}}.
+\item For \code{kNN} method, see \code{\link[VIM]{kNN}} from the
+\code{\link[VIM]{VIM}} package.
+\item For \code{SVD} method, see \code{\link[pcaMethods]{pca}} from the
+\code{\link[pcaMethods]{pcaMethods}} package.}
 }

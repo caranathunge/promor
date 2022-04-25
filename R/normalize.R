@@ -116,6 +116,9 @@ norm.plot <- function(original,
                       plot.width = 7,
                       plot.height = 7){
 
+  #Set glabla variables to null
+  intensity <- value <- group <- NULL
+
   #Pre-prossesing data for plotting
   norm1 <- reshape2::melt(normalized, na.rm = FALSE)
   norm1$normstage <- "After normalization"

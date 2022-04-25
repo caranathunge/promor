@@ -3,6 +3,8 @@
 #' @description This function creates a data frame of label-free quantitative
 #' (LFQ) protein intensities from MaxQuant's proteinGroups.txt file.
 #'
+#' @importFrom utils read.csv
+#'
 #' @param file.path File path to proteinGroups.txt file produced by MaxQuant.
 #' @param filter.prot Logical. If \code{TRUE} (default), filters out
 #' reverse proteins, proteins only identified by site, potential contaminants,

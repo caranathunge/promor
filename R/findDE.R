@@ -1,14 +1,16 @@
-# Identify differentially expressed proteins with LIMMA -------------------
+# Identify differentially expressed proteins with limma -------------------
 #' Identify differentially expressed proteins between groups
 #' @author Chathurani Ranathunge
 #' @description This function performs differential expression analysis
-#' on protein intensity data with LIMMA.
+#' on protein intensity data with limma.
+#'
 #' @import limma
-
+#' @importFrom stats model.matrix
+#' @importFrom utils write.table
 #'
 #' @param df A \code{norm.df} object.
 #' @param save.output Logical. If \code{TRUE} (default) saves results from the
-#' differential expression analysis in a text file labeled "LIMMA_output.txt"
+#' differential expression analysis in a text file labeled "limma_output.txt"
 #' in the working directory.
 #' @param save.tophits Logical. If \code{TRUE} (default) saves \code{n.top}
 #' number of top hits from the differential expression analysis in a text file
@@ -26,13 +28,15 @@
 #' "Benjamini Hochberg" method and outputs the top results based on lowest
 #' p-value and adjusted p-value.}
 #'
-#' @return A \code{fit.df} object, which is similar to a \code{LIMMA}
+#' @return A \code{fit.df} object, which is similar to a \code{limma}
 #' \code{fit} object.
 #'
 #' @seealso \itemize{\item\code{normalize.data}
-#' \item\code{lmFit}, \code{eBayes},
-#' \code{topTable}, and \code{write.table} functions from the
-#' \code{LIMMA} package.}
+#' \item\code{\link[limma:lmFit]{lmFit}},
+#' \code{\link[limma:eBayes]{eBayes}},
+#' \code{\link[limma:topTable]{topTable}}, and
+#' \code{\link[limma:write.fit]{write.fit}} functions from the
+#' \code{\link[limma]{limma}} package.}
 #'
 #' @examples
 #' \dontrun{
@@ -64,7 +68,7 @@ fit <- limma::eBayes(fit,
 if (save.output == TRUE){
   #Write the results of the DE analysis to a text file (tab-separated)
   limma::write.fit(fit,
-            file = "LIMMA_outout.txt")
+            file = "limma_outout.txt")
   }
 
 if(save.tophits == TRUE){
@@ -133,9 +137,10 @@ return(fit)
 #' @seealso
 #' \itemize{
 #' \item \code{find.DEP}
-#' \item \code{topTable} and \code{lmFit} functions from the
-#' \code{LIMMA} package.}
-#'
+#' \item \code{\link[limma:topTable]{topTable}} and
+#' \code{\link[limma:lmFit]{lmFit}} functions from the
+#' \code{\link[limma]{limma}} package.
+#' }
 #' @examples
 #' \dontrun{
 #'
@@ -169,6 +174,10 @@ volcano.plot <- function(fit.df,
                          n.top = 10,
                          dpi = 80,
                          save = TRUE){
+
+#Set global variables to NULL
+logFC <- P.Value <- DEP <- DEAP <- NULL
+
 
 #Extract the required data from the fit object to make our own volcano plot
 res_DE <- limma::topTable(fit.df,
@@ -263,13 +272,16 @@ if (save == TRUE){
 
 # Visualize DE proteins with a heat map -----------------------------------
 #' Heatmap of differentially expressed proteins
-#' @author Chathurani Ranathunge
 #' @description This function generates a heatmap to visualize differentially
 #' expressed proteins between groups
+#'
+#' @author Chathurani Ranathunge
 #'
 #' @import limma
 #' @import ggplot2
 #' @importFrom reshape2 melt
+#' @importFrom grDevices hcl.colors
+#' @importFrom stats reorder
 #'
 #' @param fit.df A \code{fit.df} object from performing \code{find.DEP}.
 #' @param norm.df The \code{norm.df} object from which the \code{fit.df} object
@@ -298,8 +310,9 @@ if (save == TRUE){
 #' @seealso
 #' \itemize{
 #' \item \code{find.DEP}
-#' \item \code{topTable} and \code{lmFit} functions from the
-#' \code{LIMMA} package.}
+#' \item \code{\link[limma:topTable]{topTable}} and
+#' \code{\link[limma:lmFit]{lmFit}} functions from the
+#' \code{\link[limma]{limma}} package.}
 #'
 #' @examples
 #' \dontrun{
@@ -329,6 +342,8 @@ heatmap.DE <- function(fit.df,
                        plot.height  = 7,
                        plot.width = 7){
 
+#Binding the gloabl variables to a local function
+logFC <- P.Value <- adj.P.Val <- Intensity <- protein <- NULL
 
 #Extract the required data from the fit object
 exp_DE <- limma::topTable(fit.df,

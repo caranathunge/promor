@@ -7,7 +7,6 @@ Maintainer: Chathurani Ranathunge<caranathunge86@gmail.com>
 Description: promor is a comprehensive R package for proteomics data analysis, visulaization, and modelling to assess predictive performance of specific biomarkers.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.4)

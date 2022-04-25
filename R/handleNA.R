@@ -5,6 +5,7 @@
 #'
 #' @importFrom reshape2 melt
 #' @import ggplot2
+#' @importFrom stats reorder
 #'
 #' @param df A \code{raw.df} object (output from \code{create.df}).
 #' @param reorder.x Logical. If \code{TRUE} samples on the x axis are reordered
@@ -64,6 +65,8 @@ heatmap.NA <- function(df,
                        plot.height = 15,
                        dpi = 80){
 
+ #Binding global variables to the local function
+  value <- protgroup <- NULL
 
   #Convert the data into long format for plotting and make necessary changes
   #i.e. adding column headers etc.
@@ -80,11 +83,11 @@ heatmap.NA <- function(df,
   #Options for arranging the rows and the columns of the heat map
   if(reorder.x == TRUE & reorder.y == TRUE){
     hmap <- ggplot2::ggplot(hmap_df,
-                            ggplot2::aes(x = reorder(sample,
+                            ggplot2::aes(x = stats::reorder(sample,
                                                      value,
                                                      na.rm = TRUE,
                                                      FUN = x.FUN),
-                                         y = reorder(protgroup,
+                                         y = stats::reorder(protgroup,
                                                      value,
                                                      na.rm = TRUE,
                                                      FUN = y.FUN),
@@ -93,7 +96,7 @@ heatmap.NA <- function(df,
     }else if(reorder.x==FALSE & reorder.y == TRUE){
     hmap <- ggplot2::ggplot(hmap_df,
                             ggplot2::aes(x = sample,
-                                         y = reorder(protgroup,
+                                         y = stats::reorder(protgroup,
                                                      value,
                                                      na.rm = TRUE,
                                                      FUN = y.FUN),
@@ -101,7 +104,7 @@ heatmap.NA <- function(df,
 
     }else if(reorder.x== TRUE & reorder.y == FALSE){
     hmap <- ggplot2::ggplot(hmap_df,
-                            ggplot2::aes(x = reorder(sample,
+                            ggplot2::aes(x = stats::reorder(sample,
                                                      value,
                                                      na.rm = TRUE,
                                                      FUN = x.FUN),
@@ -137,7 +140,7 @@ if(save == TRUE){
   ggplot2::ggsave(paste0(file.name,".",file.type),
                   hmap,
                   dpi = dpi,
-                  plot.width = plot.widthwidth,
+                  plot.width = plot.width,
                   plot.height = plot.height)
   }else{
     return(hmap)
@@ -148,9 +151,16 @@ if(save == TRUE){
 #' Impute missing values
 #' @description This function imputes missing values using a user-specified
 #' imputation method.
+#'
 #' @importFrom missForest missForest
 #' @importFrom pcaMethods pca
+#' @importFrom pcaMethods completeObs
 #' @importFrom VIM kNN
+#' @importFrom stats rnorm
+#' @importFrom stats sd
+#' @importFrom stats quantile
+#' @importFrom stats median
+#'
 #'
 #' @param df A \code{raw.df} object (output of \code{\link{create.df}})
 #' containing missing values.
@@ -175,12 +185,16 @@ if(save == TRUE){
 #' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
 #'
 #' @seealso More information on the available imputation methods can be found
-#' in their respective packages.\itemize{\item For \code{minProb} and
-#' \code{minDet} methods, see \code{\link{imputeLCMD}} package.
-#' \item For Random Forest (\code{RF}) method, see \code{\link{missForest}}
-#' package.
-#' \item For \code{kNN} method, see \code{\link{VIM}} package.
-#' \item For \code{SVD} method, see \code{\link{pcaMethods}} package.}
+#' in their respective packages.
+#' \itemize{\item For \code{minProb} and
+#' \code{minDet} methods, see
+#' \code{imputeLCMD} package.
+#' \item For Random Forest (\code{RF}) method, see
+#'  \code{\link[missForest]{missForest}}.
+#' \item For \code{kNN} method, see \code{\link[VIM]{kNN}} from the
+#'  \code{\link[VIM]{VIM}} package.
+#' \item For \code{SVD} method, see \code{\link[pcaMethods]{pca}} from the
+#' \code{\link[pcaMethods]{pcaMethods}} package.}
 #'
 #' @return An \code{imp.df} object, which is a data frame of intensities with no
 #' missing values.
@@ -209,15 +223,18 @@ if(save == TRUE){
 #' }
 #'
 #' @export
-
-
-
 impute.NA <- function(df,
                       method = "minProb",
                       tune.sigma = 1,
                       q = 0.01,
                       maxiter = 10,
-                      ntree = 20){
+                      ntree = 20,
+                      nPcs = 2){
+
+# Setting functions to NULL
+impute.Min.Prob <- NULL
+impute.MinDet <- NULL
+value <- protgroup <- NULL
 
 
 #Run imputeLCMD function imputeMinProb
@@ -359,8 +376,6 @@ impute.NA <- function(df,
 #'
 #' }
 #' @export
-
-#Options: Global density plot, Sample-wise density plot
 impute.plot <- function(original,
                             imputed,
                             global = TRUE,
@@ -376,6 +391,8 @@ impute.plot <- function(original,
                             plot.height = 7,
                             dpi = 80){
 
+  #Set global variables to null
+  value <- NULL
   #Make necessary changes and combine data frames before plotting
   orig_data <- reshape2::melt(original, na.rm = FALSE)
   orig_data$mjprot <- sapply(strsplit(as.character(orig_data[,1]),';'),

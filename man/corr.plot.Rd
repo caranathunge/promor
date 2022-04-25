@@ -5,24 +5,83 @@
 \title{Correlation between technical replicates}
 \usage{
 corr.plot(
-  x,
+  df,
   rep1,
   rep2,
   save = TRUE,
-  filetype = "pdf",
+  file.type = "pdf",
   col = "red",
   dot.size = 0.5,
-  text.size = 5,
-  nrow = 4,
-  ncol = 4,
+  text.size = 10,
+  nrow,
+  ncol,
   label.size = 1,
   dpi = 80
 )
 }
+\arguments{
+\item{df}{A \code{raw.df} object (output of \code{\link{create.df}})
+containing technical replicates.}
+
+\item{rep1}{Numerical. Technical replicate number.}
+
+\item{rep2}{Numerical. Number of the second technical replicate to compare
+to \code{rep1}.}
+
+\item{save}{Logical. If \code{TRUE} (default) saves a copy of the plot in the
+working directory.}
+
+\item{file.type}{File type to save the scatter plots.
+Default is \code{"pdf"}.}
+
+\item{col}{Color of the dots/points. Default is \code{"Red."}}
+
+\item{dot.size}{Size of the dots/points. Default is \code{0.5}.}
+
+\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\code{10}.}
+
+\item{nrow}{Numerical. Number of plots to print in a single row.}
+
+\item{ncol}{Numerical. Number of plots to print in a single column.}
+
+\item{label.size}{Size of the point labels. Default is \code{1}.}
+
+\item{dpi}{Plot resolution. Default is \code{80}.}
+}
+\value{
+A list of \code{ggplot2} plot objects.
+}
 \description{
-This function makes scatter plots to visualize the
-correlation between a given pair of technical replicates (1 vs 2)
+This function generates scatter plots to visualize the
+correlation between a given pair of technical replicates (Eg: 1 vs 2)
 for each sample.
+}
+\details{
+\itemize{\item Given a data frame of log-transformed intensities
+(a \code{create.df} object) and a pair of numbers referring to the technical
+replicates, \code{corr.plot} produces a list of scatter plots showing
+correlation between the given pair of technical replicates for all the
+samples provided in the data frame.
+\item Note: \code{corr.plot} assumes that the sample names (columns) in the
+data frame follow the "Group_Sample_TechnicalReplicate" notation. For example,
+"technical replicate 01" of "sample 10" belonging to "group A" should be
+labeled as "A_10_01" in the data frame.
+\item Note: \code{nrow} * \code{ncol} should be equal to the number of unique
+samples in the data frame.
+}
+}
+\examples{
+\dontrun{
+
+## Create a raw.df object from a proteinGroups.txt file.
+raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+
+## Compare technical replicates 1 vs. 2 for all samples (n = 24)
+corr.plot(raw. 1, 2, nrow = 4, ncol = 6)
+
+}
+
 }
 \author{
 Chathurani Ranathunge

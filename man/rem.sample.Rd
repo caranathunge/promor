@@ -4,11 +4,48 @@
 \alias{rem.sample}
 \title{Remove user-specified samples}
 \usage{
-rem.sample(x, rem = "")
+rem.sample(df, rem)
+}
+\arguments{
+\item{df}{A \code{raw.df} object.}
+
+\item{rem}{Name of the sample to remove.}
+}
+\value{
+A \code{raw.df} object.
 }
 \description{
-This function removes user-specified samples (columns)
-from the database
+This function removes user-specified samples from the
+data frame.
+}
+\details{
+\itemize{\item\code{rem.sample} assumes that sample names follow the
+"Group_Sample_TechnicalReplicate" notation.
+\item If all the technical replicates representing a sample needs to be
+removed, provide "Group_Sample" as \code{rem}.
+\item If a specific technical replicate needs to be removed in case it
+shows weak correlation with other technical replicates for example, you can
+remove that particular technical replicate by providing
+"Group_Sample_Technical Replicate" as \code{rem}.
+}
+}
+\examples{
+\dontrun{
+
+## Create a raw.df object from a proteinGroups.txt file.
+raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+
+## Remove all technical replicates of "A_10"
+raw_1 <- rem.sample(raw, "A_10")
+
+## Remove only technical replicate number 2 of "A_10"
+raw_1 <- rem.sample(raw, "A_10_02")
+
+}
+
+}
+\seealso{
+\code{\link{corr.plot}}, \code{\link{create.df}}
 }
 \author{
 Chathurani Ranathunge

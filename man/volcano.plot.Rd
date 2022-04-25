@@ -106,8 +106,10 @@ volcanoplot(fit, cutoff = 0.05, sig = "P", FC = 1)
 \seealso{
 \itemize{
 \item \code{find.DEP}
-\item \code{topTable} and \code{lmFit} functions from the
-\code{LIMMA} package.}
+\item \code{\link[limma:topTable]{topTable}} and
+\code{\link[limma:lmFit]{lmFit}} functions from the
+\code{\link[limma]{limma}} package.
+}
 }
 \author{
 Chathurani Ranathunge

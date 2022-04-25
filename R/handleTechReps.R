@@ -1,30 +1,80 @@
-# Scatter plots : correlation between technical replicates ----------------
+# Scatter plots : correlation among technical replicates ----------------
 #' Correlation between technical replicates
 #' @author Chathurani Ranathunge
-#' @description This function makes scatter plots to visualize the
-#' correlation between a given pair of technical replicates (1 vs 2)
+#' @description This function generates scatter plots to visualize the
+#' correlation between a given pair of technical replicates (Eg: 1 vs 2)
 #' for each sample.
 #' @importFrom reshape2 melt
 #' @import ggplot2
 #' @import gridExtra
+#'
+#' @param df A \code{raw.df} object (output of \code{\link{create.df}})
+#' containing technical replicates.
+#' @param rep1 Numerical. Technical replicate number.
+#' @param rep2 Numerical. Number of the second technical replicate to compare
+#' to \code{rep1}.
+#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' working directory.
+#' @param file.type File type to save the scatter plots.
+#' Default is \code{"pdf"}.
+#' @param col Color of the dots/points. Default is \code{"Red."}
+#' @param dot.size Size of the dots/points. Default is \code{0.5}.
+#' @param text.size Text size for plot labels, axis labels etc. Default is
+#' \code{10}.
+#' @param nrow Numerical. Number of plots to print in a single row.
+#' @param ncol Numerical. Number of plots to print in a single column.
+#' @param label.size Size of the point labels. Default is \code{1}.
+#' @param dpi Plot resolution. Default is \code{80}.
+#'
+#' @details
+#' \itemize{\item Given a data frame of log-transformed intensities
+#' (a \code{create.df} object) and a pair of numbers referring to the technical
+#' replicates, \code{corr.plot} produces a list of scatter plots showing
+#' correlation between the given pair of technical replicates for all the
+#' samples provided in the data frame.
+#' \item Note: \code{corr.plot} assumes that the sample names (columns) in the
+#' data frame follow the "Group_Sample_TechnicalReplicate" notation. For example,
+#' "technical replicate 01" of "sample 10" belonging to "group A" should be
+#' labeled as "A_10_01" in the data frame.
+#' \item Note: \code{nrow} * \code{ncol} should be equal to the number of unique
+#' samples in the data frame.
+#' }
+#'
+#' @examples
+#' \dontrun{
+#'
+#' ## Create a raw.df object from a proteinGroups.txt file.
+#' raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+#'
+#' ## Compare technical replicates 1 vs. 2 for all samples (n = 24)
+#' corr.plot(raw. 1, 2, nrow = 4, ncol = 6)
+#'
+#' }
+#'
+#' @return
+#' A list of \code{ggplot2} plot objects.
+#'
+#'
+#'
+#'
 #' @export
-corr.plot<- function(x,
+corr.plot<- function(df,
                      rep1,
                      rep2,
                      save = TRUE,
-                     filetype= "pdf",
+                     file.type= "pdf",
                      col = "red",
                      dot.size= 0.5,
-                     text.size = 5,
-                     nrow=4,
-                     ncol=4,
+                     text.size = 10,
+                     nrow,
+                     ncol,
                      label.size = 1,
                      dpi = 80){
 
 #Separate the sample id from the column names, remove duplicates, paste _ and
 #create a list. This is now a list of unique sample names used in the
 #dataframe. Eg: _12_ instead of 12 because '12' can match 120, 121, 212 etc.
-sample_name <- unlist(paste0("_", unique(sapply(strsplit(colnames(x), "_"),
+sample_name <- unlist(paste0("_", unique(sapply(strsplit(colnames(df), "_"),
                               '[',2)),
                               "_", sep=""))
 
@@ -32,7 +82,7 @@ sample_name <- unlist(paste0("_", unique(sapply(strsplit(colnames(x), "_"),
 #plotting. 'as.data.frame' forces even those with just one column or replicate
 #into a dataframe rather than a row
 sub_df<-lapply(sample_name,
-                 function(y) as.data.frame(x[, grepl(y, names(x))]))
+                 function(y) as.data.frame(df[, grepl(y, names(df))]))
 
 #Only keep the samples with at least 2 replicates for plotting TR1 v TR2
 if(rep1 == 3  || rep2 == 3){
@@ -65,7 +115,7 @@ plot_list<-lapply(1:length(plot_data), function(t)
   ggplot2::ggtitle(gsub("\\_0\\d\\_","\\_", colnames(plot_data[[t]][1])))
 )
 if(save == TRUE){
-ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",filetype),
+ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
                 marrangeGrob(grobs = plot_list,
                              nrow = nrow,
                              ncol = ncol,
@@ -80,34 +130,89 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",filetype),
 # Remove user-specified samples -------------------------------------------
 #' Remove user-specified samples
 #' @author Chathurani Ranathunge
-#' @description This function removes user-specified samples (columns)
-#' from the database
+#' @description This function removes user-specified samples from the
+#' data frame.
+#'
+#' @param df A \code{raw.df} object.
+#' @param rem Name of the sample to remove.
+#'
+#' @details \itemize{\item\code{rem.sample} assumes that sample names follow the
+#' "Group_Sample_TechnicalReplicate" notation.
+#' \item If all the technical replicates representing a sample needs to be
+#' removed, provide "Group_Sample" as \code{rem}.
+#' \item If a specific technical replicate needs to be removed in case it
+#' shows weak correlation with other technical replicates for example, you can
+#' remove that particular technical replicate by providing
+#' "Group_Sample_Technical Replicate" as \code{rem}.
+#' }
+#' @return A \code{raw.df} object.
+#'
+#' @seealso \code{\link{corr.plot}}, \code{\link{create.df}}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' ## Create a raw.df object from a proteinGroups.txt file.
+#' raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+#'
+#' ## Remove all technical replicates of "A_10"
+#' raw_1 <- rem.sample(raw, "A_10")
+#'
+#' ## Remove only technical replicate number 2 of "A_10"
+#' raw_1 <- rem.sample(raw, "A_10_02")
+#'
+#' }
+#'
 #' @export
-rem.sample <- function(x, rem){
-  x_rem <- x[, -grep(rem, colnames(x))]
-  return(x_rem)
+rem.sample <- function(df, rem){
+  df_rem <- df[, -grep(rem, colnames(df))]
+  return(df_rem)
 }
 
 
 # Compute average intensity across tech.replicates for each sample --------
 #' Compute average intensity
 #' @author Chathurani Ranathunge
+#'
 #' @description This function computes average intensities across
 #' technical replicates for each sample.
+#'
 #' @import limma
+#'
+#' @param df A \code{raw.df} object containing technical replicates.
+#'
+#' @details
+#' \code{aver.techreps} assumes that sample names in the data frame
+#' follow the "Group_Sample_TechnicalReplicate" notation.
+#'
+#' @return A \code{raw.df} object of averaged intensities.
+#'
+#' @seealso \code{\link[limma]{avearrays}} from \code{\link[limma]{limma}}
+#' package.
+#'
+#' @examples
+#' \dontrun{
+#' ## Create a raw.df object from a proteinGroups.txt file.
+#' raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+#'
+#' #Compute average intensities across technical replicates.
+#' raw_1 <- aver.techreps(raw)
+#' }
+#'
+#'
 #' @export
-aver.techreps <- function(x){
+aver.techreps <- function(df){
   #Convert dataframe back to a matrix as dataframes don't allow multiple
   #columns with the same name. We need that feature to average over TRs.
-  x_mat<- as.matrix(x)
+  df_mat <- as.matrix(df)
 
   #substitute technical replicates with the sample name in the vector.
   #Now in each sample, all technical replicates are labelled the same way.
-  colnames(x_mat) <- gsub("\\_0\\d\\_","\\_", colnames(x_mat))
+  colnames(df_mat) <- gsub("\\_0\\d\\_","\\_", colnames(df_mat))
 
   #Average across technical replicates
-  x_ave = limma::avearrays(x_mat,
-                           ID = colnames(x_mat),
+  df_ave = limma::avearrays(df_mat,
+                           ID = colnames(df_mat),
                            weights = NULL)
-  return(x_ave)
+  return(df_ave)
 }

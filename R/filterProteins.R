@@ -2,12 +2,14 @@
 #' Filter out proteins and/ or samples that do not have valid data
 #' @description This function removes proteins (rows) that have missing data
 #'  (NAs) across all samples and samples (columns) with missing data across all
-#'  proteins
-#' @param df A \code{raw.df} object (output of \code{\link {create.df}}).
+#'  proteins.
+#'
+#' @param df A \code{raw.df} object (output of \code{create.df}).
+#'
 #' @details \itemize{\item This function first removes proteins (rows) with
 #' missing values (NAs) across all samples.
 #' \item Then if present, it removes samples (columns) with missing data
-#' across all proteins }
+#' across all proteins.}
 #' @examples
 #' \dontrun{
 #' raw <- create.df(file.path = "./proteinGroups.txt")
@@ -30,6 +32,8 @@ filter.NA <- function(df){
 #' Filter proteins by group level missing data
 #' @description This function filters out proteins that exceed a given
 #' missing data percentage in each group.
+#'
+#' @importFrom stats aggregate
 #'
 #' @param df A \code{raw.df} object (output of \code{\link{create.df}})
 #' @param set.na The percentage of missing data allowed in any group.
