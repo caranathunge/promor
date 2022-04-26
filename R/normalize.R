@@ -20,9 +20,11 @@
 #' @return A \code{norm.df} object, which is a data frame with
 #' normalized intensities.
 #'
-#' @seealso See \code{\link{normalizeBetweenArrays}} in the R package
+#' @seealso \itemize{\item \code{create.df}
+#' \item \code{impute.NA}
+#' \item See \code{\link[limma]{normalizeBetweenArrays}} in the R package
 #' \code{limma} for more information on the different normalization methods
-#' available.
+#' available.}
 #'
 #'
 #' @examples
@@ -60,14 +62,14 @@ normalize.data <- function(df,
 
 #' @param original A \code{raw.df} object (output of \code{\link{create.df}})
 #' containing missing values or an \code{imp.df} object after imputing the
-#' missing values.
+#' missing values with \code{impute.NA}.
 #' @param normalized A \code{norm.df} object after normalizing the data frame
 #' provided as \code{original}.
 #' @param type Type of plot to generate. Choices are "box" or "density." Default
 #' is \code{"box."}
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for plots. Default is \code{"YlGnBu."}
+#' @param palette Color palette for box plots. Default is \code{"YlGnBu."}
 #' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the plot.
@@ -83,7 +85,10 @@ normalize.data <- function(df,
 #' \code{norm.plot} generates side-by-side plots to visualize the effect of
 #' normalization on the intensity data.
 #'
-#' @seealso \code{\link{normalize.data}}
+#' @seealso \itemize{\item \code{\link{normalize.data}}
+#' \item \code{create.df}
+#' \item \code{impute.NA}
+#' }
 #'
 #' @return A \code{ggplot2} plot object.
 #'
@@ -194,6 +199,7 @@ norm.plot <- function(original,
            dpi = dpi,
            width = plot.width,
            height = plot.height)
+    return(norm_plot)
     }else{
       return(norm_plot)
     }

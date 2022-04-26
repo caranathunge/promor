@@ -16,9 +16,11 @@ volcano.plot(
   plot.height = 7,
   plot.width = 7,
   sig = "adjP",
+  dot.size = 0.5,
   nsig.col = "black",
   sig.col = "red",
   ln.col = "red",
+  text.size = 10,
   label.top = FALSE,
   n.top = 10,
   dpi = 80,
@@ -54,6 +56,8 @@ to indicate the p-value \code{cutoff.}}
 \item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
 (default) for adjusted p-value or \code{"P"} for p-value.}
 
+\item{dot.size}{Size of the dots/points. Default is \code{0.5}.}
+
 \item{nsig.col}{Color of the dots representing significant hits. Default is
 "Red."}
 
@@ -62,6 +66,8 @@ to indicate the p-value \code{cutoff.}}
 
 \item{ln.col}{Line color for lines when \code{line.FC = TRUE} and/or
 \code{line.P = TRUE.} Default is "Black."}
+
+\item{text.size}{Text size for axis text, labels etc.}
 
 \item{label.top}{Logical. If \code{TRUE} (default), labels are added to the
 dots to indicate protein names.}

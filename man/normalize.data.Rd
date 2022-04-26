@@ -46,9 +46,11 @@ raw_nm <- normalize.data(raw_imp)
 
 }
 \seealso{
-See \code{\link{normalizeBetweenArrays}} in the R package
+\itemize{\item \code{create.df}
+\item \code{impute.NA}
+\item See \code{\link[limma]{normalizeBetweenArrays}} in the R package
 \code{limma} for more information on the different normalization methods
-available.
+available.}
 }
 \author{
 Chathurani Ranathunge

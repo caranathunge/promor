@@ -22,11 +22,11 @@ data frame.
 \itemize{\item\code{rem.sample} assumes that sample names follow the
 "Group_Sample_TechnicalReplicate" notation.
 \item If all the technical replicates representing a sample needs to be
-removed, provide "Group_Sample" as \code{rem}.
+removed, provide "Group_UniqueSampleID" as \code{rem}.
 \item If a specific technical replicate needs to be removed in case it
 shows weak correlation with other technical replicates for example, you can
 remove that particular technical replicate by providing
-"Group_Sample_Technical Replicate" as \code{rem}.
+"Group_UniqueSampleID_TechnicalReplicate" as \code{rem}.
 }
 }
 \examples{

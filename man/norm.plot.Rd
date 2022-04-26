@@ -21,7 +21,7 @@ norm.plot(
 \arguments{
 \item{original}{A \code{raw.df} object (output of \code{\link{create.df}})
 containing missing values or an \code{imp.df} object after imputing the
-missing values.}
+missing values with \code{impute.NA}.}
 
 \item{normalized}{A \code{norm.df} object after normalizing the data frame
 provided as \code{original}.}
@@ -32,7 +32,7 @@ is \code{"box."}}
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{palette}{Color palette for plots. Default is \code{"YlGnBu."}}
+\item{palette}{Color palette for box plots. Default is \code{"YlGnBu."}}
 
 \item{save}{Logical. If \code{TRUE} (default) saves a copy of the plot in the
 working directory.}
@@ -80,7 +80,10 @@ norm.plot(raw_imp, raw_nm, type = "density")
 
 }
 \seealso{
-\code{\link{normalize.data}}
+\itemize{\item \code{\link{normalize.data}}
+\item \code{create.df}
+\item \code{impute.NA}
+}
 }
 \author{
 Chathurani Ranathunge

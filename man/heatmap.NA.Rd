@@ -22,7 +22,7 @@ heatmap.NA(
 )
 }
 \arguments{
-\item{df}{A \code{raw.df} object (output from \code{create.df}).}
+\item{df}{A \code{raw.df} object (output from \code{\link{create.df}}).}
 
 \item{reorder.x}{Logical. If \code{TRUE} samples on the x axis are reordered
 using the function given in \code{x.FUN}. Default is \code{FALSE}.}
@@ -82,4 +82,7 @@ heatmap.NA(raw, reorder.x = TRUE, reorder.y = TRUE, x.FUN = sum,
 y.FUN = sum)
 }
 
+}
+\seealso{
+\code{\link{create.df}}
 }

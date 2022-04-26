@@ -18,7 +18,7 @@ technical replicates for each sample.
 }
 \details{
 \code{aver.techreps} assumes that sample names in the data frame
-follow the "Group_Sample_TechnicalReplicate" notation.
+follow the "Group_UniqueSampleID_TechnicalReplicate" notation.
 }
 \examples{
 \dontrun{

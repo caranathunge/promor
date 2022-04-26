@@ -12,9 +12,9 @@ corr.plot(
   file.type = "pdf",
   col = "red",
   dot.size = 0.5,
-  text.size = 10,
-  nrow,
-  ncol,
+  text.size = 5,
+  nrow = 4,
+  ncol = 4,
   label.size = 1,
   dpi = 80
 )
@@ -41,9 +41,11 @@ Default is \code{"pdf"}.}
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{nrow}{Numerical. Number of plots to print in a single row.}
+\item{nrow}{Numerical. Number of plots to print in a row in a single page.
+Default is \code{4}.}
 
-\item{ncol}{Numerical. Number of plots to print in a single column.}
+\item{ncol}{Numerical. Number of plots to print in a column in a single
+page. Default is \code{4}.}
 
 \item{label.size}{Size of the point labels. Default is \code{1}.}
 
@@ -64,11 +66,12 @@ replicates, \code{corr.plot} produces a list of scatter plots showing
 correlation between the given pair of technical replicates for all the
 samples provided in the data frame.
 \item Note: \code{corr.plot} assumes that the sample names (columns) in the
-data frame follow the "Group_Sample_TechnicalReplicate" notation. For example,
+data frame follow the "Group_UniqueSampleID_TechnicalReplicate" notation.
+For example,
 "technical replicate 01" of "sample 10" belonging to "group A" should be
 labeled as "A_10_01" in the data frame.
-\item Note: \code{nrow} * \code{ncol} should be equal to the number of unique
-samples in the data frame.
+\item Note: \code{nrow} * \code{ncol} should be equal to the number of
+samples to display in a single page.
 }
 }
 \examples{
@@ -77,7 +80,7 @@ samples in the data frame.
 ## Create a raw.df object from a proteinGroups.txt file.
 raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 
-## Compare technical replicates 1 vs. 2 for all samples (n = 24)
+## Compare technical replicates 1 vs. 2 for all samples.
 corr.plot(raw. 1, 2, nrow = 4, ncol = 6)
 
 }

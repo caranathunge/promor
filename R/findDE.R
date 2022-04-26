@@ -25,8 +25,11 @@
 #' differential expression analysis.
 #' \item \code{save.tophits} first subsets the results to those with absolute
 #' log fold change of more than 1, performs multiple correction with
-#' "Benjamini Hochberg" method and outputs the top results based on lowest
-#' p-value and adjusted p-value.}
+#' "Benjamini Hochberg" method and outputs the top \code{n.top} results based
+#' on lowest p-value and adjusted p-value.
+#' \item If the number of hits with absolute log fold change of more than 1 is
+#' less than \code{n.top}, \code{find.DEP} prints only those with
+#' log-fold change > 1 to "TopHits.txt"}
 #'
 #' @return A \code{fit.df} object, which is similar to a \code{limma}
 #' \code{fit} object.
@@ -78,10 +81,18 @@ if(save.tophits == TRUE){
                                n = length(fit$df.total))
   results_DE<- results_DE[abs(results_DE$logFC) > 1,]
   results_DE <- results_DE[order(results_DE$P.Value, results_DE$adj.P.Val),]
+
+  if(length(results_DE)-1 < n.top){
+  write.table(results_DE[1: length(results_DE)-1,],
+              file = "TopHits.txt",
+              sep = "\t")
+  print(results_DE[1: length(results_DE)-1,])
+  }else{
   write.table(results_DE[1: n.top,],
               file = "TopHits.txt",
               sep = "\t")
   print(results_DE[1: n.top,])
+  }
 }
 return(fit)
 }
@@ -105,6 +116,7 @@ return(fit)
 #' to indicate the \code{FC} threshold in the plot.
 #' @param line.P Logical. If \code{TRUE}(default), a dotted line will be shown
 #' to indicate the p-value \code{cutoff.}
+#' @param dot.size Size of the dots/points. Default is \code{0.5}.
 #' @param file.name File name to save the plot. Default is "Volcano_plot."
 #' @param file.type File type to save the plot. Default is \code{"pdf".}
 #' @param plot.height Height of the plot. Default is 7.
@@ -117,6 +129,7 @@ return(fit)
 #' "Black."
 #' @param ln.col Line color for lines when \code{line.FC = TRUE} and/or
 #' \code{line.P = TRUE.} Default is "Black."
+#' @param text.size Text size for axis text, labels etc.
 #' @param label.top Logical. If \code{TRUE} (default), labels are added to the
 #' dots to indicate protein names.
 #' @param n.top The number of top hits to label with protein name when
@@ -167,9 +180,11 @@ volcano.plot <- function(fit.df,
                          plot.height = 7,
                          plot.width = 7,
                          sig = "adjP",
+                         dot.size = 0.5,
                          nsig.col = "black",
                          sig.col = "red",
                          ln.col = "red",
+                         text.size = 10,
                          label.top = FALSE,
                          n.top = 10,
                          dpi = 80,
@@ -198,7 +213,7 @@ res_DE$DEP <- res_DE$P.Value < cutoff & abs(res_DE$logFC) > FC
                                                    colour = DEP)) +
       ggplot2::geom_point(ggplot2::aes(colour = DEP),
                           alpha = 0.5,
-                          size = 0.1)
+                          size = dot.size)
     }else{
       res_DE <- res_DE[order(-res_DE$DEAP,res_DE$adj.P.Val),]
       DE_volcanoplot <- ggplot2::ggplot(res_DE,
@@ -207,7 +222,7 @@ res_DE$DEP <- res_DE$P.Value < cutoff & abs(res_DE$logFC) > FC
                                                      colour = DEAP)) +
         ggplot2::geom_point(ggplot2::aes(colour = DEAP),
                             alpha = 0.5,
-                            size = 0.1)
+                            size = dot.size)
     }
 
 
@@ -218,14 +233,14 @@ DE_volcanoplot <- DE_volcanoplot +
     ggplot2::scale_colour_manual(values = c(nsig.col, sig.col)) +
   ggplot2::theme_bw()+
   ggplot2::theme(legend.position = "",
-          text = element_text(size = 3),
+          text = element_text(size = text.size),
           axis.line.x = element_line(size = 0.1),
           axis.line.y = element_line(size = 0.1),
           axis.ticks.x = element_line(size = 0.1),
           axis.ticks.y = element_line(size = 0.1),
           panel.grid.minor = element_blank(),
           panel.grid.major = element_line (size = 0.1),
-          panel.border = element_rect (size = 0.2))
+          panel.border = element_rect(size = 0.2))
 
 if(line.FC == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
@@ -250,11 +265,12 @@ if(label.top == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
     ggplot2::geom_text(data = res_DE[1:n.top,],
                        label = sapply(strsplit(
-                         rownames(res_DE[1:n.top,]), ";"),getElement,1 ),
+                         rownames(res_DE[1:n.top,]), ";"),
+                         getElement,1 ),
                        hjust="inward",
                        vjust="outward",
                        check_overlap = FALSE,
-                       size = 0.8)
+                       size = text.size/4)
   }
 
 

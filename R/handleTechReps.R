@@ -21,8 +21,10 @@
 #' @param dot.size Size of the dots/points. Default is \code{0.5}.
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param nrow Numerical. Number of plots to print in a single row.
-#' @param ncol Numerical. Number of plots to print in a single column.
+#' @param nrow Numerical. Number of plots to print in a row in a single page.
+#' Default is \code{4}.
+#' @param ncol Numerical. Number of plots to print in a column in a single
+#' page. Default is \code{4}.
 #' @param label.size Size of the point labels. Default is \code{1}.
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
@@ -33,11 +35,12 @@
 #' correlation between the given pair of technical replicates for all the
 #' samples provided in the data frame.
 #' \item Note: \code{corr.plot} assumes that the sample names (columns) in the
-#' data frame follow the "Group_Sample_TechnicalReplicate" notation. For example,
+#' data frame follow the "Group_UniqueSampleID_TechnicalReplicate" notation.
+#' For example,
 #' "technical replicate 01" of "sample 10" belonging to "group A" should be
 #' labeled as "A_10_01" in the data frame.
-#' \item Note: \code{nrow} * \code{ncol} should be equal to the number of unique
-#' samples in the data frame.
+#' \item Note: \code{nrow} * \code{ncol} should be equal to the number of
+#' samples to display in a single page.
 #' }
 #'
 #' @seealso
@@ -49,7 +52,7 @@
 #' ## Create a raw.df object from a proteinGroups.txt file.
 #' raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 #'
-#' ## Compare technical replicates 1 vs. 2 for all samples (n = 24)
+#' ## Compare technical replicates 1 vs. 2 for all samples.
 #' corr.plot(raw. 1, 2, nrow = 4, ncol = 6)
 #'
 #' }
@@ -68,9 +71,9 @@ corr.plot<- function(df,
                      file.type= "pdf",
                      col = "red",
                      dot.size= 0.5,
-                     text.size = 10,
-                     nrow,
-                     ncol,
+                     text.size = 5,
+                     nrow = 4,
+                     ncol = 4,
                      label.size = 1,
                      dpi = 80){
 
@@ -142,11 +145,11 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
 #' @details \itemize{\item\code{rem.sample} assumes that sample names follow the
 #' "Group_Sample_TechnicalReplicate" notation.
 #' \item If all the technical replicates representing a sample needs to be
-#' removed, provide "Group_Sample" as \code{rem}.
+#' removed, provide "Group_UniqueSampleID" as \code{rem}.
 #' \item If a specific technical replicate needs to be removed in case it
 #' shows weak correlation with other technical replicates for example, you can
 #' remove that particular technical replicate by providing
-#' "Group_Sample_Technical Replicate" as \code{rem}.
+#' "Group_UniqueSampleID_TechnicalReplicate" as \code{rem}.
 #' }
 #' @return A \code{raw.df} object.
 #'
@@ -186,7 +189,7 @@ rem.sample <- function(df, rem){
 #'
 #' @details
 #' \code{aver.techreps} assumes that sample names in the data frame
-#' follow the "Group_Sample_TechnicalReplicate" notation.
+#' follow the "Group_UniqueSampleID_TechnicalReplicate" notation.
 #'
 #' @return A \code{raw.df} object of averaged intensities.
 #'

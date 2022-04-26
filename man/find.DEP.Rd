@@ -36,8 +36,11 @@ imputed, and normalized before performing differential expression analysis.
 differential expression analysis.
 \item \code{save.tophits} first subsets the results to those with absolute
 log fold change of more than 1, performs multiple correction with
-"Benjamini Hochberg" method and outputs the top results based on lowest
-p-value and adjusted p-value.}
+"Benjamini Hochberg" method and outputs the top \code{n.top} results based
+on lowest p-value and adjusted p-value.
+\item If the number of hits with absolute log fold change of more than 1 is
+less than \code{n.top}, \code{find.DEP} prints only those with
+log-fold change > 1 to "TopHits.txt"}
 }
 \examples{
 \dontrun{

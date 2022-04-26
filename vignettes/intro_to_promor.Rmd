@@ -1,5 +1,6 @@
 ---
 title: "Introduction to promor"
+author: Chathurani Ranathunge
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to promor}

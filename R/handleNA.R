@@ -7,7 +7,7 @@
 #' @import ggplot2
 #' @importFrom stats reorder
 #'
-#' @param df A \code{raw.df} object (output from \code{create.df}).
+#' @param df A \code{raw.df} object (output from \code{\link{create.df}}).
 #' @param reorder.x Logical. If \code{TRUE} samples on the x axis are reordered
 #' using the function given in \code{x.FUN}. Default is \code{FALSE}.
 #' @param reorder.y Logical. If \code{TRUE} proteins in the y axis are reordered
@@ -35,6 +35,8 @@
 #' missing data.
 #'
 #' @return A \code{ggplot2} plot object.
+#'
+#' @seealso \code{\link{create.df}}
 #'
 #' @examples
 #' \dontrun{
@@ -140,8 +142,9 @@ if(save == TRUE){
   ggplot2::ggsave(paste0(file.name,".",file.type),
                   hmap,
                   dpi = dpi,
-                  plot.width = plot.width,
-                  plot.height = plot.height)
+                  width = plot.width,
+                  height = plot.height)
+  return(hmap)
   }else{
     return(hmap)
   }
@@ -186,7 +189,8 @@ if(save == TRUE){
 #'
 #' @seealso More information on the available imputation methods can be found
 #' in their respective packages.
-#' \itemize{\item For \code{minProb} and
+#' \itemize{\item \code{\link{create.df}}
+#' \item For \code{minProb} and
 #' \code{minDet} methods, see
 #' \code{imputeLCMD} package.
 #' \item For Random Forest (\code{RF}) method, see
@@ -334,10 +338,10 @@ value <- protgroup <- NULL
 #' Default is "Blue."
 #' @param imp.col Fill color color for the \code{imputed} data set.\cr
 #' Default is "Red."
-#' @param nrow Required if \code{global = FALSE} to indicate the number of plots
-#' to print in a single row.
-#' @param ncol Required if \code{global = FALSE} to indicate the number of plots
-#' to print in a single column.
+#' @param nrow Required if \code{global = FALSE} to indicate the number of rows
+#' to print the plots.
+#' @param ncol Required if \code{global = FALSE} to indicate the number of
+#' columns to print the plots.
 #' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the density plot/s.
@@ -412,6 +416,7 @@ impute.plot <- function(original,
   dplot_data <- rbind(orig_df1, imp_df1)
 
   #Plot global density plot
+  axis_text.size = as.numeric(text.size)/2
   if(global ==TRUE){
     g_densityplot <- ggplot2::ggplot(dplot_data,
                                      ggplot2::aes(x=value)) +
@@ -427,15 +432,18 @@ impute.plot <- function(original,
       ggplot2::theme_classic()+
       ggplot2::theme(legend.title = element_blank(),
                      axis.title.x = element_text(size = text.size),
-                     axis.title.y = element_text(size = text.size))
+                     axis.title.y = element_text(size = text.size),
+                     axis.text = element_text(size = axis_text.size),
+                     legend.text = element_text(size = text.size))
 
 
     if(save == TRUE){
       ggplot2::ggsave(paste0(file.name,".",file.type),
                       g_densityplot,
                       dpi = dpi,
-                      plot.width = plot.width,
-                      plot.height = plot.height)
+                      width = plot.width,
+                      height = plot.height)
+      return(g_densityplot)
       }else{
         return(g_densityplot)
         }
@@ -454,6 +462,8 @@ impute.plot <- function(original,
       ggplot2::theme(legend.title = element_blank(),
                      axis.title.x = element_blank(),
                      axis.title.y= element_blank(),
+                     axis.text = element_text(size = axis_text.size),
+                     legend.text = element_text(size = text.size),
                      strip.text = element_text(size = text.size),
                      strip.background = element_rect(colour = "grey",
                                                      size = 0.5))+
@@ -465,8 +475,9 @@ impute.plot <- function(original,
       ggplot2::ggsave(paste0(file.name,".", file.type),
                       s_densplot,
                       dpi = dpi,
-                      plot.width = plot.width,
-                      plot.height = plot.height)
+                      width = plot.width,
+                      height = plot.height)
+      return(s_densplot)
       }else{
         return(s_densplot)
       }

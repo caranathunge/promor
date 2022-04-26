@@ -40,11 +40,11 @@ Default is "Blue."}
 \item{imp.col}{Fill color color for the \code{imputed} data set.\cr
 Default is "Red."}
 
-\item{nrow}{Required if \code{global = FALSE} to indicate the number of plots
-to print in a single row.}
+\item{nrow}{Required if \code{global = FALSE} to indicate the number of rows
+to print the plots.}
 
-\item{ncol}{Required if \code{global = FALSE} to indicate the number of plots
-to print in a single column.}
+\item{ncol}{Required if \code{global = FALSE} to indicate the number of
+columns to print the plots.}
 
 \item{save}{Logical. If \code{TRUE} (default) saves a copy of the plot in the
 working directory.}

@@ -80,7 +80,8 @@ imp_raw <- impute.NA(raw, method = "minDet", q = 0.001)
 \seealso{
 More information on the available imputation methods can be found
 in their respective packages.
-\itemize{\item For \code{minProb} and
+\itemize{\item \code{\link{create.df}}
+\item For \code{minProb} and
 \code{minDet} methods, see
 \code{imputeLCMD} package.
 \item For Random Forest (\code{RF}) method, see
