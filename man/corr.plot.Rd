@@ -59,7 +59,7 @@ for each sample.
 }
 \details{
 \itemize{\item Given a data frame of log-transformed intensities
-(a \code{create.df} object) and a pair of numbers referring to the technical
+(a \code{raw.df} object) and a pair of numbers referring to the technical
 replicates, \code{corr.plot} produces a list of scatter plots showing
 correlation between the given pair of technical replicates for all the
 samples provided in the data frame.
@@ -82,6 +82,9 @@ corr.plot(raw. 1, 2, nrow = 4, ncol = 6)
 
 }
 
+}
+\seealso{
+\code{create.df}
 }
 \author{
 Chathurani Ranathunge
