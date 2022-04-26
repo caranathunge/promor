@@ -4,7 +4,7 @@ Title: Proteomics Data Analysis and Modeling
 Version: 0.1.0
 Author: Chathurani Ranathunge
 Maintainer: Chathurani Ranathunge<caranathunge86@gmail.com>
-Description: promor is a comprehensive R package for proteomics data analysis, visulaization, and modelling to assess predictive performance of specific biomarkers.
+Description: promor is a comprehensive R package for proteomics data analysis, visulaization, and modeling to assess predictive performance of specific biomarkers.
 License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.1.2
