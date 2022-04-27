@@ -309,6 +309,7 @@ if (save == TRUE){
 #' @param sig Criteria to denote significance. Choices are \code{"adjP"}
 #' (default) for adjusted p-value or \code{"P"} for p-value.
 #' @param palette Color palette for plots. Default is \code{"YlGnBu."}
+#' @param text.size Text size for axis text, labels etc.
 #' @param save Logical. If \code{TRUE} (default), saves a copy of the plot in
 #' the working directory.
 #' @param file.name File name to save the plot. Default is "HeatmapDE."
@@ -351,6 +352,7 @@ heatmap.DE <- function(fit.df,
                        FC = 1,
                        sig = "adjP",
                        palette = "YlGnBu",
+                       text.size = 10,
                        save = TRUE,
                        file.name = "HeatmapDE",
                        file.type = "pdf",
@@ -358,7 +360,7 @@ heatmap.DE <- function(fit.df,
                        plot.height  = 7,
                        plot.width = 7){
 
-#Binding the gloabl variables to a local function
+#Binding the global variables to a local function
 logFC <- P.Value <- adj.P.Val <- Intensity <- protein <- NULL
 
 #Extract the required data from the fit object
@@ -367,15 +369,16 @@ exp_DE <- limma::topTable(fit.df,
                        n = length(fit.df$df.total),
                        adjust.method = "BH")
 
-
 #Pick the sig. proteins based on lowest p-value and highest logFC
 
 if(sig == "P"){
   top_proteins <- rownames(subset(exp_DE,
-                                  abs(logFC) > FC & P.Value < cutoff))
+                                  abs(logFC) > FC & P.Value < cutoff,
+                                  drop = FALSE))
 }else{
   top_proteins <- rownames(subset(exp_DE,
-                                abs(logFC) > FC & adj.P.Val < cutoff))
+                                abs(logFC) > FC & adj.P.Val < cutoff,
+                                drop = FALSE))
 }
 
 #Check if there are sig. proteins before moving on to plotting
@@ -384,9 +387,10 @@ if (identical(top_proteins, character(0))){
        (paste0("No significant proteins found at ", sig, " < ", cutoff, "." )))
 }else{
 
-  #Extract intensity values for top proteins based on logFC and p-value cutoff
-top_intensity <- norm.df[top_proteins,]
-
+#Extract intensity values for top proteins based on logFC and p-value cutoff
+top_intensity<-subset(norm.df,
+                      rownames(norm.df) %in% top_proteins,
+                      drop = FALSE)
 #Convert to long format for plotting
 top_intMelted <- reshape2::melt(top_intensity)
 
@@ -416,13 +420,16 @@ top_heatmap <- ggplot2::ggplot(top_intMelted,
                  legend.direction="vertical",
                  legend.key.height = grid::unit(0.8, "cm"),
                  legend.key.width = grid::unit(0.2, "cm"),
-                 legend.text = element_text(face = "bold"),
+                 legend.title = element_blank(),
+                 legend.text = element_text(size = text.size/2,
+                                            face = "bold"),
                  axis.ticks = element_blank(),
                  axis.text.x = element_blank(),
-                 axis.text.y = element_text(),
+                 axis.text.y = element_text(size = text.size * 0.7),
                  strip.background = element_rect(fill = "grey97",
                                                  colour = "grey90",
                                                  size = 0.3),
+                 strip.text = element_text(size = text.size),
                  plot.background = element_blank(),
                  panel.border = element_blank())+
     ggplot2::facet_wrap(.~stage,

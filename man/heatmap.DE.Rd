@@ -11,6 +11,7 @@ heatmap.DE(
   FC = 1,
   sig = "adjP",
   palette = "YlGnBu",
+  text.size = 10,
   save = TRUE,
   file.name = "HeatmapDE",
   file.type = "pdf",
@@ -35,6 +36,8 @@ differential expression.}
 (default) for adjusted p-value or \code{"P"} for p-value.}
 
 \item{palette}{Color palette for plots. Default is \code{"YlGnBu."}}
+
+\item{text.size}{Text size for axis text, labels etc.}
 
 \item{save}{Logical. If \code{TRUE} (default), saves a copy of the plot in
 the working directory.}
