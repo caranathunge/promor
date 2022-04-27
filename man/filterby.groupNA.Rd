@@ -42,3 +42,6 @@ of NAs in any one of the given groups exceeds the threshold indicated by
  raw_filtered1 <- filterby.groupNA(raw, set.na = 0.5)
  }
 }
+\author{
+Chathurani Ranathunge
+}

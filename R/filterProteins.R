@@ -1,8 +1,9 @@
 # Filter missing data -----------------------------------------------------
-#' Filter out proteins and/ or samples that do not have valid data
-#' @description This function removes proteins (rows) that have missing data
-#'  (NAs) across all samples and samples (columns) with missing data across all
-#'  proteins.
+#' Filter out samples and/ or proteins that do not have valid data
+#' @description This function removes samples with missing data (NAs) across all
+#' proteins (empty columns) and proteins that have missing data
+#' across all samples (empty rows).
+#' @author Chathurani Ranathunge
 #'
 #' @param df A \code{raw.df} object (output of \code{create.df}).
 #'
@@ -32,6 +33,8 @@ filter.NA <- function(df){
 #' Filter proteins by group level missing data
 #' @description This function filters out proteins that exceed a given
 #' missing data percentage in each group.
+#'
+#' @author Chathurani Ranathunge
 #'
 #' @importFrom stats aggregate
 #'
@@ -104,6 +107,8 @@ filterby.groupNA <- function(df,
 #' @description This function outputs a list of proteins that are only
 #' expressed (present) in one user-specified group while not expressed
 #' (completely absent) in another user-specified group.
+#'
+#' @author Chathurani Ranathunge
 #'
 #' @param df A \code{raw.df} object (output of \code{\link{create.df}})
 #' @param abs.group Name of the group in which proteins are not expressed.

@@ -86,3 +86,6 @@ y.FUN = sum)
 \seealso{
 \code{\link{create.df}}
 }
+\author{
+Chathurani Ranathunge
+}

@@ -3,6 +3,8 @@
 #' @description This function creates a data frame of label-free quantitative
 #' (LFQ) protein intensities from MaxQuant's proteinGroups.txt file.
 #'
+#' @author Chathurani Ranathunge
+#'
 #' @importFrom utils read.csv
 #'
 #' @param file.path File path to proteinGroups.txt file produced by MaxQuant.

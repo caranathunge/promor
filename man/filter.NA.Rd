@@ -2,7 +2,7 @@
 % Please edit documentation in R/filterProteins.R
 \name{filter.NA}
 \alias{filter.NA}
-\title{Filter out proteins and/ or samples that do not have valid data}
+\title{Filter out samples and/ or proteins that do not have valid data}
 \usage{
 filter.NA(df)
 }
@@ -14,9 +14,9 @@ A \code{raw.df} object or a data frame with no empty (all NAs) rows
 or columns.
 }
 \description{
-This function removes proteins (rows) that have missing data
-(NAs) across all samples and samples (columns) with missing data across all
-proteins.
+This function removes samples with missing data (NAs) across all
+proteins (empty columns) and proteins that have missing data
+across all samples (empty rows).
 }
 \details{
 \itemize{\item This function first removes proteins (rows) with
@@ -29,4 +29,7 @@ across all proteins.}
 raw <- create.df(file.path = "./proteinGroups.txt")
 raw_1 <- filter.NA(raw)
 }
+}
+\author{
+Chathurani Ranathunge
 }

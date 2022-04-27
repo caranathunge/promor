@@ -91,3 +91,6 @@ in their respective packages.
 \item For \code{SVD} method, see \code{\link[pcaMethods]{pca}} from the
 \code{\link[pcaMethods]{pcaMethods}} package.}
 }
+\author{
+Chathurani Ranathunge
+}

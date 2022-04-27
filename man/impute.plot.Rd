@@ -94,3 +94,6 @@ impute.plot(raw, imp_raw, global = FALSE, nrow = 5, ncol = 5)
 
 }
 }
+\author{
+Chathurani Ranathunge
+}

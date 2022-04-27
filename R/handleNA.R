@@ -1,5 +1,7 @@
 # Visualize missing data -------------------------------------
 #' Visualize missing data
+#' @author Chathurani Ranathunge
+#'
 #' @description This function visualizes the patterns of missing value
 #' occurrence using a heatmap.
 #'
@@ -152,6 +154,7 @@ if(save == TRUE){
 
 # Impute missing data -----------------------------------------------------
 #' Impute missing values
+#' @author Chathurani Ranathunge
 #' @description This function imputes missing values using a user-specified
 #' imputation method.
 #'
@@ -321,6 +324,7 @@ value <- protgroup <- NULL
 
 # Visualize the imputation effects ----------------------------------------
 #' Visualize the impact of imputation
+#' @author Chathurani Ranathunge
 #' @description This function generates density plots to visualize the impact of
 #' missing data imputation on the data.
 #' @importFrom reshape2 melt

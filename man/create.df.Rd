@@ -60,3 +60,6 @@ raw <- create.df(file.path = "./proteinGroups.txt")
 raw_1 <- create.df(file.path = "./proteinGroups.txt", uniq.pep = 4)
 }
 }
+\author{
+Chathurani Ranathunge
+}
