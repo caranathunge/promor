@@ -125,10 +125,15 @@ norm.plot <- function(original,
   intensity <- value <- group <- NULL
 
   #Pre-prossesing data for plotting
+  normalized <- as.matrix(normalized)
   norm1 <- reshape2::melt(normalized, na.rm = FALSE)
   norm1$normstage <- "After normalization"
+
+  original <- as.matrix(original)
   orig1 <- reshape2::melt(original, na.rm =FALSE)
   orig1$normstage <- "Before normalization"
+
+  #combine the two data sets
   plot_data<- rbind(orig1, norm1)
   colnames(plot_data) <- c("prot", "sample", "intensity", "normstage")
   plot_data$group<- sapply(strsplit(as.character(plot_data[,"sample"]),'_'),
@@ -138,15 +143,18 @@ norm.plot <- function(original,
                                            "After normalization"))
 
   if(type == "density"){
-    norm_plot<- ggplot2::ggplot(plot_data,
+    norm_plot <- ggplot2::ggplot(plot_data,
                             ggplot2::aes(x = intensity,
                                          color = sample)) +
-      ggplot2::geom_density(lwd = 0.1)+
+      ggplot2::geom_density(lwd = text.size * 0.02)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
       #ggplot2::scale_fill_brewer(palette = palette)+
       ggplot2::theme_classic()+
       ggplot2::theme(legend.position = "none",
+            panel.border = element_rect(fill = NA,
+                                        colour = "grey",
+                                        size = 0.5),
             text= element_text(size = text.size),
             axis.line.x = element_line(size = 0.1),
             axis.line.y = element_line(size = 0.1),
@@ -154,8 +162,11 @@ norm.plot <- function(original,
             axis.ticks.y = element_line(size = 0.1),
             axis.title.x = element_text(size = text.size),
             axis.title.y= element_text(size = text.size),
+            axis.line = element_line(colour = "grey",
+                                     size = 0.5),
             strip.text = element_text(size= text.size),
-            strip.background = element_rect(colour = "grey",
+            strip.background = element_rect(fill = "grey95",
+                                            colour = "grey",
                                             size = 0.5))+
       ggplot2::facet_wrap( ~normstage)
 
@@ -163,7 +174,7 @@ norm.plot <- function(original,
 #Default: Boxplots
 
   }else{
-    norm_plot<- ggplot2::ggplot(plot_data,
+    norm_plot <- ggplot2::ggplot(plot_data,
                             ggplot2::aes(x = sample,
                                          y = intensity,
                                          fill = group)) +
@@ -171,16 +182,19 @@ norm.plot <- function(original,
                    alpha = 0.9,
                    outlier.shape = 1,
                    outlier.stroke = 0.1,
-                   outlier.size = 0.2,
+                   outlier.size = text.size * 0.04,
                    outlier.color = "grey30",
-                   lwd = 0.1)+
+                   lwd = text.size * 0.02)+
       ggplot2::coord_flip()+
       ggplot2::facet_wrap( ~normstage)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
       ggplot2::scale_fill_brewer(palette = palette)+
       ggplot2::theme_classic()+
-      ggplot2::theme(text= element_text(size = text.size),
+      ggplot2::theme(panel.border = element_rect(fill = NA,
+                                                 colour = "grey",
+                                                 size = 0.5),
+            text = element_text(size = text.size),
             legend.title = element_blank(),
             axis.line.x = element_line(size = 0.1),
             axis.line.y = element_line(size = 0.1),
@@ -188,8 +202,11 @@ norm.plot <- function(original,
             axis.ticks.y = element_line(size = 0.1),
             axis.title.x = element_text(size = text.size),
             axis.title.y= element_text(size = text.size),
+            axis.line = element_line(colour = "grey",
+                                     size = 0.5),
             strip.text = element_text(size= text.size),
-            strip.background = element_rect(colour = "grey",
+            strip.background = element_rect(fill = "grey95",
+                                            colour = "grey",
                                             size = 0.5))
 
   }
