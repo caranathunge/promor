@@ -6,6 +6,8 @@
 \usage{
 heatmap.NA(
   df,
+  protein.range = "ALL",
+  sample.range = "ALL",
   reorder.x = FALSE,
   reorder.y = FALSE,
   x.FUN = mean,
@@ -23,6 +25,12 @@ heatmap.NA(
 }
 \arguments{
 \item{df}{A \code{raw.df} object (output from \code{\link{create.df}}).}
+
+\item{protein.range}{The range of proteins to plot. Default is \code{ALL},
+meaning all the proteins in the data frame.}
+
+\item{sample.range}{The range of samples to plot. Default is \code{ALL},
+meaning all the samples in the data frame.}
 
 \item{reorder.x}{Logical. If \code{TRUE} samples on the x axis are reordered
 using the function given in \code{x.FUN}. Default is \code{FALSE}.}
