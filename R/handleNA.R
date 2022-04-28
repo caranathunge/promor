@@ -10,6 +10,10 @@
 #' @importFrom stats reorder
 #'
 #' @param df A \code{raw.df} object (output from \code{\link{create.df}}).
+#' @param protein.range The range of proteins to plot. Default is \code{ALL},
+#' meaning all the proteins in the data frame.
+#' @param sample.range The range of samples to plot. Default is \code{ALL},
+#' meaning all the samples in the data frame.
 #' @param reorder.x Logical. If \code{TRUE} samples on the x axis are reordered
 #' using the function given in \code{x.FUN}. Default is \code{FALSE}.
 #' @param reorder.y Logical. If \code{TRUE} proteins in the y axis are reordered
@@ -55,6 +59,8 @@
 #'
 #' @export
 heatmap.NA <- function(df,
+                       protein.range = "ALL",
+                       sample.range = "ALL",
                        reorder.x = FALSE,
                        reorder.y = FALSE,
                        x.FUN = mean,
@@ -72,9 +78,19 @@ heatmap.NA <- function(df,
  #Binding global variables to the local function
   value <- protgroup <- NULL
 
+  #select the range of data to plot
+  if(protein.range == "ALL" && sample.range != "ALL"){
+    df <- as.matrix(df[,sample.range])
+  }else if(protein.range != "ALL" && sample.range == "ALL"){
+    df <- as.matrix(df[protein.range,])
+  }else if(protein.range != "ALL" && sample.range != "ALL"){
+    df <- as.matrix(df[protein.range,sample.range])
+  }else{
+    df <- as.matrix(df)
+  }
+
   #Convert the data into long format for plotting and make necessary changes
   #i.e. adding column headers etc.
-  df <- as.matrix(df)
   hmap_data <- reshape2::melt(df, na.rm = FALSE)
   hmap_data$mjprot <- sapply(strsplit(as.character(hmap_data[,1]),';'),
                              getElement,1)
@@ -131,10 +147,10 @@ heatmap.NA <- function(df,
                                  na.value = col.na)+
     ggplot2::theme(plot.background = element_blank(),
                    panel.border = element_blank(),
+                   panel.background = element_blank(),
                    axis.text.x = element_text(angle = 90,
                                               size = text.size),
-                   axis.text.y=element_text(size = text.size),
-                   axis.ticks.y = element_blank(),
+                   axis.text.y = element_text(size = text.size),
                    axis.ticks.x = element_blank(),
                    legend.position = "none")+
     ggplot2::xlab("") + ggplot2::ylab("")
@@ -402,25 +418,26 @@ impute.plot <- function(original,
   #Set global variables to null
   value <- NULL
   #Make necessary changes and combine data frames before plotting
+  original <- as.matrix(original)
   orig_data <- reshape2::melt(original, na.rm = FALSE)
   orig_data$mjprot <- sapply(strsplit(as.character(orig_data[,1]),';'),
                               getElement,1)
   orig_data[1] <- NULL
-  orig_df1 <- as.data.frame(orig_data)
-  colnames(orig_df1) <- c( "sample", "value", "protgroup")
-  orig_df1$stage <- "Before imputation"
+  colnames(orig_data) <- c( "sample", "value", "protgroup")
+  orig_data$stage <- "Before imputation"
 
+  #do the same for imputed data set
+  imputed <- as.matrix(imputed)
   imp_data <- reshape2::melt(imputed, na.rm = FALSE)
   imp_data$mjprot <- sapply(strsplit(as.character(imp_data[,1]),';'),
                               getElement,1)
   imp_data[1] <- NULL
-  imp_df1 <- as.data.frame(imp_data)
-  colnames(imp_df1) <- c( "sample", "value", "protgroup")
-  imp_df1$stage <- "After imputation"
-  dplot_data <- rbind(orig_df1, imp_df1)
+  colnames(imp_data) <- c( "sample", "value", "protgroup")
+  imp_data$stage <- "After imputation"
+  dplot_data <- rbind(orig_data, imp_data)
 
   #Plot global density plot
-  axis_text.size = as.numeric(text.size)/2
+
   if(global ==TRUE){
     g_densityplot <- ggplot2::ggplot(dplot_data,
                                      ggplot2::aes(x=value)) +
@@ -434,10 +451,16 @@ impute.plot <- function(original,
       ggplot2::ylab("Density")+
       ggplot2::scale_fill_manual(values=c(orig.col,imp.col))+
       ggplot2::theme_classic()+
-      ggplot2::theme(legend.title = element_blank(),
+      ggplot2::theme(panel.border = element_rect(fill = NA,
+                                                 colour = "grey",
+                                                 size = 0.5),
+                     legend.title = element_blank(),
+                     axis.ticks = element_line(colour = "grey"),
                      axis.title.x = element_text(size = text.size),
                      axis.title.y = element_text(size = text.size),
-                     axis.text = element_text(size = axis_text.size),
+                     axis.text = element_text(size = text.size/2),
+                     axis.line = element_line(colour = "grey",
+                                              size = 0.5),
                      legend.text = element_text(size = text.size))
 
 
@@ -463,13 +486,20 @@ impute.plot <- function(original,
       ggplot2::xlab("Intensity") + ggplot2::ylab("Density")+
       ggplot2::scale_fill_manual(values = c(orig.col, imp.col))+
       ggplot2::theme_classic()+
-      ggplot2::theme(legend.title = element_blank(),
+      ggplot2::theme(panel.border = element_rect(fill = NA,
+                                                 colour = "grey",
+                                                 size = 0.5),
+                     legend.title = element_blank(),
+                     axis.ticks = element_line(colour = "grey"),
                      axis.title.x = element_blank(),
                      axis.title.y= element_blank(),
-                     axis.text = element_text(size = axis_text.size),
+                     axis.text = element_text(size = text.size/2),
+                     axis.line = element_line(colour = "grey",
+                                              size = 0.5),
                      legend.text = element_text(size = text.size),
                      strip.text = element_text(size = text.size),
-                     strip.background = element_rect(colour = "grey",
+                     strip.background = element_rect(fill = "grey95",
+                                                     colour = "grey",
                                                      size = 0.5))+
       ggplot2::facet_wrap(~sample,
                           nrow = nrow,
