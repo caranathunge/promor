@@ -4,10 +4,10 @@
 \alias{find.DEP}
 \title{Identify differentially expressed proteins between groups}
 \usage{
-find.DEP(df, save.output = TRUE, save.tophits = TRUE, n.top = 20)
+find.DEP(data, save.output = TRUE, save.tophits = TRUE, n.top = 20)
 }
 \arguments{
-\item{df}{A \code{norm.df} object.}
+\item{data}{A \code{norm.df} object.}
 
 \item{save.output}{Logical. If \code{TRUE} (default) saves results from the
 differential expression analysis in a text file labeled "limma_output.txt"
