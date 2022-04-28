@@ -91,7 +91,7 @@ filterby.groupNA <- function(df,
   #Remove the first column that contains the group name in the data frame
   df_na[,1]<- NULL
 
-  #Make a list of proteins with >33% NA
+  #Make a list of proteins with >33% NA or > set.na
   rem_prot <- as.list(colnames(Filter(function(y) any(as.numeric(y) > set.na),
                                     df_na)))
 
@@ -172,11 +172,15 @@ onegroup.only<- function(df,
 
   # Print out a list of proteins only present in user specified group
   prot.list <- group_only[group_only[1] == "TRUE",2]
-  return(prot.list)
 
+  if (identical(prot.list, character(0))){
+    stop(message
+         (paste0("None of the proteins are expressed only in ", pres.group )))
+  }else{
   if(save == TRUE){
     cat(prot.list,
         file = paste0("Group_",pres.group,"_only.txt"), sep="\n")
   }
-
+    return(prot.list)
+}
 }
