@@ -39,7 +39,7 @@ raw <- create.df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 raw_1 <- rem.sample(raw, "A_10")
 
 ## Remove only technical replicate number 2 of "A_10"
-raw_1 <- rem.sample(raw, "A_10_02")
+raw_1 <- rem.sample(raw, "A_10_2")
 
 }
 
