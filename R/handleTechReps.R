@@ -165,7 +165,7 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
 #' raw_1 <- rem.sample(raw, "A_10")
 #'
 #' ## Remove only technical replicate number 2 of "A_10"
-#' raw_1 <- rem.sample(raw, "A_10_02")
+#' raw_1 <- rem.sample(raw, "A_10_2")
 #'
 #' }
 #'
