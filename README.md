@@ -27,7 +27,7 @@ We have provided several tutorial vignettes to help get you started with
 We suggest starting with our 
 to get a basic understanding of *promor* and its functions.
 ```r
-vignette("promor", package="promor")
+vignette("intro_to_promor", package="promor")
 ```
 If your data contains technical replicates, you can refer to 
 for specific *promor* functions that you can use in your analysis.
