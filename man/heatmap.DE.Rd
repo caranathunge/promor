@@ -10,6 +10,7 @@ heatmap.DE(
   cutoff = 0.05,
   FC = 1,
   sig = "adjP",
+  n.top = 20,
   palette = "YlGnBu",
   text.size = 10,
   save = TRUE,
@@ -34,6 +35,8 @@ differential expression.}
 
 \item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
 (default) for adjusted p-value or \code{"P"} for p-value.}
+
+\item{n.top}{Number of top hits to include in the heat map.}
 
 \item{palette}{Color palette for plots. Default is \code{"YlGnBu."}}
 
