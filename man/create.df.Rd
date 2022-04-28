@@ -6,8 +6,10 @@
 \usage{
 create.df(
   file.path,
+  exp.design,
   filter.prot = TRUE,
   uniq.pep = 2,
+  tech.reps = FALSE,
   zero.NA = TRUE,
   log.tr = TRUE,
   base = 2
@@ -15,6 +17,9 @@ create.df(
 }
 \arguments{
 \item{file.path}{File path to proteinGroups.txt file produced by MaxQuant.}
+
+\item{exp.design}{File path to a text file containing the experimental
+design.}
 
 \item{filter.prot}{Logical. If \code{TRUE} (default), filters out
 reverse proteins, proteins only identified by site, potential contaminants,
@@ -25,8 +30,8 @@ indicated by \code{uniq.pep}.}
 identify a protein (default is 2). Proteins that are identified by less than
 this number of unique peptides are filtered out.}
 
-\item{zero.NA}{Logical. If \code{TRUE} (default), zeros are considered missing
-values and replaced with NAs.}
+\item{zero.NA}{Logical. If \code{TRUE} (default), zeros are considered
+missing values and replaced with NAs.}
 
 \item{log.tr}{Logical. If \code{TRUE} (default), intensity values are log
 transformed to the base indicated by \code{base}.}
@@ -44,10 +49,13 @@ This function creates a data frame of label-free quantitative
 \details{
 \itemize{\item This function first reads in the proteinGroups.txt file
 produced by MaxQuant.
-\item It filters out reverse proteins, proteins that were
+\item It then reads in the experimental design file provided as
+\code{exp.design} and extracts relevant information from it to add to the
+data frame.
+\item Next, it filters out reverse proteins, proteins that were
 only identified by site, and potential contaminants.
 \item Then it removes proteins identified with less than
-the number of unique peptides indicated by \code{uniq.pep} from the the
+the number of unique peptides indicated by \code{uniq.pep} from the
 data frame.
 \item Next, it extracts the LFQ intensity columns and the selected protein
 rows from the data  frame.
@@ -56,8 +64,9 @@ rows from the data  frame.
 }
 \examples{
 \dontrun{
-raw <- create.df(file.path = "./proteinGroups.txt")
-raw_1 <- create.df(file.path = "./proteinGroups.txt", uniq.pep = 4)
+#Generate a raw.df object with default settings.
+raw <- create.df(file.path = "./proteinGroups.txt",
+                 exp.design = "./experiment_design.txt")
 }
 }
 \author{
