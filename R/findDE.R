@@ -8,7 +8,7 @@
 #' @importFrom stats model.matrix
 #' @importFrom utils write.table
 #'
-#' @param df A \code{norm.df} object.
+#' @param data A \code{norm.df} object.
 #' @param save.output Logical. If \code{TRUE} (default) saves results from the
 #' differential expression analysis in a text file labeled "limma_output.txt"
 #' in the working directory.
@@ -53,18 +53,18 @@
 #' }
 #'
 #' @export
-find.DEP <- function(df,
+find.DEP <- function(data,
                      save.output = TRUE,
                      save.tophits = TRUE,
                      n.top = 20){
 
-group <- factor(c(sapply(strsplit(colnames(df), "_"),
+group <- factor(c(sapply(strsplit(colnames(data), "_"),
                          getElement,1)))
 
 #create a design based on groups
 design <- model.matrix(~group)
 #Fit the model to the protein intensity data based on the experimental design
-fit <- limma::lmFit(df, design)
+fit <- limma::lmFit(data, design)
 fit <- limma::eBayes(fit,
                      robust = T,
                      trend = T)
@@ -82,11 +82,11 @@ if(save.tophits == TRUE){
   results_DE<- results_DE[abs(results_DE$logFC) > 1,]
   results_DE <- results_DE[order(results_DE$P.Value, results_DE$adj.P.Val),]
 
-  if(length(results_DE)-1 < n.top){
-  write.table(results_DE[1: length(results_DE)-1,],
+  if(nrow(results_DE) < n.top){
+  write.table(results_DE[1: nrow(results_DE),],
               file = "TopHits.txt",
               sep = "\t")
-  print(results_DE[1: length(results_DE)-1,])
+  print(results_DE[1: nrow(results_DE),])
   }else{
   write.table(results_DE[1: n.top,],
               file = "TopHits.txt",
@@ -269,7 +269,7 @@ if(label.top == TRUE){
                          getElement,1 ),
                        hjust="inward",
                        vjust="outward",
-                       check_overlap = FALSE,
+                       check_overlap = TRUE,
                        size = text.size/4)
   }
 
@@ -308,6 +308,7 @@ if (save == TRUE){
 #' differential expression.
 #' @param sig Criteria to denote significance. Choices are \code{"adjP"}
 #' (default) for adjusted p-value or \code{"P"} for p-value.
+#' @param n.top Number of top hits to include in the heat map.
 #' @param palette Color palette for plots. Default is \code{"YlGnBu."}
 #' @param text.size Text size for axis text, labels etc.
 #' @param save Logical. If \code{TRUE} (default), saves a copy of the plot in
@@ -351,6 +352,7 @@ heatmap.DE <- function(fit.df,
                        cutoff = 0.05,
                        FC = 1,
                        sig = "adjP",
+                       n.top = 20,
                        palette = "YlGnBu",
                        text.size = 10,
                        save = TRUE,
@@ -381,6 +383,9 @@ if(sig == "P"){
                                 drop = FALSE))
 }
 
+#Extract the top n.top hits from the top hit list
+top_proteins <- top_proteins[1:n.top]
+
 #Check if there are sig. proteins before moving on to plotting
 if (identical(top_proteins, character(0))){
   stop(message
@@ -388,7 +393,7 @@ if (identical(top_proteins, character(0))){
 }else{
 
 #Extract intensity values for top proteins based on logFC and p-value cutoff
-top_intensity<-subset(norm.df,
+top_intensity <- subset(norm.df,
                       rownames(norm.df) %in% top_proteins,
                       drop = FALSE)
 #Convert to long format for plotting
@@ -403,17 +408,21 @@ top_intMelted$stage <- sapply(strsplit(
   getElement,1)
 
 top_heatmap <- ggplot2::ggplot(top_intMelted,
-                               ggplot2::aes(x = reorder(sample, -Intensity),
-                                            y = reorder(protein, Intensity),
+                               #ggplot2::aes(x = reorder(sample, -Intensity),
+                                            #y = reorder(protein, Intensity),
+                                            #fill = Intensity))+
+                               ggplot2::aes(x = sample,
+                                            y = protein,
                                             fill = Intensity))+
   ggplot2::geom_tile(colour="white", size=0.1)+
   ggplot2::labs(x="", y="")+
-  ggplot2::scale_y_discrete(expand=c(0, 0),
+  ggplot2::scale_y_discrete(expand = c(0, 0),
                             labels  = sapply(
                               strsplit(
                                 as.character(top_intMelted[,"protein"]),';'),
                               getElement,1))+
-  ggplot2::scale_fill_gradientn(colors = rev(hcl.colors(50, palette))) +
+  #ggplot2::scale_fill_gradientn(colors = rev(hcl.colors(10, palette))) +
+  ggplot2::scale_fill_distiller(palette = palette, direction = 1)+
   ggplot2::theme_grey(base_size = 8)+
   ggplot2::theme(aspect.ratio = 1,
                  legend.position="right",
@@ -421,17 +430,20 @@ top_heatmap <- ggplot2::ggplot(top_intMelted,
                  legend.key.height = grid::unit(0.8, "cm"),
                  legend.key.width = grid::unit(0.2, "cm"),
                  legend.title = element_blank(),
-                 legend.text = element_text(size = text.size/2,
+                 legend.text = element_text(size = text.size*0.7,
                                             face = "bold"),
                  axis.ticks = element_blank(),
                  axis.text.x = element_blank(),
                  axis.text.y = element_text(size = text.size * 0.7),
-                 strip.background = element_rect(fill = "grey97",
-                                                 colour = "grey90",
-                                                 size = 0.3),
-                 strip.text = element_text(size = text.size),
+                 strip.background = element_blank(),
+                 strip.text = element_text(size = text.size,
+                                           hjust = 0.01,
+                                           face = "bold",
+                                           vjust = 0 ),
                  plot.background = element_blank(),
-                 panel.border = element_blank())+
+                 panel.border = element_blank(),
+                 panel.spacing = unit(text.size * 0.001, "cm"),
+                 panel.background = element_blank())+
     ggplot2::facet_wrap(.~stage,
                         scales = "free_x")
 
