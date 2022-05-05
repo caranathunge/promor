@@ -272,7 +272,7 @@ value <- protgroup <- NULL
     dataSet.filtered = dataSet.mvs[which(count.NAs > 0.5), ]
     protSD = apply(dataSet.filtered, 1, sd)
     sd.temp = median(protSD, na.rm = T) * tune.sigma
-    print(sd.temp)
+    #print(sd.temp)
     for (i in 1:(nSamples)) {
       dataSet.to.impute.temp = rnorm(nFeatures,
                                      mean = min.samples[i],

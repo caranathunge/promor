@@ -60,6 +60,7 @@ normalize.data <- function(df,
 #' @importFrom reshape2 melt
 #' @import ggplot2
 
+
 #' @param original A \code{raw.df} object (output of \code{\link{create.df}})
 #' containing missing values or an \code{imp.df} object after imputing the
 #' missing values with \code{impute.NA}.
@@ -136,8 +137,9 @@ norm.plot <- function(original,
   #combine the two data sets
   plot_data<- rbind(orig1, norm1)
   colnames(plot_data) <- c("prot", "sample", "intensity", "normstage")
-  plot_data$group<- sapply(strsplit(as.character(plot_data[,"sample"]),'_'),
-                           getElement,1)
+  plot_data$group <- factor(sapply(strsplit(as.character(plot_data[,"sample"]),
+                                            '_'),
+                                   getElement,1))
   plot_data$normstage <- factor(plot_data$normstage,
                                 levels = c("Before normalization",
                                            "After normalization"))
@@ -164,18 +166,25 @@ norm.plot <- function(original,
             axis.title.y= element_text(size = text.size),
             axis.line = element_line(colour = "grey",
                                      size = 0.5),
-            strip.text = element_text(size= text.size),
-            strip.background = element_rect(fill = "grey95",
-                                            colour = "grey",
-                                            size = 0.5))+
+            #strip.text = element_text(size= text.size),
+            #strip.background = element_rect(fill = "grey95",
+                                            #colour = "grey",
+                                            #size = 0.5))+
+             strip.background = element_blank(),
+             strip.text = element_text(size = text.size,
+                                hjust = 0.01,
+                                face = "bold",
+                                vjust = 0 ))+
       ggplot2::facet_wrap( ~normstage)
 
 
 #Default: Boxplots
 
   }else{
+
     norm_plot <- ggplot2::ggplot(plot_data,
-                            ggplot2::aes(x = sample,
+                            ggplot2::aes(x = stats::reorder(sample,
+                                                            group),
                                          y = intensity,
                                          fill = group)) +
       geom_boxplot(color = "grey30",
@@ -204,10 +213,15 @@ norm.plot <- function(original,
             axis.title.y= element_text(size = text.size),
             axis.line = element_line(colour = "grey",
                                      size = 0.5),
-            strip.text = element_text(size= text.size),
-            strip.background = element_rect(fill = "grey95",
-                                            colour = "grey",
-                                            size = 0.5))
+            #strip.text = element_text(size = text.size),
+            #strip.background = element_rect(fill = "grey95",
+                                            #colour = "grey",
+                                            #size = 0.5))
+            strip.background = element_blank(),
+            strip.text = element_text(size = text.size,
+                                      hjust = 0.01,
+                                      face = "bold",
+                                      vjust = 0 ))
 
   }
   if(save == TRUE){

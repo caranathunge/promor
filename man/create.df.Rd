@@ -30,6 +30,9 @@ indicated by \code{uniq.pep}.}
 identify a protein (default is 2). Proteins that are identified by less than
 this number of unique peptides are filtered out.}
 
+\item{tech.reps}{Logical. Indicate as \code{TRUE} if technical replicates
+are present in the data. Defualt is \code{FALSE}.}
+
 \item{zero.NA}{Logical. If \code{TRUE} (default), zeros are considered
 missing values and replaced with NAs.}
 

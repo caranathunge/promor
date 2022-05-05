@@ -7,7 +7,7 @@
 #'
 #' @importFrom utils read.csv
 #'
-#' @param file.path File path to proteinGroups.txt file produced by MaxQuant.
+#' @param prot.groups File path to proteinGroups.txt file produced by MaxQuant.
 #' @param exp.design File path to a text file containing the experimental
 #' design.
 #' @param filter.prot Logical. If \code{TRUE} (default), filters out
@@ -17,6 +17,8 @@
 #' @param uniq.pep Numerical. The minimum number of unique peptides required to
 #' identify a protein (default is 2). Proteins that are identified by less than
 #' this number of unique peptides are filtered out.
+#' @param tech.reps Logical. Indicate as \code{TRUE} if technical replicates
+#' are present in the data. Defualt is \code{FALSE}.
 #' @param zero.NA Logical. If \code{TRUE} (default), zeros are considered
 #' missing values and replaced with NAs.
 #' @param log.tr Logical. If \code{TRUE} (default), intensity values are log
@@ -50,7 +52,7 @@
 #' }
 #' @export
 
-create.df <- function(file.path,
+create.df <- function(prot.groups,
                       exp.design,
                       filter.prot = TRUE,
                       uniq.pep = 2,
@@ -59,7 +61,7 @@ create.df <- function(file.path,
                       log.tr = TRUE,
                       base = 2){
   #Load the data
-  df = read.csv(file.path,
+  df = read.csv(prot.groups,
                 sep = "\t",
                 stringsAsFactors = FALSE)
 
@@ -74,12 +76,12 @@ create.df <- function(file.path,
   if(tech.reps == FALSE){
     design$tech_rep <- NULL
     design$new_label <- paste(design$condition,
-                              design$bio_rep,
+                              design$sample_ID,
                               sep ="_")
   }else{
     #if tech.reps == TRUE, combine all columns to make new sample label
     design$new_label <- paste(design$condition,
-                              design$bio_rep,
+                              design$sample_ID,
                               design$tech_rep,
                               sep ="_")
   }

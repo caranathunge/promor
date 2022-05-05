@@ -8,14 +8,12 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+Here we present a minimal working example to illustrate
+the functionality of **promor**.
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+1. First, load the **promor** package.
 
 ```{r setup}
 library(promor)
 ```
+2. 

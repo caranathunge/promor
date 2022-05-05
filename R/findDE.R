@@ -104,6 +104,7 @@ return(fit)
 #' differentially expressed proteins between groups.
 #' @import limma
 #' @import ggplot2
+#' @import ggrepel
 #'
 #' @param fit.df A \code{fit.df} object from performing \code{find.DEP}.
 #' @param adj.method Method used for adjusting the p-values for multiple
@@ -263,14 +264,11 @@ if(line.P == TRUE){
 
 if(label.top == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
-    ggplot2::geom_text(data = res_DE[1:n.top,],
+    ggrepel::geom_text_repel(data = res_DE[1:n.top,],
                        label = sapply(strsplit(
                          rownames(res_DE[1:n.top,]), ";"),
                          getElement,1 ),
-                       hjust="inward",
-                       vjust="outward",
-                       check_overlap = TRUE,
-                       size = text.size/4)
+                         size = text.size/4)
   }
 
 

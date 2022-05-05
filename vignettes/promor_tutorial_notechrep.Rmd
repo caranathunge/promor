@@ -1,0 +1,75 @@
+---
+title: "Using promor for label-free quantification proteomics data analysis"
+author: "Chathurani Ranathunge"
+date: "`r Sys.Date()`"
+
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using promor for label-free quantification proteomics data analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = TRUE}
+library(promor)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This tutorial shows how to analyze label-free quantification data (LFQ)
+using *promor*. We use a publicly available data set (PXD000279) downloaded from the PRIDE archive as an example for a data set that does not contain 
+technical replicates.  
+
+
+## Get started
+Below we are showing a simple example, illustrating the functionality of 
+*promor*.
+
+### 1. First create a raw.df object.
+You will need a "proteinGroups.txt" file produced by *MaxQuant* and an 
+experimental design file. An example experimental design file can be found here:
+
+```{r quick_start, eval=FALSE}
+library(promor)
+raw <- create.df(file.path = "./proteinGroups.txt", 
+                 exp.design = "./exp_design.txt")
+
+## Styles
+
+The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+
+    output: 
+      rmarkdown::html_vignette:
+        css: mystyles.css
+
+## Figures
+
+The figure sizes have been customised so that you can easily put two images side-by-side. 
+
+```{r, fig.show='hold'}
+plot(1:10)
+plot(10:1)
+```
+
+You can enable figure captions by `fig_caption: yes` in YAML:
+
+    output:
+      rmarkdown::html_vignette:
+        fig_caption: yes
+
+Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
