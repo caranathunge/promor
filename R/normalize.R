@@ -71,7 +71,7 @@ normalize_data <- function(df,
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
 #' @param palette Color palette for box plots. Default is \code{"YlGnBu."}
-#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the plot.
 #' Default is \code{"Norm_plot."}
@@ -115,7 +115,7 @@ norm_plot <- function(original,
                       type = "box",
                       text.size = 10,
                       palette = "YlGnBu",
-                      save = TRUE,
+                      save = FALSE,
                       file.name = "Norm_plot",
                       file.type = "pdf",
                       dpi = 80,

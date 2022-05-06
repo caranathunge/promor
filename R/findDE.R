@@ -9,10 +9,10 @@
 #' @importFrom utils write.table
 #'
 #' @param data A \code{norm.df} object.
-#' @param save.output Logical. If \code{TRUE} (default) saves results from the
+#' @param save.output Logical. If \code{TRUE} saves results from the
 #' differential expression analysis in a text file labeled "limma_output.txt"
 #' in the working directory.
-#' @param save.tophits Logical. If \code{TRUE} (default) saves \code{n.top}
+#' @param save.tophits Logical. If \code{TRUE} saves \code{n.top}
 #' number of top hits from the differential expression analysis in a text file
 #' labeled "TopHits.txt" in the working directory.
 #' @param n.top The number of top differentially expressed proteins to save in
@@ -54,8 +54,8 @@
 #'
 #' @export
 find_dep <- function(data,
-                     save.output = TRUE,
-                     save.tophits = TRUE,
+                     save.output = FALSE,
+                     save.tophits = FALSE,
                      n.top = 20){
 
 group <- factor(c(sapply(strsplit(colnames(data), "_"),
@@ -125,18 +125,18 @@ return(fit)
 #' @param sig Criteria to denote significance. Choices are \code{"adjP"}
 #' (default) for adjusted p-value or \code{"P"} for p-value.
 #' @param nsig.col Color of the dots representing significant hits. Default is
-#' "Red."
+#' "grey60."
 #' @param sig.col Color of dots representing non-significant hits. Default is
-#' "Black."
+#' "#ffb000."
 #' @param ln.col Line color for lines when \code{line.FC = TRUE} and/or
-#' \code{line.P = TRUE.} Default is "Black."
+#' \code{line.P = TRUE.} Default is "#419fb7."
 #' @param text.size Text size for axis text, labels etc.
 #' @param label.top Logical. If \code{TRUE} (default), labels are added to the
 #' dots to indicate protein names.
 #' @param n.top The number of top hits to label with protein name when
 #' \code{label.top = TRUE.} Default is \code{10}.
 #' @param dpi Plot resolution. Default is \code{80.}
-#' @param save Logical. If \code{TRUE} (default), saves a copy of the plot in the
+#' @param save Logical. If \code{TRUE}, saves a copy of the plot in the
 #' working directory.
 #'
 #' @details \itemize{\item Volcano plots show log-2-fold change on the x-axis and
@@ -182,14 +182,14 @@ volcano_plot <- function(fit.df,
                          plot.width = 7,
                          sig = "adjP",
                          dot.size = 0.5,
-                         nsig.col = "black",
-                         sig.col = "red",
-                         ln.col = "red",
+                         nsig.col = "grey60",
+                         sig.col = "#ffb000",
+                         ln.col = "#419fb7",
                          text.size = 10,
                          label.top = FALSE,
                          n.top = 10,
                          dpi = 80,
-                         save = TRUE){
+                         save = FALSE){
 
 #Set global variables to NULL
 logFC <- P.Value <- DEP <- DEAP <- NULL
@@ -248,8 +248,8 @@ if(line.FC == TRUE){
     ggplot2::geom_vline(xintercept = c(-FC, FC),
                         colour = ln.col,
                         linetype = 2,
-                        size = 0.2,
-                        alpha = 0.5)
+                        size = 0.5,
+                        alpha = 0.8)
   }
 
 
@@ -258,8 +258,8 @@ if(line.P == TRUE){
     ggplot2::geom_hline(yintercept = -log10(cutoff),
                         colour = ln.col,
                         linetype = 2,
-                        size = 0.2,
-                        alpha = 0.5)
+                        size = 0.5,
+                        alpha = 0.8)
   }
 
 if(label.top == TRUE){
