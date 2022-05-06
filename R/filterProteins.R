@@ -1,34 +1,3 @@
-# Filter missing data -----------------------------------------------------
-#' Filter out samples and/ or proteins that do not have valid data
-#' @description This function removes samples with missing data (NAs) across all
-#' proteins (empty columns) and proteins that have missing data
-#' across all samples (empty rows).
-#' @author Chathurani Ranathunge
-#'
-#' @param df A \code{raw.df} object (output of \code{create.df}).
-#'
-#' @details \itemize{\item This function first removes proteins (rows) with
-#' missing values (NAs) across all samples.
-#' \item Then if present, it removes samples (columns) with missing data
-#' across all proteins.}
-#' @examples
-#' \dontrun{
-#' raw <- create.df(file.path = "./proteinGroups.txt")
-#' raw_1 <- filter.NA(raw)
-#' }
-#' @return A \code{raw.df} object or a data frame with no empty (all NAs) rows
-#' or columns.
-#' @export
-
-filter.NA <- function(df){
-    #Remove proteins (rows) with missing values (NA) across all samples
-    raw_2 <- df[rowSums(is.na(df)) != ncol(df), ]
-    #Remove samples (columns) with missing values (NA) across all proteins
-    raw_2<- raw_2[, colSums(is.na(raw_2)) != nrow(raw_2)]
-    return(raw_2)
-}
-
-
 # Filter proteins by group level missing data -----------------------------
 #' Filter proteins by group level missing data
 #' @description This function filters out proteins that exceed a given
@@ -38,7 +7,7 @@ filter.NA <- function(df){
 #'
 #' @importFrom stats aggregate
 #'
-#' @param df A \code{raw.df} object (output of \code{\link{create.df}})
+#' @param df A \code{raw.df} object (output of \code{\link{create_df}})
 #' @param set.na The percentage of missing data allowed in any group.
 #' Default is 0.33.
 #'
@@ -57,17 +26,17 @@ filter.NA <- function(df){
 #' @examples
 #'  \dontrun{
 #'  ## Create a raw.df object from a proteinGroups.txt file.
-#'  raw <- create.df(file.path = "./proteinGroups.txt")
+#'  raw <- create_df(file.path = "./proteinGroups.txt")
 #'
 #'  ## Missing data percentage allowed in each group = 0.33
-#'  raw_filtered <- filterby.groupNA(raw)
+#'  raw_filtered <- filterbygroup_na(raw)
 #'
 #'  ## Missing data percentage allowed in each group = 0.5
-#'  raw_filtered1 <- filterby.groupNA(raw, set.na = 0.5)
+#'  raw_filtered1 <- filterbygroup_na(raw, set.na = 0.5)
 #'  }
 #' @export
 
-filterby.groupNA <- function(df,
+filterbygroup_na <- function(df,
                              set.na = 0.33){
 
   #Extract group information from sample names in the dataframe x
@@ -110,7 +79,7 @@ filterby.groupNA <- function(df,
 #'
 #' @author Chathurani Ranathunge
 #'
-#' @param df A \code{raw.df} object (output of \code{\link{create.df}})
+#' @param df A \code{raw.df} object (output of \code{\link{create_df}})
 #' @param abs.group Name of the group in which proteins are not expressed.
 #' @param pres.group Name of the group in which proteins are expressed.
 #' @param set.na The percentage of missing data allowed in \code{pres.group}.
@@ -118,9 +87,9 @@ filterby.groupNA <- function(df,
 #' @param save Logical. If \code{TRUE} (default), it saves the output in a text
 #' file named "Group_\code{pres.group}_only.txt."
 #'
-#' @details Note: \code{onegroup.only} function assumes that column headers in
+#' @details Note: \code{onegroup_only} function assumes that column headers in
 #' the \code{raw.df} object provided as \code{df} follow "Group_UniqueSampleID"
-#' notation. \itemize{\item Given a pair of groups, \code{onegroup.only}
+#' notation. \itemize{\item Given a pair of groups, \code{onegroup_only}
 #' function finds proteins that are only expressed in \code{pres.group} while
 #' completely absent or not expressed in \code{abs.group}.}
 #'
@@ -129,17 +98,17 @@ filterby.groupNA <- function(df,
 #' @examples
 #' \dontrun{
 #' ## Create a raw.df object from a proteinGroups.txt file.
-#' raw <- create.df(file.path = "./proteinGroups.txt")
+#' raw <- create_df(file.path = "./proteinGroups.txt")
 #'
 #' ## Save a list of proteins only expressed in group B, but absent in group A.
-#' onegroup.only(raw, abs.group = "A", pres.group = "B")
+#' onegroup_only(raw, abs.group = "A", pres.group = "B")
 #'
 #' ## Save the above list in a variable.
-#' protein_list <- onegroup.only(raw, abs.group = "A", pres.group = "B")
+#' protein_list <- onegroup_only(raw, abs.group = "A", pres.group = "B")
 #' }
 
 #' @export
-onegroup.only<- function(df,
+onegroup_only<- function(df,
                          abs.group,
                          pres.group,
                          set.na= 0.33,

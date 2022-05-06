@@ -9,7 +9,7 @@
 #' @import ggplot2
 #' @importFrom stats reorder
 #'
-#' @param df A \code{raw.df} object (output from \code{\link{create.df}}).
+#' @param df A \code{raw.df} object (output from \code{\link{create_df}}).
 #' @param protein.range The range of proteins to plot. Default is \code{ALL},
 #' meaning all the proteins in the data frame.
 #' @param sample.range The range of samples to plot. Default is \code{ALL},
@@ -42,23 +42,23 @@
 #'
 #' @return A \code{ggplot2} plot object.
 #'
-#' @seealso \code{\link{create.df}}
+#' @seealso \code{\link{create_df}}
 #'
 #' @examples
 #' \dontrun{
 #' ## Create a raw.df object from a proteinGroups.txt file.
-#' raw <- create.df(file.path = "./proteinGroups.txt")
+#' raw <- create_df(prot.groups = "./proteinGroups.txt")
 #'
 #' ## Missing data heatmap with default settings.
-#' heatmap.NA(raw)
+#' heatmap_na(raw)
 #'
 #' ## Missing data heatmap with x and y axes reordered by sum of intensity.
-#' heatmap.NA(raw, reorder.x = TRUE, reorder.y = TRUE, x.FUN = sum,
+#' heatmap_na(raw, reorder.x = TRUE, reorder.y = TRUE, x.FUN = sum,
 #' y.FUN = sum)
 #' }
 #'
 #' @export
-heatmap.NA <- function(df,
+heatmap_na <- function(df,
                        protein.range = "ALL",
                        sample.range = "ALL",
                        reorder.x = FALSE,
@@ -184,7 +184,7 @@ if(save == TRUE){
 #' @importFrom stats median
 #'
 #'
-#' @param df A \code{raw.df} object (output of \code{\link{create.df}})
+#' @param df A \code{raw.df} object (output of \code{\link{create_df}})
 #' containing missing values.
 #' @param method Imputation method to use. Default is \code{"minProb"}.
 #' Available methods: \code{"minDet", "RF", "kNN", and "SVD"}.
@@ -202,13 +202,13 @@ if(save == TRUE){
 #' @param nPcs Number of principal components to calculate when using the
 #' \code{"SVD"} method. Default is 2.
 #'
-#' @details \code{impute.NA} function imputes missing values using a
+#' @details \code{impute_na} function imputes missing values using a
 #' user-specified imputation method from the available options, \code{minProb},
 #' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
 #'
 #' @seealso More information on the available imputation methods can be found
 #' in their respective packages.
-#' \itemize{\item \code{\link{create.df}}
+#' \itemize{\item \code{\link{create_df}}
 #' \item For \code{minProb} and
 #' \code{minDet} methods, see
 #' \code{imputeLCMD} package.
@@ -224,29 +224,29 @@ if(save == TRUE){
 #' @examples
 #' \dontrun{
 #' ## Create a raw.df object from a proteinGroups.txt file.
-#' raw <- create.df(file.path = "./proteinGroups.txt")
+#' raw <- create_df(prot.groups = "./proteinGroups.txt")
 #'
 #' ## Impute missing values in the data frame using the default minProb
 #' method.
-#' imp_raw <- impute.NA(raw)
+#' imp_raw <- impute_na(raw)
 #'
 #' ## Using the RF method with the number of iterations set at 5,
 #' and the number of trees set at 100.
-#' imp_raw <- impute.NA(raw, method = "RF", maxiter = 5, ntree = 100 )
+#' imp_raw <- impute_na(raw, method = "RF", maxiter = 5, ntree = 100 )
 #'
 #' ## Using the kNN method.
-#' imp_raw <- impute.NA(raw, method = "kNN")
+#' imp_raw <- impute_na(raw, method = "kNN")
 #'
 #' ## Using the SVD method with nPCs set to 3.
-#' imp_raw <- impute.NA(raw, method = "SVD", nPCs = 3)
+#' imp_raw <- impute_na(raw, method = "SVD", nPCs = 3)
 #'
 #' ## Using the minDet method with q set at 0.001.
-#' imp_raw <- impute.NA(raw, method = "minDet", q = 0.001)
+#' imp_raw <- impute_na(raw, method = "minDet", q = 0.001)
 #'
 #' }
 #'
 #' @export
-impute.NA <- function(df,
+impute_na <- function(df,
                       method = "minProb",
                       tune.sigma = 1,
                       q = 0.01,
@@ -346,9 +346,9 @@ value <- protgroup <- NULL
 #' @importFrom reshape2 melt
 #' @import ggplot2
 #'
-#' @param original A \code{raw.df} object (output of \code{\link{create.df}})
+#' @param original A \code{raw.df} object (output of \code{\link{create_df}})
 #' containing missing values.
-#' @param imputed An \code{imp.df} object obtained from running \code{impute.NA}
+#' @param imputed An \code{imp.df} object obtained from running \code{impute_na}
 #'  on the same data frame provided as \code{original}.
 #' @param global Logical. If \code{TRUE} ({default}), a global density plot is
 #' produced. If \code{FALSE}, sample-wise density plots are produced.
@@ -375,7 +375,7 @@ value <- protgroup <- NULL
 #' @details
 #' \itemize{\item Given two data frames, one with missing values
 #' (\code{raw.df} object) and the other, an imputed data frame
-#' (\code{imp.df} object) of the same data set, \code{impute.plot}
+#' (\code{imp.df} object) of the same data set, \code{impute_plot}
 #' generates global or sample-wise density plots to visualize the
 #' impact of imputation on the data set.
 #' \item Note, when sample-wise option is selected (\code{global = FALSE}),
@@ -387,20 +387,20 @@ value <- protgroup <- NULL
 #' @examples
 #' \dontrun{
 #' ## Create a raw.df object from a proteinGroups.txt file.
-#' raw <- create.df(file.path = "./proteinGroups.txt")
+#' raw <- create_df(prot.groups = "./proteinGroups.txt")
 #'
 #' ## Impute missing values in the data frame.
-#' imp_raw <- impute.NA(raw)
+#' imp_raw <- impute_na(raw)
 #'
 #' ## Visualize the impact of missing data imputation with a global density plot.
-#' impute.plot(original = raw, imputed = imp_raw)
+#' impute_plot(original = raw, imputed = imp_raw)
 #'
 #' ## Make sample-wise density plots for a data set of 25 samples.
-#' impute.plot(raw, imp_raw, global = FALSE, nrow = 5, ncol = 5)
+#' impute_plot(raw, imp_raw, global = FALSE, nrow = 5, ncol = 5)
 #'
 #' }
 #' @export
-impute.plot <- function(original,
+impute_plot <- function(original,
                             imputed,
                             global = TRUE,
                             text.size = 10,

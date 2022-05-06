@@ -28,13 +28,13 @@
 #' "Benjamini Hochberg" method and outputs the top \code{n.top} results based
 #' on lowest p-value and adjusted p-value.
 #' \item If the number of hits with absolute log fold change of more than 1 is
-#' less than \code{n.top}, \code{find.DEP} prints only those with
+#' less than \code{n.top}, \code{find_dep} prints only those with
 #' log-fold change > 1 to "TopHits.txt"}
 #'
 #' @return A \code{fit.df} object, which is similar to a \code{limma}
 #' \code{fit} object.
 #'
-#' @seealso \itemize{\item\code{normalize.data}
+#' @seealso \itemize{\item\code{normalize_data}
 #' \item\code{\link[limma:lmFit]{lmFit}},
 #' \code{\link[limma:eBayes]{eBayes}},
 #' \code{\link[limma:topTable]{topTable}}, and
@@ -45,15 +45,15 @@
 #' \dontrun{
 #'
 #' #Normalize an already imputed data set.
-#' raw_nm <- normalize.data(raw_imp)
+#' raw_nm <- normalize_data(raw_imp)
 #'
 #' #Perform differential expression analysis.
-#' fit <- find.DEP(raw_nm)
+#' fit <- find_dep(raw_nm)
 #'
 #' }
 #'
 #' @export
-find.DEP <- function(data,
+find_dep <- function(data,
                      save.output = TRUE,
                      save.tophits = TRUE,
                      n.top = 20){
@@ -106,7 +106,7 @@ return(fit)
 #' @import ggplot2
 #' @import ggrepel
 #'
-#' @param fit.df A \code{fit.df} object from performing \code{find.DEP}.
+#' @param fit.df A \code{fit.df} object from performing \code{find_dep}.
 #' @param adj.method Method used for adjusting the p-values for multiple
 #' testing. Default is \code{"BH."}.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
@@ -140,7 +140,7 @@ return(fit)
 #' working directory.
 #'
 #' @details \itemize{\item Volcano plots show log-2-fold change on the x-axis and
-#' -log10(p-value) on the y-axis.\item \code{volcano.plot} requires a
+#' -log10(p-value) on the y-axis.\item \code{volcano_plot} requires a
 #' \code{fit.df} object from performing differential expression analysis
 #' with \code{fit.DEP.}
 #' \item User has the option to choose the criterion to denote significance.}
@@ -150,7 +150,7 @@ return(fit)
 #'
 #' @seealso
 #' \itemize{
-#' \item \code{find.DEP}
+#' \item \code{find_dep}
 #' \item \code{\link[limma:topTable]{topTable}} and
 #' \code{\link[limma:lmFit]{lmFit}} functions from the
 #' \code{\link[limma]{limma}} package.
@@ -159,18 +159,18 @@ return(fit)
 #' \dontrun{
 #'
 #' #Perform differential expression analysis.
-#' fit <- find.DEP(raw_nm)
+#' fit <- find_dep(raw_nm)
 #'
 #' #Create a volcano plot with default settings.
-#' volcano.plot(fit)
+#' volcano_plot(fit)
 #'
 #' #Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
-#' volcanoplot(fit, cutoff = 0.05, sig = "P", FC = 1)
+#' volcano_plot(fit, cutoff = 0.05, sig = "P", FC = 1)
 #'
 #' }
 #'
 #' @export
-volcano.plot <- function(fit.df,
+volcano_plot <- function(fit.df,
                          adj.method = "BH",
                          cutoff = 0.05,
                          FC = 1,
@@ -297,7 +297,7 @@ if (save == TRUE){
 #' @importFrom grDevices hcl.colors
 #' @importFrom stats reorder
 #'
-#' @param fit.df A \code{fit.df} object from performing \code{find.DEP}.
+#' @param fit.df A \code{fit.df} object from performing \code{find_dep}.
 #' @param norm.df The \code{norm.df} object from which the \code{fit.df} object
 #' was obtained.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
@@ -325,7 +325,7 @@ if (save == TRUE){
 #'
 #' @seealso
 #' \itemize{
-#' \item \code{find.DEP}
+#' \item \code{find_dep}
 #' \item \code{\link[limma:topTable]{topTable}} and
 #' \code{\link[limma:lmFit]{lmFit}} functions from the
 #' \code{\link[limma]{limma}} package.}
@@ -333,19 +333,19 @@ if (save == TRUE){
 #' @examples
 #' \dontrun{
 #' #Perform differential expression analysis.
-#' fit <- find.DEP(raw_nm)
+#' fit <- find_dep(raw_nm)
 #'
 #' #Create a heatmap with default settings.
-#' heatmap.DE(fit, raw_nm)
+#' heatmap_de(fit, raw_nm)
 #'
 #' #Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
-#' heatmap.DE(fit, raw_nm, cutoff = 0.05, sig = "P", FC = 1)
+#' heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", FC = 1)
 #'
 #' }
 #'
 #'
 #' @export
-heatmap.DE <- function(fit.df,
+heatmap_de <- function(fit.df,
                        norm.df ,
                        cutoff = 0.05,
                        FC = 1,

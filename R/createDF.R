@@ -10,6 +10,8 @@
 #' @param prot.groups File path to proteinGroups.txt file produced by MaxQuant.
 #' @param exp.design File path to a text file containing the experimental
 #' design.
+#' @param filter.n Logical. If \code{TRUE}(default), filters out empty rows and columns
+#' from the data frame.
 #' @param filter.prot Logical. If \code{TRUE} (default), filters out
 #' reverse proteins, proteins only identified by site, potential contaminants,
 #' and proteins identified with less than the minimum number of unique peptides
@@ -19,7 +21,7 @@
 #' this number of unique peptides are filtered out.
 #' @param tech.reps Logical. Indicate as \code{TRUE} if technical replicates
 #' are present in the data. Defualt is \code{FALSE}.
-#' @param zero.NA Logical. If \code{TRUE} (default), zeros are considered
+#' @param zero.na Logical. If \code{TRUE} (default), zeros are considered
 #' missing values and replaced with NAs.
 #' @param log.tr Logical. If \code{TRUE} (default), intensity values are log
 #' transformed to the base indicated by \code{base}.
@@ -28,9 +30,10 @@
 #' @details
 #' \itemize{\item This function first reads in the proteinGroups.txt file
 #' produced by MaxQuant.
-#' \item It then reads in the experimental design file provided as
+#' \item It then reads in the expDesign.txt file provided as
 #' \code{exp.design} and extracts relevant information from it to add to the
 #' data frame.
+#' \item First, empty rows and columns are removed from the data frame.
 #' \item Next, it filters out reverse proteins, proteins that were
 #' only identified by site, and potential contaminants.
 #' \item Then it removes proteins identified with less than
@@ -47,17 +50,18 @@
 #' @examples
 #' \dontrun{
 #' #Generate a raw.df object with default settings.
-#' raw <- create.df(file.path = "./proteinGroups.txt",
+#' raw <- create_df(file.path = "./proteinGroups.txt",
 #'                  exp.design = "./experiment_design.txt")
 #' }
 #' @export
 
-create.df <- function(prot.groups,
+create_df <- function(prot.groups,
                       exp.design,
+                      filter.na = TRUE,
                       filter.prot = TRUE,
                       uniq.pep = 2,
                       tech.reps = FALSE,
-                      zero.NA = TRUE,
+                      zero.na = TRUE,
                       log.tr = TRUE,
                       base = 2){
   #Load the data
@@ -86,7 +90,15 @@ create.df <- function(prot.groups,
                               sep ="_")
   }
 
-
+  #Filter out empty rows and columns if they exist in the dataframe.
+  if (filter.na == TRUE){
+    #Remove proteins (rows) with missing values (NA) across all samples
+    df <- df[rowSums(is.na(df)) != ncol(df), ]
+    #Remove samples (columns) with missing values (NA) across all proteins
+    df <- df[, colSums(is.na(df)) != nrow(df)]
+  }else{
+    warning("Data frame contains empty rows and/or columns.")
+  }
   #Filter out some proteins based on some columns. First check if the columns
   #are present in the data frame before removing rows based on the presence of
   #"+" signs.
@@ -137,7 +149,7 @@ create.df <- function(prot.groups,
   rownames(df) <- c(maj_proteins)
 
   #Convert zeros to NA
-  if (zero.NA == TRUE){
+  if (zero.na == TRUE){
     #Convert matrix to dataframe and convert zeros to NAs
     df <- as.data.frame(df)
     df[df == 0] <- NA
