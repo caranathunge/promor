@@ -74,7 +74,7 @@ if (save.output == TRUE){
             file = "limma_outout.txt")
   }
 
-if(save.tophits == TRUE){
+
   results_DE<- limma::topTable(fit,
                                coef=2,
                                adjust.method = "BH",
@@ -82,6 +82,7 @@ if(save.tophits == TRUE){
   results_DE<- results_DE[abs(results_DE$logFC) > 1,]
   results_DE <- results_DE[order(results_DE$P.Value, results_DE$adj.P.Val),]
 
+if(save.tophits == TRUE){
   if(nrow(results_DE) < n.top){
   write.table(results_DE[1: nrow(results_DE),],
               file = "TopHits.txt",
@@ -93,8 +94,11 @@ if(save.tophits == TRUE){
               sep = "\t")
   print(results_DE[1: n.top,])
   }
+}else{
+  print(results_DE[1:n.top,])
 }
 return(fit)
+
 }
 
 # Visualize differentially expressed proteins with volcano plots -------------------
@@ -309,7 +313,7 @@ if (save == TRUE){
 #' @param n.top Number of top hits to include in the heat map.
 #' @param palette Color palette for plots. Default is \code{"YlGnBu."}
 #' @param text.size Text size for axis text, labels etc.
-#' @param save Logical. If \code{TRUE} (default), saves a copy of the plot in
+#' @param save Logical. If \code{TRUE}, saves a copy of the plot in
 #' the working directory.
 #' @param file.name File name to save the plot. Default is "HeatmapDE."
 #' @param file.type File type to save the plot. Default is \code{"pdf".}
@@ -353,7 +357,7 @@ heatmap_de <- function(fit.df,
                        n.top = 20,
                        palette = "YlGnBu",
                        text.size = 10,
-                       save = TRUE,
+                       save = FALSE,
                        file.name = "HeatmapDE",
                        file.type = "pdf",
                        dpi = 80,
