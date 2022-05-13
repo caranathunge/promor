@@ -8,7 +8,7 @@ corr_plot(
   df,
   rep1,
   rep2,
-  save = TRUE,
+  save = FALSE,
   file.type = "pdf",
   col = "red",
   dot.size = 0.5,
@@ -28,7 +28,7 @@ containing technical replicates.}
 \item{rep2}{Numerical. Number of the second technical replicate to compare
 to \code{rep1}.}
 
-\item{save}{Logical. If \code{TRUE} (default) saves a copy of the plot in the
+\item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
 \item{file.type}{File type to save the scatter plots.

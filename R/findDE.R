@@ -378,7 +378,9 @@ exp_DE <- limma::topTable(fit.df,
 if(sig == "P"){
   top_proteins <- rownames(subset(exp_DE,
                                   abs(logFC) > FC & P.Value < cutoff,
-                                  drop = FALSE))
+                                 drop = FALSE))
+
+#Or default: based on adj.P value
 }else{
   top_proteins <- rownames(subset(exp_DE,
                                 abs(logFC) > FC & adj.P.Val < cutoff,
