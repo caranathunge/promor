@@ -45,7 +45,7 @@ For example, if promor is saved on your C drive, it could be :
 
 ## Proteomics data analysis with promor
 
-![promor flowchart by caranathunge](./promor_ProtAnalysis_BuYe.png)
+![promor flowchart by caranathunge](./promor_ProtAnalysis_BluYe.png)
 *Figure 1. A schematic diagram of suggested workflows for proteomics
 data analysis with promor.*
 

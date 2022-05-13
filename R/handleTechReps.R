@@ -13,7 +13,7 @@
 #' @param rep1 Numerical. Technical replicate number.
 #' @param rep2 Numerical. Number of the second technical replicate to compare
 #' to \code{rep1}.
-#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.type File type to save the scatter plots.
 #' Default is \code{"pdf"}.
@@ -67,7 +67,7 @@
 corr_plot<- function(df,
                      rep1,
                      rep2,
-                     save = TRUE,
+                     save = FALSE,
                      file.type= "pdf",
                      col = "red",
                      dot.size= 0.5,
@@ -109,16 +109,21 @@ plot_list<-lapply(1:length(plot_data), function(t)
                                     size= label.size,
                                     check_overlap = TRUE)+
   ggplot2::theme_bw()+
-  ggplot2::theme(axis.title.y=element_blank(),
-                 axis.title.x=element_blank(),
-                 axis.text.x=element_blank(),
-                 axis.text.y=element_blank(),
-                 plot.title=element_text(size = text.size),
-                 axis.ticks.x=element_blank(),
-                 axis.ticks.y=element_blank(),
+  ggplot2::theme(axis.title.y =  element_blank(),
+                 axis.title.x = element_blank(),
+                 axis.text.x = element_blank(),
+                 axis.text.y = element_blank(),
+                 plot.title = element_text(size = text.size),
+                 axis.ticks.x = element_blank(),
+                 axis.ticks.y = element_blank(),
+                 axis.line = element_line(colour = "grey",
+                                          size = 0.5),
+                 panel.border = element_rect(fill = NA,
+                                             colour = "grey",
+                                             size = 0.5),
                  panel.grid.minor = element_blank(),
                  panel.grid.major = element_blank())+
-  ggplot2::ggtitle(gsub("\\_0\\d\\_","\\_", colnames(plot_data[[t]][1])))
+  ggplot2::ggtitle(gsub("\\_\\d+\\_","\\_", colnames(plot_data[[t]][1])))
 )
 if(save == TRUE){
 ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
@@ -127,8 +132,12 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
                              ncol = ncol,
                              top=""),
                 dpi = dpi)
+  grid.arrange(grobs=plot_list, newpage = TRUE)
+
 }else{
-  return(plot_list)
+
+  grid.arrange(grobs=plot_list, newpage = TRUE)
+
 }
 }
 
@@ -214,7 +223,7 @@ aver_techreps <- function(df){
 
   #substitute technical replicates with the sample name in the vector.
   #Now in each sample, all technical replicates are labelled the same way.
-  colnames(df_mat) <- gsub("\\_0\\d\\_","\\_", colnames(df_mat))
+  colnames(df_mat) <- gsub("\\_\\d+\\_","\\_", colnames(df_mat))
 
   #Average across technical replicates
   df_ave = limma::avearrays(df_mat,

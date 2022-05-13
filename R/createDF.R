@@ -75,19 +75,22 @@ create_df <- function(prot.groups,
                      stringsAsFactors = FALSE,
                      sep ="\t")
 
-  #If tech.reps == FALSE, remove the tech_rep column from the design file and
-  #combine remaining columns to make a new sample label
-  if(tech.reps == FALSE){
-    design$tech_rep <- NULL
-    design$new_label <- paste(design$condition,
-                              design$sample_ID,
-                              sep ="_")
-  }else{
+  if(tech.reps == TRUE){
     #if tech.reps == TRUE, combine all columns to make new sample label
     design$new_label <- paste(design$condition,
                               design$sample_ID,
                               design$tech_rep,
                               sep ="_")
+
+    #If tech.reps == FALSE, remove the tech_rep column from the design file and
+    #combine remaining columns to make a new sample label
+  }else{
+
+    design$tech_rep <- NULL
+    design$new_label <- paste(design$condition,
+                              design$sample_ID,
+                              sep ="_")
+
   }
 
   #Filter out empty rows and columns if they exist in the dataframe.
@@ -129,10 +132,17 @@ create_df <- function(prot.groups,
 
   #Subset the data frame to only include the LFQ.intensity columns
   samples <- df[ , grepl( "LFQ.intensity" , names(df))]
+
+  #order dataframe columns by column name. Important for next steps involving
+  #mapply.
+  samples <- samples[ , order(names(samples))]
   df <- as.matrix(samples)
 
   #remove LFQ intensity part from the column name
   raw_col <- gsub("LFQ.intensity.", "",colnames(df))
+
+  #sort the design table by mq_label so that the order matches to that of raw_col
+  design <- design[order(design$mq_label),]
 
   #Compare the mq_label column in the design file with raw_col and replace
   #raw_col with the appropriate new_label.

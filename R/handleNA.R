@@ -25,7 +25,7 @@
 #' @param col.na Color assigned for missing values (NAs). Default is "Black."
 #' @param col.val Color assigned for valid values. Default is "Grey."
 #' @param text.size Text size for axis labels. Default is \code{10}.
-#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.type File type to save the heatmap. Default is \code{"pdf"}.
 #' @param file.name File name to save the heatmap.
@@ -68,7 +68,7 @@ heatmap_na <- function(df,
                        col.na = "black",
                        col.val = "grey",
                        text.size = 10,
-                       save = TRUE,
+                       save = FALSE,
                        file.type = "pdf",
                        file.name = "MissingData_heatmap",
                        plot.width = 15,
@@ -321,6 +321,7 @@ value <- protgroup <- NULL
     return(df_imputed_knn)
 
     }else if (method == "SVD") {
+    df <- as.matrix(df)
     df[is.nan(df)] <- NA
     df_imp_temp <- pcaMethods::pca(object = df,
                                    method = "svdImpute",
@@ -362,7 +363,7 @@ value <- protgroup <- NULL
 #' to print the plots.
 #' @param ncol Required if \code{global = FALSE} to indicate the number of
 #' columns to print the plots.
-#' @param save Logical. If \code{TRUE} (default) saves a copy of the plot in the
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the density plot/s.
 #' Default is \code{"Impute_plot."}
@@ -408,7 +409,7 @@ impute_plot <- function(original,
                             imp.col = "red",
                             nrow,
                             ncol,
-                            save = TRUE,
+                            save = FALSE,
                             file.name = "Impute_plot",
                             file.type ="pdf",
                             plot.width = 7,
