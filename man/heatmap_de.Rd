@@ -31,7 +31,7 @@ was obtained.}
 0.05.}
 
 \item{FC}{Minimum absolute log-fold change to use as threshold for
-differential expression.}
+differential expression. Default is 1.}
 
 \item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
 (default) for adjusted p-value or \code{"P"} for p-value.}
