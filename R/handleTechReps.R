@@ -182,6 +182,7 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
 rem_sample <- function(df, rem){
   df_rem <- df[, -grep(rem, colnames(df))]
   return(df_rem)
+  message(paste0("Sample ", rem, "has been removed."))
 }
 
 
