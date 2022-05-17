@@ -451,17 +451,11 @@ impute_plot <- function(original,
       ggplot2::xlab("Intensity") +
       ggplot2::ylab("Density")+
       ggplot2::scale_fill_manual(values=c(orig.col,imp.col))+
-      ggplot2::theme_classic()+
-      ggplot2::theme(panel.border = element_rect(fill = NA,
-                                                 colour = "grey",
-                                                 size = 0.5),
-                     legend.title = element_blank(),
-                     axis.ticks = element_line(colour = "grey"),
+      promor_theme +
+      ggplot2::theme(
                      axis.title.x = element_text(size = text.size),
                      axis.title.y = element_text(size = text.size),
                      axis.text = element_text(size = text.size/2),
-                     axis.line = element_line(colour = "grey",
-                                              size = 0.5),
                      legend.text = element_text(size = text.size))
 
 
@@ -486,22 +480,10 @@ impute_plot <- function(original,
                             lwd = 0.1 )+
       ggplot2::xlab("Intensity") + ggplot2::ylab("Density")+
       ggplot2::scale_fill_manual(values = c(orig.col, imp.col))+
-      ggplot2::theme_classic()+
-      ggplot2::theme(panel.border = element_rect(fill = NA,
-                                                 colour = "grey",
-                                                 size = 0.5),
-                     legend.title = element_blank(),
-                     axis.ticks = element_line(colour = "grey"),
-                     axis.title.x = element_blank(),
-                     axis.title.y= element_blank(),
-                     axis.text = element_text(size = text.size/2),
-                     axis.line = element_line(colour = "grey",
-                                              size = 0.5),
+      promor_facet_theme +
+      ggplot2::theme(axis.text = element_text(size = text.size/2),
                      legend.text = element_text(size = text.size),
-                     strip.text = element_text(size = text.size),
-                     strip.background = element_rect(fill = "grey95",
-                                                     colour = "grey",
-                                                     size = 0.5))+
+                     strip.text = element_text(size = text.size))+
       ggplot2::facet_wrap(~sample,
                           nrow = nrow,
                           ncol = ncol,
