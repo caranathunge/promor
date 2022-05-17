@@ -13,6 +13,7 @@ pre_process(
   n.top = 20,
   find.highcorr = TRUE,
   corr.cutoff = 0.9,
+  save.corrmatrix = FALSE,
   rem.highcorr = TRUE
 )
 }
@@ -41,8 +42,12 @@ correlated proteins.}
 \item{corr.cutoff}{A numeric value specifying the correlation cutoff.
 Default is 0.90.}
 
-\item{rem.highcorr}{Logical. If \code{TRUE} (default), removes highly correlated
-proteins (predictors or features).}
+\item{save.corrmatrix}{Logical. If \code{TRUE}, saves a copy of the
+protein correlation matrix in a tab-delimited text file labeled
+"Protein_correlation.txt" in the working directory.}
+
+\item{rem.highcorr}{Logical. If \code{TRUE} (default), removes highly
+correlated proteins (predictors or features).}
 }
 \value{
 A \code{model.df} object, which is a data frame of protein
@@ -54,7 +59,7 @@ the top differentially expressed proteins identified with \code{find_dep} for
 modeling.
 }
 \details{
-This function creates a dataframe that contains protein intensities
+This function creates a data frame that contains protein intensities
 for a user-specified number of top differentially expressed proteins.
 \itemize{\item Using \code{find.highcorr = TRUE}, highly correlated
 proteins can be identified, and can be removed with
