@@ -25,10 +25,13 @@
 #' correlated proteins.
 #' @param corr.cutoff A numeric value specifying the correlation cutoff.
 #' Default is 0.90.
-#' @param rem.highcorr Logical. If \code{TRUE} (default), removes highly correlated
-#' proteins (predictors or features).
+#' @param save.corrmatrix Logical. If \code{TRUE}, saves a copy of the
+#' protein correlation matrix in a tab-delimited text file labeled
+#' "Protein_correlation.txt" in the working directory.
+#' @param rem.highcorr Logical. If \code{TRUE} (default), removes highly
+#' correlated proteins (predictors or features).
 #'
-#' @details This function creates a dataframe that contains protein intensities
+#' @details This function creates a data frame that contains protein intensities
 #' for a user-specified number of top differentially expressed proteins.
 #'  \itemize{\item Using \code{find.highcorr = TRUE}, highly correlated
 #'  proteins can be identified, and can be removed with
@@ -59,6 +62,7 @@
 #'
 #' @export
 
+
 pre_process <- function(fit.df,
                         norm.df,
                         sig = "adjP",
@@ -67,6 +71,7 @@ pre_process <- function(fit.df,
                         n.top = 20,
                         find.highcorr = TRUE,
                         corr.cutoff = 0.90,
+                        save.corrmatrix = FALSE,
                         rem.highcorr = TRUE
                         ){
 
@@ -133,6 +138,14 @@ pre_process <- function(fit.df,
   #Create a correlation matrix
   cor_matrix <- cor(topint_cor)
 
+  if (save.corrmatrix == TRUE){
+    write.table(cor_matrix,
+                file="./Protein_correlation.txt",
+                row.names = TRUE,
+                col.names = FALSE,
+                sep = "\t",
+                quote = FALSE)
+  }
 
   if (find.highcorr == TRUE){
   #Identify protein columns with high pairwise-correlation to remove
@@ -161,3 +174,104 @@ pre_process <- function(fit.df,
 }
 
 
+# Remove user-specified predictors -------------------------------------------
+#' Remove user-specified proteins (predictors) from the data frame
+#' @author Chathurani Ranathunge
+#' @description This function removes user-specified proteins from the
+#' data frame.
+#'
+#' @param df A \code{model.df} object.
+#' @param rem.protein Name of the protein to remove.
+#'
+#' @details \itemize{\item After visualizing protein intensity variation
+#' among conditions with \code{predictor_plot}, you can choose to remove
+#' specific proteins (predictors) from the data frame before modeling if they
+#' do not show distinct patterns of variation among conditions. For
+#' example, these proteins could have overlapping density distributions.
+#' }
+#' @return A \code{model.df} object.
+#'
+#' @seealso \code{\link{predictor_plot}}, \code{\link{pre_process}}
+#'
+#' @examples
+#' \dontrun{
+#'
+#' ## Remove protein "A113403" from model_df data frame.
+#' model_df <- rem_predictor(model_df, "A113403")
+#'
+#' }
+#'
+#' @export
+rem_predictor <- function(df, rem.protein){
+  df_rem <- df[, -grep(rem.protein, colnames(df))]
+  message(paste0("Protein ", rem.protein, "has been removed."))
+  return(df_rem)
+
+}
+
+# Split data frame -------------------------------------------------------------
+#' Split the data frame to create training and test data
+#' @description This function can be used to create balanced splits of the
+#' protein intensity data to create training and test data
+#'
+#' @author Chathurani Ranathunge
+#'
+#' @import caret
+#'
+#' @param df A \code{model.df} object from performing \code{find_dep}.
+#' @param train.size The size of the training data set as a percentage of the
+#' complete data set. Default is 0.8.
+#'
+#' @details This function splits the \code{model.df} object in to training and
+#' test data sets using random sampling while preserving the original
+#' class distribution of the data.
+#'
+#' @return A list of data frames.
+#' @seealso
+#' \itemize{
+#' \item \code{pre_process}
+#' \item \code{\link[caret:createDataPartition]{createDataPartition}}}
+#' @examples
+#' \dontrun{
+#'
+#'  ## Split the data frame into training and test data sets with 70% of the
+#'  data in training and 30% in test data sets
+#'  split_data <- split_df(model-df, train.size = 0.7)
+#'
+#'  ## Access training data set
+#'  split_data$training
+#'
+#'  ## Access test data set
+#'  split_data$test
+#'
+#'  }
+#'
+#'
+#' @export
+split_df <- function(df,
+                     train.size = 0.80
+                     ){
+  set.seed(8314)
+  train_index <- createDataPartition(df$Condition,
+                                     p = train.size,
+                                     list = FALSE)
+
+  #Use the train_index to subset the data frame
+  train_df <- df[train_index,]
+  test_df <- df[-train_index,]
+
+  #Remove rownames
+  rownames(train_df)  <- NULL
+  rownames(test_df)  <- NULL
+
+  #Create a list with test and training data frames
+  split_dataframes <- list()
+  split_dataframes[[1]] <- train_df
+  split_dataframes[[2]] <- test_df
+
+  #Rename the items of the list
+  names(split_dataframes) <- c("train", "test")
+
+  return(split_dataframes)
+
+}

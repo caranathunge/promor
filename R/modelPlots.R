@@ -63,17 +63,17 @@ predictor_plot <- function(df,
   colnames(modeldf_melted) <- c("Condition", "Protein", "Intensity")
 
   if (type == "density"){
-    pred_plot <- ggplot2::ggplot(modeldf_melted,
-                                 ggplot2::aes(x = Intensity)) +
-      ggplot2::geom_density(aes(colour = Condition),
-                            alpha = 0.25,
-                            lwd = text.size * 0.04 )+
-      ggplot2::facet_wrap( ~Protein, scales = "free",
-                           nrow = nrow,
-                           ncol = ncol)+
+    pred_plot <- ggplot2::ggplot(modeldf_melted, aes(x=Intensity,
+                                                     color=Condition)) +
+      ggplot2::geom_density(alpha = 0.25,
+                            lwd = text.size * 0.04)+
+      ggplot2::scale_color_brewer(palette=palette)+
+      ggplot2::facet_wrap(~Protein,
+                                   scale = "free",
+                                   nrow = nrow,
+                                   ncol = ncol)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_fill_manual(values = c("red","yellow"))+
       ggplot2::theme_classic()+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                  colour = "grey",
@@ -92,7 +92,7 @@ predictor_plot <- function(df,
                                                face = "bold",
                                                vjust = 0 ))
 
-
+    return(pred_plot)
   }else{
     pred_plot <- ggplot2::ggplot(modeldf_melted,
                                ggplot2::aes(x = Condition,
@@ -110,7 +110,7 @@ predictor_plot <- function(df,
                            ncol = ncol)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_fill_brewer(palette = "YlGnBu")+
+      ggplot2::scale_fill_brewer(palette = palette)+
       ggplot2::theme_classic()+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                colour = "grey",
@@ -131,6 +131,7 @@ predictor_plot <- function(df,
                                              hjust = 0.01,
                                              face = "bold",
                                              vjust = 0 ))
+    return(pred_plot)
   }
   if(save == TRUE){
     ggsave(paste0(file.name,".", file.type),
@@ -138,9 +139,7 @@ predictor_plot <- function(df,
            dpi = dpi,
            width = plot.width,
            height = plot.height)
-    return(pred_plot)
-    }else{
-      return(pred_plot)
-      }
+  }
+
 
 }
