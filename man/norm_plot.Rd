@@ -9,7 +9,7 @@ norm_plot(
   normalized,
   type = "box",
   text.size = 10,
-  palette = "YlGnBu",
+  palette = arctic,
   save = FALSE,
   file.name = "Norm_plot",
   file.type = "pdf",

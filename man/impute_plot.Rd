@@ -9,8 +9,7 @@ impute_plot(
   imputed,
   global = TRUE,
   text.size = 10,
-  orig.col = "blue",
-  imp.col = "red",
+  palette = arctic,
   nrow,
   ncol,
   save = FALSE,
@@ -34,11 +33,7 @@ produced. If \code{FALSE}, sample-wise density plots are produced.}
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{orig.col}{Fill color for the \code{original} data set.\cr
-Default is "Blue."}
-
-\item{imp.col}{Fill color color for the \code{imputed} data set.\cr
-Default is "Red."}
+\item{palette}{Color palette for the dots/points. Default is \code{arctic}}
 
 \item{nrow}{Required if \code{global = FALSE} to indicate the number of rows
 to print the plots.}

@@ -114,7 +114,7 @@ norm_plot <- function(original,
                       normalized,
                       type = "box",
                       text.size = 10,
-                      palette = "YlGnBu",
+                      palette = arctic,
                       save = FALSE,
                       file.name = "Norm_plot",
                       file.type = "pdf",
@@ -188,7 +188,7 @@ norm_plot <- function(original,
                                            y = intensity,
                                            fill = group)) +
       geom_boxplot(color = "grey30",
-                   alpha = 0.9,
+                   alpha = 0.7,
                    outlier.shape = 1,
                    outlier.stroke = 0.1,
                    outlier.size = text.size * 0.04,
@@ -198,7 +198,7 @@ norm_plot <- function(original,
       ggplot2::facet_wrap( ~normstage)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_fill_brewer(palette = palette)+
+      ggplot2::scale_fill_manual(values=c(palette[5],palette[1]))+
       ggplot2::theme_classic()+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                  colour = "grey",
@@ -218,7 +218,8 @@ norm_plot <- function(original,
                      #colour = "grey",
                      #size = 0.5))
                      strip.background = element_blank(),
-                     strip.text = element_text(size = text.size,
+                     strip.text = element_text(colour = "grey20",
+                                               size = text.size,
                                                hjust = 0.01,
                                                face = "bold",
                                                vjust = 0 ))

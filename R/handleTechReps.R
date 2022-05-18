@@ -17,7 +17,7 @@
 #' working directory.
 #' @param file.type File type to save the scatter plots.
 #' Default is \code{"pdf"}.
-#' @param col Color of the dots/points. Default is \code{"Red."}
+#' @param palette Color palette for the dots/points. Default is \code{arctic}
 #' @param dot.size Size of the dots/points. Default is \code{0.5}.
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
@@ -69,7 +69,7 @@ corr_plot<- function(df,
                      rep2,
                      save = FALSE,
                      file.type= "pdf",
-                     col = "red",
+                     palette = arctic,
                      dot.size= 0.5,
                      text.size = 5,
                      nrow = 4,
@@ -100,30 +100,23 @@ if(rep1 == 3  || rep2 == 3){
 #Create a list of scatter plots and print/save
 plot_list<-lapply(1:length(plot_data), function(t)
   ggplot2::ggplot(plot_data[[t]],
-  ggplot2::aes(x=plot_data[[t]][,rep1],y=plot_data[[t]][ ,rep2]))+
-  ggplot2::geom_point(col= col, size = dot.size)+
+  ggplot2::aes(x = plot_data[[t]][,rep1],y = plot_data[[t]][ ,rep2]))+
+  ggplot2::geom_point(col = palette[3], size = dot.size)+
   ggplot2::geom_text(label = sapply(strsplit(rownames(plot_data[[t]]), ";"),
                                     getElement,1),
                                     hjust="inward",
                                     vjust="inward",
                                     size= label.size,
                                     check_overlap = TRUE)+
-  ggplot2::theme_bw()+
-  ggplot2::theme(axis.title.y =  element_blank(),
-                 axis.title.x = element_blank(),
-                 axis.text.x = element_blank(),
-                 axis.text.y = element_blank(),
-                 plot.title = element_text(size = text.size),
-                 axis.ticks.x = element_blank(),
-                 axis.ticks.y = element_blank(),
-                 axis.line = element_line(colour = "grey",
-                                          size = 0.5),
-                 panel.border = element_rect(fill = NA,
-                                             colour = "grey",
-                                             size = 0.5),
+  promor_facet_theme +
+  ggplot2::theme(axis.ticks = element_blank(),
+                 axis.text = element_blank(),
+                 plot.title = element_text(size = text.size,
+                                           face = "bold",
+                                           colour = "grey20"),
                  panel.grid.minor = element_blank(),
                  panel.grid.major = element_blank())+
-  ggplot2::ggtitle(gsub("\\_\\d+\\_","\\_", colnames(plot_data[[t]][1])))
+    ggplot2::ggtitle(gsub("\\_\\d+$","", colnames(plot_data[[t]][1])))
 )
 if(save == TRUE){
 ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),

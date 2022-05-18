@@ -10,7 +10,7 @@ corr_plot(
   rep2,
   save = FALSE,
   file.type = "pdf",
-  col = "red",
+  palette = arctic,
   dot.size = 0.5,
   text.size = 5,
   nrow = 4,
@@ -34,7 +34,7 @@ working directory.}
 \item{file.type}{File type to save the scatter plots.
 Default is \code{"pdf"}.}
 
-\item{col}{Color of the dots/points. Default is \code{"Red."}}
+\item{palette}{Color palette for the dots/points. Default is \code{arctic}}
 
 \item{dot.size}{Size of the dots/points. Default is \code{0.5}.}
 

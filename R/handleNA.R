@@ -355,10 +355,7 @@ value <- protgroup <- NULL
 #' produced. If \code{FALSE}, sample-wise density plots are produced.
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param orig.col Fill color for the \code{original} data set.\cr
-#' Default is "Blue."
-#' @param imp.col Fill color color for the \code{imputed} data set.\cr
-#' Default is "Red."
+#' @param palette Color palette for the dots/points. Default is \code{arctic}
 #' @param nrow Required if \code{global = FALSE} to indicate the number of rows
 #' to print the plots.
 #' @param ncol Required if \code{global = FALSE} to indicate the number of
@@ -405,8 +402,7 @@ impute_plot <- function(original,
                             imputed,
                             global = TRUE,
                             text.size = 10,
-                            orig.col = "blue",
-                            imp.col = "red",
+                            palette = arctic,
                             nrow,
                             ncol,
                             save = FALSE,
@@ -446,11 +442,11 @@ impute_plot <- function(original,
                                                        levels = c(
                                                          "Before imputation",
                                                          "After imputation"))),
-                            alpha = 0.25,
+                            alpha = 0.45,
                             lwd = 0.1 )+
       ggplot2::xlab("Intensity") +
       ggplot2::ylab("Density")+
-      ggplot2::scale_fill_manual(values=c(orig.col,imp.col))+
+      ggplot2::scale_fill_manual(values=c(palette[5],palette[1]))+
       promor_theme +
       ggplot2::theme(
                      axis.title.x = element_text(size = text.size),
@@ -476,10 +472,10 @@ impute_plot <- function(original,
                                                      levels=c(
                                                        "Before imputation",
                                                        "After imputation"))),
-                            alpha =   0.25,
+                            alpha =   0.45,
                             lwd = 0.1 )+
       ggplot2::xlab("Intensity") + ggplot2::ylab("Density")+
-      ggplot2::scale_fill_manual(values = c(orig.col, imp.col))+
+      ggplot2::scale_fill_manual(values=c(palette[5],palette[1]))+
       promor_facet_theme +
       ggplot2::theme(axis.text = element_text(size = text.size/2),
                      legend.text = element_text(size = text.size),
