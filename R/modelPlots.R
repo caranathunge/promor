@@ -9,6 +9,7 @@
 #' @import ggplot2
 #' @import RColorBrewer
 #'
+#'
 #' @param df A \code{model.df} object from performing \code{pre_process}.
 #' @param type Type of plot to generate. Choices are "box" or "density." Default
 #' is \code{"box."}
@@ -110,7 +111,7 @@ predictor_plot <- function(df,
                            ncol = ncol)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_fill_brewer(palette = palette)+
+      ggplot2::scale_color_brewer(palette = palette)+
       ggplot2::theme_classic()+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                colour = "grey",
@@ -143,3 +144,18 @@ predictor_plot <- function(df,
 
 
 }
+#-------------------------------------------------------------------------------
+#' Variable importance plot
+#'
+#plot_data <- varImp(rfFit)
+#plot_data <- plot_data$importance
+#plot_data$protein <- rownames(plot_data)
+#rownames(plot_data) <- NULL
+#names(plot_data) <- c('importance', 'protein')
+#plot_data
+#ggplot( data = plot_data, aes(x=reorder(protein, importance), y=importance)) +
+ # geom_segment( aes(xend=protein, yend=0)) +
+  #geom_point( size=4, color="orange") +
+  #coord_flip() +
+  #theme_bw() +
+  #xlab("")

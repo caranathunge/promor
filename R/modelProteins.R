@@ -61,8 +61,6 @@
 #'
 #'
 #' @export
-
-
 pre_process <- function(fit.df,
                         norm.df,
                         sig = "adjP",
@@ -218,7 +216,7 @@ rem_predictor <- function(df, rem.protein){
 #'
 #' @import caret
 #'
-#' @param df A \code{model.df} object from performing \code{find_dep}.
+#' @param df A \code{model.df} object from performing \code{pre_process}.
 #' @param train.size The size of the training data set as a percentage of the
 #' complete data set. Default is 0.8.
 #'
@@ -270,8 +268,58 @@ split_df <- function(df,
   split_dataframes[[2]] <- test_df
 
   #Rename the items of the list
-  names(split_dataframes) <- c("train", "test")
+  names(split_dataframes) <- c("training", "test")
 
   return(split_dataframes)
 
 }
+
+
+
+
+# Train the model -------------------------------------------------------------
+#' Train machine learning models on protein intensity data
+#' @description This function can be used to train models on protein intensity
+#' data using a number of different machine learning algorithms
+#'
+#' @author Chathurani Ranathunge
+#'
+#' @import caret
+#'
+#' @param df A \code{model.df} object from performing \code{pre_process}.
+#' @param resample.method The resampling method to use. Default is "cv" for
+#' cross validation. See \code{\link[caret:trainControl]{trainControl}} for
+#' details on other available methods.
+#' @param resample.iterations Number of resampling iterations. Default is 10.
+#' @param num.repeats The number of complete sets of folds to compute (For
+#' \code{resampling method = "repeatedcv"} only).
+#' @param method.list A list of classification or regression algorithms to use.
+#' A full list of machine learning algorithms available through
+#' the \code{\link[caret]{caret package}} can be found here:
+#' \url{http://topepo.github.io/caret/train-models-by-tag.html}. see below for
+#' default options.
+#'
+#' @details \code{train_model} function can be used to first define the
+#' control parameters to be used in training models, calculate resampling-based
+#' performance measures for models, then fit models to your
+#' protein intensity data based on multiple machine-learning algorithms, and
+#' suggest the best algorithm to use for predicting the test data set.
+#'
+#'
+#' @return
+#'
+#' @seealso
+#' \itemize{
+#' \item \code{pre_process}
+#' \item \code{\link[caret:trainControl]{trainControl}}
+#' \item \code{\link[caret:train]{train}}
+#' }
+#' @examples
+#' \dontrun{
+#'
+#'
+#'
+#'  }
+#'
+#'
+#' @export
