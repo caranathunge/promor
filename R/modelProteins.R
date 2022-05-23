@@ -178,7 +178,7 @@ pre_process <- function(fit.df,
 #' @description This function removes user-specified proteins from the
 #' data frame.
 #'
-#' @param df A \code{model.df} object.
+#' @param model.df A \code{model.df} object.
 #' @param rem.protein Name of the protein to remove.
 #'
 #' @details \itemize{\item After visualizing protein intensity variation
@@ -200,7 +200,7 @@ pre_process <- function(fit.df,
 #' }
 #'
 #' @export
-rem_predictor <- function(df, rem.protein){
+rem_predictor <- function(model.df, rem.protein){
   df_rem <- df[, -grep(rem.protein, colnames(df))]
   message(paste0("Protein ", rem.protein, "has been removed."))
   return(df_rem)
@@ -216,7 +216,7 @@ rem_predictor <- function(df, rem.protein){
 #'
 #' @import caret
 #'
-#' @param df A \code{model.df} object from performing \code{pre_process}.
+#' @param model.df A \code{model.df} object from performing \code{pre_process}.
 #' @param train.size The size of the training data set as a percentage of the
 #' complete data set. Default is 0.8.
 #'
@@ -246,17 +246,17 @@ rem_predictor <- function(df, rem.protein){
 #'
 #'
 #' @export
-split_df <- function(df,
+split_df <- function(model.df,
                      train.size = 0.80
                      ){
   set.seed(8314)
-  train_index <- createDataPartition(df$Condition,
+  train_index <- createDataPartition(model.df$Condition,
                                      p = train.size,
                                      list = FALSE)
 
   #Use the train_index to subset the data frame
-  train_df <- df[train_index,]
-  test_df <- df[-train_index,]
+  train_df <- model.df[train_index,]
+  test_df <- model.df[-train_index,]
 
   #Remove rownames
   rownames(train_df)  <- NULL
@@ -275,8 +275,6 @@ split_df <- function(df,
 }
 
 
-
-
 # Train the model -------------------------------------------------------------
 #' Train machine learning models on protein intensity data
 #' @description This function can be used to train models on protein intensity
@@ -286,40 +284,92 @@ split_df <- function(df,
 #'
 #' @import caret
 #'
-#' @param df A \code{model.df} object from performing \code{pre_process}.
-#' @param resample.method The resampling method to use. Default is "cv" for
-#' cross validation. See \code{\link[caret:trainControl]{trainControl}} for
+#' @param split.df A \code{split.df} object from performing \code{split_df}.
+#' @param resample.method The resampling method to use. Default is "repeatedcv"
+#' for repeated cross validation.
+#' See \code{\link[caret:trainControl]{trainControl}} for
 #' details on other available methods.
 #' @param resample.iterations Number of resampling iterations. Default is 10.
 #' @param num.repeats The number of complete sets of folds to compute (For
 #' \code{resampling method = "repeatedcv"} only).
-#' @param method.list A list of classification or regression algorithms to use.
+#' @param algorithm.list A list of classification or regression algorithms to use.
 #' A full list of machine learning algorithms available through
 #' the \code{\link[caret]{caret package}} can be found here:
 #' \url{http://topepo.github.io/caret/train-models-by-tag.html}. see below for
 #' default options.
 #'
-#' @details \code{train_model} function can be used to first define the
-#' control parameters to be used in training models, calculate resampling-based
-#' performance measures for models, then fit models to your
-#' protein intensity data based on multiple machine-learning algorithms, and
-#' suggest the best algorithm to use for predicting the test data set.
-#'
+#' @details \itemize{\item \code{train_model} function can be used to first
+#' define the control parameters to be used in training models, calculate
+#' resampling-based performance measures for models based on a given set of
+#' machine-learning algorithms, and output the best model for each algorithm.
+#' \item In the event that \code{algorithm.list} is not provided, a default
+#' list of five classification-based machine-learning algorithms will be used
+#' for building and training models. Default \code{algorithm.list}:
+#' "rf", "ranger", "earth", "knn", "svmLinear."}
 #'
 #' @return
+#' A list of class \code{train} for each machine-learning algorithm.
+#' See \code{\link[caret:train]{train}} for more information on accessing
+#' different elements of this list.
 #'
 #' @seealso
 #' \itemize{
 #' \item \code{pre_process}
-#' \item \code{\link[caret:trainControl]{trainControl}}
-#' \item \code{\link[caret:train]{train}}
+#' \item \code{\link[caret:trainControl]{caret: trainControl}}
+#' \item \code{\link[caret:train]{caret: train}}
 #' }
 #' @examples
 #' \dontrun{
+#' #Fit models based on the default list of ML algorithms.
+#' model_fit <- train_model(split.df = split_df)
 #'
+#' #Fit models using a user-specified list of ML algorithms.
+#' model_fit <- train_model(split.df = split_df,
+#'                          algorithm.list = c("svmRadial", "rpart"))
 #'
-#'
+#' #Change resampling method and resampling iterations.
+#' model_fit <- train_model(split.df = split_df,
+#'                          resample.method = "cv",
+#'                          resample.iterations = 50)
 #'  }
 #'
 #'
 #' @export
+train_model <- function(split.df,
+                        resample.method = "repeatedcv",
+                        resample.iterations = 10,
+                        num.repeats = 3,
+                        algorithm.list,
+                        ...
+                        ){
+
+  #If algorithm.list is not provided, use the default list of algorithms.
+  if(missing(algorithm.list)) {
+    algorithm.list = c("rf",  "earth", "knn", "svmLinear", "ranger")
+  }
+
+  #Set trainControl parameters for resampling
+  fit_control <- trainControl(method = resample.method,
+                              number = resample.iterations,
+                              repeats = num.repeats)
+
+  #Extract the training data set from the split.df object
+  training_data <- split.df$training
+
+
+  #Train models using ML algorithms from the algorithm.list.
+  model_list <- lapply(setNames(algorithm.list, algorithm.list),
+                       function (x) tryCatch({set.seed(351);
+                         message(paste0("\n", "Running ", x, "...", "\n"));
+                         train(Condition ~ .,
+                               data = training_data,
+                               trControl = fit_control,
+                               method = x,
+                               importance = TRUE,
+                               ...)},
+                         error = function(e) {message(paste0(x,
+                                                           " failed."))}))
+
+  message(paste0("Done!"))
+  return(model_list)
+}

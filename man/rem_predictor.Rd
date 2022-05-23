@@ -4,10 +4,10 @@
 \alias{rem_predictor}
 \title{Remove user-specified proteins (predictors) from the data frame}
 \usage{
-rem_predictor(df, rem.protein)
+rem_predictor(model.df, rem.protein)
 }
 \arguments{
-\item{df}{A \code{model.df} object.}
+\item{model.df}{A \code{model.df} object.}
 
 \item{rem.protein}{Name of the protein to remove.}
 }

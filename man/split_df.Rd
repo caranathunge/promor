@@ -4,10 +4,10 @@
 \alias{split_df}
 \title{Split the data frame to create training and test data}
 \usage{
-split_df(df, train.size = 0.8)
+split_df(model.df, train.size = 0.8)
 }
 \arguments{
-\item{df}{A \code{model.df} object from performing \code{find_dep}.}
+\item{model.df}{A \code{model.df} object from performing \code{pre_process}.}
 
 \item{train.size}{The size of the training data set as a percentage of the
 complete data set. Default is 0.8.}
