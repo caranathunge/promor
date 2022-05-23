@@ -146,7 +146,52 @@ predictor_plot <- function(df,
 }
 #-------------------------------------------------------------------------------
 #' Variable importance plot
+#' @description This function visualizes protein intensity differences among
+#' conditions with plots.
 #'
+#' @author Chathurani Ranathunge
+#'
+#' @importFrom reshape2 melt
+#' @import ggplot2
+#' @import RColorBrewer
+#'
+#'
+#' @param df A \code{model.df} object from performing \code{pre_process}.
+#' @param type Type of plot to generate. Choices are "box" or "density." Default
+#' is \code{"box."}
+#' @param text.size Text size for plot labels, axis labels etc. Default is
+#' \code{10}.
+#' @param palette Color palette for box plots. Default is \code{"YlGnBu."}
+#' @param nrow The number of rows to print the plots.
+#' @param ncol The number of columns to print the plots.
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
+#' working directory.
+#' @param file.name file.name File name to save the plot.
+#' Default is \code{"Predictor_plot."}
+#' @param file.type File type to save the plot.
+#' Default is \code{"pdf"}.
+#' @param plot.width Width of the plot. Default is \code{7}.
+#' @param plot.height Height of the plot. Default is \code{7}.
+#' @param dpi Plot resolution. Default is \code{80}.
+#'
+#' @details This function visualizes condition-wise differences in protein
+#' intensity using boxplots and/or density plots.
+#'
+#' @return A \code{ggplot2} object
+#' @seealso
+#' \itemize{
+#' \item \code{pre_process}, \code{rem_predictors}}
+#' @examples
+#' \dontrun{
+#'
+#'  ## Box plots
+#'  predictor_plot(model_df, type = "box", nrow = 2, ncol = 4)
+#'
+#'  ## Density plots
+#'  predictor_plot(model_df, type = "density", nrow = 2, ncol = 4)
+#'
+#'  }
+#' @export
 #plot_data <- varImp(rfFit)
 #plot_data <- plot_data$importance
 #plot_data$protein <- rownames(plot_data)
