@@ -53,7 +53,7 @@ predictor_plot <- function(df,
                       nrow,
                       ncol,
                       save = FALSE,
-                      file.name = "Norm_plot",
+                      file.name = "Predictor_plot",
                       file.type = "pdf",
                       dpi = 80,
                       plot.width = 7,
@@ -146,8 +146,8 @@ predictor_plot <- function(df,
 }
 #-------------------------------------------------------------------------------
 #' Variable importance plot
-#' @description This function visualizes protein intensity differences among
-#' conditions with plots.
+#' @description This function visualizes variable importance in models
+#'
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -156,69 +156,207 @@ predictor_plot <- function(df,
 #' @import RColorBrewer
 #'
 #'
-#' @param df A \code{model.df} object from performing \code{pre_process}.
-#' @param type Type of plot to generate. Choices are "box" or "density." Default
-#' is \code{"box."}
+#' @param model.list A \code{model.list} object from performing
+#' \code{train_model}.
+#' @param ... Additional arguments to be passed on to
+#' \code{\link[caret:varImp]{varImp}}.
+#' @param type Type of plot to generate. Choices are "bar" or "lollipop."
+#' Default is \code{"lollipop."}
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for box plots. Default is \code{"YlGnBu."}
+#' @param palette Color palette for plots.
 #' @param nrow The number of rows to print the plots.
 #' @param ncol The number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the plot.
-#' Default is \code{"Predictor_plot."}
+#' Default is \code{"VarImp_plot."}
 #' @param file.type File type to save the plot.
 #' Default is \code{"pdf"}.
 #' @param plot.width Width of the plot. Default is \code{7}.
 #' @param plot.height Height of the plot. Default is \code{7}.
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
-#' @details This function visualizes condition-wise differences in protein
-#' intensity using boxplots and/or density plots.
+#' @details \itemize{\item \code{varimp_plot} produces a list of plots showing
+#' variable importance measures calculated from models generated with different
+#' machine-learning algorithms.
+#' \item Note: Variables are ordered by variable importance in
+#' descending order and by default, importance values are scaled to 0 and 100.
+#' This can be changed by providing \code{scale = FALSE}. See
+#' \code{\link[caret:varImp]{varImp}} for more information.}
 #'
-#' @return A \code{ggplot2} object
+#' @return A list of \code{ggplot2} objects.
 #' @seealso
 #' \itemize{
-#' \item \code{pre_process}, \code{rem_predictors}}
+#' \item \code{train_model}
+#' \item \code{\link[caret:varImp]{caret: varImp}}}
 #' @examples
 #' \dontrun{
 #'
-#'  ## Box plots
-#'  predictor_plot(model_df, type = "box", nrow = 2, ncol = 4)
+#' ##Train models using default settings
+#' model_list <- train_model(split_df)
 #'
-#'  ## Density plots
-#'  predictor_plot(model_df, type = "density", nrow = 2, ncol = 4)
+#' ## Lollipop plots
+#' varimp_plot(model_list)
+#'
+#' ## Bar plots
+#' varimp_plot(model_list, type = "bar")
+#'
+#' ## Do not scale variable importance values
+#' varimp_plot(model_list, scale  = FALSE)
+#'
 #'
 #'  }
 #' @export
-#plot_data <- varImp(rfFit)
-#plot_data <- plot_data$importance
-#plot_data$protein <- rownames(plot_data)
-#rownames(plot_data) <- NULL
-#names(plot_data) <- c('importance', 'protein')
-#plot_data
-#ggplot( data = plot_data, aes(x=reorder(protein, importance), y=importance)) +
- # geom_segment( aes(xend=protein, yend=0)) +
-  #geom_point( size=4, color="orange") +
-  #coord_flip() +
-  #theme_bw() +
-  #xlab("")
-#trained_vi <- lapply(trained, function(x) varImp(x, scale = FALSE))
-#trained_vi
-#imp_data <- sapply(trained_vi, function(x) x['importance'], USE.NAMES = TRUE)
-#imp_data
-#imp_data1 <- lapply(imp_data,
-#                    function(x) {x <- x[1]; x$protein <- rownames(x);
-#                    rownames(x) <- NULL ;
-#                    colnames(x) <- c("Importance", "Protein"); x})
-#
-#varimp_plots <- lapply(imp_data1, function (t)
-#  ggplot(data = t, aes(x=reorder(Protein, Importance), y=Importance)) +
-#    geom_segment( aes(xend=Protein, yend=0), lwd = 1.5) +
-#    geom_point( size=10, color="orange") +
-#    coord_flip() +
-#    theme_bw() +
-#    xlab(""))
-#
-#varimp_plots
+varimp_plot <- function(model.list,
+                        ...,
+                        type = "lollipop",
+                        text.size = 10,
+                        palette = "YlGnBu",
+                        nrow,
+                        ncol,
+                        save = FALSE,
+                        file.name = "VarImp_plot",
+                        file.type = "pdf",
+                        dpi = 80,
+                        plot.width = 7,
+                        plot.height = 7){
+
+  #Calculate variable importance with VarImp for each ML algorithm-based
+  #model in the list
+  vimp <- lapply(model.list, function(x) caret::varImp(x, ...))
+
+  #Extract importance estimates from the list
+  imp <- sapply(vimp, function(x) x['importance'], USE.NAMES = TRUE)
+
+  #Make necessary changes to 'importance data frames' in the list before
+  #plotting.
+  plot_imp_data <- lapply(imp,
+                          function(x) {x <- x[1];
+                          x$protein <- rownames(x);
+                          rownames(x) <- NULL ;
+                          colnames(x) <- c("Importance", "Protein");
+                          #x[x == 0] <- NA;
+                          x$Importance[is.nan(x$Importance)] <- NA;
+                          x = x[rowSums(is.na(x)) == 0,];
+                          x})
+
+  #Drop empty data frames before proceeding
+  plot_imp_data <- Filter(function(x) dim(x)[1] > 0, plot_imp_data)
+
+  #Make plots based on type
+
+  if (type == "bar"){
+    #Make bar plots
+    vi_plots <- lapply(plot_imp_data, function (t)
+      ggplot2::ggplot(data = t,
+                      aes(x = reorder(Protein, Importance),
+                          y = Importance,
+                          fill = Importance)) +
+        ggplot2::geom_bar(stat = "identity")+
+        ggplot2::coord_flip()+
+        ggplot2::theme_bw()+
+        ggplot2::theme(legend.position = "right",
+                       legend.direction="vertical",
+                       legend.key.height = grid::unit(0.8, "cm"),
+                       legend.key.width = grid::unit(0.2, "cm"),
+                       legend.title = element_blank(),
+                       legend.text = element_text(size = text.size*0.7,
+                                                  face = "bold"),
+                       axis.text.y = element_text(size = text.size,
+                                                  face = "bold"),
+                       axis.line.x = element_line(size = 0.1),
+                       axis.line.y = element_line(size = 0.1),
+                       axis.ticks.x = element_line(size = 0.1),
+                       axis.ticks.y = element_line(size = 0.1),
+                       axis.title.y= element_text(size = text.size,
+                                                  face = "bold"),
+                       axis.line = element_line(colour = "grey",
+                                                size = 0.5),
+                       strip.background = element_blank(),
+                       strip.text = element_text(size = text.size,
+                                                 hjust = 0.01,
+                                                 face = "bold",
+                                                 vjust = 0 ),
+                       panel.border = element_rect(fill = NA,
+                                                   colour = "grey",
+                                                   size = 0.5))+
+        ggplot2::scale_fill_viridis_c(direction = -1)+
+        xlab("")
+    )
+    #Add plot titles
+    vi_plots <- lapply(seq_along(vi_plots), function(i) {
+      vi_plots[[i]] + ggtitle(gsub(".importance","", names(vi_plots)[i]))
+    })
+
+  }else{
+    #Make lollipop plots
+    vi_plots <- lapply(plot_imp_data, function (t)
+      ggplot2::ggplot(data = t,
+                      aes(x = reorder(Protein, Importance),
+                          y = Importance,
+                          color = Importance)) +
+        ggplot2::geom_segment(aes( xend=Protein,
+                                   yend = 0),
+                              lwd = 2) +
+        ggplot2::geom_point( aes(color = Importance),
+                             size=text.size,
+                             show.legend = FALSE)+
+        ggplot2::coord_flip()+
+        ggplot2::geom_label(label = round(t$Importance,
+                                          digits = 1),
+                            fill = NA,
+                            label.size = NA,
+                            colour = "white")+
+        ggplot2::theme_bw()+
+        ggplot2::theme(legend.position = "right",
+                       legend.direction="vertical",
+                       legend.key.height = grid::unit(0.8, "cm"),
+                       legend.key.width = grid::unit(0.2, "cm"),
+                       legend.title = element_blank(),
+                       legend.text = element_text(size = text.size*0.7,
+                                                  face = "bold"),
+                       axis.text.y = element_text(size = text.size,
+                                                  face = "bold"),
+                       axis.line.x = element_line(size = 0.1),
+                       axis.line.y = element_line(size = 0.1),
+                       axis.ticks.x = element_line(size = 0.1),
+                       axis.ticks.y = element_line(size = 0.1),
+                       axis.title.y= element_text(size = text.size,
+                                                  face = "bold"),
+                       axis.line = element_line(colour = "grey",
+                                                size = 0.5),
+                       strip.background = element_blank(),
+                       strip.text = element_text(size = text.size,
+                                                 hjust = 0.01,
+                                                 face = "bold",
+                                                 vjust = 0 ),
+                       panel.border = element_rect(fill = NA,
+                                                   colour = "grey",
+                                                   size = 0.5))+
+        ggplot2::scale_color_viridis_c(direction  = -1)+
+        xlab("")
+    )
+    #Add plot titles
+    vi_plots <- lapply(seq_along(vi_plots), function(i) {
+      vi_plots[[i]] + ggtitle(gsub(".importance","",names(vi_plots)[i]))
+    })
+  }
+
+  if(save == TRUE){
+    ggplot2::ggsave(paste0(file.name,".", file.type),
+                    marrangeGrob(grobs = vi_plots,
+                                 nrow = nrow,
+                                 ncol = ncol,
+                                 top=""),
+                    dpi = dpi)
+    grid.arrange(grobs = vi_plots, newpage = TRUE)
+
+  }else{
+
+    grid.arrange(grobs = vi_plots, newpage = TRUE)
+
+  }
+
+
+}
