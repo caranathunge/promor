@@ -48,7 +48,7 @@
 #' @seealso
 #' \itemize{
 #' \item \code{find_dep}, \code{normalize_data}
-#' \item \code{\link[caret:findCorrelation]{findCorrelation}}}
+#' \item \code{\link[caret:findCorrelation]{caret: findCorrelation}}}
 #' @examples
 #' \dontrun{
 #'

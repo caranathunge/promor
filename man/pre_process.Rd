@@ -86,7 +86,7 @@ accordingly to obtain a set of proteins for modeling.}
 \seealso{
 \itemize{
 \item \code{find_dep}, \code{normalize_data}
-\item \code{\link[caret:findCorrelation]{findCorrelation}}}
+\item \code{\link[caret:findCorrelation]{caret: findCorrelation}}}
 }
 \author{
 Chathurani Ranathunge

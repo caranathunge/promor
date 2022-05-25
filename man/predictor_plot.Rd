@@ -12,7 +12,7 @@ predictor_plot(
   nrow,
   ncol,
   save = FALSE,
-  file.name = "Norm_plot",
+  file.name = "Predictor_plot",
   file.type = "pdf",
   dpi = 80,
   plot.width = 7,
