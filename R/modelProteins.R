@@ -305,7 +305,8 @@ split_df <- function(model.df,
 #' \item In the event that \code{algorithm.list} is not provided, a default
 #' list of five classification-based machine-learning algorithms will be used
 #' for building and training models. Default \code{algorithm.list}:
-#' "rf", "ranger", "earth", "knn", "svmLinear."}
+#' "rf", "ranger", "earth", "knn", "svmLinear."
+#' \item Note: Models that failed to build are removed from the output. }
 #'
 #' @return
 #' A list of class \code{train} for each machine-learning algorithm.
@@ -349,6 +350,7 @@ train_model <- function(split.df,
   }
 
   #Set trainControl parameters for resampling
+  set.seed(351)
   fit_control <- trainControl(method = resample.method,
                               number = resample.iterations,
                               repeats = num.repeats)
@@ -371,5 +373,8 @@ train_model <- function(split.df,
                                                            " failed."))}))
 
   message(paste0("Done!"))
+
+  #Drop models that failed to build from the list
+  model_list <- Filter(Negate(is.null), model_list)
   return(model_list)
 }

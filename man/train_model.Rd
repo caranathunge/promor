@@ -49,7 +49,8 @@ machine-learning algorithms, and output the best model for each algorithm.
 \item In the event that \code{algorithm.list} is not provided, a default
 list of five classification-based machine-learning algorithms will be used
 for building and training models. Default \code{algorithm.list}:
-"rf", "ranger", "earth", "knn", "svmLinear."}
+"rf", "ranger", "earth", "knn", "svmLinear."
+\item Note: Models that failed to build are removed from the output. }
 }
 \examples{
 \dontrun{
