@@ -217,7 +217,7 @@ aver_techreps <- function(df){
 
   #substitute technical replicates with the sample name in the vector.
   #Now in each sample, all technical replicates are labelled the same way.
-  colnames(df_mat) <- gsub("\\_\\d+\\_","\\_", colnames(df_mat))
+  colnames(df_mat) <- gsub("\\_\\d+$","", colnames(df_mat))
 
   #Average across technical replicates
   df_ave = limma::avearrays(df_mat,
