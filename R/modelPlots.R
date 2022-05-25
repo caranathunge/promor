@@ -204,3 +204,21 @@ predictor_plot <- function(df,
   #coord_flip() +
   #theme_bw() +
   #xlab("")
+#trained_vi <- lapply(trained, function(x) varImp(x, scale = FALSE))
+#trained_vi
+#imp_data <- sapply(trained_vi, function(x) x['importance'], USE.NAMES = TRUE)
+#imp_data
+#imp_data1 <- lapply(imp_data,
+#                    function(x) {x <- x[1]; x$protein <- rownames(x);
+#                    rownames(x) <- NULL ;
+#                    colnames(x) <- c("Importance", "Protein"); x})
+#
+#varimp_plots <- lapply(imp_data1, function (t)
+#  ggplot(data = t, aes(x=reorder(Protein, Importance), y=Importance)) +
+#    geom_segment( aes(xend=Protein, yend=0), lwd = 1.5) +
+#    geom_point( size=10, color="orange") +
+#    coord_flip() +
+#    theme_bw() +
+#    xlab(""))
+#
+#varimp_plots
