@@ -157,7 +157,7 @@ predictor_plot <- function(df,
 #'
 #'
 #' @param model.list A \code{model.list} object from performing
-#' \code{train_model}.
+#' \code{train_models}.
 #' @param ... Additional arguments to be passed on to
 #' \code{\link[caret:varImp]{varImp}}.
 #' @param type Type of plot to generate. Choices are "bar" or "lollipop."
@@ -188,13 +188,13 @@ predictor_plot <- function(df,
 #' @return A list of \code{ggplot2} objects.
 #' @seealso
 #' \itemize{
-#' \item \code{train_model}
+#' \item \code{train_models}
 #' \item \code{\link[caret:varImp]{caret: varImp}}}
 #' @examples
 #' \dontrun{
 #'
 #' ##Train models using default settings
-#' model_list <- train_model(split_df)
+#' model_list <- train_models(split_df)
 #'
 #' ## Lollipop plots
 #' varimp_plot(model_list)
@@ -224,19 +224,26 @@ varimp_plot <- function(model.list,
 
   #Calculate variable importance with VarImp for each ML algorithm-based
   #model in the list
-  vimp <- lapply(model.list, function(x) caret::varImp(x, ...))
+  vimp <- lapply(model.list,
+                 function(x) tryCatch(caret::varImp(x,
+                                                    ...),
+                                      error = function(e) NULL))
+
+
+  #Drop Null items from the list
+  vimp <- Filter(Negate(is.null), vimp)
+
 
   #Extract importance estimates from the list
-  imp <- sapply(vimp, function(x) x['importance'], USE.NAMES = TRUE)
+  #imp <- sapply(vimp, function(x) x['importance'], USE.NAMES = TRUE)
 
   #Make necessary changes to 'importance data frames' in the list before
   #plotting.
-  plot_imp_data <- lapply(imp,
-                          function(x) {x <- x[1];
+  plot_imp_data <- lapply(vimp,
+                          function(x) {x <- x$importance[1];
                           x$protein <- rownames(x);
                           rownames(x) <- NULL ;
                           colnames(x) <- c("Importance", "Protein");
-                          #x[x == 0] <- NA;
                           x$Importance[is.nan(x$Importance)] <- NA;
                           x = x[rowSums(is.na(x)) == 0,];
                           x})
@@ -292,7 +299,7 @@ varimp_plot <- function(model.list,
   }else{
     #Make lollipop plots
     vi_plots <- lapply(plot_imp_data, function (t)
-      ggplot2::ggplot(data = t,
+        ggplot2::ggplot(data = t,
                       aes(x = reorder(Protein, Importance),
                           y = Importance,
                           color = Importance)) +
@@ -335,8 +342,7 @@ varimp_plot <- function(model.list,
                                                    colour = "grey",
                                                    size = 0.5))+
         ggplot2::scale_color_viridis_c(direction  = -1)+
-        xlab("")
-    )
+        xlab(""))
     #Add plot titles
     vi_plots <- lapply(seq_along(vi_plots), function(i) {
       vi_plots[[i]] + ggtitle(gsub(".importance","",names(vi_plots)[i]))
