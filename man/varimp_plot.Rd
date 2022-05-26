@@ -22,7 +22,7 @@ varimp_plot(
 }
 \arguments{
 \item{model.list}{A \code{model.list} object from performing
-\code{train_model}.}
+\code{train_models}.}
 
 \item{...}{Additional arguments to be passed on to
 \code{\link[caret:varImp]{varImp}}.}
@@ -73,7 +73,7 @@ This can be changed by providing \code{scale = FALSE}. See
 \dontrun{
 
 ##Train models using default settings
-model_list <- train_model(split_df)
+model_list <- train_models(split_df)
 
 ## Lollipop plots
 varimp_plot(model_list)
@@ -89,7 +89,7 @@ varimp_plot(model_list, scale  = FALSE)
 }
 \seealso{
 \itemize{
-\item \code{train_model}
+\item \code{train_models}
 \item \code{\link[caret:varImp]{caret: varImp}}}
 }
 \author{

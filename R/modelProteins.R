@@ -276,9 +276,9 @@ split_df <- function(model.df,
 
 
 # Train the model -------------------------------------------------------------
-#' Train machine learning models on protein intensity data
+#' Train machine learning models on training data
 #' @description This function can be used to train models on protein intensity
-#' data using a number of different machine learning algorithms
+#' data using different machine learning algorithms
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -295,17 +295,17 @@ split_df <- function(model.df,
 #' @param algorithm.list A list of classification or regression algorithms to use.
 #' A full list of machine learning algorithms available through
 #' the \code{\link[caret]{caret package}} can be found here:
-#' \url{http://topepo.github.io/caret/train-models-by-tag.html}. see below for
+#' \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
 #' default options.
 #'
-#' @details \itemize{\item \code{train_model} function can be used to first
+#' @details \itemize{\item \code{train_models} function can be used to first
 #' define the control parameters to be used in training models, calculate
 #' resampling-based performance measures for models based on a given set of
 #' machine-learning algorithms, and output the best model for each algorithm.
 #' \item In the event that \code{algorithm.list} is not provided, a default
-#' list of five classification-based machine-learning algorithms will be used
+#' list of six classification-based machine-learning algorithms will be used
 #' for building and training models. Default \code{algorithm.list}:
-#' "rf", "ranger", "earth", "knn", "svmLinear."
+#' "knn", "svmRadial", "nb", "rf", "glmboost", "glmnet."
 #' \item Note: Models that failed to build are removed from the output. }
 #'
 #' @return
@@ -322,21 +322,21 @@ split_df <- function(model.df,
 #' @examples
 #' \dontrun{
 #' #Fit models based on the default list of ML algorithms.
-#' model_fit <- train_model(split.df = split_df)
+#' model_fit <- train_models(split.df = split_df)
 #'
 #' #Fit models using a user-specified list of ML algorithms.
-#' model_fit <- train_model(split.df = split_df,
+#' model_fit <- train_models(split.df = split_df,
 #'                          algorithm.list = c("svmRadial", "rpart"))
 #'
 #' #Change resampling method and resampling iterations.
-#' model_fit <- train_model(split.df = split_df,
+#' model_fit <- train_models(split.df = split_df,
 #'                          resample.method = "cv",
 #'                          resample.iterations = 50)
 #'  }
 #'
 #'
 #' @export
-train_model <- function(split.df,
+train_models <- function(split.df,
                         resample.method = "repeatedcv",
                         resample.iterations = 10,
                         num.repeats = 3,
@@ -346,14 +346,15 @@ train_model <- function(split.df,
 
   #If algorithm.list is not provided, use the default list of algorithms.
   if(missing(algorithm.list)) {
-    algorithm.list = c("rf",  "earth", "knn", "svmLinear", "ranger")
+    algorithm.list = c("knn", "svmRadial", "nb", "rf", "glmboost", "glmnet")
   }
 
   #Set trainControl parameters for resampling
   set.seed(351)
   fit_control <- trainControl(method = resample.method,
                               number = resample.iterations,
-                              repeats = num.repeats)
+                              repeats = num.repeats,
+                              classProbs = TRUE)
 
   #Extract the training data set from the split.df object
   training_data <- split.df$training
@@ -367,7 +368,6 @@ train_model <- function(split.df,
                                data = training_data,
                                trControl = fit_control,
                                method = x,
-                               importance = TRUE,
                                ...)},
                          error = function(e) {message(paste0(x,
                                                            " failed."))}))
@@ -377,4 +377,125 @@ train_model <- function(split.df,
   #Drop models that failed to build from the list
   model_list <- Filter(Negate(is.null), model_list)
   return(model_list)
+}
+
+# Test the models -------------------------------------------------------------
+#' Test machine learning models on test data
+#' @description This function can be used to test models generated using
+#' different machine learning algorithms on a test data set
+#'
+#' @author Chathurani Ranathunge
+#'
+#' @import stats
+#' @import caret
+#' @importFrom reshape2 melt
+#'
+#' @param model.list A \code{model.list} object from performing
+#' \code{train_models}.
+#' @param split.df A \code{split.df} object from performing \code{split_df}.
+#' @param type Type of output. Set \code{type} as "prob" (default) to output
+#' class probabilities, and "raw" to output class predictions.
+#' @param save.confusionmatrix Logical. If \code{TRUE}, a tab-delimited
+#' text file ("Confusion_matrices.txt") with confusion matrices in the
+#' long-form data format will be saved in the working directory.
+#' See below for more details.
+#' @param ... Additional arguments to be passed on to
+#' \code{\link[stats:predict]{predict}}.
+#'
+#' @details \itemize{\item \code{test_models} function uses
+#' models obtained from \code{train_models} to predict a given test data set.
+#' \item Setting \code{type = "raw"} is required to obtain confusion matrices.
+#' \item Setting \code{type = "prob"} (default) will output a list of
+#' probabilities that can be used to generate ROC curves with \code{ROC_plot}.}
+#'
+#' @return
+#' \itemize{\item If \code{type = "prob"}, a list of data frames containing
+#' class probabilities for each method in the \code{model.list}
+#' will be returned.
+#' \item If \code{type = "raw"}, a list of factors containing class
+#' predictions for each method will be returned.}
+#'
+#' @seealso
+#' \itemize{
+#' \item \code{split_df}
+#' \item \code{train_models}
+#' \item \code{\link[stats:predict]{stats: predict}}
+#' \item \code{\link[caret:confusionMatrix]{caret: confusionMatrix}}
+#' }
+#' @examples
+#' \dontrun{
+#' #Test a list of models on a test data set and output class probabilities,
+#' model_prob <- test_models(model.list = model_fit, split.df = split_df)
+#'
+#' #Save confusion matrices and output class predictions
+#' model_pred <- test_models(model.list = model_fit,
+#'                          split.df = split_df,
+#'                          type = "raw",
+#'                          save.confusionmatrix = TRUE)
+#'  }
+#' @export
+test_models <- function(model.list,
+                       split.df,
+                       type = "prob",
+                       save.confusionmatrix = FALSE,
+                       ...){
+
+  #Extract test data from the split.df object
+  test_data <- split.df$test
+
+  #Predict test da
+  pred_list <- lapply(model.list,
+                      function (x){
+                        message(paste0("\n",
+                                       "Testing ",
+                                       x$method ,
+                                       "...",
+                                       "\n"));
+                        predict(x,
+                                test_data,
+                                type = type)})
+
+  #Get confusion matrices and associated statistics
+  if(type == "raw"){
+  cm_list <- lapply(pred_list,
+                    function(x) confusionMatrix(x,
+                                                test_data$Condition))
+  #Print confusion matrices and stats
+  print(cm_list)
+
+  if(save.confusionmatrix == TRUE){
+
+    #Convert c.matrices to long-form data frames
+    cm_df <- lapply(cm_list,
+                    function(x) reshape2::melt(as.table(x)))
+    #Get the list of methods
+    method_list <- names(cm_df)
+
+    #Add method names to the data frames
+    cm_dfm <- lapply(1:length(method_list),
+                  function(x) {cm_df[[x]]["method"] <- method_list[x];
+                  cm_df[[x]]})
+
+    #Combine all data frames into one
+    cm_dfm_long <- do.call("rbind",
+                           cm_dfm)
+
+    #Add column names before saving
+    colnames(cm_dfm_long) <- c("Prediction", "Reference", "Value", "Method")
+
+    #Save data in a text file
+    write.table(cm_dfm_long,
+                file = "Confusion_matrices.txt",
+                sep = "\t",
+                quote = FALSE,
+                row.names = FALSE)
+
+  }
+  }
+
+  return(pred_list)
+
+
+
+
 }
