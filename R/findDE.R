@@ -86,12 +86,14 @@ if(save.tophits == TRUE){
   if(nrow(results_DE) < n.top){
   write.table(results_DE[1: nrow(results_DE),],
               file = "TopHits.txt",
-              sep = "\t")
+              sep = "\t",
+              quote = FALSE)
   print(results_DE[1: nrow(results_DE),])
   }else{
   write.table(results_DE[1: n.top,],
               file = "TopHits.txt",
-              sep = "\t")
+              sep = "\t",
+              quote = FALSE)
   print(results_DE[1: n.top,])
   }
 }else{
