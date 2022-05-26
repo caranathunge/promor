@@ -23,5 +23,7 @@ Imports:
     statmod,
     pcaMethods,
     VIM,
-    missForest
+    missForest,
+    caret,
+    RColorBrewer
 LazyData: true
