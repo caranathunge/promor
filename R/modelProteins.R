@@ -201,8 +201,8 @@ pre_process <- function(fit.df,
 #'
 #' @export
 rem_predictor <- function(model.df, rem.protein){
-  df_rem <- df[, -grep(rem.protein, colnames(df))]
-  message(paste0("Protein ", rem.protein, "has been removed."))
+  df_rem <- model.df[, -grep(rem.protein, colnames(model.df), fixed = TRUE)]
+  message(paste0("Protein ", rem.protein, " has been removed."))
   return(df_rem)
 
 }
