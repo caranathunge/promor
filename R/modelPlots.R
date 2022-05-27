@@ -93,7 +93,7 @@ predictor_plot <- function(df,
                                                face = "bold",
                                                vjust = 0 ))
 
-    return(pred_plot)
+
   }else{
     pred_plot <- ggplot2::ggplot(modeldf_melted,
                                ggplot2::aes(x = Condition,
@@ -132,17 +132,17 @@ predictor_plot <- function(df,
                                              hjust = 0.01,
                                              face = "bold",
                                              vjust = 0 ))
-    return(pred_plot)
+
   }
   if(save == TRUE){
-    ggsave(paste0(file.name,".", file.type),
+    ggplot2::ggsave(paste0(file.name,".", file.type),
            pred_plot,
            dpi = dpi,
            width = plot.width,
            height = plot.height)
   }
 
-
+  return(pred_plot)
 }
 #-------------------------------------------------------------------------------
 #' Variable importance plot
@@ -268,7 +268,7 @@ varimp_plot <- function(model.list,
                        legend.key.height = grid::unit(0.8, "cm"),
                        legend.key.width = grid::unit(0.2, "cm"),
                        legend.title = element_blank(),
-                       legend.text = element_text(size = text.size*0.7,
+                       legend.text = element_text(size = text.size * 0.7,
                                                   face = "bold"),
                        axis.text.y = element_text(size = text.size,
                                                   face = "bold"),
@@ -305,7 +305,7 @@ varimp_plot <- function(model.list,
                           color = Importance)) +
         ggplot2::geom_segment(aes( xend=Protein,
                                    yend = 0),
-                              lwd = 2) +
+                              lwd = text.size * 0.2) +
         ggplot2::geom_point( aes(color = Importance),
                              size=text.size,
                              show.legend = FALSE)+
@@ -321,7 +321,7 @@ varimp_plot <- function(model.list,
                        legend.key.height = grid::unit(0.8, "cm"),
                        legend.key.width = grid::unit(0.2, "cm"),
                        legend.title = element_blank(),
-                       legend.text = element_text(size = text.size*0.7,
+                       legend.text = element_text(size = text.size * 0.7,
                                                   face = "bold"),
                        axis.text.y = element_text(size = text.size,
                                                   face = "bold"),
@@ -366,3 +366,191 @@ varimp_plot <- function(model.list,
 
 
 }
+#-------------------------------------------------------------------------------
+#' Model performance plot
+#' @description This function visualizes model performance
+#'
+#'
+#' @author Chathurani Ranathunge
+#'
+#' @importFrom reshape2 melt
+#' @import ggplot2
+#' @import caret
+#'
+#'
+#' @param model.list A \code{model.list} object from performing
+#' \code{train_models}.
+#' @param type Type of plot to generate. Choices are "box" or "dot."
+#' Default is \code{"box."} for boxplots.
+#' @param text.size Text size for plot labels, axis labels etc. Default is
+#' \code{10}.
+#' @param palette Color palette for plots.
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
+#' working directory.
+#' @param file.name file.name File name to save the plot.
+#' Default is \code{"Performance_plot."}
+#' @param file.type File type to save the plot.
+#' Default is \code{"pdf"}.
+#' @param plot.width Width of the plot. Default is \code{7}.
+#' @param plot.height Height of the plot. Default is \code{7}.
+#' @param dpi Plot resolution. Default is \code{80}.
+#'
+#' @details \itemize{\item \code{performance_plot} uses resampling results from
+#' models included in the \code{model.list} to generate plots of model
+#' performance.
+#' \item The default metrics used for classification based models are "Accuracy"
+#' and "Kappa."
+#' \item These metric types can be changed by providing additional arguments to
+#' the \code{train_models} function. See \code{\link[caret: train]{train}} and
+#' \code{\link[caret: trnControl]{trnControl}} for more information.}
+#'
+#' @return A \code{ggplot2} object.
+#' @seealso
+#' \itemize{
+#' \item \code{train_models}
+#' \item\code{\link[caret: resample]{caret: resamples}}
+#' \item \code{\link[caret:train]{caret: train}}
+#' \item \code{\link[caret:trnControl]{caret: trnControl}}
+#' }
+#' @examples
+#' \dontrun{
+#'
+#' ##Train models using default settings
+#' model_list <- train_models(split_df)
+#'
+#' ## Generate box plots to visualize performance of different methods
+#' performance_plot(model_list)
+#'
+#' ## Generate dot plots
+#' performance_plot(model_list, type = "dot")
+#'  }
+#' @export
+performance_plot <- function(model.list,
+                             type = "box",
+                             text.size = 10,
+                             palette,
+                             save = FALSE,
+                             file.name = "Performance_plot",
+                             file.type = "pdf",
+                             plot.width = 7,
+                             plot.height = 7,
+                             dpi = 80){
+
+  #Extract resample data from the model.list object
+  resample_data <- resamples(model.list)
+
+  #Convert the performance data into long-form format for plotting.
+  plot_data <- reshape2::melt(resample_data$values)
+
+  #Extract method and metric information from the variable column and add them
+  #to new columns.
+  plot_data$method <- sapply(strsplit(as.character(plot_data$variable),
+                                      '~'),
+                             "[", 1)
+  plot_data$metric <- sapply(strsplit(as.character(plot_data$variable),
+                                      '~'),
+                             "[", 2)
+
+  #Remove the variable column as it is no longer needed.
+  plot_data$variable <- NULL
+
+  if(type == "dot"){
+    #Make dot plots
+    perform_plot <- ggplot2::ggplot(plot_data, aes(x = method,
+                                                   y = value,
+                                                   color = method)) +
+      ggplot2::stat_summary(fun.data = "mean_se",
+                   lwd = text.size * 0.1)+
+      ggplot2::stat_summary(fun = mean,
+                   geom = "pointrange",
+                   size = text.size * 0.3,
+                   pch = 16,
+                   position = "identity")+
+
+      ggplot2::coord_flip()+
+      ggplot2::facet_wrap( ~metric, scales = "free")+
+      ggplot2::xlab("") +
+      ggplot2::ylab("")+
+      ggplot2::scale_color_viridis_d(option = "inferno",
+                                     begin = 0.2,
+                                     end = 0.8)+
+      promor::promor_theme+
+      ggplot2::theme(panel.border = element_rect(fill = NA,
+                                                 colour = "grey",
+                                                 size = 0.5),
+                     text = element_text(size = text.size),
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     axis.line.x = element_line(size = 0.1),
+                     axis.line.y = element_line(size = 0.1),
+                     axis.ticks.x = element_line(size = 0.1),
+                     axis.ticks.y = element_line(size = 0.1),
+                     axis.title.x = element_text(size = text.size),
+                     axis.title.y = element_text(size = text.size),
+                     axis.line = element_line(colour = "grey",
+                                              size = 0.5),
+                     strip.background = element_blank(),
+                     strip.text = element_text(size = text.size,
+                                               hjust = 0.01,
+                                               face = "bold",
+                                               vjust = 0 ))
+
+
+    }else{
+    #Make box plots
+    perform_plot <- ggplot2::ggplot(plot_data,
+                                    ggplot2::aes(x = method,
+                                                 y = value,
+                                                 color = method)) +
+      geom_boxplot(width = text.size * 0.03,
+                   alpha = 0.7,
+                   outlier.shape = 1,
+                   outlier.stroke = 0.1,
+                   outlier.size = text.size * 0.04,
+                   outlier.color = "grey30",
+                   lwd = text.size * 0.1)+
+      ggplot2::facet_wrap( ~metric,
+                           scales = "free")+
+      ggplot2::coord_flip()+
+      ggplot2::xlab("") +
+      ggplot2::ylab("")+
+      ggplot2::scale_color_viridis_d(option = "inferno",
+                                     begin = 0.2,
+                                     end = 0.8)+
+      promor::promor_theme+
+      ggplot2::theme(panel.border = element_rect(fill = NA,
+                                                 colour = "grey",
+                                                 size = 0.5),
+                     text = element_text(size = text.size),
+                     legend.title = element_blank(),
+                     legend.position = "none",
+                     axis.line.x = element_line(size = 0.1),
+                     axis.line.y = element_line(size = 0.1),
+                     axis.ticks.x = element_line(size = 0.1),
+                     axis.ticks.y = element_line(size = 0.1),
+                     axis.title.x = element_text(size = text.size),
+                     axis.title.y = element_text(size = text.size),
+                     axis.line = element_line(colour = "grey",
+                                              size = 0.5),
+                     strip.background = element_blank(),
+                     strip.text = element_text(size = text.size,
+                                               hjust = 0.01,
+                                               face = "bold",
+                                               vjust = 0 ))
+
+    }
+
+
+
+  if(save == TRUE){
+    ggplot2::ggsave(paste0(file.name,".", file.type),
+           perform_plot,
+           dpi = dpi,
+           width = plot.width,
+           height = plot.height)
+  }
+  return(perform_plot)
+}
+
+
+
