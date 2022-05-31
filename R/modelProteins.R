@@ -409,11 +409,11 @@ train_models <- function(split.df,
 #' probabilities that can be used to generate ROC curves with \code{ROC_plot}.}
 #'
 #' @return
-#' \itemize{\item If \code{type = "prob"}, a list of data frames containing
-#' class probabilities for each method in the \code{model.list}
-#' will be returned.
-#' \item If \code{type = "raw"}, a list of factors containing class
-#' predictions for each method will be returned.}
+#' \itemize{\item \code{probability.list}: If \code{type = "prob"}, a list of
+#' data frames containing class probabilities for each method in the
+#' \code{model.list} will be returned.
+#' \item \code{prediction.list}: If \code{type = "raw"}, a list of factors
+#' containing class predictions for each method will be returned.}
 #'
 #' @seealso
 #' \itemize{
