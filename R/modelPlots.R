@@ -553,4 +553,79 @@ performance_plot <- function(model.list,
 }
 
 
-
+#-------------------------------------------------------------------------------
+#' ROC plot
+#' @description This function visualizes model performance
+#'
+#'
+#' @author Chathurani Ranathunge
+#'
+#' @importFrom reshape2 melt
+#' @import ggplot2
+#' @import caret
+#'
+#'
+#' @param model.list A \code{model.list} object from performing
+#' \code{train_models}.
+#' @param type Type of plot to generate. Choices are "box" or "dot."
+#' Default is \code{"box."} for boxplots.
+#' @param text.size Text size for plot labels, axis labels etc. Default is
+#' \code{10}.
+#' @param palette Color palette for plots.
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
+#' working directory.
+#' @param file.name file.name File name to save the plot.
+#' Default is \code{"Performance_plot."}
+#' @param file.type File type to save the plot.
+#' Default is \code{"pdf"}.
+#' @param plot.width Width of the plot. Default is \code{7}.
+#' @param plot.height Height of the plot. Default is \code{7}.
+#' @param dpi Plot resolution. Default is \code{80}.
+#'
+#' @details \itemize{\item \code{performance_plot} uses resampling results from
+#' models included in the \code{model.list} to generate plots of model
+#' performance.
+#' \item The default metrics used for classification based models are "Accuracy"
+#' and "Kappa."
+#' \item These metric types can be changed by providing additional arguments to
+#' the \code{train_models} function. See \code{\link[caret: train]{train}} and
+#' \code{\link[caret: trnControl]{trnControl}} for more information.}
+#'
+#' @return A \code{ggplot2} object.
+#' @seealso
+#' \itemize{
+#' \item \code{train_models}
+#' \item\code{\link[caret: resample]{caret: resamples}}
+#' \item \code{\link[caret:train]{caret: train}}
+#' \item \code{\link[caret:trnControl]{caret: trnControl}}
+#' }
+#' @examples
+#' \dontrun{
+#'
+#' ##Train models using default settings
+#' model_list <- train_models(split_df)
+#'
+#' ## Generate box plots to visualize performance of different methods
+#' performance_plot(model_list)
+#'
+#' ## Generate dot plots
+#' performance_plot(model_list, type = "dot")
+#'  }
+#response=split_data$test$Condition,
+#levels=rev(levels(split_data$test$Condition)))
+#
+#roc_list <- lapply(test_pred, function(x) pROC::roc(x[[1]],
+#                                                    response=split_data$test$Condition,
+#                                                    levels=rev(levels(split_data$test$Condition))))
+#
+#
+#sens_list<-lapply(roc_list, function(x) x$sensitivities)
+#spec_list<-lapply(roc_list, function(x) x$specificities)
+#sens <- do.call("rbind",sens_list)
+#sepc <- do.call("rbind", spec_list)
+#sens <- reshape2::melt(sens)
+#sepc <- reshape2::melt(sepc)
+#names(sens) <- c("method", "number", "sensitivity")
+#names(sepc) <- c("method", "number", "specificity")
+#
+#roc_plotdata <- merge(sens, sepc)
