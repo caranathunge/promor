@@ -153,7 +153,7 @@ predictor_plot <- function(df,
 #'
 #' @importFrom reshape2 melt
 #' @import ggplot2
-#' @import RColorBrewer
+#' @importFrom viridis scale_color_viridis
 #'
 #'
 #' @param model.list A \code{model.list} object from performing
@@ -164,7 +164,10 @@ predictor_plot <- function(df,
 #' Default is \code{"lollipop."}
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for plots.
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param nrow The number of rows to print the plots.
 #' @param ncol The number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
@@ -212,7 +215,7 @@ varimp_plot <- function(model.list,
                         ...,
                         type = "lollipop",
                         text.size = 10,
-                        palette = "YlGnBu",
+                        palette = "viridis",
                         nrow,
                         ncol,
                         save = FALSE,
@@ -288,7 +291,8 @@ varimp_plot <- function(model.list,
                        panel.border = element_rect(fill = NA,
                                                    colour = "grey",
                                                    size = 0.5))+
-        ggplot2::scale_fill_viridis_c(direction = -1)+
+        viridis::scale_fill_viridis(option = palette,
+                                     direction = -1)+
         xlab("")
     )
     #Add plot titles
@@ -341,7 +345,8 @@ varimp_plot <- function(model.list,
                        panel.border = element_rect(fill = NA,
                                                    colour = "grey",
                                                    size = 0.5))+
-        ggplot2::scale_color_viridis_c(direction  = -1)+
+          viridis::scale_color_viridis(option = palette,
+                                       direction = -1)+
         xlab(""))
     #Add plot titles
     vi_plots <- lapply(seq_along(vi_plots), function(i) {
@@ -376,6 +381,7 @@ varimp_plot <- function(model.list,
 #' @importFrom reshape2 melt
 #' @import ggplot2
 #' @import caret
+#' @import viridis
 #'
 #'
 #' @param model.list A \code{model.list} object from performing
@@ -384,7 +390,10 @@ varimp_plot <- function(model.list,
 #' Default is \code{"box."} for boxplots.
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for plots.
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the plot.
@@ -428,13 +437,14 @@ varimp_plot <- function(model.list,
 performance_plot <- function(model.list,
                              type = "box",
                              text.size = 10,
-                             palette,
+                             palette = "viridis",
                              save = FALSE,
                              file.name = "Performance_plot",
                              file.type = "pdf",
                              plot.width = 7,
                              plot.height = 7,
                              dpi = 80){
+
 
   #Extract resample data from the model.list object
   resample_data <- resamples(model.list)
@@ -454,16 +464,21 @@ performance_plot <- function(model.list,
   #Remove the variable column as it is no longer needed.
   plot_data$variable <- NULL
 
+  #Assign palette color
+  pal.col <- set_col(palette)
+
+  #Make plots
   if(type == "dot"){
     #Make dot plots
     perform_plot <- ggplot2::ggplot(plot_data, aes(x = method,
                                                    y = value,
-                                                   color = method)) +
+                                                   col = pal.col
+                                                   )) +
       ggplot2::stat_summary(fun.data = "mean_se",
                    lwd = text.size * 0.1)+
       ggplot2::stat_summary(fun = mean,
                    geom = "pointrange",
-                   size = text.size * 0.3,
+                   size = text.size * 0.1,
                    pch = 16,
                    position = "identity")+
 
@@ -471,9 +486,6 @@ performance_plot <- function(model.list,
       ggplot2::facet_wrap( ~metric, scales = "free")+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_color_viridis_d(option = "inferno",
-                                     begin = 0.2,
-                                     end = 0.8)+
       promor::promor_theme+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                  colour = "grey",
@@ -501,7 +513,7 @@ performance_plot <- function(model.list,
     perform_plot <- ggplot2::ggplot(plot_data,
                                     ggplot2::aes(x = method,
                                                  y = value,
-                                                 color = method)) +
+                                                 col = pal.col)) +
       geom_boxplot(width = text.size * 0.03,
                    alpha = 0.7,
                    outlier.shape = 1,
@@ -514,9 +526,6 @@ performance_plot <- function(model.list,
       ggplot2::coord_flip()+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_color_viridis_d(option = "inferno",
-                                     begin = 0.2,
-                                     end = 0.8)+
       promor::promor_theme+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                  colour = "grey",
@@ -555,7 +564,8 @@ performance_plot <- function(model.list,
 
 #-------------------------------------------------------------------------------
 #' ROC plot
-#' @description This function visualizes model performance
+#' @description This function generates Receiver Operator Characteristic (ROC)
+#' curves to evaluate models
 #'
 #'
 #' @author Chathurani Ranathunge
@@ -563,69 +573,153 @@ performance_plot <- function(model.list,
 #' @importFrom reshape2 melt
 #' @import ggplot2
 #' @import caret
+#' @importFrom pROC roc
+#' @importFrom viridis scale_color_viridis
 #'
 #'
-#' @param model.list A \code{model.list} object from performing
-#' \code{train_models}.
-#' @param type Type of plot to generate. Choices are "box" or "dot."
-#' Default is \code{"box."} for boxplots.
+#' @param probability.list A \code{probability.list} object from performing
+#' \code{test_models} with \code{type = "prob"}.
+#' @param split.df A \code{split.df} object from performing \code{split_df}
+#' @param ... Additional arguments to be passed on to
+#' \code{\link[pROC: roc]{roc}}.
+#' @param multiple.plots Logical. If \code{FALSE} plots all ROC curves
+#' representing algorithms included in the \code{probability.list} in a single
+#' plot.
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for plots.
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the plot.
-#' Default is \code{"Performance_plot."}
+#' Default is \code{"ROC_plot."}
 #' @param file.type File type to save the plot.
 #' Default is \code{"pdf"}.
 #' @param plot.width Width of the plot. Default is \code{7}.
 #' @param plot.height Height of the plot. Default is \code{7}.
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
-#' @details \itemize{\item \code{performance_plot} uses resampling results from
-#' models included in the \code{model.list} to generate plots of model
-#' performance.
-#' \item The default metrics used for classification based models are "Accuracy"
-#' and "Kappa."
-#' \item These metric types can be changed by providing additional arguments to
-#' the \code{train_models} function. See \code{\link[caret: train]{train}} and
-#' \code{\link[caret: trnControl]{trnControl}} for more information.}
+#' @details \itemize{\item \code{roc_plot} first uses probabilities generated
+#' during \code{test_models} to build a ROC object.
+#' \item Next, relevant information is extracted from the ROC object to
+#' plot the ROC curves.}
 #'
 #' @return A \code{ggplot2} object.
 #' @seealso
 #' \itemize{
-#' \item \code{train_models}
-#' \item\code{\link[caret: resample]{caret: resamples}}
-#' \item \code{\link[caret:train]{caret: train}}
-#' \item \code{\link[caret:trnControl]{caret: trnControl}}
+#' \item \code{test_models}
+#' \item\code{\link[pROC: roc]{pROC: roc}}
 #' }
 #' @examples
 #' \dontrun{
 #'
-#' ##Train models using default settings
-#' model_list <- train_models(split_df)
+#' ##Test models
+#' model_probs <- test_models(model.list = model_fit, split.df = split_df,
+#'                           type = "prob")
 #'
-#' ## Generate box plots to visualize performance of different methods
-#' performance_plot(model_list)
+#' ## Plot all ROC curves in one plot
+#' roc_plot(model_probs, multiple.plots = FALSE)
 #'
-#' ## Generate dot plots
-#' performance_plot(model_list, type = "dot")
+#' ## Plot ROC curves separately for each algorithm
+#' roc_plot(model_probs)
 #'  }
-#response=split_data$test$Condition,
-#levels=rev(levels(split_data$test$Condition)))
-#
-#roc_list <- lapply(test_pred, function(x) pROC::roc(x[[1]],
-#                                                    response=split_data$test$Condition,
-#                                                    levels=rev(levels(split_data$test$Condition))))
-#
-#
-#sens_list<-lapply(roc_list, function(x) x$sensitivities)
-#spec_list<-lapply(roc_list, function(x) x$specificities)
-#sens <- do.call("rbind",sens_list)
-#sepc <- do.call("rbind", spec_list)
-#sens <- reshape2::melt(sens)
-#sepc <- reshape2::melt(sepc)
-#names(sens) <- c("method", "number", "sensitivity")
-#names(sepc) <- c("method", "number", "specificity")
-#
-#roc_plotdata <- merge(sens, sepc)
+#' @export
+roc_plot <- function(probability.list,
+                     split.df,
+                     ... ,
+                     multiple.plots = TRUE,
+                     text.size = 10,
+                     palette = "viridis",
+                     save = FALSE,
+                     file.name = "ROC_plot",
+                     file.type = "pdf",
+                     plot.width = 7,
+                     plot.height = 7,
+                     dpi = 80){
+
+  #Generate ROC objects and add them to a list
+  roc_list <- lapply(probability.list,
+                     function(x) pROC::roc(x[[1]],
+                                           response = split.df$test$Condition,
+                                           percent = TRUE,
+                                           ...))
+
+
+  #Extract auc values and create a dataframe for plot labels
+  auc_list <- lapply(roc_list, function(x) round(x$auc, 1))
+  auc_labels <- as.data.frame(do.call("rbind", auc_list))
+  auc_labels$method <- rownames(auc_labels)
+  rownames(auc_labels) <- NULL
+  names(auc_labels) <- c("auc", "method")
+
+  #Extract sensitivities and specificities from ROC object and make a data frame
+  # for plotting
+  sens_list <- lapply(roc_list, function(x) x$sensitivities)
+  sens <- do.call("rbind",sens_list)
+  sens_melted <- reshape2::melt(sens)
+  names(sens_melted) <- c("method", "number", "sensitivity")
+
+  spec_list <- lapply(roc_list, function(x) x$specificities)
+  spec <- do.call("rbind", spec_list)
+  spec_melted <- reshape2::melt(spec)
+  names(spec_melted) <- c("method", "number", "specificity")
+
+  #Merge and create the final data frame for plotting
+  roc_plotdata <- merge(sens_melted, spec_melted)
+
+  #Order data frame by sensitivity. Important for geom_step
+  roc_plotdata <- roc_plotdata[order(roc_plotdata$method,
+                                     roc_plotdata$sensitivity),]
+
+  #Make ROC curves
+
+  rocplots <- ggplot2::ggplot(roc_plotdata, aes(x = specificity,
+                                        y = sensitivity,
+                                        colour = method)) +
+    ggplot2::geom_step(direction = "hv", lwd = text.size * 0.1)+
+    ggplot2::scale_x_reverse(lim=c(100, 0),)+
+    ggplot2::xlab("Specificity (%)") +
+    ggplot2::ylab("Sensitivity (%)")+
+    viridis::scale_color_viridis(discrete = TRUE, option = palette)+
+    ggplot2::theme_bw()+
+    ggplot2::geom_abline(intercept = 100,
+                slope = 1,
+                color='grey60',
+                linetype = 2,
+                show.legend = FALSE)
+
+
+  if(multiple.plots == FALSE){
+  rocplots1 <- rocplots + ggplot2::theme(legend.title = element_blank())
+
+  }else{
+  rocplots1 <- rocplots +
+    ggplot2::theme(legend.position =  "none",
+            strip.background = element_blank(),
+            strip.text = element_text(size = text.size,
+                                      hjust = 0.01,
+                                      face = "bold",
+                                      vjust = 0 ))+
+    ggplot2::facet_wrap(~method)+
+    ggplot2::geom_label(data = auc_labels,
+                 aes(label = paste0("AUC: ", auc, "%")),
+                 x = Inf,
+                 y = -Inf,
+                 hjust = 1.2,
+                 vjust = -1,
+                 inherit.aes = FALSE,
+                 label.size = NA)
+  }
+  if(save == TRUE){
+    ggplot2::ggsave(paste0(file.name,".", file.type),
+                    rocplots1,
+                    dpi = dpi,
+                    width = plot.width,
+                    height = plot.height)
+  }
+
+  return(rocplots1)
+
+}
