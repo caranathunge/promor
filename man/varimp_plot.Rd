@@ -9,7 +9,7 @@ varimp_plot(
   ...,
   type = "lollipop",
   text.size = 10,
-  palette = "YlGnBu",
+  palette = "viridis",
   nrow,
   ncol,
   save = FALSE,
@@ -33,7 +33,10 @@ Default is \code{"lollipop."}}
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{palette}{Color palette for plots.}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{nrow}{The number of rows to print the plots.}
 

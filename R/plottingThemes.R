@@ -1,4 +1,5 @@
 #' @import ggplot2
+#' @import viridis
 #' @export
 promor_theme <- ggplot2::theme_classic(base_size = 12,
                                        base_family = "sans")+
@@ -28,14 +29,24 @@ promor_facet_theme <- ggplot2::theme_classic(base_size = 12,
                                            face = "bold",
                                            vjust = 0 ))
 
-
-arctic <- c("#0F1D2B", "#17456B","#419FB7", "#F5F6EE", "#FFB000")
-
-sunflower <- c("#004358", "#1F8A70","#BEDB39", "#FFE11A", "#FD7400")
-
-moss <- c("#D9C5C9", "#0F261E","#1A4032", "#688C7B", "#94A681")
-
-islander <- c("#5E0042", "#2C2233","#005869", "#00856A", "#8DB500")
-
-chesapeake <- c("#FFBC67", "#DA727E","#AC6C82", "#685C79", "#455C7B")
-
+set_col <- function(palette){
+  #Assign palette
+  if (palette == "inferno"){
+    pal.col = viridis::inferno(15)
+    } else if (palette == "magma"){
+      pal.col = viridis::magma(18)
+      } else if (palette == "plasma"){
+        pal.col = viridis::plasma(134)
+        } else if (palette == "cividis"){
+          pal.col = viridis::cividis(11)
+          } else if (palette == "rocket"){
+            pal.col = viridis::rocket(14)
+            } else if (palette == "mako"){
+              pal.col = viridis::mako(67)
+              } else if (palette == "turbo"){
+                pal.col = viridis::turbo(80)
+                } else {
+                  pal.col = viridis::viridis(79)
+                  }
+return(pal.col)
+}

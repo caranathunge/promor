@@ -8,7 +8,7 @@ performance_plot(
   model.list,
   type = "box",
   text.size = 10,
-  palette,
+  palette = "viridis",
   save = FALSE,
   file.name = "Performance_plot",
   file.type = "pdf",
@@ -27,7 +27,10 @@ Default is \code{"box."} for boxplots.}
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{palette}{Color palette for plots.}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
