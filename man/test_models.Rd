@@ -30,11 +30,11 @@ See below for more details.}
 \code{\link[stats:predict]{predict}}.}
 }
 \value{
-\itemize{\item If \code{type = "prob"}, a list of data frames containing
-class probabilities for each method in the \code{model.list}
-will be returned.
-\item If \code{type = "raw"}, a list of factors containing class
-predictions for each method will be returned.}
+\itemize{\item \code{probability.list}: If \code{type = "prob"}, a list of
+data frames containing class probabilities for each method in the
+\code{model.list} will be returned.
+\item \code{prediction.list}: If \code{type = "raw"}, a list of factors
+containing class predictions for each method will be returned.}
 }
 \description{
 This function can be used to test models generated using
