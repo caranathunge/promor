@@ -12,8 +12,7 @@ heatmap_na(
   reorder.y = FALSE,
   x.FUN = mean,
   y.FUN = mean,
-  col.na = "black",
-  col.val = "grey",
+  palette = "viridis",
   text.size = 10,
   save = FALSE,
   file.type = "pdf",
@@ -44,9 +43,10 @@ include \code{mean} and \code{sum}. Default is \code{mean}.}
 \item{y.FUN}{Function to reorder proteins along the y axis. Possible options
 include \code{mean} and \code{sum}. Default is \code{mean}.}
 
-\item{col.na}{Color assigned for missing values (NAs). Default is "Black."}
-
-\item{col.val}{Color assigned for valid values. Default is "Grey."}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{text.size}{Text size for axis labels. Default is \code{10}.}
 

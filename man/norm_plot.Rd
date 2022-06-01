@@ -9,7 +9,7 @@ norm_plot(
   normalized,
   type = "box",
   text.size = 10,
-  palette = arctic,
+  palette = "viridis",
   save = FALSE,
   file.name = "Norm_plot",
   file.type = "pdf",
@@ -32,7 +32,10 @@ is \code{"box."}}
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{palette}{Color palette for box plots. Default is \code{"YlGnBu."}}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}

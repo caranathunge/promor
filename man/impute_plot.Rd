@@ -9,7 +9,7 @@ impute_plot(
   imputed,
   global = TRUE,
   text.size = 10,
-  palette = arctic,
+  palette = "viridis",
   nrow,
   ncol,
   save = FALSE,
@@ -33,7 +33,10 @@ produced. If \code{FALSE}, sample-wise density plots are produced.}
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{palette}{Color palette for the dots/points. Default is \code{arctic}}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{nrow}{Required if \code{global = FALSE} to indicate the number of rows
 to print the plots.}

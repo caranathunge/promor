@@ -11,7 +11,7 @@ heatmap_de(
   FC = 1,
   sig = "adjP",
   n.top = 20,
-  palette = "YlGnBu",
+  palette = "viridis",
   text.size = 10,
   save = FALSE,
   file.name = "HeatmapDE",
@@ -38,7 +38,10 @@ differential expression. Default is 1.}
 
 \item{n.top}{Number of top hits to include in the heat map.}
 
-\item{palette}{Color palette for plots. Default is \code{"YlGnBu."}}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{text.size}{Text size for axis text, labels etc.}
 

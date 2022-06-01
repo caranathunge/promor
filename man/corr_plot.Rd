@@ -10,12 +10,10 @@ corr_plot(
   rep2,
   save = FALSE,
   file.type = "pdf",
-  palette = arctic,
-  dot.size = 0.5,
+  palette = "viridis",
   text.size = 5,
   nrow = 4,
   ncol = 4,
-  label.size = 1,
   dpi = 80
 )
 }
@@ -34,9 +32,10 @@ working directory.}
 \item{file.type}{File type to save the scatter plots.
 Default is \code{"pdf"}.}
 
-\item{palette}{Color palette for the dots/points. Default is \code{arctic}}
-
-\item{dot.size}{Size of the dots/points. Default is \code{0.5}.}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{text.size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
@@ -46,8 +45,6 @@ Default is \code{4}.}
 
 \item{ncol}{Numerical. Number of plots to print in a column in a single
 page. Default is \code{4}.}
-
-\item{label.size}{Size of the point labels. Default is \code{1}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 }

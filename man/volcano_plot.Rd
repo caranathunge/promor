@@ -7,24 +7,21 @@
 volcano_plot(
   fit.df,
   adj.method = "BH",
+  sig = "adjP",
   cutoff = 0.05,
   FC = 1,
   line.FC = TRUE,
   line.P = TRUE,
+  palette = "viridis",
+  text.size = 10,
+  label.top = FALSE,
+  n.top = 10,
+  save = FALSE,
   file.name = "Volcano_plot",
   file.type = "pdf",
   plot.height = 7,
   plot.width = 7,
-  sig = "adjP",
-  dot.size = 0.5,
-  nsig.col = "grey60",
-  sig.col = "#ffb000",
-  ln.col = "#419fb7",
-  text.size = 10,
-  label.top = FALSE,
-  n.top = 10,
-  dpi = 80,
-  save = FALSE
+  dpi = 80
 )
 }
 \arguments{
@@ -32,6 +29,9 @@ volcano_plot(
 
 \item{adj.method}{Method used for adjusting the p-values for multiple
 testing. Default is \code{"BH."}.}
+
+\item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
+(default) for adjusted p-value or \code{"P"} for p-value.}
 
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
@@ -45,27 +45,10 @@ to indicate the \code{FC} threshold in the plot.}
 \item{line.P}{Logical. If \code{TRUE}(default), a dotted line will be shown
 to indicate the p-value \code{cutoff.}}
 
-\item{file.name}{File name to save the plot. Default is "Volcano_plot."}
-
-\item{file.type}{File type to save the plot. Default is \code{"pdf".}}
-
-\item{plot.height}{Height of the plot. Default is 7.}
-
-\item{plot.width}{Width of the plot. Default is 7.}
-
-\item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
-(default) for adjusted p-value or \code{"P"} for p-value.}
-
-\item{dot.size}{Size of the dots/points. Default is \code{0.5}.}
-
-\item{nsig.col}{Color of the dots representing significant hits. Default is
-"grey60."}
-
-\item{sig.col}{Color of dots representing non-significant hits. Default is
-"#ffb000."}
-
-\item{ln.col}{Line color for lines when \code{line.FC = TRUE} and/or
-\code{line.P = TRUE.} Default is "#419fb7."}
+\item{palette}{Viridis color palette option for plots. Default is
+\code{"viridis"}. See
+\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+for available options.}
 
 \item{text.size}{Text size for axis text, labels etc.}
 
@@ -75,10 +58,18 @@ dots to indicate protein names.}
 \item{n.top}{The number of top hits to label with protein name when
 \code{label.top = TRUE.} Default is \code{10}.}
 
-\item{dpi}{Plot resolution. Default is \code{80.}}
-
 \item{save}{Logical. If \code{TRUE}, saves a copy of the plot in the
 working directory.}
+
+\item{file.name}{File name to save the plot. Default is "Volcano_plot."}
+
+\item{file.type}{File type to save the plot. Default is \code{"pdf".}}
+
+\item{plot.height}{Height of the plot. Default is 7.}
+
+\item{plot.width}{Width of the plot. Default is 7.}
+
+\item{dpi}{Plot resolution. Default is \code{80.}}
 }
 \value{
 A \code{ggplot2} plot object.
