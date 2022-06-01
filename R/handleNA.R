@@ -8,6 +8,7 @@
 #' @importFrom reshape2 melt
 #' @import ggplot2
 #' @importFrom stats reorder
+#' @import viridis
 #'
 #' @param df A \code{raw.df} object (output from \code{\link{create_df}}).
 #' @param protein.range The range of proteins to plot. Default is \code{ALL},
@@ -22,8 +23,10 @@
 #' include \code{mean} and \code{sum}. Default is \code{mean}.
 #' @param y.FUN Function to reorder proteins along the y axis. Possible options
 #' include \code{mean} and \code{sum}. Default is \code{mean}.
-#' @param col.na Color assigned for missing values (NAs). Default is "Black."
-#' @param col.val Color assigned for valid values. Default is "Grey."
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param text.size Text size for axis labels. Default is \code{10}.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
@@ -65,8 +68,7 @@ heatmap_na <- function(df,
                        reorder.y = FALSE,
                        x.FUN = mean,
                        y.FUN = mean,
-                       col.na = "black",
-                       col.val = "grey",
+                       palette = "viridis",
                        text.size = 10,
                        save = FALSE,
                        file.type = "pdf",
@@ -99,6 +101,9 @@ heatmap_na <- function(df,
   colnames(hmap_df) <- c( "sample",
                           "value",
                           "protgroup")
+  #Set colors
+  col.na <- set_col(palette, n = 1, direction = -1)
+  col.val <- set_col(palette, n = 1, direction = 1)
 
   #Options for arranging the rows and the columns of the heat map
   if(reorder.x == TRUE & reorder.y == TRUE){
@@ -145,13 +150,14 @@ heatmap_na <- function(df,
     ggplot2::scale_fill_gradient(high = col.val,
                                  low = col.val,
                                  na.value = col.na)+
+    coord_equal()+
     ggplot2::theme(plot.background = element_blank(),
                    panel.border = element_blank(),
                    panel.background = element_blank(),
                    axis.text.x = element_text(angle = 90,
                                               size = text.size),
                    axis.text.y = element_text(size = text.size),
-                   axis.ticks.x = element_blank(),
+                   axis.ticks = element_blank(),
                    legend.position = "none")+
     ggplot2::xlab("") + ggplot2::ylab("")
 
@@ -346,6 +352,7 @@ value <- protgroup <- NULL
 #' missing data imputation on the data.
 #' @importFrom reshape2 melt
 #' @import ggplot2
+#' @import viridis
 #'
 #' @param original A \code{raw.df} object (output of \code{\link{create_df}})
 #' containing missing values.
@@ -355,7 +362,10 @@ value <- protgroup <- NULL
 #' produced. If \code{FALSE}, sample-wise density plots are produced.
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for the dots/points. Default is \code{arctic}
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param nrow Required if \code{global = FALSE} to indicate the number of rows
 #' to print the plots.
 #' @param ncol Required if \code{global = FALSE} to indicate the number of
@@ -402,7 +412,7 @@ impute_plot <- function(original,
                             imputed,
                             global = TRUE,
                             text.size = 10,
-                            palette = arctic,
+                            palette = "viridis",
                             nrow,
                             ncol,
                             save = FALSE,
@@ -442,16 +452,20 @@ impute_plot <- function(original,
                                                        levels = c(
                                                          "Before imputation",
                                                          "After imputation"))),
-                            alpha = 0.45,
-                            lwd = 0.1 )+
+                            alpha = 0.7,
+                            lwd = text.size * 0.02)+
       ggplot2::xlab("Intensity") +
       ggplot2::ylab("Density")+
-      ggplot2::scale_fill_manual(values=c(palette[5],palette[1]))+
+      viridis::scale_fill_viridis(discrete = TRUE,
+                                  option = palette,
+                                  begin = 0.3,
+                                  end = 0.7)+
       promor_theme +
       ggplot2::theme(
                      axis.title.x = element_text(size = text.size),
                      axis.title.y = element_text(size = text.size),
                      axis.text = element_text(size = text.size/2),
+                     legend.position = "bottom",
                      legend.text = element_text(size = text.size))
 
 
@@ -472,12 +486,16 @@ impute_plot <- function(original,
                                                      levels=c(
                                                        "Before imputation",
                                                        "After imputation"))),
-                            alpha =   0.45,
-                            lwd = 0.1 )+
+                            alpha =   0.7,
+                            lwd = text.size * 0.02)+
       ggplot2::xlab("Intensity") + ggplot2::ylab("Density")+
-      ggplot2::scale_fill_manual(values=c(palette[5],palette[1]))+
+      viridis::scale_fill_viridis(discrete = TRUE,
+                                  option = palette,
+                                  begin = 0.3,
+                                  end = 0.7)+
       promor_facet_theme +
       ggplot2::theme(axis.text = element_text(size = text.size/2),
+                     legend.position = "bottom",
                      legend.text = element_text(size = text.size),
                      strip.text = element_text(size = text.size))+
       ggplot2::facet_wrap(~sample,
@@ -488,8 +506,9 @@ impute_plot <- function(original,
       ggplot2::ggsave(paste0(file.name,".", file.type),
                       s_densplot,
                       dpi = dpi,
-                      width = plot.width,
-                      height = plot.height)
+                      width = plot.width * ncol,
+                      height = plot.height * nrow,
+                      units = "cm")
       return(s_densplot)
       }else{
         return(s_densplot)

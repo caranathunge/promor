@@ -111,6 +111,7 @@ return(fit)
 #' @import limma
 #' @import ggplot2
 #' @import ggrepel
+#' @import viridis
 #'
 #' @param fit.df A \code{fit.df} object from performing \code{find_dep}.
 #' @param adj.method Method used for adjusting the p-values for multiple
@@ -123,19 +124,16 @@ return(fit)
 #' to indicate the \code{FC} threshold in the plot.
 #' @param line.P Logical. If \code{TRUE}(default), a dotted line will be shown
 #' to indicate the p-value \code{cutoff.}
-#' @param dot.size Size of the dots/points. Default is \code{0.5}.
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param file.name File name to save the plot. Default is "Volcano_plot."
 #' @param file.type File type to save the plot. Default is \code{"pdf".}
 #' @param plot.height Height of the plot. Default is 7.
 #' @param plot.width Width of the plot. Default is 7.
 #' @param sig Criteria to denote significance. Choices are \code{"adjP"}
 #' (default) for adjusted p-value or \code{"P"} for p-value.
-#' @param nsig.col Color of the dots representing significant hits. Default is
-#' "grey60."
-#' @param sig.col Color of dots representing non-significant hits. Default is
-#' "#ffb000."
-#' @param ln.col Line color for lines when \code{line.FC = TRUE} and/or
-#' \code{line.P = TRUE.} Default is "#419fb7."
 #' @param text.size Text size for axis text, labels etc.
 #' @param label.top Logical. If \code{TRUE} (default), labels are added to the
 #' dots to indicate protein names.
@@ -178,24 +176,22 @@ return(fit)
 #' @export
 volcano_plot <- function(fit.df,
                          adj.method = "BH",
+                         sig = "adjP",
                          cutoff = 0.05,
                          FC = 1,
                          line.FC = TRUE,
                          line.P = TRUE,
+                         palette = "viridis",
+                         text.size = 10,
+                         label.top = FALSE,
+                         n.top = 10,
+                         save = FALSE,
                          file.name = "Volcano_plot",
                          file.type = "pdf",
                          plot.height = 7,
                          plot.width = 7,
-                         sig = "adjP",
-                         dot.size = 0.5,
-                         nsig.col = "grey60",
-                         sig.col = "#ffb000",
-                         ln.col = "#419fb7",
-                         text.size = 10,
-                         label.top = FALSE,
-                         n.top = 10,
-                         dpi = 80,
-                         save = FALSE){
+                         dpi = 80
+                         ){
 
 #Set global variables to NULL
 logFC <- P.Value <- DEP <- DEAP <- NULL
@@ -215,29 +211,33 @@ res_DE$DEP <- res_DE$P.Value < cutoff & abs(res_DE$logFC) > FC
   if(sig == "P"){
     res_DE <- res_DE[order(-res_DE$DEP,res_DE$adj.P.Val),]
     DE_volcanoplot <- ggplot2::ggplot(res_DE,
-                                      ggplot2::aes(x = logFC,
-                                                   y = -log10(P.Value),
-                                                   colour = DEP)) +
-      ggplot2::geom_point(ggplot2::aes(colour = DEP),
-                          alpha = 0.5,
-                          size = dot.size)
+                                      aes(x = logFC,
+                                      y = -log10(P.Value),
+                                      color = DEP)) +
+      ggplot2::geom_point(aes(color = DEP),
+                          alpha = 0.7,
+                          size = text.size * 0.3)
     }else{
       res_DE <- res_DE[order(-res_DE$DEAP,res_DE$adj.P.Val),]
       DE_volcanoplot <- ggplot2::ggplot(res_DE,
-                                        ggplot2::aes(x = logFC,
-                                                     y = -log10(P.Value),
-                                                     colour = DEAP)) +
-        ggplot2::geom_point(ggplot2::aes(colour = DEAP),
-                            alpha = 0.5,
-                            size = dot.size)
+                                        aes(x = logFC,
+                                        y = -log10(P.Value),
+                                        color = DEAP)) +
+        ggplot2::geom_point(aes(color = DEAP),
+                            alpha = 0.7,
+                            size = text.size * 0.3)
     }
 
 
 
 DE_volcanoplot <- DE_volcanoplot +
-    ggplot2::xlab(expression("log" [2]* " fold change"))+
-    ggplot2::ylab( expression("-log" [10]* "(P-value)"))+
-    ggplot2::scale_colour_manual(values = c(nsig.col, sig.col)) +
+  ggplot2::xlab(expression("log" [2]* " fold change"))+
+  ggplot2::ylab( expression("-log" [10]* "(P-value)"))+
+  viridis::scale_color_viridis(discrete = TRUE,
+                               direction = 1,
+                               option = palette,
+                               begin = 0.2,
+                               end = 0.8) +
   ggplot2::theme_bw()+
   ggplot2::theme(legend.position = "",
           text = element_text(size = text.size),
@@ -252,7 +252,7 @@ DE_volcanoplot <- DE_volcanoplot +
 if(line.FC == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
     ggplot2::geom_vline(xintercept = c(-FC, FC),
-                        colour = ln.col,
+                        color = "grey60",
                         linetype = 2,
                         size = 0.5,
                         alpha = 0.8)
@@ -262,7 +262,7 @@ if(line.FC == TRUE){
 if(line.P == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
     ggplot2::geom_hline(yintercept = -log10(cutoff),
-                        colour = ln.col,
+                        color = "grey60",
                         linetype = 2,
                         size = 0.5,
                         alpha = 0.8)
@@ -300,8 +300,8 @@ if (save == TRUE){
 #' @import limma
 #' @import ggplot2
 #' @importFrom reshape2 melt
-#' @importFrom grDevices hcl.colors
 #' @importFrom stats reorder
+#' @import viridis
 #'
 #' @param fit.df A \code{fit.df} object from performing \code{find_dep}.
 #' @param norm.df The \code{norm.df} object from which the \code{fit.df} object
@@ -313,7 +313,10 @@ if (save == TRUE){
 #' @param sig Criteria to denote significance. Choices are \code{"adjP"}
 #' (default) for adjusted p-value or \code{"P"} for p-value.
 #' @param n.top Number of top hits to include in the heat map.
-#' @param palette Color palette for plots. Default is \code{"YlGnBu."}
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param text.size Text size for axis text, labels etc.
 #' @param save Logical. If \code{TRUE}, saves a copy of the plot in
 #' the working directory.
@@ -357,7 +360,7 @@ heatmap_de <- function(fit.df,
                        FC = 1,
                        sig = "adjP",
                        n.top = 20,
-                       palette = "YlGnBu",
+                       palette = "viridis",
                        text.size = 10,
                        save = FALSE,
                        file.name = "HeatmapDE",
@@ -414,27 +417,28 @@ top_intMelted$stage <- sapply(strsplit(
   getElement,1)
 
 top_heatmap <- ggplot2::ggplot(top_intMelted,
-                               #ggplot2::aes(x = reorder(sample, -Intensity),
-                                            #y = reorder(protein, Intensity),
-                                            #fill = Intensity))+
                                ggplot2::aes(x = sample,
-                                            y = protein,
+                                            y = reorder(protein, Intensity),
                                             fill = Intensity))+
-  ggplot2::geom_tile(colour="white", size=0.1)+
+  ggplot2::geom_tile(colour = "white", size = 0.2, stat = "identity")+
+
   ggplot2::labs(x="", y="")+
   ggplot2::scale_y_discrete(expand = c(0, 0),
                             labels  = sapply(
                               strsplit(
                                 as.character(top_intMelted[,"protein"]),';'),
                               getElement,1))+
-  #ggplot2::scale_fill_gradientn(colors = rev(hcl.colors(10, palette))) +
-  ggplot2::scale_fill_distiller(palette = palette, direction = 1)+
+  viridis::scale_fill_viridis(discrete = FALSE,
+                               direction = -1,
+                               option = palette,
+                               begin = 0,
+                               end = 1) +
   ggplot2::theme_grey(base_size = 8)+
   ggplot2::theme(aspect.ratio = 1,
                  legend.position="right",
                  legend.direction="vertical",
-                 legend.key.height = grid::unit(0.8, "cm"),
-                 legend.key.width = grid::unit(0.2, "cm"),
+                 legend.key.height = grid::unit(text.size * 0.08, "cm"),
+                 legend.key.width = grid::unit(text.size * 0.02, "cm"),
                  legend.title = element_blank(),
                  legend.text = element_text(size = text.size*0.7,
                                             face = "bold"),
@@ -448,10 +452,11 @@ top_heatmap <- ggplot2::ggplot(top_intMelted,
                                            vjust = 0 ),
                  plot.background = element_blank(),
                  panel.border = element_blank(),
-                 panel.spacing = unit(text.size * 0.001, "cm"),
+                 panel.spacing = unit(text.size * 0.05, units = "cm"),
+
                  panel.background = element_blank())+
-    ggplot2::facet_wrap(.~stage,
-                        scales = "free_x")
+    ggplot2::facet_grid(.~stage, scales = "free")
+
 
 if (save == TRUE){
   ggplot2::ggsave(paste0(file.name, ".", file.type),

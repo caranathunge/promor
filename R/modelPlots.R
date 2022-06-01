@@ -7,15 +7,18 @@
 #'
 #' @importFrom reshape2 melt
 #' @import ggplot2
-#' @import RColorBrewer
+#' @import viridis
 #'
 #'
-#' @param df A \code{model.df} object from performing \code{pre_process}.
+#' @param model.df A \code{model.df} object from performing \code{pre_process}.
 #' @param type Type of plot to generate. Choices are "box" or "density." Default
 #' is \code{"box."}
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for box plots. Default is \code{"YlGnBu."}
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param nrow The number of rows to print the plots.
 #' @param ncol The number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
@@ -46,10 +49,10 @@
 #'
 #'  }
 #' @export
-predictor_plot <- function(df,
+predictor_plot <- function(model.df,
                       type = "box",
                       text.size = 10,
-                      palette = "YlGnBu",
+                      palette = "viridis",
                       nrow,
                       ncol,
                       save = FALSE,
@@ -60,19 +63,25 @@ predictor_plot <- function(df,
                       plot.height = 7){
 
   #Create plot data
-  modeldf_melted <- reshape2::melt(df)
+  modeldf_melted <- reshape2::melt(model.df)
   colnames(modeldf_melted) <- c("Condition", "Protein", "Intensity")
 
+
+
+  #Make density plots
   if (type == "density"){
-    pred_plot <- ggplot2::ggplot(modeldf_melted, aes(x=Intensity,
-                                                     color=Condition)) +
+    pred_plot <- ggplot2::ggplot(modeldf_melted, aes(x = Intensity,
+                                                     color = Condition)) +
       ggplot2::geom_density(alpha = 0.25,
-                            lwd = text.size * 0.04)+
-      ggplot2::scale_color_brewer(palette=palette)+
+                            lwd = text.size * 0.07)+
+      viridis::scale_color_viridis(discrete = TRUE,
+                                   option = palette,
+                                   begin = 0.3,
+                                   end = 0.7)+
       ggplot2::facet_wrap(~Protein,
-                                   scale = "free",
-                                   nrow = nrow,
-                                   ncol = ncol)+
+                          scale = "free",
+                          nrow = nrow,
+                          ncol = ncol)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
       ggplot2::theme_classic()+
@@ -95,23 +104,27 @@ predictor_plot <- function(df,
 
 
   }else{
+    #Make box plots
     pred_plot <- ggplot2::ggplot(modeldf_melted,
                                ggplot2::aes(x = Condition,
                                             y = Intensity,
-                                            fill = Condition)) +
-      geom_boxplot(color = "grey30",
-                   alpha = 0.7,
+                                            col = Condition)) +
+      geom_boxplot(alpha = 0.7,
                    outlier.shape = 1,
                    outlier.stroke = 0.1,
-                   outlier.size = text.size * 0.04,
-                   outlier.color = "grey30",
-                   lwd = text.size * 0.02)+
-      ggplot2::facet_wrap( ~Protein, scales = "free",
+                   outlier.size = text.size * 0.1,
+                   outlier.color = "grey50",
+                   lwd = text.size * 0.07)+
+      viridis::scale_color_viridis(discrete = TRUE,
+                                   option = palette,
+                                   begin = 0.3,
+                                   end = 0.7)+
+      ggplot2::facet_wrap( ~Protein,
+                           scales = "free",
                            nrow = nrow,
                            ncol = ncol)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_color_brewer(palette = palette)+
       ggplot2::theme_classic()+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                colour = "grey",
@@ -465,22 +478,23 @@ performance_plot <- function(model.list,
   plot_data$variable <- NULL
 
   #Assign palette color
-  pal.col <- set_col(palette)
+  pal_col <- set_col(palette, 1)
 
   #Make plots
   if(type == "dot"){
     #Make dot plots
     perform_plot <- ggplot2::ggplot(plot_data, aes(x = method,
-                                                   y = value,
-                                                   col = pal.col
+                                                   y = value
                                                    )) +
       ggplot2::stat_summary(fun.data = "mean_se",
-                   lwd = text.size * 0.1)+
+                   lwd = text.size * 0.1,
+                   color = pal_col)+
       ggplot2::stat_summary(fun = mean,
                    geom = "pointrange",
                    size = text.size * 0.1,
                    pch = 16,
-                   position = "identity")+
+                   position = "identity",
+                   color = pal_col)+
 
       ggplot2::coord_flip()+
       ggplot2::facet_wrap( ~metric, scales = "free")+
@@ -512,14 +526,15 @@ performance_plot <- function(model.list,
     #Make box plots
     perform_plot <- ggplot2::ggplot(plot_data,
                                     ggplot2::aes(x = method,
-                                                 y = value,
-                                                 col = pal.col)) +
-      geom_boxplot(width = text.size * 0.03,
+                                                 y = value
+                                                 )) +
+      geom_boxplot(color = pal_col,
+                   width = text.size * 0.03,
                    alpha = 0.7,
                    outlier.shape = 1,
                    outlier.stroke = 0.1,
-                   outlier.size = text.size * 0.04,
-                   outlier.color = "grey30",
+                   outlier.size = text.size * 0.1,
+                   outlier.color = "grey50",
                    lwd = text.size * 0.1)+
       ggplot2::facet_wrap( ~metric,
                            scales = "free")+
@@ -682,7 +697,10 @@ roc_plot <- function(probability.list,
     ggplot2::scale_x_reverse(lim=c(100, 0),)+
     ggplot2::xlab("Specificity (%)") +
     ggplot2::ylab("Sensitivity (%)")+
-    viridis::scale_color_viridis(discrete = TRUE, option = palette)+
+    viridis::scale_color_viridis(discrete = TRUE,
+                                 option = palette,
+                                 begin = 0.3,
+                                 end = 0.7)+
     ggplot2::theme_bw()+
     ggplot2::geom_abline(intercept = 100,
                 slope = 1,

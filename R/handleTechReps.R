@@ -7,6 +7,7 @@
 #' @importFrom reshape2 melt
 #' @import ggplot2
 #' @import gridExtra
+#' @import viridis
 #'
 #' @param df A \code{raw.df} object (output of \code{\link{create_df}})
 #' containing technical replicates.
@@ -17,15 +18,16 @@
 #' working directory.
 #' @param file.type File type to save the scatter plots.
 #' Default is \code{"pdf"}.
-#' @param palette Color palette for the dots/points. Default is \code{arctic}
-#' @param dot.size Size of the dots/points. Default is \code{0.5}.
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
 #' @param nrow Numerical. Number of plots to print in a row in a single page.
 #' Default is \code{4}.
 #' @param ncol Numerical. Number of plots to print in a column in a single
 #' page. Default is \code{4}.
-#' @param label.size Size of the point labels. Default is \code{1}.
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
 #' @details
@@ -69,12 +71,10 @@ corr_plot<- function(df,
                      rep2,
                      save = FALSE,
                      file.type= "pdf",
-                     palette = arctic,
-                     dot.size= 0.5,
+                     palette = "viridis",
                      text.size = 5,
                      nrow = 4,
                      ncol = 4,
-                     label.size = 1,
                      dpi = 80){
 
 #Separate the sample id from the column names, remove duplicates, paste _ and
@@ -97,18 +97,21 @@ if(rep1 == 3  || rep2 == 3){
   plot_data <- Filter(function(c) ncol(c) >= 2, sub_df)
 }
 
+#Set colors
+pal_col <- set_col(palette, 1)
+
 #Create a list of scatter plots and print/save
 plot_list<-lapply(1:length(plot_data), function(t)
   ggplot2::ggplot(plot_data[[t]],
   ggplot2::aes(x = plot_data[[t]][,rep1],y = plot_data[[t]][ ,rep2]))+
-  ggplot2::geom_point(col = palette[3], size = dot.size)+
+  ggplot2::geom_point(col = pal_col, size = text.size * 0.1)+
   ggplot2::geom_text(label = sapply(strsplit(rownames(plot_data[[t]]), ";"),
                                     getElement,1),
-                                    hjust="inward",
-                                    vjust="inward",
-                                    size= label.size,
+                                    hjust ="inward",
+                                    vjust ="inward",
+                                    size = text.size * 0.2,
                                     check_overlap = TRUE)+
-  promor_facet_theme +
+  promor::promor_facet_theme +
   ggplot2::theme(axis.ticks = element_blank(),
                  axis.text = element_blank(),
                  plot.title = element_text(size = text.size,
@@ -125,7 +128,7 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
                              ncol = ncol,
                              top=""),
                 dpi = dpi)
-  grid.arrange(grobs=plot_list, newpage = TRUE)
+  #grid.arrange(grobs=plot_list, newpage = TRUE)
 
 }else{
 

@@ -59,6 +59,7 @@ normalize_data <- function(df,
 #' the data with plots.
 #' @importFrom reshape2 melt
 #' @import ggplot2
+#' @import viridis
 
 
 #' @param original A \code{raw.df} object (output of \code{\link{create_df}})
@@ -70,7 +71,10 @@ normalize_data <- function(df,
 #' is \code{"box."}
 #' @param text.size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param palette Color palette for box plots. Default is \code{"YlGnBu."}
+#' @param palette Viridis color palette option for plots. Default is
+#' \code{"viridis"}. See
+#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the plot.
@@ -114,7 +118,7 @@ norm_plot <- function(original,
                       normalized,
                       type = "box",
                       text.size = 10,
-                      palette = arctic,
+                      palette = "viridis",
                       save = FALSE,
                       file.name = "Norm_plot",
                       file.type = "pdf",
@@ -143,7 +147,7 @@ norm_plot <- function(original,
   plot_data$normstage <- factor(plot_data$normstage,
                                 levels = c("Before normalization",
                                            "After normalization"))
-
+  #Make density plots
   if(type == "density"){
     n_plot <- ggplot2::ggplot(plot_data,
                               ggplot2::aes(x = intensity,
@@ -151,7 +155,11 @@ norm_plot <- function(original,
       ggplot2::geom_density(lwd = text.size * 0.02)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      #ggplot2::scale_fill_brewer(palette = palette)+
+      viridis::scale_color_viridis(discrete = TRUE,
+                                   option = palette,
+                                   begin = 0.3,
+                                   end = 0.7,
+                                   direction = -1)+
       ggplot2::theme_classic()+
       ggplot2::theme(legend.position = "none",
                      panel.border = element_rect(fill = NA,
@@ -166,10 +174,6 @@ norm_plot <- function(original,
                      axis.title.y= element_text(size = text.size),
                      axis.line = element_line(colour = "grey",
                                               size = 0.5),
-                     #strip.text = element_text(size= text.size),
-                     #strip.background = element_rect(fill = "grey95",
-                     #colour = "grey",
-                     #size = 0.5))+
                      strip.background = element_blank(),
                      strip.text = element_text(size = text.size,
                                                hjust = 0.01,
@@ -178,7 +182,7 @@ norm_plot <- function(original,
       ggplot2::facet_wrap( ~normstage)
 
 
-    #Default: Boxplots
+  #Default: Boxplots
 
   }else{
 
@@ -198,7 +202,10 @@ norm_plot <- function(original,
       ggplot2::facet_wrap( ~normstage)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::scale_fill_manual(values=c(palette[5],palette[1]))+
+      viridis::scale_fill_viridis(discrete = TRUE,
+                                  option = palette,
+                                  begin = 0.3,
+                                  end = 0.7)+
       ggplot2::theme_classic()+
       ggplot2::theme(panel.border = element_rect(fill = NA,
                                                  colour = "grey",
