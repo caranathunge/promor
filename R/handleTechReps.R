@@ -116,9 +116,7 @@ plot_list<-lapply(1:length(plot_data), function(t)
                  axis.text = element_blank(),
                  plot.title = element_text(size = text.size,
                                            face = "bold",
-                                           colour = "grey20"),
-                 panel.grid.minor = element_blank(),
-                 panel.grid.major = element_blank())+
+                                           colour = "grey20"))+
     ggplot2::ggtitle(gsub("\\_\\d+$","", colnames(plot_data[[t]][1])))
 )
 if(save == TRUE){
@@ -128,7 +126,6 @@ ggplot2::ggsave(paste0("TR",rep1,"vs","TR",rep2, ".",file.type),
                              ncol = ncol,
                              top=""),
                 dpi = dpi)
-  #grid.arrange(grobs=plot_list, newpage = TRUE)
 
 }else{
 

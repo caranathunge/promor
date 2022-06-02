@@ -238,16 +238,10 @@ DE_volcanoplot <- DE_volcanoplot +
                                option = palette,
                                begin = 0.2,
                                end = 0.8) +
-  ggplot2::theme_bw()+
+  promor_theme+
   ggplot2::theme(legend.position = "",
-          text = element_text(size = text.size),
-          axis.line.x = element_line(size = 0.1),
-          axis.line.y = element_line(size = 0.1),
-          axis.ticks.x = element_line(size = 0.1),
-          axis.ticks.y = element_line(size = 0.1),
-          panel.grid.minor = element_blank(),
-          panel.grid.major = element_line (size = 0.1),
-          panel.border = element_rect(size = 0.2))
+                 panel.grid.major = element_line (size = 0.1,
+                                           color = "grey80"))
 
 if(line.FC == TRUE){
   DE_volcanoplot <- DE_volcanoplot +
@@ -420,9 +414,11 @@ top_heatmap <- ggplot2::ggplot(top_intMelted,
                                ggplot2::aes(x = sample,
                                             y = reorder(protein, Intensity),
                                             fill = Intensity))+
-  ggplot2::geom_tile(colour = "white", size = 0.2, stat = "identity")+
+  ggplot2::geom_tile(colour = "white", size = 0.2,
+                     stat = "identity")+
 
-  ggplot2::labs(x="", y="")+
+  ggplot2::labs(x="",
+                y="")+
   ggplot2::scale_y_discrete(expand = c(0, 0),
                             labels  = sapply(
                               strsplit(
@@ -433,29 +429,25 @@ top_heatmap <- ggplot2::ggplot(top_intMelted,
                                option = palette,
                                begin = 0,
                                end = 1) +
-  ggplot2::theme_grey(base_size = 8)+
+  promor_facet_theme+
   ggplot2::theme(aspect.ratio = 1,
-                 legend.position="right",
-                 legend.direction="vertical",
-                 legend.key.height = grid::unit(text.size * 0.08, "cm"),
-                 legend.key.width = grid::unit(text.size * 0.02, "cm"),
+                 legend.position = "bottom",
+                 legend.direction = "horizontal",
+                 legend.key.width = grid::unit(text.size * 0.08, "cm"),
+                 legend.key.height = grid::unit(text.size * 0.02, "cm"),
                  legend.title = element_blank(),
                  legend.text = element_text(size = text.size*0.7,
                                             face = "bold"),
                  axis.ticks = element_blank(),
                  axis.text.x = element_blank(),
                  axis.text.y = element_text(size = text.size * 0.7),
-                 strip.background = element_blank(),
-                 strip.text = element_text(size = text.size,
-                                           hjust = 0.01,
-                                           face = "bold",
-                                           vjust = 0 ),
                  plot.background = element_blank(),
                  panel.border = element_blank(),
-                 panel.spacing = unit(text.size * 0.05, units = "cm"),
-
+                 panel.spacing = unit(text.size * 0.05,
+                                      units = "cm"),
                  panel.background = element_blank())+
-    ggplot2::facet_grid(.~stage, scales = "free")
+
+   ggplot2::facet_grid(.~stage, scales = "free")
 
 
 if (save == TRUE){

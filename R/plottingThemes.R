@@ -1,27 +1,27 @@
 #' @import ggplot2
 #' @import viridis
 #' @export
-promor_theme <- ggplot2::theme_classic(base_size = 12,
-                                       base_family = "sans")+
+promor_theme <- ggplot2::theme_classic()+
   ggplot2::theme(panel.border = element_rect(fill = NA,
-                                             colour = "grey",
+                                             colour = "grey40",
                                              size = 0.5),
                  legend.title = element_blank(),
-                 axis.ticks = element_line(colour = "grey"),
-                 axis.line = element_line(colour = "grey",
-                                          size = 0.5))
+                 axis.ticks = element_line(colour = "grey40"),
+                 axis.line = element_blank(),
+                 panel.grid.minor = element_blank(),
+                 panel.grid.major = element_blank())
 #' @export
-promor_facet_theme <- ggplot2::theme_classic(base_size = 12,
-                                       base_family = "Helvetica")+
+promor_facet_theme <- ggplot2::theme_classic()+
   ggplot2::theme(panel.border = element_rect(fill = NA,
-                                             colour = "grey",
+                                             colour = "grey40",
                                              size = 0.5),
+                 panel.grid.minor = element_blank(),
+                 panel.grid.major = element_blank(),
                  legend.title = element_blank(),
                  axis.title.x = element_blank(),
-                 axis.title.y= element_blank(),
-                 axis.ticks = element_line(colour = "grey"),
-                 axis.line = element_line(colour = "grey",
-                                          size = 0.5),
+                 axis.title.y = element_blank(),
+                 axis.ticks = element_line(colour = "grey40"),
+                 axis.line = element_blank(),
                  strip.background = element_blank(),
                  strip.text = element_text(colour = "grey20",
                                            hjust = 0.01,

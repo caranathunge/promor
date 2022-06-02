@@ -160,25 +160,10 @@ norm_plot <- function(original,
                                    begin = 0.3,
                                    end = 0.7,
                                    direction = -1)+
-      ggplot2::theme_classic()+
+      promor_facet_theme+
       ggplot2::theme(legend.position = "none",
-                     panel.border = element_rect(fill = NA,
-                                                 colour = "grey",
-                                                 size = 0.5),
-                     text= element_text(size = text.size),
-                     axis.line.x = element_line(size = 0.1),
-                     axis.line.y = element_line(size = 0.1),
-                     axis.ticks.x = element_line(size = 0.1),
-                     axis.ticks.y = element_line(size = 0.1),
-                     axis.title.x = element_text(size = text.size),
-                     axis.title.y= element_text(size = text.size),
-                     axis.line = element_line(colour = "grey",
-                                              size = 0.5),
-                     strip.background = element_blank(),
-                     strip.text = element_text(size = text.size,
-                                               hjust = 0.01,
-                                               face = "bold",
-                                               vjust = 0 ))+
+                     axis.text = element_text(size = text.size * 0.7))+
+
       ggplot2::facet_wrap( ~normstage)
 
 
@@ -206,30 +191,9 @@ norm_plot <- function(original,
                                   option = palette,
                                   begin = 0.3,
                                   end = 0.7)+
-      ggplot2::theme_classic()+
-      ggplot2::theme(panel.border = element_rect(fill = NA,
-                                                 colour = "grey",
-                                                 size = 0.5),
-                     text = element_text(size = text.size),
-                     legend.title = element_blank(),
-                     axis.line.x = element_line(size = 0.1),
-                     axis.line.y = element_line(size = 0.1),
-                     axis.ticks.x = element_line(size = 0.1),
-                     axis.ticks.y = element_line(size = 0.1),
-                     axis.title.x = element_text(size = text.size),
-                     axis.title.y= element_text(size = text.size),
-                     axis.line = element_line(colour = "grey",
-                                              size = 0.5),
-                     #strip.text = element_text(size = text.size),
-                     #strip.background = element_rect(fill = "grey95",
-                     #colour = "grey",
-                     #size = 0.5))
-                     strip.background = element_blank(),
-                     strip.text = element_text(colour = "grey20",
-                                               size = text.size,
-                                               hjust = 0.01,
-                                               face = "bold",
-                                               vjust = 0 ))
+      promor_facet_theme+
+      ggplot2::theme(legend.position = "bottom",
+                     axis.text = element_text(size = text.size * 0.7))
 
   }
   if(save == TRUE){

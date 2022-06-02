@@ -1,7 +1,7 @@
-# Predictor plots ----------------------------------------------------------------
-#' Visualize predictor (protein) variation among conditions
+# Feature plots ----------------------------------------------------------------
+#' Visualize feature (protein) variation among conditions
 #' @description This function visualizes protein intensity differences among
-#' conditions with plots.
+#' conditions (classes) with plots.
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -24,7 +24,7 @@
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file.name file.name File name to save the plot.
-#' Default is \code{"Predictor_plot."}
+#' Default is \code{"Feature_plot."}
 #' @param file.type File type to save the plot.
 #' Default is \code{"pdf"}.
 #' @param plot.width Width of the plot. Default is \code{7}.
@@ -49,14 +49,14 @@
 #'
 #'  }
 #' @export
-predictor_plot <- function(model.df,
+feature_plot <- function(model.df,
                       type = "box",
                       text.size = 10,
                       palette = "viridis",
                       nrow,
                       ncol,
                       save = FALSE,
-                      file.name = "Predictor_plot",
+                      file.name = "Feature_plot",
                       file.type = "pdf",
                       dpi = 80,
                       plot.width = 7,
@@ -84,23 +84,13 @@ predictor_plot <- function(model.df,
                           ncol = ncol)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::theme_classic()+
-      ggplot2::theme(panel.border = element_rect(fill = NA,
-                                                 colour = "grey",
-                                                 size = 0.5),
+      promor_facet_theme+
+      ggplot2::theme(legend.position = "bottom",
                      legend.title = element_blank(),
-                     axis.ticks = element_line(colour = "grey"),
                      axis.title.x = element_text(size = text.size),
                      axis.title.y = element_text(size = text.size),
-                     axis.text = element_text(size = text.size/2),
-                     axis.line = element_line(colour = "grey",
-                                              size = 0.5),
-                     legend.text = element_text(size = text.size),
-                     strip.background = element_blank(),
-                     strip.text = element_text(size = text.size,
-                                               hjust = 0.01,
-                                               face = "bold",
-                                               vjust = 0 ))
+                     axis.text = element_text(size = text.size*0.5),
+                     legend.text = element_text(size = text.size))
 
 
   }else{
@@ -125,26 +115,11 @@ predictor_plot <- function(model.df,
                            ncol = ncol)+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      ggplot2::theme_classic()+
-      ggplot2::theme(panel.border = element_rect(fill = NA,
-                                               colour = "grey",
-                                               size = 0.5),
-                   text = element_text(size = text.size),
-                   legend.title = element_blank(),
+      promor_facet_theme+
+      ggplot2::theme(legend.title = element_blank(),
                    legend.position = "none",
-                   axis.line.x = element_line(size = 0.1),
-                   axis.line.y = element_line(size = 0.1),
-                   axis.ticks.x = element_line(size = 0.1),
-                   axis.ticks.y = element_line(size = 0.1),
                    axis.title.x = element_text(size = text.size),
-                   axis.title.y= element_text(size = text.size),
-                   axis.line = element_line(colour = "grey",
-                                            size = 0.5),
-                   strip.background = element_blank(),
-                   strip.text = element_text(size = text.size,
-                                             hjust = 0.01,
-                                             face = "bold",
-                                             vjust = 0 ))
+                   axis.title.y= element_text(size = text.size))
 
   }
   if(save == TRUE){
@@ -157,7 +132,7 @@ predictor_plot <- function(model.df,
 
   return(pred_plot)
 }
-#-------------------------------------------------------------------------------
+# Variable importance plot-----------------------------------------------------
 #' Variable importance plot
 #' @description This function visualizes variable importance in models
 #'
@@ -278,36 +253,27 @@ varimp_plot <- function(model.list,
                           fill = Importance)) +
         ggplot2::geom_bar(stat = "identity")+
         ggplot2::coord_flip()+
-        ggplot2::theme_bw()+
-        ggplot2::theme(legend.position = "right",
-                       legend.direction="vertical",
-                       legend.key.height = grid::unit(0.8, "cm"),
-                       legend.key.width = grid::unit(0.2, "cm"),
-                       legend.title = element_blank(),
-                       legend.text = element_text(size = text.size * 0.7,
-                                                  face = "bold"),
-                       axis.text.y = element_text(size = text.size,
-                                                  face = "bold"),
-                       axis.line.x = element_line(size = 0.1),
-                       axis.line.y = element_line(size = 0.1),
-                       axis.ticks.x = element_line(size = 0.1),
-                       axis.ticks.y = element_line(size = 0.1),
-                       axis.title.y= element_text(size = text.size,
-                                                  face = "bold"),
-                       axis.line = element_line(colour = "grey",
-                                                size = 0.5),
-                       strip.background = element_blank(),
-                       strip.text = element_text(size = text.size,
-                                                 hjust = 0.01,
-                                                 face = "bold",
-                                                 vjust = 0 ),
-                       panel.border = element_rect(fill = NA,
-                                                   colour = "grey",
-                                                   size = 0.5))+
         viridis::scale_fill_viridis(option = palette,
-                                     direction = -1)+
-        xlab("")
-    )
+                                    direction = -1)+
+        xlab("")+
+        promor_facet_theme+
+        ggplot2::theme(plot.title = element_text(size = text.size,
+                                                 face = "bold"),
+                       legend.position = "bottom",
+                       legend.direction="horizontal",
+                       legend.margin = margin(0,0,0,0, unit="cm"),
+                       legend.key.width = grid::unit(0.8, "cm"),
+                       legend.key.height = grid::unit(0.2, "cm"),
+                       legend.title = element_text(size = text.size * 0.3),
+                       legend.text = element_text(size = text.size * 0.7),
+                       axis.text.y = element_text(size = text.size * 0.8,
+                                                  face = "bold"),
+
+                       panel.grid.major.x = element_line (size = 0.1,
+                                                        color = "grey80"))+
+        ggplot2::guides(colour = guide_colourbar(title.position="bottom",
+                                                 title.hjust = 0.5)))
+
     #Add plot titles
     vi_plots <- lapply(seq_along(vi_plots), function(i) {
       vi_plots[[i]] + ggtitle(gsub(".importance","", names(vi_plots)[i]))
@@ -320,47 +286,40 @@ varimp_plot <- function(model.list,
                       aes(x = reorder(Protein, Importance),
                           y = Importance,
                           color = Importance)) +
-        ggplot2::geom_segment(aes( xend=Protein,
-                                   yend = 0),
+        ggplot2::geom_segment(aes( xend = Protein,
+                                   y = 0,
+                                   yend = Importance),
                               lwd = text.size * 0.2) +
         ggplot2::geom_point( aes(color = Importance),
-                             size=text.size,
+                             size = text.size,
                              show.legend = FALSE)+
         ggplot2::coord_flip()+
         ggplot2::geom_label(label = round(t$Importance,
                                           digits = 1),
                             fill = NA,
                             label.size = NA,
-                            colour = "white")+
-        ggplot2::theme_bw()+
-        ggplot2::theme(legend.position = "right",
-                       legend.direction="vertical",
-                       legend.key.height = grid::unit(0.8, "cm"),
-                       legend.key.width = grid::unit(0.2, "cm"),
-                       legend.title = element_blank(),
-                       legend.text = element_text(size = text.size * 0.7,
-                                                  face = "bold"),
-                       axis.text.y = element_text(size = text.size,
-                                                  face = "bold"),
-                       axis.line.x = element_line(size = 0.1),
-                       axis.line.y = element_line(size = 0.1),
-                       axis.ticks.x = element_line(size = 0.1),
-                       axis.ticks.y = element_line(size = 0.1),
-                       axis.title.y= element_text(size = text.size,
-                                                  face = "bold"),
-                       axis.line = element_line(colour = "grey",
-                                                size = 0.5),
-                       strip.background = element_blank(),
-                       strip.text = element_text(size = text.size,
-                                                 hjust = 0.01,
-                                                 face = "bold",
-                                                 vjust = 0 ),
-                       panel.border = element_rect(fill = NA,
-                                                   colour = "grey",
-                                                   size = 0.5))+
-          viridis::scale_color_viridis(option = palette,
+                            colour = "white",
+                            size = text.size * 0.3)+
+        ggplot2::xlab("")+
+        viridis::scale_color_viridis(option = palette,
                                        direction = -1)+
-        xlab(""))
+        promor_facet_theme+
+        ggplot2::theme(plot.title = element_text(size = text.size,
+                                                 face = "bold"),
+                       legend.position = "bottom",
+                       legend.direction="horizontal",
+                       legend.margin = margin(0,0,0,0, unit="cm"),
+                       legend.key.width = grid::unit(0.8, "cm"),
+                       legend.key.height = grid::unit(0.2, "cm"),
+                       legend.title = element_text(size = text.size * 0.7),
+                       legend.text = element_text(size = text.size * 0.5),
+                       axis.text.y = element_text(size = text.size * 0.8,
+                                                  face = "bold"),
+                       panel.grid.major.x = element_line (size = 0.1,
+                                                          color = "grey80"))+
+          ggplot2::guides(colour = guide_colourbar(title.position="top",
+                                                   title.hjust = 0.5)))
+
     #Add plot titles
     vi_plots <- lapply(seq_along(vi_plots), function(i) {
       vi_plots[[i]] + ggtitle(gsub(".importance","",names(vi_plots)[i]))
@@ -384,7 +343,7 @@ varimp_plot <- function(model.list,
 
 
 }
-#-------------------------------------------------------------------------------
+# Model performance plot-------------------------------------------------------
 #' Model performance plot
 #' @description This function visualizes model performance
 #'
@@ -500,28 +459,10 @@ performance_plot <- function(model.list,
       ggplot2::facet_wrap( ~metric, scales = "free")+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      promor::promor_theme+
-      ggplot2::theme(panel.border = element_rect(fill = NA,
-                                                 colour = "grey",
-                                                 size = 0.5),
-                     text = element_text(size = text.size),
-                     legend.title = element_blank(),
-                     legend.position = "none",
-                     axis.line.x = element_line(size = 0.1),
-                     axis.line.y = element_line(size = 0.1),
-                     axis.ticks.x = element_line(size = 0.1),
-                     axis.ticks.y = element_line(size = 0.1),
-                     axis.title.x = element_text(size = text.size),
-                     axis.title.y = element_text(size = text.size),
-                     axis.line = element_line(colour = "grey",
-                                              size = 0.5),
-                     strip.background = element_blank(),
-                     strip.text = element_text(size = text.size,
-                                               hjust = 0.01,
-                                               face = "bold",
-                                               vjust = 0 ))
-
-
+      promor_facet_theme+
+      ggplot2::theme(legend.position = "none",
+                     axis.text.y = element_text(size = text.size * 0.8,
+                                                face = "bold"))
     }else{
     #Make box plots
     perform_plot <- ggplot2::ggplot(plot_data,
@@ -534,37 +475,18 @@ performance_plot <- function(model.list,
                    outlier.shape = 1,
                    outlier.stroke = 0.1,
                    outlier.size = text.size * 0.1,
-                   outlier.color = "grey50",
+                   outlier.color = "grey30",
                    lwd = text.size * 0.1)+
       ggplot2::facet_wrap( ~metric,
                            scales = "free")+
       ggplot2::coord_flip()+
       ggplot2::xlab("") +
       ggplot2::ylab("")+
-      promor::promor_theme+
-      ggplot2::theme(panel.border = element_rect(fill = NA,
-                                                 colour = "grey",
-                                                 size = 0.5),
-                     text = element_text(size = text.size),
-                     legend.title = element_blank(),
-                     legend.position = "none",
-                     axis.line.x = element_line(size = 0.1),
-                     axis.line.y = element_line(size = 0.1),
-                     axis.ticks.x = element_line(size = 0.1),
-                     axis.ticks.y = element_line(size = 0.1),
-                     axis.title.x = element_text(size = text.size),
-                     axis.title.y = element_text(size = text.size),
-                     axis.line = element_line(colour = "grey",
-                                              size = 0.5),
-                     strip.background = element_blank(),
-                     strip.text = element_text(size = text.size,
-                                               hjust = 0.01,
-                                               face = "bold",
-                                               vjust = 0 ))
-
+      promor_facet_theme+
+      ggplot2::theme(legend.position = "none",
+                     axis.text.y = element_text(size = text.size * 0.8,
+                                                face = "bold"))
     }
-
-
 
   if(save == TRUE){
     ggplot2::ggsave(paste0(file.name,".", file.type),
@@ -577,7 +499,7 @@ performance_plot <- function(model.list,
 }
 
 
-#-------------------------------------------------------------------------------
+# ROC plot-----------------------------------------------------------------------
 #' ROC plot
 #' @description This function generates Receiver Operator Characteristic (ROC)
 #' curves to evaluate models
@@ -681,27 +603,25 @@ roc_plot <- function(probability.list,
   spec_melted <- reshape2::melt(spec)
   names(spec_melted) <- c("method", "number", "specificity")
 
-  #Merge and create the final data frame for plotting
+  # Merge to create the final data frame for plotting
   roc_plotdata <- merge(sens_melted, spec_melted)
 
-  #Order data frame by sensitivity. Important for geom_step
+  # Order data frame by sensitivity. Important for geom_step
   roc_plotdata <- roc_plotdata[order(roc_plotdata$method,
                                      roc_plotdata$sensitivity),]
 
-  #Make ROC curves
-
+  # Make ROC curves
   rocplots <- ggplot2::ggplot(roc_plotdata, aes(x = specificity,
                                         y = sensitivity,
                                         colour = method)) +
     ggplot2::geom_step(direction = "hv", lwd = text.size * 0.1)+
-    ggplot2::scale_x_reverse(lim=c(100, 0),)+
-    ggplot2::xlab("Specificity (%)") +
-    ggplot2::ylab("Sensitivity (%)")+
+    ggplot2::scale_x_reverse(lim = c(100, 0),)+
     viridis::scale_color_viridis(discrete = TRUE,
                                  option = palette,
                                  begin = 0.3,
                                  end = 0.7)+
-    ggplot2::theme_bw()+
+    ggplot2::xlab("Specificity (%)") +
+    ggplot2::ylab("Sensitivity (%)")+
     ggplot2::geom_abline(intercept = 100,
                 slope = 1,
                 color='grey60',
@@ -710,23 +630,28 @@ roc_plot <- function(probability.list,
 
 
   if(multiple.plots == FALSE){
-  rocplots1 <- rocplots + ggplot2::theme(legend.title = element_blank())
+  rocplots1 <- rocplots +
+    promor_theme+
+    ggplot2::theme(legend.position = "bottom",
+                   legend.text = element_text(size = text.size * 0.9,
+                                              face = "bold"),
+                   axis.title = element_text(size = text.size))
 
   }else{
   rocplots1 <- rocplots +
-    ggplot2::theme(legend.position =  "none",
-            strip.background = element_blank(),
-            strip.text = element_text(size = text.size,
-                                      hjust = 0.01,
-                                      face = "bold",
-                                      vjust = 0 ))+
     ggplot2::facet_wrap(~method)+
+    promor_facet_theme+
+    ggplot2::theme(text = element_text(size = text.size),
+                   legend.position =  "none",
+                   axis.title.x = element_text(size = text.size),
+                   axis.title.y = element_text(size = text.size,
+                                               angle = 90))+
     ggplot2::geom_label(data = auc_labels,
                  aes(label = paste0("AUC: ", auc, "%")),
                  x = Inf,
                  y = -Inf,
-                 hjust = 1.2,
-                 vjust = -1,
+                 hjust = 1,
+                 vjust = -0.5,
                  inherit.aes = FALSE,
                  label.size = NA)
   }

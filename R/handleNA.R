@@ -461,10 +461,11 @@ impute_plot <- function(original,
                                   begin = 0.3,
                                   end = 0.7)+
       promor_theme +
-      ggplot2::theme(
-                     axis.title.x = element_text(size = text.size),
-                     axis.title.y = element_text(size = text.size),
-                     axis.text = element_text(size = text.size/2),
+      ggplot2::theme(axis.title.x = element_text(size = text.size,
+                                                 face = "bold"),
+                     axis.title.y = element_text(size = text.size,
+                                                 face = "bold"),
+                     axis.text = element_text(size = text.size * 0.7),
                      legend.position = "bottom",
                      legend.text = element_text(size = text.size))
 
@@ -494,10 +495,10 @@ impute_plot <- function(original,
                                   begin = 0.3,
                                   end = 0.7)+
       promor_facet_theme +
-      ggplot2::theme(axis.text = element_text(size = text.size/2),
+      ggplot2::theme(axis.text = element_text(size = text.size *0.7),
                      legend.position = "bottom",
                      legend.text = element_text(size = text.size),
-                     strip.text = element_text(size = text.size))+
+                     )+
       ggplot2::facet_wrap(~sample,
                           nrow = nrow,
                           ncol = ncol,
