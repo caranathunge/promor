@@ -65,10 +65,10 @@ head(exp_design)
 
 **tech_rep** is a number denoting the technical replicate number. In this example, there are no technical replicates, so the column is left blank.
 
-## 1. Create a *raw.df* object
-Let's first create a *raw.df* object with the input files. 
+## 1. Create a *raw_df* object
+Let's first create a *raw_df* object with the input files. 
 ```{r createdf, warning=FALSE}
-#Create a raw.df object with default settings.
+#Create a raw_df object with default settings.
 raw <- create_df(prot.groups = system.file("extdata", "ecoli_proteinGroups.txt", 
                                            package = "promor"), 
                  exp.design = system.file("extdata", "expDesign.txt", 
@@ -77,7 +77,7 @@ raw <- create_df(prot.groups = system.file("extdata", "ecoli_proteinGroups.txt",
 dim(raw)
 ```
 
-If you ran `create_df` with default settings, now your *raw.df* object contains log2 transformed LFQ protein intensity values. Run `?create_df` for more information on available arguments.
+If you ran `create_df` with default settings, now your *raw_df* object contains log2 transformed LFQ protein intensity values. Run `?create_df` for more information on available arguments.
 
 ## 2. Filter proteins by groupwise missing data
 Next, we will remove proteins if they have more than 0.4% (default is 0.33%) missing data in either group.

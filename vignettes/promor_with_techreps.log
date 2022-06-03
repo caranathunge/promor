@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.9)  9 MAY 2022 12:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.5.9)  3 JUN 2022 16:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/private/var/folders/0y/_bvjlyhj7wdcr2x6vjkkwysh3s9gf6/T/Rtmpt6plMz/preview-171d53ce1ebd1.dir/promor_with_techreps.tex
-(/private/var/folders/0y/_bvjlyhj7wdcr2x6vjkkwysh3s9gf6/T/Rtmpt6plMz/preview-171d53ce1ebd1.dir/promor_with_techreps.tex
+**/private/var/folders/0y/_bvjlyhj7wdcr2x6vjkkwysh3s9gf6/T/RtmpbxXWx0/preview-9ef042b7f265.dir/promor_with_techreps.tex
+(/private/var/folders/0y/_bvjlyhj7wdcr2x6vjkkwysh3s9gf6/T/RtmpbxXWx0/preview-9ef042b7f265.dir/promor_with_techreps.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-05-04> (/Users/ranathca/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -455,11 +455,11 @@ l.206 to. In this example ``D8'' refers to an ∆
                                                  argP mutant cell line with 
 Here is how much of TeX's memory you used:
  10975 strings out of 480260
- 172397 string characters out of 5893423
+ 172394 string characters out of 5893423
  460459 words of memory out of 5000000
  28726 multiletter control sequences out of 15000+600000
  502089 words of font info for 54 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,6n,63p,386b,364s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,6n,63p,385b,364s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 !  ==> Fatal error occurred, no output PDF file produced!

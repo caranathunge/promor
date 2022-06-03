@@ -64,33 +64,33 @@ head(exp_design, n = 12)
 
 **tech_rep** is a number denoting the technical replicate number. In this example, there are three technical replicates for each biological replicate (see **sample_ID**).
 
-## 1. Create a *raw.df* object
-Let's first create a *raw.df* object with the input files. Note: we have indicated that the data include technical replicates with `tech.reps == TRUE`.
+## 1. Create a *raw_df* object
+Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech.reps == TRUE`.
 ```{r createdf, warning=FALSE}
-#Create a raw.df object with default settings.
-raw <- create_df(prot.groups = system.file("extdata", "PXD001584_proteinGroups.txt", 
+#Create a raw_df object with default settings.
+raw <- create_df(prot_groups = system.file("extdata", "PXD001584_proteinGroups.txt", 
                                            package = "promor"), 
-                 exp.design = system.file("extdata", "PXD001584_expDesign.txt", 
+                 exp_design = system.file("extdata", "PXD001584_expDesign.txt", 
                                           package = "promor"),
-                 tech.reps = TRUE )
+                 tech_reps = TRUE )
 # We can quickly check the dimensions of the data frame
 dim(raw)
 
 ```
 
-If you ran `create_df` with default settings, now your *raw.df* object contains log2 transformed LFQ protein intensity values. Run `?create_df` for more information on available arguments.
+If you ran `create_df` with default settings, now your *raw_df* object contains log2 transformed LFQ protein intensity values. Run `?create_df` for more information on available arguments.
 
 ## 2. Correlation plots: technical replicates
 Typically, technical replicates for each sample should show strong correlation. At this stage, we can quickly check if this is the case in our experiment. 
 ```{r corrplot, warning = FALSE, fig.align = 'center', dpi = 300, fig.height = 8}
 # Let's first check the correlation between tech.replicates 1 and 2.
-corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text.size = 12, label.size = 2, col = "#419fb7")
+corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text_size = 12)
 
 ```
 Similarly, we can visualize the correlation between technical replicates 1 and 3.
 ```{r corrplot1, warning = FALSE, fig.align = 'center', dpi = 300, fig.height = 8}
 # Correlation between tech.replicates 1 and 3.
-corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text.size = 12, label.size = 2, col = "#419fb7")
+corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text_size = 12)
 ```
 You can repeat the analysis for technical replicates 2 and 3 in the same manner.\
 
@@ -112,7 +112,7 @@ dim(raw_ave)
 Next, we will remove proteins if they have more than 0.4% (default is 0.33%) missing data in either group.
 ```{r filterbygroupna, warning = FALSE}
 #Filter out proteins with high levels of missing data in each condition
-raw_filtered <- filterbygroup_na(raw_ave, set.na = 0.40)
+raw_filtered <- filterbygroup_na(raw_ave, set_na = 0.40)
 # We can check the dimensions of the new data frame. Note that the number of rows have changed.
 dim(raw_filtered)
 ```
@@ -122,7 +122,7 @@ Now, we are going to see how missing data is distributed in the data. Because ou
 
 ```{r heatmapna, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
 #Visualize missing data in a subset of proteins. 
-heatmap_na(raw_filtered, protein.range = 1:40)
+heatmap_na(raw_filtered, protein_range = 1:40)
 ```
 
 
@@ -160,7 +160,7 @@ Compared to `minProb`, `SVD` seems to have introduced fewer low intensity values
 
 Additionally, we can also visualize the imputed data of all six samples with a global density plot.
 
-```{r imputeplotglobal, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
+```{r imputeplotglobal, fig.align='center', warning=FALSE, dpi=, results='hide'}
 # Visualize the imputed data with a global density plot.
 impute_plot(original = raw_filtered, imputed = imp_df_svd, global = TRUE)
 ```
@@ -188,7 +188,7 @@ fit_df <- find_dep(norm_df)
 
 You can also choose to save the top 10 hits in a text file as follows:
 ```{r tophits, warning = FALSE, eval = FALSE, results = 'hide'}
-fit_df <- find_dep(norm_df, save.tophits = TRUE, n.top = 10)
+fit_df <- find_dep(norm_df, save_tophits = TRUE, n_top = 10)
 ```
 
 
@@ -198,13 +198,13 @@ Let's visualize the results from **Step 10** using a volcano plot.
 
 
 ```{r volcanoplot, warning = FALSE, results ='hide', fig.align = 'center'}
-volcano_plot(fit_df, sig.col = "red", nsig.col = "black", dot.size = 1)
+volcano_plot(fit_df)
 ```
 
 ## 12. Create a heatmap of differentially expressed proteins
 We can also visualize the top hits from **Step 10** with a heatmap.
 ```{r heatmapde, warning = FALSE, results ='hide', fig.align = 'center'}
-heatmap_de(fit.df = fit_df, norm.df = norm_df)
+heatmap_de(fit_df = fit_df, norm_df = norm_df)
 ```
 
 
