@@ -65,7 +65,7 @@ We use a previously published data set from [Cox et al. (2014)](https://europepm
 ```{r example, results = 'hide', warning=FALSE}
 #Load promor
 library(promor)
-#Create a raw.df object with the files provided in extdata folder.
+#Create a raw_df object with the files provided in extdata folder.
 raw <- create_df(prot.groups = system.file("extdata", "ecoli_proteinGroups.txt", 
                                            package = "promor"), 
                  exp.design = system.file("extdata", "expDesign.txt", 

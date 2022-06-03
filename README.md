@@ -59,7 +59,7 @@ et al. (2014)](https://europepmc.org/article/MED/24942700#id609082).
 ``` r
 #Load promor
 library(promor)
-#Create a raw.df object with the files provided in extdata folder.
+#Create a raw_df object with the files provided in extdata folder.
 raw <- create_df(prot.groups = system.file("extdata", "ecoli_proteinGroups.txt", 
                                            package = "promor"), 
                  exp.design = system.file("extdata", "expDesign.txt", 
