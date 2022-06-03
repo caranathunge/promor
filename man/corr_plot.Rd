@@ -9,16 +9,16 @@ corr_plot(
   rep1,
   rep2,
   save = FALSE,
-  file.type = "pdf",
+  file_type = "pdf",
   palette = "viridis",
-  text.size = 5,
+  text_size = 5,
   nrow = 4,
   ncol = 4,
   dpi = 80
 )
 }
 \arguments{
-\item{df}{A \code{raw.df} object (output of \code{\link{create_df}})
+\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})
 containing technical replicates.}
 
 \item{rep1}{Numerical. Technical replicate number.}
@@ -29,7 +29,7 @@ to \code{rep1}.}
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.type}{File type to save the scatter plots.
+\item{file_type}{File type to save the scatter plots.
 Default is \code{"pdf"}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -37,7 +37,7 @@ Default is \code{"pdf"}.}
 \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
 for available options.}
 
-\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
 \item{nrow}{Numerical. Number of plots to print in a row in a single page.
@@ -58,7 +58,7 @@ for each sample.
 }
 \details{
 \itemize{\item Given a data frame of log-transformed intensities
-(a \code{raw.df} object) and a pair of numbers referring to the technical
+(a \code{raw_df} object) and a pair of numbers referring to the technical
 replicates, \code{corr_plot} produces a list of scatter plots showing
 correlation between the given pair of technical replicates for all the
 samples provided in the data frame.
@@ -74,12 +74,11 @@ samples to display in a single page.
 \examples{
 \dontrun{
 
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 
 ## Compare technical replicates 1 vs. 2 for all samples.
-corr_plot(raw. 1, 2, nrow = 4, ncol = 6)
-
+corr_plot(raw, 1, 2, nrow = 4, ncol = 6)
 }
 
 }

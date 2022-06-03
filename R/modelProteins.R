@@ -9,41 +9,41 @@
 #' @import caret
 #' @importFrom stats cor
 #'
-#' @param fit.df A \code{fit.df} object from performing \code{find_dep}.
-#' @param norm.df The \code{norm.df} object from which the \code{fit.df} object
+#' @param fit_df A \code{fit_df} object from performing \code{find_dep}.
+#' @param norm_df The \code{norm_df} object from which the \code{fit_df} object
 #' was obtained.
 #' @param sig Criteria to denote significance in differential expression.
 #' Choices are \code{"adjP"} (default) for adjusted p-value or \code{"P"}
 #' for p-value.
-#' @param sig.cutoff Cutoff value for p-values and adjusted p-values in
+#' @param sig_cutoff Cutoff value for p-values and adjusted p-values in
 #' differential expression. Default is 0.05.
-#' @param FC Minimum absolute log-fold change to use as threshold for
+#' @param fc Minimum absolute log-fold change to use as threshold for
 #' differential expression. Default is 1.
-#' @param n.top The number of top hits from \code{find_dep} to be used in
+#' @param n_top The number of top hits from \code{find_dep} to be used in
 #' modeling. Default is 20.
-#' @param find.highcorr Logical. If \code{TRUE} (default), finds highly
+#' @param find_highcorr Logical. If \code{TRUE} (default), finds highly
 #' correlated proteins.
-#' @param corr.cutoff A numeric value specifying the correlation cutoff.
+#' @param corr_cutoff A numeric value specifying the correlation cutoff.
 #' Default is 0.90.
-#' @param save.corrmatrix Logical. If \code{TRUE}, saves a copy of the
+#' @param save_corrmatrix Logical. If \code{TRUE}, saves a copy of the
 #' protein correlation matrix in a tab-delimited text file labeled
 #' "Protein_correlation.txt" in the working directory.
-#' @param rem.highcorr Logical. If \code{TRUE} (default), removes highly
+#' @param rem_highcorr Logical. If \code{TRUE} (default), removes highly
 #' correlated proteins (predictors or features).
 #'
 #' @details This function creates a data frame that contains protein intensities
 #' for a user-specified number of top differentially expressed proteins.
-#'  \itemize{\item Using \code{find.highcorr = TRUE}, highly correlated
+#'  \itemize{\item Using \code{find_highcorr = TRUE}, highly correlated
 #'  proteins can be identified, and can be removed with
-#'  \code{rem.highcorr = TRUE}.
+#'  \code{rem_highcorr = TRUE}.
 #'  \item Note: Most models will benefit from reducing correlation between
 #'  proteins (predictors or features), therefore we recommend removing those
 #'  proteins at this stage to reduce pairwise-correlation.
 #'  \item If no proteins meet the significance threshold for differential
-#'  expression, you may adjust \code{sig}, \code{FC}, and \code{sig.cutoff}
+#'  expression, you may adjust \code{sig}, \code{fc}, and \code{sig_cutoff}
 #'  accordingly to obtain a set of proteins for modeling.}
 #'
-#' @return A \code{model.df} object, which is a data frame of protein
+#' @return A \code{model_df} object, which is a data frame of protein
 #' intensities with proteins indicated by columns.
 #' @seealso
 #' \itemize{
@@ -52,119 +52,129 @@
 #' @examples
 #' \dontrun{
 #'
-#'  ## Create a model.df object with default settings.
-#'  model_df <- pre_process(fit_df, norm_df)
+#' ## Create a model_df object with default settings.
+#' model_df <- pre_process(fit_df, norm_df)
 #'
-#'  ## Change the correlation cutoff.
-#'  model_df <- pre_process(fit_df, norm_df, corr.cutoff = 0.95)
-#'  }
-#'
+#' ## Change the correlation cutoff.
+#' model_df <- pre_process(fit_df, norm_df, corr_cutoff = 0.95)
+#' }
 #'
 #' @export
-pre_process <- function(fit.df,
-                        norm.df,
+pre_process <- function(fit_df,
+                        norm_df,
                         sig = "adjP",
-                        sig.cutoff = 0.05,
-                        FC = 1,
-                        n.top = 20,
-                        find.highcorr = TRUE,
-                        corr.cutoff = 0.90,
-                        save.corrmatrix = FALSE,
-                        rem.highcorr = TRUE
-                        ){
+                        sig_cutoff = 0.05,
+                        fc = 1,
+                        n_top = 20,
+                        find_highcorr = TRUE,
+                        corr_cutoff = 0.90,
+                        save_corrmatrix = FALSE,
+                        rem_highcorr = TRUE) {
 
-  #Extract the results from the differential expression analysis.
-  exp_DE <- limma::topTable(fit.df,
-                            coef = colnames(fit.df)[2],
-                            n = length(fit.df$df.total),
-                            adjust.method = "BH")
+  # Extract the results from the differential expression analysis.
+  exp_de <- limma::topTable(fit_df,
+    coef = colnames(fit_df)[2],
+    n = length(fit_df$df.total),
+    adjust.method = "BH"
+  )
 
-  #Subset results by logFC and p-value cutoff
-  if(sig == "P"){
-    top_proteins <- rownames(subset(exp_DE,
-                                    abs(logFC) > FC & P.Value < sig.cutoff,
-                                    drop = FALSE))
+  # Subset results by logFC and p-value cutoff
+  if (sig == "P") {
+    top_proteins <- rownames(subset(exp_de,
+      abs(logFC) > fc & P.Value < sig_cutoff,
+      drop = FALSE
+    ))
 
-  #Or default: based on adj.P value
-  }else{
-    top_proteins <- rownames(subset(exp_DE,
-                                    abs(logFC) > FC & adj.P.Val < sig.cutoff,
-                                    drop = FALSE))
+    # Or default: based on adj.P value
+  } else {
+    top_proteins <- rownames(subset(exp_de,
+      abs(logFC) > fc & adj.P.Val < sig_cutoff,
+      drop = FALSE
+    ))
   }
 
-  #If the total number of DE proteins < n.top, replace n.top with that number.
-  if (length(top_proteins) < n.top){
-    n.top = length(top_proteins)
-    message(paste0("Total number of differentially expressed proteins (",
-                 n.top, ") ", "is less than n.top."))
+  # If the total number of DE proteins < n_top, replace n_top with that number.
+  if (length(top_proteins) < n_top) {
+    n_top <- length(top_proteins)
+    message(paste0(
+      "Total number of differentially expressed proteins (",
+      n_top, ") ", "is less than n_top."
+    ))
   }
 
-  #Extract the top n.top hits from the top hit list
-  top_proteins <- top_proteins[1:n.top]
+  # Extract the top n_top hits from the top hit list
+  top_proteins <- top_proteins[1:n_top]
 
-  #Check if there are sig. proteins before moving on to pre-processing
-  if (identical(top_proteins, character(0))){
+  # Check if there are sig. proteins before moving on to pre-processing
+  if (identical(top_proteins, character(0))) {
     stop(message
-         (paste0("No significant proteins found at ",
-                 sig,
-                 " < ",
-                 sig.cutoff,
-                 "." )))
-  }else{
-    #Extract intensity values for top proteins based on FC and sig.cutoff
-    top_intensity <- subset(norm.df,
-                            rownames(norm.df) %in% top_proteins,
-                            drop = FALSE)
+    (paste0(
+        "No significant proteins found at ",
+        sig,
+        " < ",
+        sig_cutoff,
+        "."
+    )))
+  } else {
+    # Extract intensity values for top proteins based on fc and sig_cutoff
+    top_intensity <- subset(norm_df,
+      rownames(norm_df) %in% top_proteins,
+      drop = FALSE
+    )
   }
-  #Extract group or condition information from sample names in the data frame
-  group <- factor(c(sapply(strsplit(colnames(top_intensity), "_"),
-                           getElement, 1)))
+  # Extract group or condition information from sample names in the data frame
+  group <- factor(c(sapply(
+    strsplit(colnames(top_intensity), "_"),
+    getElement, 1
+  )))
 
-  #Transpose the data frame. Columns are now proteins and rows are samples.
+  # Transpose the data frame. Columns are now proteins and rows are samples.
   topint_trans <- as.data.frame(t(top_intensity))
 
-  #Remove sample names.
+  # Remove sample names.
   rownames(topint_trans) <- NULL
 
-  #Add a new column with the group or condition information.
-  #Condition column is now the rightmost column in the data frame.
-  topint_trans$Condition <- group
+  # Add a new column with the group or condition information.
+  # condition column is now the rightmost column in the data frame.
+  topint_trans$condition <- group
 
-  #For correlation calculations, make a matrix without the Condition column
-  topint_cor <- topint_trans[, 1: ncol(topint_trans)-1]
+  # For correlation calculations, make a matrix without the condition column
+  topint_cor <- topint_trans[, seq_len(ncol(topint_trans)) - 1]
 
-  #Create a correlation matrix
+  # Create a correlation matrix
   cor_matrix <- cor(topint_cor)
 
-  if (save.corrmatrix == TRUE){
+  if (save_corrmatrix == TRUE) {
     write.table(cor_matrix,
-                file="./Protein_correlation.txt",
-                row.names = TRUE,
-                col.names = FALSE,
-                sep = "\t",
-                quote = FALSE)
+      file = "./Protein_correlation.txt",
+      row.names = TRUE,
+      col.names = FALSE,
+      sep = "\t",
+      quote = FALSE
+    )
   }
 
-  if (find.highcorr == TRUE){
-  #Identify protein columns with high pairwise-correlation to remove
-  highcor <- findCorrelation(cor_matrix, cutoff = corr.cutoff,  names = TRUE)
-  message(
-    "Following proteins show high pariwise-correlation")
-  message(paste0(highcor, collapse = "\n"))
+  if (find_highcorr == TRUE) {
+    # Identify protein columns with high pairwise-correlation to remove
+    highcor <- findCorrelation(cor_matrix, cutoff = corr_cutoff, names = TRUE)
+    message(
+      "Following proteins show high pariwise-correlation"
+    )
+    message(paste0(highcor, collapse = "\n"))
 
-  if (rem.highcorr == TRUE){
-    topint_trans <- topint_trans[,!(colnames(topint_trans) %in% highcor)]
+    if (rem_highcorr == TRUE) {
+      topint_trans <- topint_trans[, !(colnames(topint_trans) %in% highcor)]
 
-    message("Proteins with high pairwise-correlation have been removed.")
-
-    }else{
+      message("Proteins with high pairwise-correlation have been removed.")
+    } else {
       warning("Proteins with high pairwise-correlation have NOT been removed.",
-              call. = FALSE)
-
-      }
-  }else{
+        call. = FALSE
+      )
+    }
+  } else {
     warning("Your data could have proteins with high pairwise-correlation.",
-            call. = FALSE )
+      call. = FALSE
+    )
   }
 
 
@@ -178,8 +188,8 @@ pre_process <- function(fit.df,
 #' @description This function removes user-specified proteins from the
 #' data frame.
 #'
-#' @param model.df A \code{model.df} object.
-#' @param rem.protein Name of the protein to remove.
+#' @param model_df A \code{model_df} object.
+#' @param rem_protein Name of the protein to remove.
 #'
 #' @details \itemize{\item After visualizing protein intensity variation
 #' among conditions with \code{predictor_plot}, you can choose to remove
@@ -187,7 +197,7 @@ pre_process <- function(fit.df,
 #' do not show distinct patterns of variation among conditions. For
 #' example, these proteins could have overlapping density distributions.
 #' }
-#' @return A \code{model.df} object.
+#' @return A \code{model_df} object.
 #'
 #' @seealso \code{\link{predictor_plot}}, \code{\link{pre_process}}
 #'
@@ -195,16 +205,15 @@ pre_process <- function(fit.df,
 #' \dontrun{
 #'
 #' ## Remove protein "A113403" from model_df data frame.
-#' model_df <- rem_predictor(model_df, "A113403")
-#'
+#' model_df <- rem_feature(model_df, "A113403")
 #' }
 #'
 #' @export
-rem_predictor <- function(model.df, rem.protein){
-  df_rem <- model.df[, -grep(rem.protein, colnames(model.df), fixed = TRUE)]
-  message(paste0("Protein ", rem.protein, " has been removed."))
+rem_feature <- function(model_df,
+                        rem_protein) {
+  df_rem <- model_df[, -grep(rem_protein, colnames(model_df), fixed = TRUE)]
+  message(paste0("Protein ", rem_protein, " has been removed."))
   return(df_rem)
-
 }
 
 # Split data frame -------------------------------------------------------------
@@ -216,11 +225,11 @@ rem_predictor <- function(model.df, rem.protein){
 #'
 #' @import caret
 #'
-#' @param model.df A \code{model.df} object from performing \code{pre_process}.
-#' @param train.size The size of the training data set as a percentage of the
+#' @param model_df A \code{model_df} object from performing \code{pre_process}.
+#' @param train_size The size of the training data set as a percentage of the
 #' complete data set. Default is 0.8.
 #'
-#' @details This function splits the \code{model.df} object in to training and
+#' @details This function splits the \code{model_df} object in to training and
 #' test data sets using random sampling while preserving the original
 #' class distribution of the data.
 #'
@@ -232,46 +241,43 @@ rem_predictor <- function(model.df, rem.protein){
 #' @examples
 #' \dontrun{
 #'
-#'  ## Split the data frame into training and test data sets with 70% of the
-#'  data in training and 30% in test data sets
-#'  split_data <- split_df(model-df, train.size = 0.7)
+#' ## Split the data frame into training and test data sets with 70% of the
+#' ## data in training and 30% in test data sets
+#' split_data <- split_df(model - df, train_size = 0.7)
 #'
-#'  ## Access training data set
-#'  split_data$training
+#' ## Access training data set
+#' split_data$training
 #'
-#'  ## Access test data set
-#'  split_data$test
-#'
-#'  }
-#'
+#' ## Access test data set
+#' split_data$test
+#' }
 #'
 #' @export
-split_df <- function(model.df,
-                     train.size = 0.80
-                     ){
+split_df <- function(model_df,
+                     train_size = 0.80) {
   set.seed(8314)
-  train_index <- createDataPartition(model.df$Condition,
-                                     p = train.size,
-                                     list = FALSE)
+  train_index <- createDataPartition(model_df$condition,
+    p = train_size,
+    list = FALSE
+  )
 
-  #Use the train_index to subset the data frame
-  train_df <- model.df[train_index,]
-  test_df <- model.df[-train_index,]
+  # Use the train_index to subset the data frame
+  train_df <- model_df[train_index, ]
+  test_df <- model_df[-train_index, ]
 
-  #Remove rownames
-  rownames(train_df)  <- NULL
-  rownames(test_df)  <- NULL
+  # Remove rownames
+  rownames(train_df) <- NULL
+  rownames(test_df) <- NULL
 
-  #Create a list with test and training data frames
+  # Create a list with test and training data frames
   split_dataframes <- list()
   split_dataframes[[1]] <- train_df
   split_dataframes[[2]] <- test_df
 
-  #Rename the items of the list
+  # Rename the items of the list
   names(split_dataframes) <- c("training", "test")
 
   return(split_dataframes)
-
 }
 
 
@@ -284,15 +290,16 @@ split_df <- function(model.df,
 #'
 #' @import caret
 #'
-#' @param split.df A \code{split.df} object from performing \code{split_df}.
-#' @param resample.method The resampling method to use. Default is "repeatedcv"
+#' @param split_df A \code{split_df} object from performing \code{split_df}.
+#' @param resample_method The resampling method to use. Default is "repeatedcv"
 #' for repeated cross validation.
 #' See \code{\link[caret:trainControl]{trainControl}} for
 #' details on other available methods.
-#' @param resample.iterations Number of resampling iterations. Default is 10.
-#' @param num.repeats The number of complete sets of folds to compute (For
+#' @param resample_iterations Number of resampling iterations. Default is 10.
+#' @param num_epeats The number of complete sets of folds to compute (For
 #' \code{resampling method = "repeatedcv"} only).
-#' @param algorithm.list A list of classification or regression algorithms to use.
+#' @param algorithm_list A list of classification or regression algorithms to
+#' use.
 #' A full list of machine learning algorithms available through
 #' the \code{\link[caret]{caret package}} can be found here:
 #' \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
@@ -302,9 +309,9 @@ split_df <- function(model.df,
 #' define the control parameters to be used in training models, calculate
 #' resampling-based performance measures for models based on a given set of
 #' machine-learning algorithms, and output the best model for each algorithm.
-#' \item In the event that \code{algorithm.list} is not provided, a default
+#' \item In the event that \code{algorithm_list} is not provided, a default
 #' list of six classification-based machine-learning algorithms will be used
-#' for building and training models. Default \code{algorithm.list}:
+#' for building and training models. Default \code{algorithm_list}:
 #' "knn", "svmRadial", "nb", "rf", "glmboost", "glmnet."
 #' \item Note: Models that failed to build are removed from the output. }
 #'
@@ -321,60 +328,77 @@ split_df <- function(model.df,
 #' }
 #' @examples
 #' \dontrun{
-#' #Fit models based on the default list of ML algorithms.
-#' model_fit <- train_models(split.df = split_df)
+#' # Fit models based on the default list of ML algorithms.
+#' model_fit <- train_models(split_df = split_df)
 #'
-#' #Fit models using a user-specified list of ML algorithms.
-#' model_fit <- train_models(split.df = split_df,
-#'                          algorithm.list = c("svmRadial", "rpart"))
+#' # Fit models using a user-specified list of ML algorithms.
+#' model_fit <- train_models(
+#'   split_df = split_df,
+#'   algorithm_list = c("svmRadial", "rpart")
+#' )
 #'
-#' #Change resampling method and resampling iterations.
-#' model_fit <- train_models(split.df = split_df,
-#'                          resample.method = "cv",
-#'                          resample.iterations = 50)
-#'  }
-#'
+#' # Change resampling method and resampling iterations.
+#' model_fit <- train_models(
+#'   split_df = split_df,
+#'   resample_method = "cv",
+#'   resample_iterations = 50
+#' )
+#' }
 #'
 #' @export
-train_models <- function(split.df,
-                        resample.method = "repeatedcv",
-                        resample.iterations = 10,
-                        num.repeats = 3,
-                        algorithm.list,
-                        ...
-                        ){
+train_models <- function(split_df,
+                         resample_method = "repeatedcv",
+                         resample_iterations = 10,
+                         num_epeats = 3,
+                         algorithm_list,
+                         ...) {
 
-  #If algorithm.list is not provided, use the default list of algorithms.
-  if(missing(algorithm.list)) {
-    algorithm.list = c("knn", "svmRadial", "nb", "rf", "glmboost", "glmnet")
+  # If algorithm_list is not provided, use the default list of algorithms.
+  if (missing(algorithm_list)) {
+    algorithm_list <- c("knn", "svmRadial", "nb", "rf", "glmboost", "glmnet")
   }
 
-  #Set trainControl parameters for resampling
+  # Set trainControl parameters for resampling
   set.seed(351)
-  fit_control <- trainControl(method = resample.method,
-                              number = resample.iterations,
-                              repeats = num.repeats,
-                              classProbs = TRUE)
+  fit_control <- trainControl(
+    method = resample_method,
+    number = resample_iterations,
+    repeats = num_epeats,
+    classProbs = TRUE
+  )
 
-  #Extract the training data set from the split.df object
-  training_data <- split.df$training
+  # Extract the training data set from the split_df object
+  training_data <- split_df$training
 
 
-  #Train models using ML algorithms from the algorithm.list.
-  model_list <- lapply(setNames(algorithm.list, algorithm.list),
-                       function (x) tryCatch({set.seed(351);
-                         message(paste0("\n", "Running ", x, "...", "\n"));
-                         train(Condition ~ .,
-                               data = training_data,
-                               trControl = fit_control,
-                               method = x,
-                               ...)},
-                         error = function(e) {message(paste0(x,
-                                                           " failed."))}))
+  # Train models using ML algorithms from the algorithm_list.
+  model_list <- lapply(
+    setNames(algorithm_list, algorithm_list),
+    function(x) {
+      tryCatch(
+        {
+          set.seed(351)
+          message(paste0("\n", "Running ", x, "...", "\n"))
+          train(condition ~ .,
+            data = training_data,
+            trControl = fit_control,
+            method = x,
+            ...
+          )
+        },
+        error = function(e) {
+          message(paste0(
+            x,
+            " failed."
+          ))
+        }
+      )
+    }
+  )
 
   message(paste0("Done!"))
 
-  #Drop models that failed to build from the list
+  # Drop models that failed to build from the list
   model_list <- Filter(Negate(is.null), model_list)
   return(model_list)
 }
@@ -390,12 +414,12 @@ train_models <- function(split.df,
 #' @import caret
 #' @importFrom reshape2 melt
 #'
-#' @param model.list A \code{model.list} object from performing
+#' @param model_list A \code{model_list} object from performing
 #' \code{train_models}.
-#' @param split.df A \code{split.df} object from performing \code{split_df}.
+#' @param split_df A \code{split_df} object from performing \code{split_df}.
 #' @param type Type of output. Set \code{type} as "prob" (default) to output
 #' class probabilities, and "raw" to output class predictions.
-#' @param save.confusionmatrix Logical. If \code{TRUE}, a tab-delimited
+#' @param save_confusionmatrix Logical. If \code{TRUE}, a tab-delimited
 #' text file ("Confusion_matrices.txt") with confusion matrices in the
 #' long-form data format will be saved in the working directory.
 #' See below for more details.
@@ -411,7 +435,7 @@ train_models <- function(split.df,
 #' @return
 #' \itemize{\item \code{probability.list}: If \code{type = "prob"}, a list of
 #' data frames containing class probabilities for each method in the
-#' \code{model.list} will be returned.
+#' \code{model_list} will be returned.
 #' \item \code{prediction.list}: If \code{type = "raw"}, a list of factors
 #' containing class predictions for each method will be returned.}
 #'
@@ -424,78 +448,96 @@ train_models <- function(split.df,
 #' }
 #' @examples
 #' \dontrun{
-#' #Test a list of models on a test data set and output class probabilities,
-#' model_prob <- test_models(model.list = model_fit, split.df = split_df)
+#' # Test a list of models on a test data set and output class probabilities,
+#' model_prob <- test_models(model_list = model_fit, split_df = split_df)
 #'
-#' #Save confusion matrices and output class predictions
-#' model_pred <- test_models(model.list = model_fit,
-#'                          split.df = split_df,
-#'                          type = "raw",
-#'                          save.confusionmatrix = TRUE)
-#'  }
+#' # Save confusion matrices and output class predictions
+#' model_pred <- test_models(
+#'   model_list = model_fit,
+#'   split_df = split_df,
+#'   type = "raw",
+#'   save_confusionmatrix = TRUE
+#' )
+#' }
 #' @export
-test_models <- function(model.list,
-                       split.df,
-                       type = "prob",
-                       save.confusionmatrix = FALSE,
-                       ...){
+test_models <- function(model_list,
+                        split_df,
+                        type = "prob",
+                        save_confusionmatrix = FALSE,
+                        ...) {
 
-  #Extract test data from the split.df object
-  test_data <- split.df$test
+  # Extract test data from the split_df object
+  test_data <- split_df$test
 
-  #Predict test da
-  pred_list <- lapply(model.list,
-                      function (x){
-                        message(paste0("\n",
-                                       "Testing ",
-                                       x$method ,
-                                       "...",
-                                       "\n"));
-                        predict(x,
-                                test_data,
-                                type = type)})
+  # Predict test da
+  pred_list <- lapply(
+    model_list,
+    function(x) {
+      message(paste0(
+        "\n",
+        "Testing ",
+        x$method,
+        "...",
+        "\n"
+      ))
+      predict(x,
+        test_data,
+        type = type
+      )
+    }
+  )
 
-  #Get confusion matrices and associated statistics
-  if(type == "raw"){
-  cm_list <- lapply(pred_list,
-                    function(x) confusionMatrix(x,
-                                                test_data$Condition))
-  #Print confusion matrices and stats
-  print(cm_list)
+  # Get confusion matrices and associated statistics
+  if (type == "raw") {
+    cm_list <- lapply(
+      pred_list,
+      function(x) {
+        confusionMatrix(
+          x,
+          test_data$condition
+        )
+      }
+    )
+    # Print confusion matrices and stats
+    print(cm_list)
 
-  if(save.confusionmatrix == TRUE){
+    if (save_confusionmatrix == TRUE) {
 
-    #Convert c.matrices to long-form data frames
-    cm_df <- lapply(cm_list,
-                    function(x) reshape2::melt(as.table(x)))
-    #Get the list of methods
-    method_list <- names(cm_df)
+      # Convert c.matrices to long-form data frames
+      cm_df <- lapply(
+        cm_list,
+        function(x) reshape2::melt(as.table(x))
+      )
+      # Get the list of methods
+      method_list <- names(cm_df)
 
-    #Add method names to the data frames
-    cm_dfm <- lapply(1:length(method_list),
-                  function(x) {cm_df[[x]]["method"] <- method_list[x];
-                  cm_df[[x]]})
+      # Add method names to the data frames
+      cm_dfm <- lapply(
+        seq_along(method_list),
+        function(x) {
+          cm_df[[x]]["method"] <- method_list[x]
+          cm_df[[x]]
+        }
+      )
 
-    #Combine all data frames into one
-    cm_dfm_long <- do.call("rbind",
-                           cm_dfm)
+      # Combine all data frames into one
+      cm_dfm_long <- do.call(
+        "rbind",
+        cm_dfm
+      )
 
-    #Add column names before saving
-    colnames(cm_dfm_long) <- c("Prediction", "Reference", "Value", "Method")
+      # Add column names before saving
+      colnames(cm_dfm_long) <- c("Prediction", "Reference", "Value", "Method")
 
-    #Save data in a text file
-    write.table(cm_dfm_long,
-                file = "Confusion_matrices.txt",
-                sep = "\t",
-                quote = FALSE,
-                row.names = FALSE)
-
-  }
+      # Save data in a text file
+      write.table(cm_dfm_long,
+        file = "Confusion_matrices.txt",
+        sep = "\t",
+        quote = FALSE,
+        row.names = FALSE
+      )
+    }
   }
 
   return(pred_list)
-
-
-
-
 }

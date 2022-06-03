@@ -7,21 +7,21 @@
 impute_na(
   df,
   method = "minProb",
-  tune.sigma = 1,
+  tune_sigma = 1,
   q = 0.01,
   maxiter = 10,
   ntree = 20,
-  nPcs = 2
+  n_pcs = 2
 )
 }
 \arguments{
-\item{df}{A \code{raw.df} object (output of \code{\link{create_df}})
+\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})
 containing missing values.}
 
 \item{method}{Imputation method to use. Default is \code{"minProb"}.
 Available methods: \code{"minDet", "RF", "kNN", and "SVD"}.}
 
-\item{tune.sigma}{A scalar used in the \code{"minProb"} method for
+\item{tune_sigma}{A scalar used in the \code{"minProb"} method for
 controlling the standard deviation of the Gaussian distribution
 from which random values are drawn for imputation.\cr
 Default is 1.}
@@ -36,7 +36,7 @@ very low value. Default is 0.01.}
 \item{ntree}{Number of trees to grow in each forest when using the
 \code{"RF"} method. Default is \code{20}.}
 
-\item{nPcs}{Number of principal components to calculate when using the
+\item{n_pcs}{Number of principal components to calculate when using the
 \code{"SVD"} method. Default is 2.}
 }
 \value{
@@ -54,26 +54,25 @@ user-specified imputation method from the available options, \code{minProb},
 }
 \examples{
 \dontrun{
-## Create a raw.df object from a proteinGroups.txt file.
-raw <- create_df(prot.groups = "./proteinGroups.txt")
+## Create a raw_df object from a proteinGroups.txt file.
+raw <- create_df(prot_groups = "./proteinGroups.txt")
 
 ## Impute missing values in the data frame using the default minProb
-method.
+## method.
 imp_raw <- impute_na(raw)
 
-## Using the RF method with the number of iterations set at 5,
-and the number of trees set at 100.
-imp_raw <- impute_na(raw, method = "RF", maxiter = 5, ntree = 100 )
+## Using the RF method with the number of iterations set at 5
+## and number of trees set at 100.
+imp_raw <- impute_na(raw, method = "RF", maxiter = 5, ntree = 100)
 
 ## Using the kNN method.
 imp_raw <- impute_na(raw, method = "kNN")
 
-## Using the SVD method with nPCs set to 3.
-imp_raw <- impute_na(raw, method = "SVD", nPCs = 3)
+## Using the SVD method with n_pcs set to 3.
+imp_raw <- impute_na(raw, method = "SVD", n_pcs = 3)
 
 ## Using the minDet method with q set at 0.001.
 imp_raw <- impute_na(raw, method = "minDet", q = 0.001)
-
 }
 
 }

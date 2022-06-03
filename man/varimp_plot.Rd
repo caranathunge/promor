@@ -5,23 +5,23 @@
 \title{Variable importance plot}
 \usage{
 varimp_plot(
-  model.list,
+  model_list,
   ...,
   type = "lollipop",
-  text.size = 10,
+  text_size = 10,
   palette = "viridis",
   nrow,
   ncol,
   save = FALSE,
-  file.name = "VarImp_plot",
-  file.type = "pdf",
+  file_name = "VarImp_plot",
+  file_type = "pdf",
   dpi = 80,
-  plot.width = 7,
-  plot.height = 7
+  plot_width = 7,
+  plot_height = 7
 )
 }
 \arguments{
-\item{model.list}{A \code{model.list} object from performing
+\item{model_list}{A \code{model_list} object from performing
 \code{train_models}.}
 
 \item{...}{Additional arguments to be passed on to
@@ -30,7 +30,7 @@ varimp_plot(
 \item{type}{Type of plot to generate. Choices are "bar" or "lollipop."
 Default is \code{"lollipop."}}
 
-\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -45,17 +45,17 @@ for available options.}
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.name}{file.name File name to save the plot.
+\item{file_name}{file_name File name to save the plot.
 Default is \code{"VarImp_plot."}}
 
-\item{file.type}{File type to save the plot.
+\item{file_type}{File type to save the plot.
 Default is \code{"pdf"}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 
-\item{plot.width}{Width of the plot. Default is \code{7}.}
+\item{plot_width}{Width of the plot. Default is \code{7}.}
 
-\item{plot.height}{Height of the plot. Default is \code{7}.}
+\item{plot_height}{Height of the plot. Default is \code{7}.}
 }
 \value{
 A list of \code{ggplot2} objects.
@@ -75,7 +75,7 @@ This can be changed by providing \code{scale = FALSE}. See
 \examples{
 \dontrun{
 
-##Train models using default settings
+## Train models using default settings
 model_list <- train_models(split_df)
 
 ## Lollipop plots
@@ -85,10 +85,8 @@ varimp_plot(model_list)
 varimp_plot(model_list, type = "bar")
 
 ## Do not scale variable importance values
-varimp_plot(model_list, scale  = FALSE)
-
-
- }
+varimp_plot(model_list, scale = FALSE)
+}
 }
 \seealso{
 \itemize{

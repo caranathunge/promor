@@ -8,18 +8,18 @@ norm_plot(
   original,
   normalized,
   type = "box",
-  text.size = 10,
+  text_size = 10,
   palette = "viridis",
   save = FALSE,
-  file.name = "Norm_plot",
-  file.type = "pdf",
+  file_name = "Norm_plot",
+  file_type = "pdf",
   dpi = 80,
-  plot.width = 7,
-  plot.height = 7
+  plot_width = 7,
+  plot_height = 7
 )
 }
 \arguments{
-\item{original}{A \code{raw.df} object (output of \code{\link{create_df}})
+\item{original}{A \code{raw_df} object (output of \code{\link{create_df}})
 containing missing values or an \code{imp.df} object after imputing the
 missing values with \code{impute_na}.}
 
@@ -29,7 +29,7 @@ provided as \code{original}.}
 \item{type}{Type of plot to generate. Choices are "box" or "density." Default
 is \code{"box."}}
 
-\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -40,17 +40,17 @@ for available options.}
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.name}{file.name File name to save the plot.
+\item{file_name}{file_name File name to save the plot.
 Default is \code{"Norm_plot."}}
 
-\item{file.type}{File type to save the plot.
+\item{file_type}{File type to save the plot.
 Default is \code{"pdf"}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 
-\item{plot.width}{Width of the plot. Default is \code{7}.}
+\item{plot_width}{Width of the plot. Default is \code{7}.}
 
-\item{plot.height}{Height of the plot. Default is \code{7}.}
+\item{plot_height}{Height of the plot. Default is \code{7}.}
 }
 \value{
 A \code{ggplot2} plot object.
@@ -67,7 +67,7 @@ normalization on the intensity data.
 }
 \examples{
 \dontrun{
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 
 ## Normalize an imputed data set.

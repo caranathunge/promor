@@ -5,23 +5,23 @@
 \title{Test machine learning models on test data}
 \usage{
 test_models(
-  model.list,
-  split.df,
+  model_list,
+  split_df,
   type = "prob",
-  save.confusionmatrix = FALSE,
+  save_confusionmatrix = FALSE,
   ...
 )
 }
 \arguments{
-\item{model.list}{A \code{model.list} object from performing
+\item{model_list}{A \code{model_list} object from performing
 \code{train_models}.}
 
-\item{split.df}{A \code{split.df} object from performing \code{split_df}.}
+\item{split_df}{A \code{split_df} object from performing \code{split_df}.}
 
 \item{type}{Type of output. Set \code{type} as "prob" (default) to output
 class probabilities, and "raw" to output class predictions.}
 
-\item{save.confusionmatrix}{Logical. If \code{TRUE}, a tab-delimited
+\item{save_confusionmatrix}{Logical. If \code{TRUE}, a tab-delimited
 text file ("Confusion_matrices.txt") with confusion matrices in the
 long-form data format will be saved in the working directory.
 See below for more details.}
@@ -32,7 +32,7 @@ See below for more details.}
 \value{
 \itemize{\item \code{probability.list}: If \code{type = "prob"}, a list of
 data frames containing class probabilities for each method in the
-\code{model.list} will be returned.
+\code{model_list} will be returned.
 \item \code{prediction.list}: If \code{type = "raw"}, a list of factors
 containing class predictions for each method will be returned.}
 }
@@ -49,15 +49,17 @@ probabilities that can be used to generate ROC curves with \code{ROC_plot}.}
 }
 \examples{
 \dontrun{
-#Test a list of models on a test data set and output class probabilities,
-model_prob <- test_models(model.list = model_fit, split.df = split_df)
+# Test a list of models on a test data set and output class probabilities,
+model_prob <- test_models(model_list = model_fit, split_df = split_df)
 
-#Save confusion matrices and output class predictions
-model_pred <- test_models(model.list = model_fit,
-                         split.df = split_df,
-                         type = "raw",
-                         save.confusionmatrix = TRUE)
- }
+# Save confusion matrices and output class predictions
+model_pred <- test_models(
+  model_list = model_fit,
+  split_df = split_df,
+  type = "raw",
+  save_confusionmatrix = TRUE
+)
+}
 }
 \seealso{
 \itemize{

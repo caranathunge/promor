@@ -5,34 +5,34 @@
 \title{ROC plot}
 \usage{
 roc_plot(
-  probability.list,
-  split.df,
+  probability_list,
+  split_df,
   ...,
-  multiple.plots = TRUE,
-  text.size = 10,
+  multiple_plots = TRUE,
+  text_size = 10,
   palette = "viridis",
   save = FALSE,
-  file.name = "ROC_plot",
-  file.type = "pdf",
-  plot.width = 7,
-  plot.height = 7,
+  file_name = "ROC_plot",
+  file_type = "pdf",
+  plot_width = 7,
+  plot_height = 7,
   dpi = 80
 )
 }
 \arguments{
-\item{probability.list}{A \code{probability.list} object from performing
+\item{probability_list}{A \code{probability_list} object from performing
 \code{test_models} with \code{type = "prob"}.}
 
-\item{split.df}{A \code{split.df} object from performing \code{split_df}}
+\item{split_df}{A \code{split_df} object from performing \code{split_df}}
 
 \item{...}{Additional arguments to be passed on to
 \code{\link[pROC: roc]{roc}}.}
 
-\item{multiple.plots}{Logical. If \code{FALSE} plots all ROC curves
-representing algorithms included in the \code{probability.list} in a single
+\item{multiple_plots}{Logical. If \code{FALSE} plots all ROC curves
+representing algorithms included in the \code{probability_list} in a single
 plot.}
 
-\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -43,15 +43,15 @@ for available options.}
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.name}{file.name File name to save the plot.
+\item{file_name}{file_name File name to save the plot.
 Default is \code{"ROC_plot."}}
 
-\item{file.type}{File type to save the plot.
+\item{file_type}{File type to save the plot.
 Default is \code{"pdf"}.}
 
-\item{plot.width}{Width of the plot. Default is \code{7}.}
+\item{plot_width}{Width of the plot. Default is \code{7}.}
 
-\item{plot.height}{Height of the plot. Default is \code{7}.}
+\item{plot_height}{Height of the plot. Default is \code{7}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 }
@@ -71,16 +71,18 @@ plot the ROC curves.}
 \examples{
 \dontrun{
 
-##Test models
-model_probs <- test_models(model.list = model_fit, split.df = split_df,
-                          type = "prob")
+## Test models
+model_probs <- test_models(
+  model_list = model_fit, split_df = split_df,
+  type = "prob"
+)
 
 ## Plot all ROC curves in one plot
-roc_plot(model_probs, multiple.plots = FALSE)
+roc_plot(model_probs, multiple_plots = FALSE)
 
 ## Plot ROC curves separately for each algorithm
 roc_plot(model_probs)
- }
+}
 }
 \seealso{
 \itemize{

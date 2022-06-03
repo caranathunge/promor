@@ -5,27 +5,27 @@
 \title{Visualize feature (protein) variation among conditions}
 \usage{
 feature_plot(
-  model.df,
+  model_df,
   type = "box",
-  text.size = 10,
+  text_size = 10,
   palette = "viridis",
   nrow,
   ncol,
   save = FALSE,
-  file.name = "Feature_plot",
-  file.type = "pdf",
+  file_name = "Feature_plot",
+  file_type = "pdf",
   dpi = 80,
-  plot.width = 7,
-  plot.height = 7
+  plot_width = 7,
+  plot_height = 7
 )
 }
 \arguments{
-\item{model.df}{A \code{model.df} object from performing \code{pre_process}.}
+\item{model_df}{A \code{model_df} object from performing \code{pre_process}.}
 
 \item{type}{Type of plot to generate. Choices are "box" or "density." Default
 is \code{"box."}}
 
-\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -40,17 +40,17 @@ for available options.}
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.name}{file.name File name to save the plot.
+\item{file_name}{file_name File name to save the plot.
 Default is \code{"Feature_plot."}}
 
-\item{file.type}{File type to save the plot.
+\item{file_type}{File type to save the plot.
 Default is \code{"pdf"}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 
-\item{plot.width}{Width of the plot. Default is \code{7}.}
+\item{plot_width}{Width of the plot. Default is \code{7}.}
 
-\item{plot.height}{Height of the plot. Default is \code{7}.}
+\item{plot_height}{Height of the plot. Default is \code{7}.}
 }
 \value{
 A \code{ggplot2} object
@@ -66,13 +66,12 @@ intensity using boxplots and/or density plots.
 \examples{
 \dontrun{
 
- ## Box plots
- predictor_plot(model_df, type = "box", nrow = 2, ncol = 4)
+## Box plots
+predictor_plot(model_df, type = "box", nrow = 2, ncol = 4)
 
- ## Density plots
- predictor_plot(model_df, type = "density", nrow = 2, ncol = 4)
-
- }
+## Density plots
+predictor_plot(model_df, type = "density", nrow = 2, ncol = 4)
+}
 }
 \seealso{
 \itemize{

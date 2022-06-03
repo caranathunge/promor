@@ -5,29 +5,29 @@
 \title{Volcano plot}
 \usage{
 volcano_plot(
-  fit.df,
-  adj.method = "BH",
+  fit_df,
+  adj_method = "BH",
   sig = "adjP",
   cutoff = 0.05,
-  FC = 1,
-  line.FC = TRUE,
-  line.P = TRUE,
+  fc = 1,
+  line_fc = TRUE,
+  line_p = TRUE,
   palette = "viridis",
-  text.size = 10,
-  label.top = FALSE,
-  n.top = 10,
+  text_size = 10,
+  label_top = FALSE,
+  n_top = 10,
   save = FALSE,
-  file.name = "Volcano_plot",
-  file.type = "pdf",
-  plot.height = 7,
-  plot.width = 7,
+  file_name = "Volcano_plot",
+  file_type = "pdf",
+  plot_height = 7,
+  plot_width = 7,
   dpi = 80
 )
 }
 \arguments{
-\item{fit.df}{A \code{fit.df} object from performing \code{find_dep}.}
+\item{fit_df}{A \code{fit_df} object from performing \code{find_dep}.}
 
-\item{adj.method}{Method used for adjusting the p-values for multiple
+\item{adj_method}{Method used for adjusting the p-values for multiple
 testing. Default is \code{"BH."}.}
 
 \item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
@@ -36,13 +36,13 @@ testing. Default is \code{"BH."}.}
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
 
-\item{FC}{Minimum absolute log-fold change to use as threshold for
+\item{fc}{Minimum absolute log-fold change to use as threshold for
 differential expression.}
 
-\item{line.FC}{Logical. If \code{TRUE}(default), a dotted line will be shown
-to indicate the \code{FC} threshold in the plot.}
+\item{line_fc}{Logical. If \code{TRUE}(default), a dotted line will be shown
+to indicate the \code{fc} threshold in the plot.}
 
-\item{line.P}{Logical. If \code{TRUE}(default), a dotted line will be shown
+\item{line_p}{Logical. If \code{TRUE}(default), a dotted line will be shown
 to indicate the p-value \code{cutoff.}}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -50,24 +50,24 @@ to indicate the p-value \code{cutoff.}}
 \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
 for available options.}
 
-\item{text.size}{Text size for axis text, labels etc.}
+\item{text_size}{Text size for axis text, labels etc.}
 
-\item{label.top}{Logical. If \code{TRUE} (default), labels are added to the
+\item{label_top}{Logical. If \code{TRUE} (default), labels are added to the
 dots to indicate protein names.}
 
-\item{n.top}{The number of top hits to label with protein name when
-\code{label.top = TRUE.} Default is \code{10}.}
+\item{n_top}{The number of top hits to label with protein name when
+\code{label_top = TRUE.} Default is \code{10}.}
 
 \item{save}{Logical. If \code{TRUE}, saves a copy of the plot in the
 working directory.}
 
-\item{file.name}{File name to save the plot. Default is "Volcano_plot."}
+\item{file_name}{File name to save the plot. Default is "Volcano_plot."}
 
-\item{file.type}{File type to save the plot. Default is \code{"pdf".}}
+\item{file_type}{File type to save the plot. Default is \code{"pdf".}}
 
-\item{plot.height}{Height of the plot. Default is 7.}
+\item{plot_height}{Height of the plot. Default is 7.}
 
-\item{plot.width}{Width of the plot. Default is 7.}
+\item{plot_width}{Width of the plot. Default is 7.}
 
 \item{dpi}{Plot resolution. Default is \code{80.}}
 }
@@ -79,24 +79,23 @@ This function generates volcano plots to visualize
 differentially expressed proteins between groups.
 }
 \details{
-\itemize{\item Volcano plots show log-2-fold change on the x-axis and
--log10(p-value) on the y-axis.\item \code{volcano_plot} requires a
-\code{fit.df} object from performing differential expression analysis
-with \code{fit.DEP.}
+\itemize{\item Volcano plots show log-2-fold change on the x-axis
+and -log10(p-value) on the y-axis.\item \code{volcano_plot} requires a
+\code{fit_df} object from performing differential expression analysis
+with \code{find_dep.}
 \item User has the option to choose the criterion to denote significance.}
 }
 \examples{
 \dontrun{
 
-#Perform differential expression analysis.
+# Perform differential expression analysis.
 fit <- find_dep(raw_nm)
 
-#Create a volcano plot with default settings.
+# Create a volcano plot with default settings.
 volcano_plot(fit)
 
-#Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
-volcano_plot(fit, cutoff = 0.05, sig = "P", FC = 1)
-
+# Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
+volcano_plot(fit, cutoff = 0.05, sig = "P", fc = 1)
 }
 
 }

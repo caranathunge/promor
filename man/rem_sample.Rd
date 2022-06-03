@@ -7,12 +7,12 @@
 rem_sample(df, rem)
 }
 \arguments{
-\item{df}{A \code{raw.df} object.}
+\item{df}{A \code{raw_df} object.}
 
 \item{rem}{Name of the sample to remove.}
 }
 \value{
-A \code{raw.df} object.
+A \code{raw_df} object.
 }
 \description{
 This function removes user-specified samples from the
@@ -32,7 +32,7 @@ remove that particular technical replicate by providing
 \examples{
 \dontrun{
 
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 
 ## Remove all technical replicates of "A_10"
@@ -40,7 +40,6 @@ raw_1 <- rem_sample(raw, "A_10")
 
 ## Remove only technical replicate number 2 of "A_10"
 raw_1 <- rem_sample(raw, "A_10_2")
-
 }
 
 }

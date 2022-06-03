@@ -7,8 +7,8 @@
 normalize_data(df, method = "quantile")
 }
 \arguments{
-\item{df}{A \code{raw.df} object, or ideally, an \code{imp.df} object with
-missing values imputed.}
+\item{df}{An \code{imp.df} object with missing values imputed using
+\code{impute_na}.}
 
 \item{method}{Name of the normalization method to use. Choices are
 \code{"none", "scale", "quantile" or "cyclicloess."}
@@ -27,11 +27,11 @@ normalization method.
 consistency among samples. The function assumes that the intensities in the
 data frame have been log-transformed, therefore, it is important to make sure
 that \code{create_df} was run with \code{log.tr = TRUE} when creating the
-\code{raw.df} object.
+\code{raw_df} object.
 }
 \examples{
 \dontrun{
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 
 ## Normalize a data set.
@@ -40,9 +40,7 @@ raw_nm <- normalize_data(raw, method = "cyclicloess")
 ## Normalize an imputed data set.
 raw_imp <- impute_na(raw)
 raw_nm <- normalize_data(raw_imp)
-
 }
-
 
 }
 \seealso{

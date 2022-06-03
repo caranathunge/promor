@@ -4,20 +4,20 @@
 \alias{onegroup_only}
 \title{Proteins that are only expressed in a given group}
 \usage{
-onegroup_only(df, abs.group, pres.group, set.na = 0.33, save = TRUE)
+onegroup_only(df, abs_group, pres_group, set_na = 0.33, save = TRUE)
 }
 \arguments{
-\item{df}{A \code{raw.df} object (output of \code{\link{create_df}})}
+\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})}
 
-\item{abs.group}{Name of the group in which proteins are not expressed.}
+\item{abs_group}{Name of the group in which proteins are not expressed.}
 
-\item{pres.group}{Name of the group in which proteins are expressed.}
+\item{pres_group}{Name of the group in which proteins are expressed.}
 
-\item{set.na}{The percentage of missing data allowed in \code{pres.group}.
+\item{set_na}{The percentage of missing data allowed in \code{pres_group}.
 Default is 0.33.}
 
 \item{save}{Logical. If \code{TRUE} (default), it saves the output in a text
-file named "Group_\code{pres.group}_only.txt."}
+file named "Group_\code{pres_group}_only.txt."}
 }
 \value{
 A list of majority protein IDs.
@@ -29,22 +29,23 @@ expressed (present) in one user-specified group while not expressed
 }
 \details{
 Note: \code{onegroup_only} function assumes that column headers in
-the \code{raw.df} object provided as \code{df} follow "Group_UniqueSampleID"
+the \code{raw_df} object provided as \code{df} follow "Group_UniqueSampleID"
 notation. \itemize{\item Given a pair of groups, \code{onegroup_only}
-function finds proteins that are only expressed in \code{pres.group} while
-completely absent or not expressed in \code{abs.group}.}
+function finds proteins that are only expressed in \code{pres_group} while
+completely absent or not expressed in \code{abs_group}.}
 }
 \examples{
 \dontrun{
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(file.path = "./proteinGroups.txt")
 
 ## Save a list of proteins only expressed in group B, but absent in group A.
-onegroup_only(raw, abs.group = "A", pres.group = "B")
+onegroup_only(raw, abs_group = "A", pres_group = "B")
 
 ## Save the above list in a variable.
-protein_list <- onegroup_only(raw, abs.group = "A", pres.group = "B")
+protein_list <- onegroup_only(raw, abs_group = "A", pres_group = "B")
 }
+
 }
 \author{
 Chathurani Ranathunge

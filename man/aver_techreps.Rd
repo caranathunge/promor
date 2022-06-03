@@ -7,10 +7,10 @@
 aver_techreps(df)
 }
 \arguments{
-\item{df}{A \code{raw.df} object containing technical replicates.}
+\item{df}{A \code{raw_df} object containing technical replicates.}
 }
 \value{
-A \code{raw.df} object of averaged intensities.
+A \code{raw_df} object of averaged intensities.
 }
 \description{
 This function computes average intensities across
@@ -22,13 +22,12 @@ follow the "Group_UniqueSampleID_TechnicalReplicate" notation.
 }
 \examples{
 \dontrun{
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
 
-#Compute average intensities across technical replicates.
+# Compute average intensities across technical replicates.
 raw_1 <- aver_techreps(raw)
 }
-
 
 }
 \seealso{

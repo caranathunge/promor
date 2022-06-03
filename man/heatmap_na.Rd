@@ -6,41 +6,41 @@
 \usage{
 heatmap_na(
   df,
-  protein.range = "ALL",
-  sample.range = "ALL",
-  reorder.x = FALSE,
-  reorder.y = FALSE,
-  x.FUN = mean,
-  y.FUN = mean,
+  protein_range = "ALL",
+  sample_range = "ALL",
+  reorder_x = FALSE,
+  reorder_y = FALSE,
+  x_fun = mean,
+  y_fun = mean,
   palette = "viridis",
-  text.size = 10,
+  text_size = 10,
   save = FALSE,
-  file.type = "pdf",
-  file.name = "MissingData_heatmap",
-  plot.width = 15,
-  plot.height = 15,
+  file_type = "pdf",
+  file_name = "MissingData_heatmap",
+  plot_width = 15,
+  plot_height = 15,
   dpi = 80
 )
 }
 \arguments{
-\item{df}{A \code{raw.df} object (output from \code{\link{create_df}}).}
+\item{df}{A \code{raw_df} object (output from \code{\link{create_df}}).}
 
-\item{protein.range}{The range of proteins to plot. Default is \code{ALL},
+\item{protein_range}{The range of proteins to plot. Default is \code{ALL},
 meaning all the proteins in the data frame.}
 
-\item{sample.range}{The range of samples to plot. Default is \code{ALL},
+\item{sample_range}{The range of samples to plot. Default is \code{ALL},
 meaning all the samples in the data frame.}
 
-\item{reorder.x}{Logical. If \code{TRUE} samples on the x axis are reordered
-using the function given in \code{x.FUN}. Default is \code{FALSE}.}
+\item{reorder_x}{Logical. If \code{TRUE} samples on the x axis are reordered
+using the function given in \code{x_fun}. Default is \code{FALSE}.}
 
-\item{reorder.y}{Logical. If \code{TRUE} proteins in the y axis are reordered
-using the function given in \code{y.FUN}. Default is \code{FALSE}.}
+\item{reorder_y}{Logical. If \code{TRUE} proteins in the y axis are reordered
+using the function given in \code{y_fun}. Default is \code{FALSE}.}
 
-\item{x.FUN}{Function to reorder samples along the x axis. Possible options
+\item{x_fun}{Function to reorder samples along the x axis. Possible options
 include \code{mean} and \code{sum}. Default is \code{mean}.}
 
-\item{y.FUN}{Function to reorder proteins along the y axis. Possible options
+\item{y_fun}{Function to reorder proteins along the y axis. Possible options
 include \code{mean} and \code{sum}. Default is \code{mean}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -48,19 +48,19 @@ include \code{mean} and \code{sum}. Default is \code{mean}.}
 \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
 for available options.}
 
-\item{text.size}{Text size for axis labels. Default is \code{10}.}
+\item{text_size}{Text size for axis labels. Default is \code{10}.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.type}{File type to save the heatmap. Default is \code{"pdf"}.}
+\item{file_type}{File type to save the heatmap. Default is \code{"pdf"}.}
 
-\item{file.name}{File name to save the heatmap.
+\item{file_name}{File name to save the heatmap.
 Default is \code{"MissingData_heatmap"}.}
 
-\item{plot.width}{Width of the plot. Default is \code{15}.}
+\item{plot_width}{Width of the plot. Default is \code{15}.}
 
-\item{plot.height}{Height of the plot. Default is \code{15}.}
+\item{plot_height}{Height of the plot. Default is \code{15}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 }
@@ -74,20 +74,22 @@ occurrence using a heatmap.
 \details{
 This function visualizes patterns of missing value occurrence using a
 heatmap. User can choose to reorder the axes using the available functions
-(\code{x.FUN}, \code{y.FUN}) to better understand the underlying cause of
+(\code{x_fun}, \code{y_fun}) to better understand the underlying cause of
 missing data.
 }
 \examples{
 \dontrun{
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(prot.groups = "./proteinGroups.txt")
 
 ## Missing data heatmap with default settings.
 heatmap_na(raw)
 
 ## Missing data heatmap with x and y axes reordered by sum of intensity.
-heatmap_na(raw, reorder.x = TRUE, reorder.y = TRUE, x.FUN = sum,
-y.FUN = sum)
+heatmap_na(raw,
+  reorder_x = TRUE, reorder_y = TRUE, x_fun = sum,
+  y_fun = sum
+)
 }
 
 }

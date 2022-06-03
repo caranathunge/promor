@@ -4,12 +4,12 @@
 \alias{split_df}
 \title{Split the data frame to create training and test data}
 \usage{
-split_df(model.df, train.size = 0.8)
+split_df(model_df, train_size = 0.8)
 }
 \arguments{
-\item{model.df}{A \code{model.df} object from performing \code{pre_process}.}
+\item{model_df}{A \code{model_df} object from performing \code{pre_process}.}
 
-\item{train.size}{The size of the training data set as a percentage of the
+\item{train_size}{The size of the training data set as a percentage of the
 complete data set. Default is 0.8.}
 }
 \value{
@@ -20,25 +20,23 @@ This function can be used to create balanced splits of the
 protein intensity data to create training and test data
 }
 \details{
-This function splits the \code{model.df} object in to training and
+This function splits the \code{model_df} object in to training and
 test data sets using random sampling while preserving the original
 class distribution of the data.
 }
 \examples{
 \dontrun{
 
- ## Split the data frame into training and test data sets with 70\% of the
- data in training and 30\% in test data sets
- split_data <- split_df(model-df, train.size = 0.7)
+## Split the data frame into training and test data sets with 70\% of the
+## data in training and 30\% in test data sets
+split_data <- split_df(model - df, train_size = 0.7)
 
- ## Access training data set
- split_data$training
+## Access training data set
+split_data$training
 
- ## Access test data set
- split_data$test
-
- }
-
+## Access test data set
+split_data$test
+}
 
 }
 \seealso{

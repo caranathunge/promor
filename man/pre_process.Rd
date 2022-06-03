@@ -5,52 +5,52 @@
 \title{Pre-process protein intensity data for modeling}
 \usage{
 pre_process(
-  fit.df,
-  norm.df,
+  fit_df,
+  norm_df,
   sig = "adjP",
-  sig.cutoff = 0.05,
-  FC = 1,
-  n.top = 20,
-  find.highcorr = TRUE,
-  corr.cutoff = 0.9,
-  save.corrmatrix = FALSE,
-  rem.highcorr = TRUE
+  sig_cutoff = 0.05,
+  fc = 1,
+  n_top = 20,
+  find_highcorr = TRUE,
+  corr_cutoff = 0.9,
+  save_corrmatrix = FALSE,
+  rem_highcorr = TRUE
 )
 }
 \arguments{
-\item{fit.df}{A \code{fit.df} object from performing \code{find_dep}.}
+\item{fit_df}{A \code{fit_df} object from performing \code{find_dep}.}
 
-\item{norm.df}{The \code{norm.df} object from which the \code{fit.df} object
+\item{norm_df}{The \code{norm_df} object from which the \code{fit_df} object
 was obtained.}
 
 \item{sig}{Criteria to denote significance in differential expression.
 Choices are \code{"adjP"} (default) for adjusted p-value or \code{"P"}
 for p-value.}
 
-\item{sig.cutoff}{Cutoff value for p-values and adjusted p-values in
+\item{sig_cutoff}{Cutoff value for p-values and adjusted p-values in
 differential expression. Default is 0.05.}
 
-\item{FC}{Minimum absolute log-fold change to use as threshold for
+\item{fc}{Minimum absolute log-fold change to use as threshold for
 differential expression. Default is 1.}
 
-\item{n.top}{The number of top hits from \code{find_dep} to be used in
+\item{n_top}{The number of top hits from \code{find_dep} to be used in
 modeling. Default is 20.}
 
-\item{find.highcorr}{Logical. If \code{TRUE} (default), finds highly
+\item{find_highcorr}{Logical. If \code{TRUE} (default), finds highly
 correlated proteins.}
 
-\item{corr.cutoff}{A numeric value specifying the correlation cutoff.
+\item{corr_cutoff}{A numeric value specifying the correlation cutoff.
 Default is 0.90.}
 
-\item{save.corrmatrix}{Logical. If \code{TRUE}, saves a copy of the
+\item{save_corrmatrix}{Logical. If \code{TRUE}, saves a copy of the
 protein correlation matrix in a tab-delimited text file labeled
 "Protein_correlation.txt" in the working directory.}
 
-\item{rem.highcorr}{Logical. If \code{TRUE} (default), removes highly
+\item{rem_highcorr}{Logical. If \code{TRUE} (default), removes highly
 correlated proteins (predictors or features).}
 }
 \value{
-A \code{model.df} object, which is a data frame of protein
+A \code{model_df} object, which is a data frame of protein
 intensities with proteins indicated by columns.
 }
 \description{
@@ -61,26 +61,25 @@ modeling.
 \details{
 This function creates a data frame that contains protein intensities
 for a user-specified number of top differentially expressed proteins.
-\itemize{\item Using \code{find.highcorr = TRUE}, highly correlated
+\itemize{\item Using \code{find_highcorr = TRUE}, highly correlated
 proteins can be identified, and can be removed with
-\code{rem.highcorr = TRUE}.
+\code{rem_highcorr = TRUE}.
 \item Note: Most models will benefit from reducing correlation between
 proteins (predictors or features), therefore we recommend removing those
 proteins at this stage to reduce pairwise-correlation.
 \item If no proteins meet the significance threshold for differential
-expression, you may adjust \code{sig}, \code{FC}, and \code{sig.cutoff}
+expression, you may adjust \code{sig}, \code{fc}, and \code{sig_cutoff}
 accordingly to obtain a set of proteins for modeling.}
 }
 \examples{
 \dontrun{
 
- ## Create a model.df object with default settings.
- model_df <- pre_process(fit_df, norm_df)
+## Create a model_df object with default settings.
+model_df <- pre_process(fit_df, norm_df)
 
- ## Change the correlation cutoff.
- model_df <- pre_process(fit_df, norm_df, corr.cutoff = 0.95)
- }
-
+## Change the correlation cutoff.
+model_df <- pre_process(fit_df, norm_df, corr_cutoff = 0.95)
+}
 
 }
 \seealso{

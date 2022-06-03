@@ -4,16 +4,16 @@
 \alias{filterbygroup_na}
 \title{Filter proteins by group level missing data}
 \usage{
-filterbygroup_na(df, set.na = 0.33)
+filterbygroup_na(df, set_na = 0.33)
 }
 \arguments{
-\item{df}{A \code{raw.df} object (output of \code{\link{create_df}})}
+\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})}
 
-\item{set.na}{The percentage of missing data allowed in any group.
+\item{set_na}{The percentage of missing data allowed in any group.
 Default is 0.33.}
 }
 \value{
-A \code{raw.df} object or a data frame of filtered proteins
+A \code{raw_df} object or a data frame of filtered proteins
 as rows and sample LFQ intensities as columns.
 }
 \description{
@@ -21,26 +21,26 @@ This function filters out proteins that exceed a given
 missing data percentage in each group.
 }
 \details{
-This function assumes that column headers in the \code{raw.df}
+This function assumes that column headers in the \code{raw_df}
 object provided as \code{df} follow "Group_UniqueSampleID" notation.
 \itemize{\item It first
 extracts group or condition information from column headers and assigns
 samples to different groups.
 \item It then removes proteins (rows) from the data frame if the percentage
 of NAs in any one of the given groups exceeds the threshold indicated by
-\code{set.na} (default is 0.33)}
+\code{set_na} (default is 0.33)}
 }
 \examples{
- \dontrun{
- ## Create a raw.df object from a proteinGroups.txt file.
- raw <- create_df(file.path = "./proteinGroups.txt")
+\dontrun{
+## Create a raw_df object from a proteinGroups.txt file.
+raw <- create_df(file.path = "./proteinGroups.txt")
 
- ## Missing data percentage allowed in each group = 0.33
- raw_filtered <- filterbygroup_na(raw)
+## Missing data percentage allowed in each group = 0.33
+raw_filtered <- filterbygroup_na(raw)
 
- ## Missing data percentage allowed in each group = 0.5
- raw_filtered1 <- filterbygroup_na(raw, set.na = 0.5)
- }
+## Missing data percentage allowed in each group = 0.5
+raw_filtered1 <- filterbygroup_na(raw, set_na = 0.5)
+}
 }
 \author{
 Chathurani Ranathunge

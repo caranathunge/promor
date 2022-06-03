@@ -5,58 +5,58 @@
 \title{Heatmap of differentially expressed proteins}
 \usage{
 heatmap_de(
-  fit.df,
-  norm.df,
+  fit_df,
+  norm_df,
   cutoff = 0.05,
-  FC = 1,
+  fc = 1,
   sig = "adjP",
-  n.top = 20,
+  n_top = 20,
   palette = "viridis",
-  text.size = 10,
+  text_size = 10,
   save = FALSE,
-  file.name = "HeatmapDE",
-  file.type = "pdf",
+  file_name = "HeatmapDE",
+  file_type = "pdf",
   dpi = 80,
-  plot.height = 7,
-  plot.width = 7
+  plot_height = 7,
+  plot_width = 7
 )
 }
 \arguments{
-\item{fit.df}{A \code{fit.df} object from performing \code{find_dep}.}
+\item{fit_df}{A \code{fit_df} object from performing \code{find_dep}.}
 
-\item{norm.df}{The \code{norm.df} object from which the \code{fit.df} object
+\item{norm_df}{The \code{norm_df} object from which the \code{fit_df} object
 was obtained.}
 
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
 
-\item{FC}{Minimum absolute log-fold change to use as threshold for
+\item{fc}{Minimum absolute log-fold change to use as threshold for
 differential expression. Default is 1.}
 
 \item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
 (default) for adjusted p-value or \code{"P"} for p-value.}
 
-\item{n.top}{Number of top hits to include in the heat map.}
+\item{n_top}{Number of top hits to include in the heat map.}
 
 \item{palette}{Viridis color palette option for plots. Default is
 \code{"viridis"}. See
 \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
 for available options.}
 
-\item{text.size}{Text size for axis text, labels etc.}
+\item{text_size}{Text size for axis text, labels etc.}
 
 \item{save}{Logical. If \code{TRUE}, saves a copy of the plot in
 the working directory.}
 
-\item{file.name}{File name to save the plot. Default is "HeatmapDE."}
+\item{file_name}{File name to save the plot. Default is "HeatmapDE."}
 
-\item{file.type}{File type to save the plot. Default is \code{"pdf".}}
+\item{file_type}{File type to save the plot. Default is \code{"pdf".}}
 
 \item{dpi}{Plot resolution. Default is \code{80.}}
 
-\item{plot.height}{Height of the plot. Default is 7.}
+\item{plot_height}{Height of the plot. Default is 7.}
 
-\item{plot.width}{Width of the plot. Default is 7.}
+\item{plot_width}{Width of the plot. Default is 7.}
 }
 \value{
 A \code{ggplot2} plot object.
@@ -71,17 +71,15 @@ along both axes (x axis = samples, y axis = proteins).
 }
 \examples{
 \dontrun{
-#Perform differential expression analysis.
+# Perform differential expression analysis.
 fit <- find_dep(raw_nm)
 
-#Create a heatmap with default settings.
+# Create a heatmap with default settings.
 heatmap_de(fit, raw_nm)
 
-#Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
-heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", FC = 1)
-
+# Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
+heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", fc = 1)
 }
-
 
 }
 \seealso{

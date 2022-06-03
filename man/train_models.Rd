@@ -5,28 +5,29 @@
 \title{Train machine learning models on training data}
 \usage{
 train_models(
-  split.df,
-  resample.method = "repeatedcv",
-  resample.iterations = 10,
-  num.repeats = 3,
-  algorithm.list,
+  split_df,
+  resample_method = "repeatedcv",
+  resample_iterations = 10,
+  num_epeats = 3,
+  algorithm_list,
   ...
 )
 }
 \arguments{
-\item{split.df}{A \code{split.df} object from performing \code{split_df}.}
+\item{split_df}{A \code{split_df} object from performing \code{split_df}.}
 
-\item{resample.method}{The resampling method to use. Default is "repeatedcv"
+\item{resample_method}{The resampling method to use. Default is "repeatedcv"
 for repeated cross validation.
 See \code{\link[caret:trainControl]{trainControl}} for
 details on other available methods.}
 
-\item{resample.iterations}{Number of resampling iterations. Default is 10.}
+\item{resample_iterations}{Number of resampling iterations. Default is 10.}
 
-\item{num.repeats}{The number of complete sets of folds to compute (For
+\item{num_epeats}{The number of complete sets of folds to compute (For
 \code{resampling method = "repeatedcv"} only).}
 
-\item{algorithm.list}{A list of classification or regression algorithms to use.
+\item{algorithm_list}{A list of classification or regression algorithms to
+use.
 A full list of machine learning algorithms available through
 the \code{\link[caret]{caret package}} can be found here:
 \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
@@ -46,27 +47,30 @@ data using different machine learning algorithms
 define the control parameters to be used in training models, calculate
 resampling-based performance measures for models based on a given set of
 machine-learning algorithms, and output the best model for each algorithm.
-\item In the event that \code{algorithm.list} is not provided, a default
+\item In the event that \code{algorithm_list} is not provided, a default
 list of six classification-based machine-learning algorithms will be used
-for building and training models. Default \code{algorithm.list}:
+for building and training models. Default \code{algorithm_list}:
 "knn", "svmRadial", "nb", "rf", "glmboost", "glmnet."
 \item Note: Models that failed to build are removed from the output. }
 }
 \examples{
 \dontrun{
-#Fit models based on the default list of ML algorithms.
-model_fit <- train_models(split.df = split_df)
+# Fit models based on the default list of ML algorithms.
+model_fit <- train_models(split_df = split_df)
 
-#Fit models using a user-specified list of ML algorithms.
-model_fit <- train_models(split.df = split_df,
-                         algorithm.list = c("svmRadial", "rpart"))
+# Fit models using a user-specified list of ML algorithms.
+model_fit <- train_models(
+  split_df = split_df,
+  algorithm_list = c("svmRadial", "rpart")
+)
 
-#Change resampling method and resampling iterations.
-model_fit <- train_models(split.df = split_df,
-                         resample.method = "cv",
-                         resample.iterations = 50)
- }
-
+# Change resampling method and resampling iterations.
+model_fit <- train_models(
+  split_df = split_df,
+  resample_method = "cv",
+  resample_iterations = 50
+)
+}
 
 }
 \seealso{

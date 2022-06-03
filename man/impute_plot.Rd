@@ -8,20 +8,20 @@ impute_plot(
   original,
   imputed,
   global = TRUE,
-  text.size = 10,
+  text_size = 10,
   palette = "viridis",
   nrow,
   ncol,
   save = FALSE,
-  file.name = "Impute_plot",
-  file.type = "pdf",
-  plot.width = 7,
-  plot.height = 7,
+  file_name = "Impute_plot",
+  file_type = "pdf",
+  plot_width = 7,
+  plot_height = 7,
   dpi = 80
 )
 }
 \arguments{
-\item{original}{A \code{raw.df} object (output of \code{\link{create_df}})
+\item{original}{A \code{raw_df} object (output of \code{\link{create_df}})
 containing missing values.}
 
 \item{imputed}{An \code{imp.df} object obtained from running \code{impute_na}
@@ -30,7 +30,7 @@ on the same data frame provided as \code{original}.}
 \item{global}{Logical. If \code{TRUE} ({default}), a global density plot is
 produced. If \code{FALSE}, sample-wise density plots are produced.}
 
-\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -47,15 +47,15 @@ columns to print the plots.}
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.name}{file.name File name to save the density plot/s.
+\item{file_name}{file_name File name to save the density plot/s.
 Default is \code{"Impute_plot."}}
 
-\item{file.type}{File type to save the density plot/s.
+\item{file_type}{File type to save the density plot/s.
 Default is \code{"pdf"}.}
 
-\item{plot.width}{Width of the plot. Default is \code{7}.}
+\item{plot_width}{Width of the plot. Default is \code{7}.}
 
-\item{plot.height}{Height of the plot. Default is \code{7}.}
+\item{plot_height}{Height of the plot. Default is \code{7}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 }
@@ -68,7 +68,7 @@ missing data imputation on the data.
 }
 \details{
 \itemize{\item Given two data frames, one with missing values
-(\code{raw.df} object) and the other, an imputed data frame
+(\code{raw_df} object) and the other, an imputed data frame
 (\code{imp.df} object) of the same data set, \code{impute_plot}
 generates global or sample-wise density plots to visualize the
 impact of imputation on the data set.
@@ -78,18 +78,18 @@ data frame.}
 }
 \examples{
 \dontrun{
-## Create a raw.df object from a proteinGroups.txt file.
+## Create a raw_df object from a proteinGroups.txt file.
 raw <- create_df(prot.groups = "./proteinGroups.txt")
 
 ## Impute missing values in the data frame.
 imp_raw <- impute_na(raw)
 
-## Visualize the impact of missing data imputation with a global density plot.
+## Visualize the impact of missing data imputation with a global density
+## plot.
 impute_plot(original = raw, imputed = imp_raw)
 
 ## Make sample-wise density plots for a data set of 25 samples.
 impute_plot(raw, imp_raw, global = FALSE, nrow = 5, ncol = 5)
-
 }
 }
 \author{

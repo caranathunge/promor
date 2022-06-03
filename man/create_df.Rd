@@ -5,45 +5,45 @@
 \title{Create a data frame of protein intensities}
 \usage{
 create_df(
-  prot.groups,
-  exp.design,
-  filter.na = TRUE,
-  filter.prot = TRUE,
-  uniq.pep = 2,
-  tech.reps = FALSE,
-  zero.na = TRUE,
-  log.tr = TRUE,
+  prot_groups,
+  exp_design,
+  filter_na = TRUE,
+  filter_prot = TRUE,
+  uniq_pep = 2,
+  tech_reps = FALSE,
+  zero_na = TRUE,
+  log_tr = TRUE,
   base = 2
 )
 }
 \arguments{
-\item{prot.groups}{File path to proteinGroups.txt file produced by MaxQuant.}
+\item{prot_groups}{File path to proteinGroups.txt file produced by MaxQuant.}
 
-\item{exp.design}{File path to a text file containing the experimental
+\item{exp_design}{File path to a text file containing the experimental
 design.}
 
-\item{filter.prot}{Logical. If \code{TRUE} (default), filters out
+\item{filter_prot}{Logical. If \code{TRUE} (default), filters out
 reverse proteins, proteins only identified by site, potential contaminants,
 and proteins identified with less than the minimum number of unique peptides
-indicated by \code{uniq.pep}.}
+indicated by \code{uniq_pep}.}
 
-\item{uniq.pep}{Numerical. The minimum number of unique peptides required to
+\item{uniq_pep}{Numerical. The minimum number of unique peptides required to
 identify a protein (default is 2). Proteins that are identified by less than
 this number of unique peptides are filtered out.}
 
-\item{tech.reps}{Logical. Indicate as \code{TRUE} if technical replicates
+\item{tech_reps}{Logical. Indicate as \code{TRUE} if technical replicates
 are present in the data. Defualt is \code{FALSE}.}
 
-\item{zero.na}{Logical. If \code{TRUE} (default), zeros are considered
+\item{zero_na}{Logical. If \code{TRUE} (default), zeros are considered
 missing values and replaced with NAs.}
 
-\item{log.tr}{Logical. If \code{TRUE} (default), intensity values are log
+\item{log_tr}{Logical. If \code{TRUE} (default), intensity values are log
 transformed to the base indicated by \code{base}.}
 
 \item{base}{Numerical. Logarithm base. Default is 2.}
 
-\item{filter.n}{Logical. If \code{TRUE}(default), filters out empty rows and columns
-from the data frame.}
+\item{filter.n}{Logical. If \code{TRUE}(default), filters out empty rows and
+columns from the data frame.}
 }
 \value{
 A \code{raw.df} object which is a data frame containing selected
@@ -57,13 +57,13 @@ This function creates a data frame of label-free quantitative
 \itemize{\item This function first reads in the proteinGroups.txt file
 produced by MaxQuant.
 \item It then reads in the expDesign.txt file provided as
-\code{exp.design} and extracts relevant information from it to add to the
+\code{exp_design} and extracts relevant information from it to add to the
 data frame.
 \item First, empty rows and columns are removed from the data frame.
 \item Next, it filters out reverse proteins, proteins that were
 only identified by site, and potential contaminants.
 \item Then it removes proteins identified with less than
-the number of unique peptides indicated by \code{uniq.pep} from the
+the number of unique peptides indicated by \code{uniq_pep} from the
 data frame.
 \item Next, it extracts the LFQ intensity columns and the selected protein
 rows from the data  frame.
@@ -72,9 +72,11 @@ rows from the data  frame.
 }
 \examples{
 \dontrun{
-#Generate a raw.df object with default settings.
-raw <- create_df(file.path = "./proteinGroups.txt",
-                 exp.design = "./experiment_design.txt")
+# Generate a raw.df object with default settings.
+raw <- create_df(
+  prot_groups = "./proteinGroups.txt",
+  exp_design = "./experiment_design.txt"
+)
 }
 }
 \author{

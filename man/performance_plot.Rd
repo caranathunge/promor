@@ -5,26 +5,26 @@
 \title{Model performance plot}
 \usage{
 performance_plot(
-  model.list,
+  model_list,
   type = "box",
-  text.size = 10,
+  text_size = 10,
   palette = "viridis",
   save = FALSE,
-  file.name = "Performance_plot",
-  file.type = "pdf",
-  plot.width = 7,
-  plot.height = 7,
+  file_name = "Performance_plot",
+  file_type = "pdf",
+  plot_width = 7,
+  plot_height = 7,
   dpi = 80
 )
 }
 \arguments{
-\item{model.list}{A \code{model.list} object from performing
+\item{model_list}{A \code{model_list} object from performing
 \code{train_models}.}
 
 \item{type}{Type of plot to generate. Choices are "box" or "dot."
 Default is \code{"box."} for boxplots.}
 
-\item{text.size}{Text size for plot labels, axis labels etc. Default is
+\item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
@@ -35,15 +35,15 @@ for available options.}
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
 
-\item{file.name}{file.name File name to save the plot.
+\item{file_name}{file_name File name to save the plot.
 Default is \code{"Performance_plot."}}
 
-\item{file.type}{File type to save the plot.
+\item{file_type}{File type to save the plot.
 Default is \code{"pdf"}.}
 
-\item{plot.width}{Width of the plot. Default is \code{7}.}
+\item{plot_width}{Width of the plot. Default is \code{7}.}
 
-\item{plot.height}{Height of the plot. Default is \code{7}.}
+\item{plot_height}{Height of the plot. Default is \code{7}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 }
@@ -55,7 +55,7 @@ This function visualizes model performance
 }
 \details{
 \itemize{\item \code{performance_plot} uses resampling results from
-models included in the \code{model.list} to generate plots of model
+models included in the \code{model_list} to generate plots of model
 performance.
 \item The default metrics used for classification based models are "Accuracy"
 and "Kappa."
@@ -66,7 +66,7 @@ the \code{train_models} function. See \code{\link[caret: train]{train}} and
 \examples{
 \dontrun{
 
-##Train models using default settings
+## Train models using default settings
 model_list <- train_models(split_df)
 
 ## Generate box plots to visualize performance of different methods
@@ -74,7 +74,7 @@ performance_plot(model_list)
 
 ## Generate dot plots
 performance_plot(model_list, type = "dot")
- }
+}
 }
 \seealso{
 \itemize{
