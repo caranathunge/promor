@@ -1,0 +1,7 @@
+"mq_label"	"condition"	"sample_ID"	"tech_rep"
+"1"	"H1"	"H"	1	NA
+"2"	"H2"	"H"	2	NA
+"3"	"H3"	"H"	3	NA
+"4"	"L1"	"L"	4	NA
+"5"	"L2"	"L"	5	NA
+"6"	"L3"	"L"	6	NA
