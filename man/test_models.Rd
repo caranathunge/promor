@@ -16,7 +16,7 @@ test_models(
 \item{model_list}{A \code{model_list} object from performing
 \code{train_models}.}
 
-\item{split_df}{A \code{split_df} object from performing \code{split_df}.}
+\item{split_df}{A \code{split_df} object from performing \code{split_data}.}
 
 \item{type}{Type of output. Set \code{type} as "prob" (default) to output
 class probabilities, and "raw" to output class predictions.}
