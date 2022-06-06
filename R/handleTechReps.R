@@ -237,5 +237,6 @@ aver_techreps <- function(df) {
     ID = colnames(df_mat),
     weights = NULL
   )
+  df_ave <- as.data.frame(df_ave)
   return(df_ave)
 }
