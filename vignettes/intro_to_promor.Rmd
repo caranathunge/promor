@@ -54,17 +54,17 @@ We use a previously published data set from [Cox et al. (2014)](https://europepm
 #Load promor
 library(promor)
 #Create a raw_df object with the files provided in extdata folder.
-raw <- create_df(prot.groups = system.file("extdata", "ecoli_proteinGroups.txt", 
+raw <- create_df(prot_groups = system.file("extdata", "ecoli_proteinGroups.txt", 
                                            package = "promor"), 
-                 exp.design = system.file("extdata", "expDesign.txt", 
+                 exp_design = system.file("extdata", "expDesign.txt", 
                                           package = "promor"))
 #Filter out proteins with high levels of missing data in each condition
 raw_filtered <- filterbygroup_na(raw)
-#Impute missing data and create an imp.df object.
+#Impute missing data and create an imp_df object.
 imp_df <- impute_na(raw_filtered)
-#Normalize data and create a norm.df object
+#Normalize data and create a norm_df object
 norm_df <- normalize_data(imp_df)
-#Perform differential expression analysis and create a fit.df object
+#Perform differential expression analysis and create a fit_df object
 fit_df <- find_dep(norm_df)
 ```
 Lets take a look at the results using a volcano plot.

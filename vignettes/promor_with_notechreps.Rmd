@@ -26,7 +26,7 @@ We recommend that you first go through the simple working example provided in **
 vignette("intro_to_promor")
 ```
 
-A tutorial for proteomics data with technical replicates is provided here:
+A tutorial for **proteomics data with technical replicates** is provided here:
 ```{r, eval=FALSE}
 vignette("promor_with_techreps")
 ```
@@ -69,9 +69,9 @@ head(exp_design)
 Let's first create a *raw_df* object with the input files. 
 ```{r createdf, warning=FALSE}
 #Create a raw_df object with default settings.
-raw <- create_df(prot.groups = system.file("extdata", "ecoli_proteinGroups.txt", 
+raw <- create_df(prot_groups = system.file("extdata", "ecoli_proteinGroups.txt", 
                                            package = "promor"), 
-                 exp.design = system.file("extdata", "expDesign.txt", 
+                 exp_design = system.file("extdata", "expDesign.txt", 
                                           package = "promor"))
 # We can quickly check the dimensions of the data frame
 dim(raw)
@@ -83,7 +83,7 @@ If you ran `create_df` with default settings, now your *raw_df* object contains 
 Next, we will remove proteins if they have more than 0.4% (default is 0.33%) missing data in either group.
 ```{r filterbygroupna, warning = FALSE}
 #Filter out proteins with high levels of missing data in each condition
-raw_filtered <- filterbygroup_na(raw, set.na = 0.4)
+raw_filtered <- filterbygroup_na(raw, set_na = 0.4)
 # We can check the dimensions of the new data frame. Note that the number of rows have changed.
 dim(raw_filtered)
 ```
@@ -94,7 +94,7 @@ will limit the heatmap to 40 proteins for ease of visualization. You can choose 
 
 ```{r heatmapna, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
 #Visualize missing data in a subset of proteins. 
-heatmap_na(raw_filtered, protein.range = 50:90)
+heatmap_na(raw_filtered, protein_range = 50:90, palette = "mako")
 ```
 
 Note that your proteins are alphabetically ordered by default, but if you would
@@ -102,7 +102,7 @@ rather order them by the mean intensity to check if proteins with low intensitie
 
 ```{r heatmapna_1, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center' }
 # Order proteins by mean intensity.
-heatmap_na(raw_filtered, protein.range = 50:90, reorder.y = TRUE, y.FUN = mean)
+heatmap_na(raw_filtered, protein_range = 50:90, reorder_y = TRUE, y_fun = mean, palette = "mako")
 ```
 
 ## 4. Impute missing data
@@ -124,7 +124,7 @@ First, lets check the data imputed with `minProb` method.
 
 ```{r imputeplotmp, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
 # Visualize the imputed data with sample-wise density plots.
-impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, nrow = 3, ncol = 3)
+impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, nrow = 3, ncol = 3, palette = "mako")
 ```
 
 It looks like, for most samples, imputation has not changed the distribution of data by much, which is a good sign. However, sample `H_3` seems to have been imputed with a fair amount of low intensity values.\
@@ -133,7 +133,7 @@ Let's look at the data imputed with the `kNN` method next.
 
 ```{r imputeplotrf, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
 # Visualize the imputed data with sample-wise density plots.
-impute_plot(original = raw_filtered, imputed = imp_df_knn, global = FALSE, nrow = 3, ncol = 3)
+impute_plot(original = raw_filtered, imputed = imp_df_knn, global = FALSE, nrow = 3, ncol = 3, palette = "mako")
 ```
 
 Compared to `minProb`, `kNN` seems to have introduced fewer low intensity values to `H_3` data, so let's use that data set in downstream steps.
@@ -148,16 +148,16 @@ norm_df <- normalize_data(imp_df_knn)
 ## 7. Visualize normalized data
 Let's check if our data set was successfully normalized.
 ```{r normplot, warning = FALSE, results = 'hide', fig.align = 'center'}
-norm_plot(original = imp_df_knn, normalized = norm_df)
+norm_plot(original = imp_df_knn, normalized = norm_df, palette = "mako")
 ```
 For samples that show very little variability among them, such as those in this data set, it may be difficult to visualize the effect of normalization with boxplots. Let's use `type = "density` to visualize the effect of normalization with density plots instead.
 ```{r normplotd, warning = FALSE, results = 'hide', fig.align = 'center'}
-norm_plot(original = imp_df_knn, normalized = norm_df, type = "density")
+norm_plot(original = imp_df_knn, normalized = norm_df, type = "density", palette = "mako")
 ```
 
 
 ## 8. Identify differentially expressed proteins
-We can now use the `norm.df` object we created in **Step 7** to perform differential expression analysis.
+We can now use the `norm_df` object we created in **Step 7** to perform differential expression analysis.
 
 ```{r finddep, warning = FALSE, results = 'hide'}
 fit_df <- find_dep(norm_df)
@@ -165,7 +165,7 @@ fit_df <- find_dep(norm_df)
 
 You can also choose to save the top 10 hits in a text file as follows:
 ```{r tophits, warning = FALSE, eval = FALSE, results = 'hide'}
-fit_df <- find_dep(norm_df, save.tophits = TRUE, n.top = 10)
+fit_df <- find_dep(norm_df, save_tophits = TRUE, n_top = 10)
 ```
 
 
@@ -174,14 +174,14 @@ fit_df <- find_dep(norm_df, save.tophits = TRUE, n.top = 10)
 Let's visualize the results from **Step 8** using a volcano plot.
 
 
-```{r volcanoplot, warning = FALSE, results ='hide', fig.align = 'center'}
-volcano_plot(fit_df)
+```{r volcanoplot, warning = FALSE, results ='hide', fig.align = 'center', fig.height= 7}
+volcano_plot(fit_df, palette = "mako")
 ```
 
 ## 10. Create a heatmap of differentially expressed proteins
 
 ```{r heatmapde, warning = FALSE, results ='hide', fig.align = 'center'}
-heatmap_de(fit.df = fit_df, norm.df = norm_df)
+heatmap_de(fit_df = fit_df, norm_df = norm_df, palette = "mako")
 ```
 
 

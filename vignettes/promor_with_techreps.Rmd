@@ -3,11 +3,11 @@ title: 'Proteomics data analysis with promor: technical replicates'
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  pdf_document: default
-  rmarkdown::html_vignette:
-    number_sections: yes
   html_document:
     df_print: paged
+  rmarkdown::html_vignette:
+    number_sections: yes
+  pdf_document: default
 vignette: |
   %\VignetteEncoding{UTF-8} %\VignetteIndexEntry{Proteomics data analysis with promor:technical replicates} %\VignetteEngine{knitr::rmarkdown}
 ---
@@ -31,7 +31,7 @@ vignette("promor_with_notechreps")
 ```
 
 
-For this tutorial we will be using a previously published data set from [Ramond et al. (2015)](https://www.mcponline.org/article/S1535-9476(20)33188-1/fulltext).In this experiment there are two conditions (D8 and WT) with three biological replicates each, and three technical replicates for each biological replicate.\
+For this tutorial we will be using a previously published data set from [Ramond et al. (2015)](https://www.mcponline.org/article/S1535-9476(20)33188-1/fulltext). In this experiment there are two conditions or groups (D8 and WT) with three biological replicates each, and three technical replicates for each biological replicate.\
 
 ## Workflow
 ![promor notechreps flowchart by caranathunge](../promor_ProtAnalysis_techreps_BluYe.png) 
@@ -47,6 +47,7 @@ To run *promor*, you need:
  
 **expDesign.txt** file is a tab-delimited text file that contains the design of your experiment. Note that you will have to create and provide this file when you run *promor* with your own data. Let's take a look at the sample *expDesign.txt* file that we will be using for this tutorial.
 
+
 ```{r inputfiles}
 # Load promor
 library(promor)
@@ -55,7 +56,6 @@ exp_design <- read.csv("../inst/extdata/PXD001584_expDesign.txt", sep = "\t")
 # Take a peek inside the file
 head(exp_design, n = 12)
 ```
-
 **mq_label** is the sample label that you provided when running *MaxQuant*. You can easily find them in your *proteinGroups.txt* file. Hint: In LFQ intensity columns, the term "LFQ intensity" is immediately followed by the label you provided when running *MaxQuant*. This is your **mq_label**.
 
 **condition** is the condition or group that your samples belong to. In this example "D8" refers to an ∆argP mutant cell line with Arginine Transporter inactivated and "WT" refers to Wild Type cells. 
@@ -65,7 +65,7 @@ head(exp_design, n = 12)
 **tech_rep** is a number denoting the technical replicate number. In this example, there are three technical replicates for each biological replicate (see **sample_ID**).
 
 ## 1. Create a *raw_df* object
-Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech.reps == TRUE`.
+Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech_reps == TRUE`.
 ```{r createdf, warning=FALSE}
 #Create a raw_df object with default settings.
 raw <- create_df(prot_groups = system.file("extdata", "PXD001584_proteinGroups.txt", 
@@ -73,22 +73,20 @@ raw <- create_df(prot_groups = system.file("extdata", "PXD001584_proteinGroups.t
                  exp_design = system.file("extdata", "PXD001584_expDesign.txt", 
                                           package = "promor"),
                  tech_reps = TRUE )
-# We can quickly check the dimensions of the data frame
-dim(raw)
-
+# We can quickly check how the data frame looks like
+head(raw)
 ```
-
-If you ran `create_df` with default settings, now your *raw_df* object contains log2 transformed LFQ protein intensity values. Run `?create_df` for more information on available arguments.
+If you ran `create_df` with default settings, now your *raw_df* object contains log2 transformed LFQ protein intensity values and zeros have been converted to NAs. Run `?create_df` for more information on available arguments.
 
 ## 2. Correlation plots: technical replicates
 Typically, technical replicates for each sample should show strong correlation. At this stage, we can quickly check if this is the case in our experiment. 
-```{r corrplot, warning = FALSE, fig.align = 'center', dpi = 300, fig.height = 8}
-# Let's first check the correlation between tech.replicates 1 and 2.
+```{r corrplot, fig.align = 'center', fig.height = 7, warning = FALSE, dpi = 300}
+# Let's first check the correlation between tech.replicates 1 and 2
 corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text_size = 12)
 
 ```
 Similarly, we can visualize the correlation between technical replicates 1 and 3.
-```{r corrplot1, warning = FALSE, fig.align = 'center', dpi = 300, fig.height = 8}
+```{r corrplot1, warning = FALSE, fig.align = 'center', fig.height = 7, dpi = 300, fig.height = 8}
 # Correlation between tech.replicates 1 and 3.
 corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text_size = 12)
 ```
@@ -107,7 +105,6 @@ raw_ave <- aver_techreps(raw)
 # A quick check on the dimensions of the data frame show that the number of columns have reduced from 18 to 6 as we averaged the tech.replicates.
 dim(raw_ave)
 ```
-
 ## 4. Filter proteins by groupwise missing data
 Next, we will remove proteins if they have more than 0.4% (default is 0.33%) missing data in either group.
 ```{r filterbygroupna, warning = FALSE}
@@ -116,7 +113,6 @@ raw_filtered <- filterbygroup_na(raw_ave, set_na = 0.40)
 # We can check the dimensions of the new data frame. Note that the number of rows have changed.
 dim(raw_filtered)
 ```
-
 ## 5. Visualize missing data
 Now, we are going to see how missing data is distributed in the data. Because our data object has hundreds of proteins, we will limit the heatmap to 40 proteins for ease of visualization. You can choose to visualize the full data set if you want, but it will be a very large heatmap.
 
@@ -124,7 +120,6 @@ Now, we are going to see how missing data is distributed in the data. Because ou
 #Visualize missing data in a subset of proteins. 
 heatmap_na(raw_filtered, protein_range = 1:40)
 ```
-
 
 ## 6. Impute missing data
 *promor* provides multiple missing data imputation methods. Default is `minProb`, which assumes that all missing data is MNAR (Missing Not at Random) type. More information about available imputation methods can be found in [Lazar et al. (2016)](https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00981).
@@ -146,7 +141,6 @@ First, lets check the data imputed with `minProb` method.
 # Visualize the imputed data with sample-wise density plots.
 impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, nrow = 3, ncol = 2)
 ```
-
 It looks like some samples have been imputed with an excess of low intensity values.\
 
 Let's look at the data imputed with the `SVD` method next.
@@ -155,12 +149,11 @@ Let's look at the data imputed with the `SVD` method next.
 # Visualize the imputed data with a global density plot.
 impute_plot(original = raw_filtered, imputed = imp_df_svd, global = FALSE, nrow = 3, ncol = 2)
 ```
-
 Compared to `minProb`, `SVD` seems to have introduced fewer low intensity values, so let's use that data set in downstream steps.
 
 Additionally, we can also visualize the imputed data of all six samples with a global density plot.
 
-```{r imputeplotglobal, fig.align='center', warning=FALSE, dpi=, results='hide'}
+```{r imputeplotglobal, fig.align='center', warning = FALSE, dpi= 300, results='hide'}
 # Visualize the imputed data with a global density plot.
 impute_plot(original = raw_filtered, imputed = imp_df_svd, global = TRUE)
 ```
@@ -191,8 +184,6 @@ You can also choose to save the top 10 hits in a text file as follows:
 fit_df <- find_dep(norm_df, save_tophits = TRUE, n_top = 10)
 ```
 
-
-
 ## 11. Generate a volcano plot
 Let's visualize the results from **Step 10** using a volcano plot.
 
@@ -206,8 +197,6 @@ We can also visualize the top hits from **Step 10** with a heatmap.
 ```{r heatmapde, warning = FALSE, results ='hide', fig.align = 'center'}
 heatmap_de(fit_df = fit_df, norm_df = norm_df)
 ```
-
-
 
 
 
