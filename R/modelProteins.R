@@ -243,18 +243,18 @@ rem_feature <- function(model_df,
 #'
 #' ## Split the data frame into training and test data sets with 70% of the
 #' ## data in training and 30% in test data sets
-#' split_data <- split_df(model - df, train_size = 0.7)
+#' split_df <- split_data(model - df, train_size = 0.7)
 #'
 #' ## Access training data set
-#' split_data$training
+#' split_df$training
 #'
 #' ## Access test data set
-#' split_data$test
+#' split_df$test
 #' }
 #'
 #' @export
-split_df <- function(model_df,
-                     train_size = 0.80) {
+split_data <- function(model_df,
+                       train_size = 0.80) {
   set.seed(8314)
   train_index <- createDataPartition(model_df$condition,
     p = train_size,
@@ -416,7 +416,7 @@ train_models <- function(split_df,
 #'
 #' @param model_list A \code{model_list} object from performing
 #' \code{train_models}.
-#' @param split_df A \code{split_df} object from performing \code{split_df}.
+#' @param split_df A \code{split_df} object from performing \code{split_data}.
 #' @param type Type of output. Set \code{type} as "prob" (default) to output
 #' class probabilities, and "raw" to output class predictions.
 #' @param save_confusionmatrix Logical. If \code{TRUE}, a tab-delimited

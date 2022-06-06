@@ -23,7 +23,7 @@ roc_plot(
 \item{probability_list}{A \code{probability_list} object from performing
 \code{test_models} with \code{type = "prob"}.}
 
-\item{split_df}{A \code{split_df} object from performing \code{split_df}}
+\item{split_df}{A \code{split_df} object from performing \code{split_data}}
 
 \item{...}{Additional arguments to be passed on to
 \code{\link[pROC: roc]{roc}}.}

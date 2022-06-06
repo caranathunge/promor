@@ -607,7 +607,7 @@ performance_plot <- function(model_list,
 #'
 #' @param probability_list A \code{probability_list} object from performing
 #' \code{test_models} with \code{type = "prob"}.
-#' @param split_df A \code{split_df} object from performing \code{split_df}
+#' @param split_df A \code{split_df} object from performing \code{split_data}
 #' @param ... Additional arguments to be passed on to
 #' \code{\link[pROC: roc]{roc}}.
 #' @param multiple_plots Logical. If \code{FALSE} plots all ROC curves
