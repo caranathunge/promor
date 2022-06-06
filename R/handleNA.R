@@ -294,10 +294,12 @@ impute_na <- function(df,
   # Run the user-specified imputation method
 
   if (method == "minDet") {
+    set.seed(327)
     df_imputed_mindet <- impute.MinDet(df,
                                        q = q)
     return(df_imputed_mindet)
   } else if (method == "RF") {
+    set.seed(327)
     df_imp_temp <- missForest::missForest(df,
       maxiter = maxiter,
       ntree = ntree,
@@ -306,10 +308,12 @@ impute_na <- function(df,
     df_imputed_rf <- df_imp_temp$ximp
     return(df_imputed_rf)
   } else if (method == "kNN") {
+    set.seed(327)
     df_imputed_knn <- VIM::kNN(df, imp_var = FALSE)
     rownames(df_imputed_knn) <- rownames(df)
     return(df_imputed_knn)
   } else if (method == "SVD") {
+    set.seed(327)
     df <- as.matrix(df)
     df[is.nan(df)] <- NA
     df_imp_temp <- pcaMethods::pca(
@@ -318,9 +322,10 @@ impute_na <- function(df,
       n_pcs = n_pcs,
       verbose = TRUE
     )
-    df_imputed_svd <- completeObs(df_imp_temp)
+    df_imputed_svd <- as.data.frame(completeObs(df_imp_temp))
     return(df_imputed_svd)
   } else if (method == "minProb") {
+    set.seed(327)
     df_imputed_minprob <- impute.Min.Prob(df,
       q = q,
       tune_sigma = tune_sigma
