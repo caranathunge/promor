@@ -155,7 +155,7 @@ create_df <- function(prot_groups,
 
   # sort the design table by mq_label so that the order matches to that of
   #raw_col
-  design <- design[order(design$mq_label), ]
+  design <- design[order(as.character(design$mq_label)), ]
 
   # Compare the mq_label column in the design file with raw_col and replace
   # raw_col with the appropriate new_label.
