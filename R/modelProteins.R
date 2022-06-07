@@ -157,16 +157,26 @@ pre_process <- function(fit_df,
   if (find_highcorr == TRUE) {
     # Identify protein columns with high pairwise-correlation to remove
     highcor <- findCorrelation(cor_matrix, cutoff = corr_cutoff, names = TRUE)
-    message(
+    if(length(highcor != 0)){
+      message(
       "Following proteins show high pariwise-correlation"
     )
+    }else{
+      message(
+        "None of the proteins show high pair-wise correlation."
+      )
+    }
     message(paste0(highcor, collapse = "\n"))
 
     if (rem_highcorr == TRUE) {
-      topint_trans <- topint_trans[, !(colnames(topint_trans) %in% highcor)]
+      topint_trans_1 <- topint_trans[, !(colnames(topint_trans) %in% highcor)]
+      if(ncol(topint_trans_1) == ncol(topint_trans)){
+        message("No highly correlated poteins to be removed.")
+      }else{
+        message("Proteins with high pairwise-correlation have been removed.")
+      }
 
-      message("Proteins with high pairwise-correlation have been removed.")
-    } else {
+      } else {
       warning("Proteins with high pairwise-correlation have NOT been removed.",
         call. = FALSE
       )
@@ -177,8 +187,12 @@ pre_process <- function(fit_df,
     )
   }
 
+  #Convert condition names to R compatible names
+  topint_trans_1$condition <- make.names(topint_trans_1$condition)
 
-  return(topint_trans)
+  #Convert condition to a factor (important for varimp calculations)
+  topint_trans_1$condition <- factor(topint_trans_1$condition)
+  return(topint_trans_1)
 }
 
 
@@ -277,6 +291,7 @@ split_data <- function(model_df,
   # Rename the items of the list
   names(split_dataframes) <- c("training", "test")
 
+
   return(split_dataframes)
 }
 
@@ -296,7 +311,7 @@ split_data <- function(model_df,
 #' See \code{\link[caret:trainControl]{trainControl}} for
 #' details on other available methods.
 #' @param resample_iterations Number of resampling iterations. Default is 10.
-#' @param num_epeats The number of complete sets of folds to compute (For
+#' @param num_repeats The number of complete sets of folds to compute (For
 #' \code{resampling method = "repeatedcv"} only).
 #' @param algorithm_list A list of classification or regression algorithms to
 #' use.
@@ -312,7 +327,7 @@ split_data <- function(model_df,
 #' \item In the event that \code{algorithm_list} is not provided, a default
 #' list of six classification-based machine-learning algorithms will be used
 #' for building and training models. Default \code{algorithm_list}:
-#' "knn", "svmRadial", "nb", "rf", "glmboost", "glmnet."
+#'  "svmRadial", "rf", "glmboost", "glmnet."
 #' \item Note: Models that failed to build are removed from the output. }
 #'
 #' @return
@@ -349,13 +364,13 @@ split_data <- function(model_df,
 train_models <- function(split_df,
                          resample_method = "repeatedcv",
                          resample_iterations = 10,
-                         num_epeats = 3,
+                         num_repeats = 3,
                          algorithm_list,
                          ...) {
 
   # If algorithm_list is not provided, use the default list of algorithms.
   if (missing(algorithm_list)) {
-    algorithm_list <- c("knn", "svmRadial", "nb", "rf", "glmboost", "glmnet")
+    algorithm_list <- c("svmRadial", "rf", "glmboost", "glmnet")
   }
 
   # Set trainControl parameters for resampling
@@ -363,7 +378,7 @@ train_models <- function(split_df,
   fit_control <- trainControl(
     method = resample_method,
     number = resample_iterations,
-    repeats = num_epeats,
+    repeats = num_repeats,
     classProbs = TRUE
   )
 
@@ -486,7 +501,7 @@ test_models <- function(model_list,
       )
     }
   )
-
+message(paste0("\n","Done!"))
   # Get confusion matrices and associated statistics
   if (type == "raw") {
     cm_list <- lapply(
