@@ -255,6 +255,7 @@ varimp_plot <- function(model_list,
       x$protein <- rownames(x)
       rownames(x) <- NULL
       colnames(x) <- c("Importance", "Protein")
+      x$Protein <- gsub("`|\\\\", "", x$Protein)
       x$Importance[is.nan(x$Importance)] <- NA
       x <- x[rowSums(is.na(x)) == 0, ]
       x
@@ -263,6 +264,7 @@ varimp_plot <- function(model_list,
 
   # Drop empty data frames before proceeding
   plot_imp_data <- Filter(function(x) dim(x)[1] > 0, plot_imp_data)
+
 
   # Make plots based on type
 
@@ -301,13 +303,14 @@ varimp_plot <- function(model_list,
             size = text_size * 0.8,
             face = "bold"
           ),
+
           panel.grid.major.x = element_line(
             size = 0.1,
             color = "grey80"
           )
         ) +
         ggplot2::guides(colour = guide_colourbar(
-          title.position = "bottom",
+          title.position = "top",
           title.hjust = 0.5
         ))
     })
@@ -369,6 +372,9 @@ varimp_plot <- function(model_list,
           axis.text.y = element_text(
             size = text_size * 0.8,
             face = "bold"
+          ),
+          axis.text.x = element_text(
+            size = text_size * 0.9
           ),
           panel.grid.major.x = element_line(
             size = 0.1,
@@ -674,7 +680,7 @@ roc_plot <- function(probability_list,
     probability_list,
     function(x) {
       pROC::roc(x[[1]],
-        response = split_df$test$Condition,
+        response = split_df$test$condition,
         percent = TRUE,
         ...
       )

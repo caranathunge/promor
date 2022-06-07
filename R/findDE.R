@@ -223,7 +223,7 @@ volcano_plot <- function(fit_df,
     ) +
       ggplot2::geom_point(aes(color = dep),
         alpha = 0.7,
-        size = text_size * 0.3
+        size = text_size * 0.1
       )
   } else {
     res_de <- res_de[order(-res_de$de_ap, res_de$adj.P.Val), ]
