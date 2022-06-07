@@ -3,6 +3,7 @@
     -   [Installation](#installation)
     -   [Proteomics data analysis with
         promor](#proteomics-data-analysis-with-promor)
+    -   [Modeling with promor](#modeling-with-promor)
     -   [Tutorials](#tutorials)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -45,7 +46,7 @@ For example, if promor is saved on your C drive, it could be :
 
 ## Proteomics data analysis with promor
 
-![promor flowchart by caranathunge](./promor_ProtAnalysis_BluYe.png)
+![promor flowchart by caranathunge](./promor_ProtAnalysisFlowChart.png)
 *Figure 1. A schematic diagram of suggested workflows for proteomics
 data analysis with promor.*
 
@@ -82,6 +83,50 @@ Lets take a look at the results using a volcano plot.
 
 <img src="man/figures/README-volcanoplot-1.png" width="90%" style="display: block; margin: auto;" />
 
+## Modeling with promor
+
+![promor flowchart-modeling by
+caranathunge](./promor_ProtModelingFlowChart.png) *Figure 2. A schematic
+diagram of suggested workflows for building predictive models with
+promor.*
+
+### Example
+
+The following minimal working example shows you how to use your results
+from differential expression analysis to build machine learning-based
+predictive models using *promor*.
+
+We use a previously published data set from [Suvarna et
+al. (2021)](https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3)
+that used differentially expressed proteins between severe and
+non-severe COVID patients to build predictive medict COVID severity.
+
+``` r
+#First, let's make a model_df object of top differentially expressed proteins. 
+#We will be using example fit_df and norm_df objects provided with the package.
+covid_model_df <- pre_process(fit_df = covid_fit_df, 
+                              norm_df = covid_norm_df)
+#Next, we split the data into training and test data sets
+covid_split_df <- split_data(model_df = covid_model_df, 
+                             train_size = 0.7)
+
+#Let's train our models using the default list of machine learning algorithms
+covid_model_list <- train_models(split_df = covid_split_df)
+
+#We can now use our models to predict the test data
+covid_prob_list <- test_models(model_list = covid_model_list, 
+                               split_df = covid_split_df)
+```
+
+Lets take a look at how the models performed with ROC plots
+
+``` r
+roc_plot(probability_list = covid_prob_list,
+         split_df = covid_split_df)
+```
+
+<img src="man/figures/README-rocplot-1.png" width="90%" style="display: block; margin: auto;" />
+
 ## Tutorials
 
 You can choose a tutorial from the list below that best fits your
@@ -105,4 +150,11 @@ vignette("promor_with_notechreps", package = "promor")
 
 ``` r
 vignette("promor_with_techreps", package = "promor")
+```
+
+4.  If you would like to use your proteomics data to build predictive
+    models, you can follow this tutorial.
+
+``` r
+vignette("promor_for_modeling", package = "promor")
 ```
