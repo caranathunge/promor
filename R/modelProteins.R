@@ -305,7 +305,7 @@ split_data <- function(model_df,
 #'
 #' @import caret
 #'
-#' @param split_df A \code{split_df} object from performing \code{split_df}.
+#' @param split_df A \code{split_df} object from performing \code{split_data}.
 #' @param resample_method The resampling method to use. Default is "repeatedcv"
 #' for repeated cross validation.
 #' See \code{\link[caret:trainControl]{trainControl}} for
@@ -316,7 +316,7 @@ split_data <- function(model_df,
 #' @param algorithm_list A list of classification or regression algorithms to
 #' use.
 #' A full list of machine learning algorithms available through
-#' the \code{\link[caret]{caret package}} can be found here:
+#' the \code{caret} can be found here:
 #' \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
 #' default options.
 #'
@@ -325,10 +325,10 @@ split_data <- function(model_df,
 #' resampling-based performance measures for models based on a given set of
 #' machine-learning algorithms, and output the best model for each algorithm.
 #' \item In the event that \code{algorithm_list} is not provided, a default
-#' list of six classification-based machine-learning algorithms will be used
+#' list of four classification-based machine-learning algorithms will be used
 #' for building and training models. Default \code{algorithm_list}:
-#'  "svmRadial", "rf", "glmboost", "glmnet."
-#' \item Note: Models that failed to build are removed from the output. }
+#'  "svmRadial", "rf", "glm", "xgbLinear."
+#' \item Note: Models that fail to build are removed from the output. }
 #'
 #' @return
 #' A list of class \code{train} for each machine-learning algorithm.
@@ -370,7 +370,7 @@ train_models <- function(split_df,
 
   # If algorithm_list is not provided, use the default list of algorithms.
   if (missing(algorithm_list)) {
-    algorithm_list <- c("svmRadial", "rf", "glmboost", "glmnet")
+    algorithm_list <- c("svmRadial", "rf", "glm", "xgbLinear")
   }
 
   # Set trainControl parameters for resampling
@@ -488,6 +488,7 @@ test_models <- function(model_list,
   pred_list <- lapply(
     model_list,
     function(x) {
+      set.seed(351)
       message(paste0(
         "\n",
         "Testing ",
@@ -502,6 +503,7 @@ test_models <- function(model_list,
     }
   )
 message(paste0("\n","Done!"))
+
   # Get confusion matrices and associated statistics
   if (type == "raw") {
     cm_list <- lapply(
