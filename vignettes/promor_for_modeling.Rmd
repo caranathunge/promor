@@ -3,23 +3,31 @@ title: "Modeling with promor"
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  html_document:
-    df_print: paged
   rmarkdown::html_vignette:
     number_sections: yes
+  html_document:
+    toc: true
+    df_print: paged
 vignette: >
   %\VignetteIndexEntry{Modeling with promor}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
-
+```{css style settings, echo = FALSE}
+blockquote {
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 14px;
+    border-left: 5px solid #eee;
+}
+```
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
-This tutorial shows you how you can use *promor* to build predictive models using  top protein candidates identified during differential expression analysis.
+This tutorial shows you how you can use *promor* to build predictive models using top differentially expressed proteins.
 
 We recommend that you first go through the simple working example provided in **Introduction to promor** to get acquainted with *promor*'s functionality.
 ```{r, eval=FALSE}
@@ -36,43 +44,200 @@ A tutorial for **proteomics data with technical replicates** is provided here:
 vignette("promor_with_techreps")
 ```
 
-For this tutorial we will be using a previously published data set from [Cox et al. (2014)](https://europepmc.org/article/MED/24942700#id609082).\
+## Data
+For this tutorial we will be using a previously published data set from [Suvarna et al. (2021)](https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3). In this study, authors used differentially expressed proteins between **33 severe** and **18 non-severe** COVID patients to build models to predict COVID severity.
 
 ## Workflow
 ![promor for modeling flowchart by caranathunge](../promor_ProtModelingFlowChart.png) 
-*Figure 1. A schematic diagram highlighting the suggested promor workflow for building predictive models with protein candidates*
+*Figure 1. A schematic diagram showing the suggested promor workflow for building predictive models with protein candidates*
+
+**You can access the help pages for functions shown above and more using** `?function name`
 
 ## Input data
 To build predictive models with *promor*, you need:
 
--  A **fit_df** object produced by running `find_dep` for differential expression analysis.
--  An **norm_df** object which is a data frame of normalized protein intensities used as input for `find_dep`.
+-  A **fit_df** object produced by running `find_dep` for differential expression analysis. For this example, we will be using `covid_fit_df` object provided with the package.
+
+-  An **norm_df** object which is a data frame of normalized protein intensities used as input for `find_dep`. We will be using `covid_norm_df` object provided with the package.
+
 
 ## 1. Create a *model_df* object
-Let's first create a *model_df* object with the example *fit_df* and *norm_df* objects provided with the package. `pre_process` function uses information from the two objects to create a data frame of protein
-intensities suitable for modeling.
-```{r preprocess, warning=FALSE}
+Let's first create a *model_df* object with the example `fit_df` and `norm_df` objects provided with the package. 
 
+
+> **Notes**
+>
+>* `pre_process` function uses information from the two objects to create a data frame of protein intensities in a suitable format for modeling.\
+>* If you run this step with default options, highly correlated proteins (features) will be identified and removed from the data frame.\
+>* Alternatively, you can set `find_highcorr = FALSE` and `rem_highcorr = FALSE`, but it is **not recommended**. You can also tweak the `corr_cutoff` to change the threshold for identifying highly correlated proteins.\
+>* Note: if no or few differentially expressed proteins were identified at the given adjusted p-value cutoff, you can choose to relax these criteria to use more proteins in modeling.\
+>* See `?pre_process` for more information.
+
+```{r preprocess, warning=FALSE, message=FALSE}
 # Load promor
 library(promor)
 
-#Create a model_df object with default settings.
-model_df <- pre_process(fit_df = ecoli_fit_df,
-                        norm_df = ecoli_norm_df, 
-                        corr_cutoff = 0.99)
+#Create a model_df object with the top 10 differentially expressed proteins.
+covid_model_df <- pre_process(fit_df = covid_fit_df,
+                        norm_df = covid_norm_df,
+                        n_top = 10)
+
 #Let's take a look at the model_df object
-head(model_df)
+head(covid_model_df)
 ```
 
-As you can see, `pre_process`, by default, finds and removes highly correlated proteins from the
-data frame. Alternatively, you can set `find_highcorr = FALSE` and `rem_highcorr = FALSE`, but it is not recommended. You can also tweak the `corr_cutoff` to change the threshold for identifying highly correlated proteins.
 
-## 2. Split data into training and test data sets
-Next, we will split the `model_df` object into training and test data sets while maintaining class or condition proportions in each set.
-```{r filterbygroupna, warning = FALSE}
+## 2. Visualize protein (feature) variation among conditions (classes)
+At this stage, we can visualize the feature variation among classes using box plots or density plots. 
+
+>**Notes**
+>
+>* Your best proteins (features) for modeling are those that show distinct patterns of variation among conditions.\
+>* For example, these proteins may show mostly non-overlapping density distributions.
+
+### Feature plots - box plots
+```{r featureplot, dpi = 300, out.width = '90%', fig.asp=2,  fig.align ='center', warning = FALSE, message = F}
+#Box plots (default) to visualize feature variation
+feature_plot(model_df = covid_model_df, 
+             nrow = 5, 
+             ncol = 2)
+```
+
+### Feature plots - density plots
+
+```{r featureplot_d, dpi = 300, out.width = '90%', fig.asp=2,  fig.align ='center', warning = FALSE, message = F}
+#Alternatively, make density plots
+feature_plot(model_df = covid_model_df, 
+             type = "density",
+             nrow = 5,
+             ncol = 2)
+```
+
+* At this stage, if you decide to remove a protein or some proteins from the `model_df` object, you can do so with `rem_feature`.
+
+
+## 3. Split *model_df* object into training and test data sets
+Next, we will split the `model_df` object into training and test data sets **while maintaining class or condition proportions in each set**.
+
+>**Notes**
+>
+>* By default, 80% of the data will be added to the training set while 20% will be added to the test set.
+>* You can change these proportions by setting `train_size` to a higher or a lower value.
+
+```{r splitdata, warning = FALSE, message = F}
 #Create a split_df object by splitting data into training and test data set
-split_df <- split_data(model_df)
-split_df
+covid_split_df <- split_data(model_df = covid_model_df)
 ```
+Access items in the `split_df` object.
+```{r accesssplits, eval=FALSE, warning = FALSE, message = FALSE}
+#You can access the items in the training data set as follows,
+covid_split_df$training
+#Similarly, access the test data set
+covid_split_df$test
+```
+
+
+## 4. Train machine learning models on the training data set
+We will be using some functions from the `caret` package to train models on our training data set. 
+
+>**Notes**
+>
+>* A list of all the available machine learning algorithms can be found here: http://topepo.github.io/caret/train-models-by-tag.html.
+>* Note that some algorithms may require additional arguments. See `caret` functions `train` and `trControl` for more details.
+>* The default list of classification-based algorithms  provided include:
+>     + `"svmRadial"` - A support vector machine algorithm
+>     + `"glm"`- A generalized linear model algorithm
+>     + `"rf"` - A random forest algorithm
+>     + `"xgbLinear"` - An extreme gradient boosting algorithm
+
+
+```{r traindata, warning = FALSE, message = F}
+#Create a model_list object by training models on the training data set using the default list of algorithms.
+covid_model_list <- train_models(split_df = covid_split_df)
+```
+
+```{r customalgo, warning = FALSE, message = F, eval=FALSE}
+#Alternatively, you may use a custom list of algorithms.
+covid_model_list_1 <- train_models(split_df = covid_split_df, 
+                                   algorithm_list = c("glmnet", "svmRadial"))
+```
+
+
+## 5. Check model performance
+We can now check how models built with each algorithm performed on the resamples of the training data set.
+
+### Performance plots - box plots
+```{r performplot, dpi = 300, out.width = '80%', fig.asp=1,  fig.align ='center', warning = FALSE, message = F}
+#Box plots (default) to visualize model performance
+performance_plot(model_list = covid_model_list)
+```
+
+### Performance plots - dot plots
+```{r performplotd, dpi = 300, out.width = '80%', fig.asp=1,  fig.align ='center', warning = FALSE, message = F}
+#Make dot plots
+performance_plot(model_list = covid_model_list,
+                 type = "dot")
+```
+
+*It looks like, except for `"glm"` method, all others performed fairly well.
+
+## 6. Check variable importance
+We can check which proteins out of the 10 are most important in the models.
+
+### Variable importance plots - lollipop plots
+```{r varimpl, dpi = 300, out.width = '80%', fig.asp=1,  fig.align ='center', warning = FALSE, message = F}
+#Make lollipop plots (default)
+varimp_plot(model_list = covid_model_list, 
+            text_size = 7,
+            nrow = 2,
+            ncol = 2)
+```
+
+### Variable importance plots - bar plots
+```{r varimpb, dpi = 300, out.width = '80%', fig.asp=1,  fig.align ='center', warning = FALSE, message = F}
+#Make bar plots
+varimp_plot(model_list = covid_model_list, 
+            type = "bar",
+            text_size = 7,
+            nrow = 2,
+            ncol = 2)
+```
+
+* At this stage you can again use `rem_feature` function to **remove proteins with lower importance** in the models and **repeat steps from Step 3**.
+
+## 7. Test models on the test data set
+We are now ready to test our models on never-before-seen data or our test data set.
+
+```{r testdata, warning = FALSE, message = F}
+#First we run the function with type = "prob" to get a probability list
+covid_prob_list <- test_models(model_list = covid_model_list, 
+                               split_df = covid_split_df,
+                               type = "prob" )
+```
+
+Alternatively, you can output a list of predictions and output a confusion matrix for further analysis.
+```{r testdatar, warning = FALSE, message = F, eval = FALSE}
+#We run the function with type = "raw" to get a prediction list and output a confusion matrix
+covid_pred_list <- test_models(model_list = covid_model_list, 
+                               split_df = covid_split_df,
+                               type = "raw",
+                               save_confusionmatrix = TRUE)
+```
+
+## 8. Build Receiver Operator Characteristic (ROC) curves
+Finally, we can build ROC plots to assess the predictive power of our models.
+
+>**Notes**
+>
+>* `roc_plot` function requires a `probability_list` object. 
+>* Make sure to set `type = "prob"` when running `test_models` to output a `probability_list` object.
+
+```{r rocplot, dpi = 300, out.width = '80%', fig.asp=1,  fig.align ='center', warning = FALSE, message = F}
+#Make bar plots
+roc_plot(probability_list = covid_prob_list, 
+         split_df = covid_split_df)
+```
+
+
 
 
