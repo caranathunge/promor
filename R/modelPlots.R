@@ -309,9 +309,8 @@ varimp_plot <- function(model_list,
             color = "grey80"
           )
         ) +
-        ggplot2::guides(colour = guide_colourbar(
+          ggplot2::guides(fill = guide_colorbar(
           title.position = "top",
-          title.hjust = 0.5
         ))
     })
 
@@ -382,6 +381,7 @@ varimp_plot <- function(model_list,
           )
         ) +
         ggplot2::guides(colour = guide_colourbar(
+          title = "Importance",
           title.position = "top",
           title.hjust = 0.5
         ))
