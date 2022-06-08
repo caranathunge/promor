@@ -297,8 +297,8 @@ varimp_plot <- function(model_list,
           legend.margin = margin(0, 0, 0, 0, unit = "cm"),
           legend.key.width = grid::unit(0.8, "cm"),
           legend.key.height = grid::unit(0.2, "cm"),
-          legend.title = element_text(size = text_size * 0.3),
-          legend.text = element_text(size = text_size * 0.7),
+          legend.title = element_text(size = text_size * 0.7),
+          legend.text = element_text(size = text_size * 0.5),
           axis.text.y = element_text(
             size = text_size * 0.8,
             face = "bold"

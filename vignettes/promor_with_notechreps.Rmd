@@ -4,6 +4,7 @@ author: "Chathurani Ranathunge"
 package: promor
 output:
   html_document:
+    toc: true
     df_print: paged
   rmarkdown::html_vignette:
     number_sections: yes
@@ -174,8 +175,10 @@ fit_df <- find_dep(norm_df, save_tophits = TRUE, n_top = 10)
 Let's visualize the results from **Step 8** using a volcano plot.
 
 
-```{r volcanoplot, warning = FALSE, results ='hide', fig.align = 'center', fig.height= 7}
-volcano_plot(fit_df, palette = "mako")
+```{r volcanoplot, warning = FALSE, results ='hide', out.width = '70%', fig.align ='center'}
+volcano_plot(fit_df, 
+             text_size = 5,
+             palette = "mako")
 ```
 
 ## 10. Create a heatmap of differentially expressed proteins
