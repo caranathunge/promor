@@ -8,13 +8,13 @@ train_models(
   split_df,
   resample_method = "repeatedcv",
   resample_iterations = 10,
-  num_epeats = 3,
+  num_repeats = 3,
   algorithm_list,
   ...
 )
 }
 \arguments{
-\item{split_df}{A \code{split_df} object from performing \code{split_df}.}
+\item{split_df}{A \code{split_df} object from performing \code{split_data}.}
 
 \item{resample_method}{The resampling method to use. Default is "repeatedcv"
 for repeated cross validation.
@@ -23,13 +23,13 @@ details on other available methods.}
 
 \item{resample_iterations}{Number of resampling iterations. Default is 10.}
 
-\item{num_epeats}{The number of complete sets of folds to compute (For
+\item{num_repeats}{The number of complete sets of folds to compute (For
 \code{resampling method = "repeatedcv"} only).}
 
 \item{algorithm_list}{A list of classification or regression algorithms to
 use.
 A full list of machine learning algorithms available through
-the \code{\link[caret]{caret package}} can be found here:
+the \code{caret} can be found here:
 \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
 default options.}
 }
@@ -48,10 +48,10 @@ define the control parameters to be used in training models, calculate
 resampling-based performance measures for models based on a given set of
 machine-learning algorithms, and output the best model for each algorithm.
 \item In the event that \code{algorithm_list} is not provided, a default
-list of six classification-based machine-learning algorithms will be used
+list of four classification-based machine-learning algorithms will be used
 for building and training models. Default \code{algorithm_list}:
-"knn", "svmRadial", "nb", "rf", "glmboost", "glmnet."
-\item Note: Models that failed to build are removed from the output. }
+"svmRadial", "rf", "glm", "xgbLinear."
+\item Note: Models that fail to build are removed from the output. }
 }
 \examples{
 \dontrun{
