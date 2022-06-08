@@ -78,10 +78,10 @@ fit_df <- find_dep(norm_df)
 Lets take a look at the results using a volcano plot.
 
 ``` r
- volcano_plot(fit_df)
+ volcano_plot(fit_df, text_size = 5)
 ```
 
-<img src="man/figures/README-volcanoplot-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="man/figures/README-volcanoplot-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## Modeling with promor
 
@@ -99,7 +99,7 @@ predictive models using *promor*.
 We use a previously published data set from [Suvarna et
 al. (2021)](https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3)
 that used differentially expressed proteins between severe and
-non-severe COVID patients to build predictive medict COVID severity.
+non-severe COVID patients to build models to predict COVID severity.
 
 ``` r
 #First, let's make a model_df object of top differentially expressed proteins. 
@@ -107,8 +107,7 @@ non-severe COVID patients to build predictive medict COVID severity.
 covid_model_df <- pre_process(fit_df = covid_fit_df, 
                               norm_df = covid_norm_df)
 #Next, we split the data into training and test data sets
-covid_split_df <- split_data(model_df = covid_model_df, 
-                             train_size = 0.7)
+covid_split_df <- split_data(model_df = covid_model_df)
 
 #Let's train our models using the default list of machine learning algorithms
 covid_model_list <- train_models(split_df = covid_split_df)
@@ -118,7 +117,7 @@ covid_prob_list <- test_models(model_list = covid_model_list,
                                split_df = covid_split_df)
 ```
 
-Lets take a look at how the models performed with ROC plots
+Let’s make ROC plots to check how the different models performed.
 
 ``` r
 roc_plot(probability_list = covid_prob_list,
@@ -138,22 +137,20 @@ experiment and the structure of your proteomics data.
 vignette("intro_to_promor", package = "promor")
 ```
 
-2.  If your data does NOT contain technical replicates, you can refer to
-    the following tutorial.
+2.  If your data does NOT contain technical replicates:
 
 ``` r
 vignette("promor_with_notechreps", package = "promor")
 ```
 
-3.  If your data contains technical replicates, you can refer to the
-    following tutorial for an illustrative example.
+3.  If your data contains technical replicates:
 
 ``` r
 vignette("promor_with_techreps", package = "promor")
 ```
 
 4.  If you would like to use your proteomics data to build predictive
-    models, you can follow this tutorial.
+    models:
 
 ``` r
 vignette("promor_for_modeling", package = "promor")
