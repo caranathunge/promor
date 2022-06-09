@@ -21,19 +21,15 @@ This function filters out proteins that exceed a given
 missing data percentage in each group.
 }
 \details{
-This function assumes that column headers in the \code{raw_df}
-object provided as \code{df} follow "Group_UniqueSampleID" notation.
-\itemize{\item It first
-extracts group or condition information from column headers and assigns
-samples to different groups.
+\itemize{\item This function first
+extracts group or condition information from the \code{raw_df} object and
+assigns samples to their groups.
 \item It then removes proteins (rows) from the data frame if the percentage
 of NAs in any one of the given groups exceeds the threshold indicated by
 \code{set_na} (default is 0.33)}
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(file.path = "./proteinGroups.txt")
 
 ## Missing data percentage allowed in each group = 0.33
 raw_filtered <- filterbygroup_na(raw)

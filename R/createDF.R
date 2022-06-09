@@ -10,7 +10,7 @@
 #' @param prot_groups File path to proteinGroups.txt file produced by MaxQuant.
 #' @param exp_design File path to a text file containing the experimental
 #' design.
-#' @param filter.n Logical. If \code{TRUE}(default), filters out empty rows and
+#' @param filter_na Logical. If \code{TRUE}(default), filters out empty rows and
 #' columns from the data frame.
 #' @param filter_prot Logical. If \code{TRUE} (default), filters out
 #' reverse proteins, proteins only identified by site, potential contaminants,
@@ -44,16 +44,24 @@
 #' \item Converts missing values (zeros) to NAs.
 #' \item Finally, the function log transforms the LFQ intensity values.}
 #'
-#' @return A \code{raw.df} object which is a data frame containing selected
+#' @return A \code{raw_df} object which is a data frame containing selected
 #' proteins as rows and sample LFQ intensities as columns.
 #'
 #' @examples
 #' \dontrun{
-#' # Generate a raw.df object with default settings.
+#' # Generate a raw_df object with default settings. No technical replicates.
 #' raw <- create_df(
-#'   prot_groups = "./proteinGroups.txt",
-#'   exp_design = "./experiment_design.txt"
+#' prot_groups = system.file("extdata", "ecoli_proteinGroups.txt"),
+#' exp_design = system.file("extdata", "expDesign.txt")
 #' )
+#'
+#' #Data containing technical replicates
+#' raw_1 <- create_df(
+#' prot_groups = system.file("extdata", "PXD001584_proteinGroups.txt"),
+#' exp_design = system.file("extdata", "PXD001584_expDesign.txt",
+#' tech_reps = TRUE)
+#' )
+#'
 #' }
 #' @export
 

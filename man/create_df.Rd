@@ -22,6 +22,9 @@ create_df(
 \item{exp_design}{File path to a text file containing the experimental
 design.}
 
+\item{filter_na}{Logical. If \code{TRUE}(default), filters out empty rows and
+columns from the data frame.}
+
 \item{filter_prot}{Logical. If \code{TRUE} (default), filters out
 reverse proteins, proteins only identified by site, potential contaminants,
 and proteins identified with less than the minimum number of unique peptides
@@ -41,12 +44,9 @@ missing values and replaced with NAs.}
 transformed to the base indicated by \code{base}.}
 
 \item{base}{Numerical. Logarithm base. Default is 2.}
-
-\item{filter.n}{Logical. If \code{TRUE}(default), filters out empty rows and
-columns from the data frame.}
 }
 \value{
-A \code{raw.df} object which is a data frame containing selected
+A \code{raw_df} object which is a data frame containing selected
 proteins as rows and sample LFQ intensities as columns.
 }
 \description{
@@ -72,11 +72,19 @@ rows from the data  frame.
 }
 \examples{
 \dontrun{
-# Generate a raw.df object with default settings.
+# Generate a raw_df object with default settings. No technical replicates.
 raw <- create_df(
-  prot_groups = "./proteinGroups.txt",
-  exp_design = "./experiment_design.txt"
+prot_groups = system.file("extdata", "ecoli_proteinGroups.txt"),
+exp_design = system.file("extdata", "expDesign.txt")
 )
+
+#Data containing technical replicates
+raw_1 <- create_df(
+prot_groups = system.file("extdata", "PXD001584_proteinGroups.txt"),
+exp_design = system.file("extdata", "PXD001584_expDesign.txt",
+tech_reps = TRUE)
+)
+
 }
 }
 \author{
