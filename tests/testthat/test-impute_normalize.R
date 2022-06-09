@@ -57,3 +57,39 @@ test_that("impute_na works for svd", {
   expect_equal(impute_na(test_rawdf_na, method = "SVD"), test_imp_svd)
 
 })
+
+#Normalization
+#Load normalized data - quantile method
+test_norm_q <- read.csv( "./testdata/test_norm_q.txt",
+                           sep = "\t",
+                           stringsAsFactors = TRUE)
+
+test_that("normalization works for quantile", {
+  expect_equal(normalize_data(test_imp_minprob),
+               test_norm_q)
+
+})
+
+#Load normalized data - scale method
+test_norm_s <- read.csv( "./testdata/test_norm_s.txt",
+                         sep = "\t",
+                         stringsAsFactors = TRUE)
+
+test_that("normalization works for sacle", {
+  expect_equal(normalize_data(test_imp_minprob,
+                              method = "scale"),
+               test_norm_s)
+
+})
+
+#Load normalized data - cyclicloess method
+test_norm_c <- read.csv( "./testdata/test_norm_c.txt",
+                         sep = "\t",
+                         stringsAsFactors = TRUE)
+
+test_that("normalization works for cyclicloess", {
+  expect_equal(normalize_data(test_imp_minprob,
+                              method = "cyclicloess"),
+               test_norm_c)
+
+})
