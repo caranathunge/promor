@@ -47,6 +47,7 @@ normalize_data <- function(df,
   norm_df <- limma::normalizeBetweenArrays(df,
     method = method
   )
+
   return(norm_df)
 }
 
