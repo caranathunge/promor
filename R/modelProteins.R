@@ -159,7 +159,7 @@ pre_process <- function(fit_df,
     highcor <- findCorrelation(cor_matrix, cutoff = corr_cutoff, names = TRUE)
     if(length(highcor != 0)){
       message(
-      "Following proteins show high pariwise-correlation"
+      "Following protein(s) show high pariwise-correlation"
     )
     }else{
       message(
@@ -180,11 +180,13 @@ pre_process <- function(fit_df,
       warning("Proteins with high pairwise-correlation have NOT been removed.",
         call. = FALSE
       )
+        topint_trans_1 <- topint_trans
     }
   } else {
     warning("Your data could have proteins with high pairwise-correlation.",
       call. = FALSE
     )
+    topint_trans_1 <- topint_trans
   }
 
   #Convert condition names to R compatible names
