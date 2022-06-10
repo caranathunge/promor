@@ -253,7 +253,7 @@ volcano_plot <- function(fit_df,
       begin = 0.2,
       end = 0.8
     ) +
-    promor::promor_theme() +
+    promor_theme() +
     ggplot2::theme(
       legend.position = "",
       panel.grid.major = element_line(
