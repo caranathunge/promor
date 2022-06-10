@@ -13,11 +13,12 @@ promor_theme <- function(){
     panel.grid.minor = element_blank(),
     panel.grid.major = element_blank()
   )
+
 }
 
 # Theme for faceted plots
 promor_facet_theme <- function(){
-  ggplot2::theme_classic() +
+ ggplot2::theme_classic() +
   ggplot2::theme(
     panel.border = element_rect(
       fill = NA,
@@ -39,6 +40,7 @@ promor_facet_theme <- function(){
       vjust = 0
     )
   )
+
 }
 
 # Pick viridis colors
