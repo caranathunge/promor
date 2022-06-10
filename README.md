@@ -46,9 +46,11 @@ For example, if promor is saved on your C drive, it could be :
 
 ## Proteomics data analysis with promor
 
-![promor flowchart by caranathunge](./promor_ProtAnalysisFlowChart.png)
-*Figure 1. A schematic diagram of suggested workflows for proteomics
-data analysis with promor.*
+<img src="./man/figures/promor_ProtAnalysisFlowChart_small.png"
+style="width:100.0%"
+alt="promor prot analysis flow chart by caranathunge" /> *Figure 1. A
+schematic diagram of suggested workflows for proteomics data analysis
+with promor.*
 
 ### Example
 
@@ -81,14 +83,18 @@ Lets take a look at the results using a volcano plot.
  volcano_plot(fit_df, text_size = 5)
 ```
 
-<img src="man/figures/README-volcanoplot-1.png" width="70%" style="display: block; margin: auto;" />
+<center>
+
+<img src="./man/figures/README-volcanoplot-1.png" style="width:70.0%" />
+
+</center>
 
 ## Modeling with promor
 
 ![promor flowchart-modeling by
-caranathunge](./promor_ProtModelingFlowChart.png) *Figure 2. A schematic
-diagram of suggested workflows for building predictive models with
-promor.*
+caranathunge](./man/figures/promor_ProtModelingFlowChart_small.png)
+{width=100%} *Figure 2. A schematic diagram of suggested workflows for
+building predictive models with promor.*
 
 ### Example
 
@@ -124,7 +130,9 @@ roc_plot(probability_list = covid_prob_list,
          split_df = covid_split_df)
 ```
 
-<img src="man/figures/README-rocplot-1.png" width="90%" style="display: block; margin: auto;" />
+<center>
+<img src="./man/figures/README-rocplot-1.png" style="width:70.0%" />
+</center>
 
 ## Tutorials
 
