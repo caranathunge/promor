@@ -461,7 +461,7 @@ impute_plot <- function(original,
         begin = 0.3,
         end = 0.7
       ) +
-      promor_theme +
+      promor_theme()+
       ggplot2::theme(
         axis.title.x = element_text(
           size = text_size,
@@ -510,7 +510,7 @@ impute_plot <- function(original,
         begin = 0.3,
         end = 0.7
       ) +
-      promor_facet_theme +
+      promor_facet_theme()+
       ggplot2::theme(
         axis.text = element_text(size = text_size * 0.7),
         legend.position = "bottom",

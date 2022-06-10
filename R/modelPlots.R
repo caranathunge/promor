@@ -795,7 +795,7 @@ roc_plot <- function(probability_list,
   } else {
     rocplots1 <- rocplots +
       ggplot2::facet_wrap(~method) +
-      promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         text = element_text(size = text_size),
         legend.position = "none",
