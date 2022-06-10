@@ -253,7 +253,7 @@ volcano_plot <- function(fit_df,
       begin = 0.2,
       end = 0.8
     ) +
-    promor_theme +
+    promor::promor_theme() +
     ggplot2::theme(
       legend.position = "",
       panel.grid.major = element_line(
@@ -476,7 +476,7 @@ heatmap_de <- function(fit_df,
         begin = 0,
         end = 1
       ) +
-      promor_facet_theme +
+      promor::promor_facet_theme() +
       ggplot2::theme(
         aspect.ratio = 1,
         legend.position = "bottom",

@@ -1,6 +1,3 @@
-#' LCMD imputation functions
-#'
-#' @export
 # Run imputeLCMD function imputeMinProb
 impute.Min.Prob <- function(dataSet.mvs, q = 0.01, tune_sigma = 1) {
   nSamples <- dim(dataSet.mvs)[2]
@@ -34,7 +31,7 @@ impute.Min.Prob <- function(dataSet.mvs, q = 0.01, tune_sigma = 1) {
   return(dataSet.imputed)
 }
 
-#' @export
+
 # Run imputeLCMD function imputeMinDet
 impute.MinDet <- function(dataSet.mvs, q = 0.01) {
   nSamples <- dim(dataSet.mvs)[2]

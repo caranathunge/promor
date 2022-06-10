@@ -1,8 +1,6 @@
-#' @import ggplot2
-#' @import viridis
-#' @export
 # Theme for single plots
-promor_theme <- ggplot2::theme_classic() +
+promor_theme <- function(){
+  ggplot2::theme_classic() +
   ggplot2::theme(
     panel.border = element_rect(
       fill = NA,
@@ -15,9 +13,11 @@ promor_theme <- ggplot2::theme_classic() +
     panel.grid.minor = element_blank(),
     panel.grid.major = element_blank()
   )
-#' @export
+}
+
 # Theme for faceted plots
-promor_facet_theme <- ggplot2::theme_classic() +
+promor_facet_theme <- function(){
+  ggplot2::theme_classic() +
   ggplot2::theme(
     panel.border = element_rect(
       fill = NA,
@@ -39,8 +39,8 @@ promor_facet_theme <- ggplot2::theme_classic() +
       vjust = 0
     )
   )
+}
 
-#' @export
 # Pick viridis colors
 set_col <- function(palette,
                     n,
