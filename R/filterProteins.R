@@ -36,6 +36,9 @@
 filterbygroup_na <- function(df,
                              set_na = 0.33) {
 
+  #Extract number of row
+  orig_rows <- nrow(df)
+
   # Extract group information from sample names in the dataframe x
   group <- factor(c(sapply(strsplit(colnames(df), "_"), getElement, 1)))
 
@@ -68,6 +71,7 @@ filterbygroup_na <- function(df,
 
   # Subset the dataframe by removing proteins in the list with >33% NA
   raw_3 <- df[!rownames(df) %in% rem_prot, ]
+  message(paste0(orig_rows - nrow(raw_3), " proteins with higher than ", set_na * 100, "% NAs in at least one group removed."))
   return(raw_3)
 }
 

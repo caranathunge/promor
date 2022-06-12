@@ -104,6 +104,10 @@ create_df <- function(prot_groups,
       sep = "_"
     )
   }
+  #extract number of rows
+  orig_rows <- nrow(df)
+  #extract number of columns
+  orig_col <- ncol(df)
 
   # Filter out empty rows and columns if they exist in the dataframe.
   if (filter_na == TRUE) {
@@ -111,12 +115,20 @@ create_df <- function(prot_groups,
     df <- df[rowSums(is.na(df)) != ncol(df), ]
     # Remove samples (columns) with missing values (NA) across all proteins
     df <- df[, colSums(is.na(df)) != nrow(df)]
+    #calculate number of rows and columns removed
+    rem_row <- orig_rows - nrow(df)
+    rem_col <- orig_col - ncol(df)
+    message(paste0(rem_row, " empty rows removed."))
+    message(paste0(rem_col, " empty columns removed."))
+
   } else {
-    warning("Data frame contains empty rows and/or columns.")
+    warning("Data frame may contain empty rows and/or columns.")
   }
-  # Filter out some proteins based on some columns. First check if the columns
+  # Filter out some proteins based on specific columns. First check if the columns
   # are present in the data frame before removing rows based on the presence of
   # "+" signs.
+  #Get number of rows in the df
+  orig_rows_1 <- nrow(df)
 
   if (filter_prot == TRUE) {
     if ("Only.identified.by.site" %in% colnames(df)) {
@@ -124,24 +136,49 @@ create_df <- function(prot_groups,
         df,
         df$Only.identified.by.site != "+"
       )
+      message(paste0(orig_rows_1 - nrow(df), " proteins (rows) only identified by site removed."))
     }
+
+    #get number of rows
+    orig_rows_2 <- nrow(df)
+
     if ("Reverse" %in% colnames(df)) {
       df <- subset(
         df,
         df$Reverse != "+"
       )
+      message(paste0(orig_rows_2 - nrow(df), " reverse proteins (rows) removed."))
     }
+
+    #get number of rows
+    orig_rows_3 <- nrow(df)
+
     if ("Potential.contaminant" %in% colnames(df)) {
       df <- subset(
         df,
         df$Potential.contaminant != "+"
       )
+
     }
+
+    if ("Contaminant" %in% colnames(df)) {
+      df <- subset(
+        df,
+        df$Contaminant != "+"
+      )
+      message(paste0(orig_rows_3 - nrow(df), " protein contaminants (rows) removed."))
+    }
+
+    #get number of rows
+    orig_rows_4 <- nrow(df)
+
     if ("Unique.peptides" %in% colnames(df)) {
       df <- subset(
         df,
         df$Unique.peptides > uniq_pep
       )
+      message(paste0(orig_rows_4 - nrow(df), " proteins identified by less than ",
+                     uniq_pep, " unique peptides removed."))
     }
   } else {
     warning("Proteins have not been filtered")
