@@ -44,7 +44,7 @@ it could be : `"C://promor_0.1.0.tar.gz"`
 
 ## Proteomics data analysis with promor
 ```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../promor_ProtAnalysisFlowChart.png")
+knitr::include_graphics("../man/figures/promor_ProtAnalysisFlowChart_small.png")
 ```
 
 *Figure 1. A schematic diagram of suggested workflows for proteomics data analysis with promor.*
@@ -79,7 +79,7 @@ Lets take a look at the results using a volcano plot.
 
 ## Modeling with promor
 ```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../promor_ProtModelingFlowChart.png")
+knitr::include_graphics("../man/figures/promor_ProtModelingFlowChart_small.png")
 ```
 
 *Figure 2. A schematic diagram of suggested workflows for building predictive models with promor.*
