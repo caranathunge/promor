@@ -72,7 +72,7 @@ normalize_data <- function(df,
 #' \code{10}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.

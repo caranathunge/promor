@@ -34,7 +34,7 @@ is \code{"box."}}
 
 \item{palette}{Viridis color palette option for plots. Default is
 \code{"viridis"}. See
-\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+\code{\link[viridisLite:viridis]{viridis}}
 for available options.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the

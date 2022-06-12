@@ -30,7 +30,7 @@ is \code{"box."}}
 
 \item{palette}{Viridis color palette option for plots. Default is
 \code{"viridis"}. See
-\code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+\code{\link[viridisLite:viridis]{viridis}}
 for available options.}
 
 \item{nrow}{The number of rows to print the plots.}

@@ -17,7 +17,7 @@
 #' \code{10}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param nrow The number of rows to print the plots.
 #' @param ncol The number of columns to print the plots.
@@ -90,7 +90,7 @@ feature_plot <- function(model_df,
       ) +
       ggplot2::xlab("") +
       ggplot2::ylab("") +
-      promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         legend.position = "bottom",
         legend.title = element_blank(),
@@ -130,7 +130,7 @@ feature_plot <- function(model_df,
       ) +
       ggplot2::xlab("") +
       ggplot2::ylab("") +
-      promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         legend.title = element_blank(),
         legend.position = "none",
@@ -171,7 +171,7 @@ feature_plot <- function(model_df,
 #' \code{10}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param nrow The number of rows to print the plots.
 #' @param ncol The number of columns to print the plots.
@@ -286,7 +286,7 @@ varimp_plot <- function(model_list,
           direction = -1
         ) +
         xlab("") +
-        promor_facet_theme +
+        promor_facet_theme() +
         ggplot2::theme(
           plot.title = element_text(
             size = text_size,
@@ -355,7 +355,7 @@ varimp_plot <- function(model_list,
           option = palette,
           direction = -1
         ) +
-        promor_facet_theme +
+        promor_facet_theme() +
         ggplot2::theme(
           plot.title = element_text(
             size = text_size,
@@ -429,7 +429,7 @@ varimp_plot <- function(model_list,
 #' \code{10}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
@@ -541,7 +541,7 @@ performance_plot <- function(model_list,
       ) +
       ggplot2::xlab("") +
       ggplot2::ylab("") +
-      promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         legend.position = "none",
         axis.text.y = element_text(
@@ -574,7 +574,7 @@ performance_plot <- function(model_list,
       ggplot2::coord_flip() +
       ggplot2::xlab("") +
       ggplot2::ylab("") +
-      promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         legend.position = "none",
         axis.text.y = element_text(
@@ -623,7 +623,7 @@ performance_plot <- function(model_list,
 #' \code{10}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
@@ -783,7 +783,7 @@ roc_plot <- function(probability_list,
 
   if (multiple_plots == FALSE) {
     rocplots1 <- rocplots +
-      promor_theme +
+      promor_theme() +
       ggplot2::theme(
         legend.position = "bottom",
         legend.text = element_text(
