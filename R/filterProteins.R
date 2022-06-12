@@ -36,7 +36,7 @@
 filterbygroup_na <- function(df,
                              set_na = 0.33) {
 
-  #Extract number of row
+  # Extract number of row
   orig_rows <- nrow(df)
 
   # Extract group information from sample names in the dataframe x
@@ -71,7 +71,11 @@ filterbygroup_na <- function(df,
 
   # Subset the dataframe by removing proteins in the list with >33% NA
   raw_3 <- df[!rownames(df) %in% rem_prot, ]
-  message(paste0(orig_rows - nrow(raw_3), " proteins with higher than ", set_na * 100, "% NAs in at least one group removed."))
+  message(paste0(
+    orig_rows - nrow(raw_3),
+    " proteins with higher than ",
+    set_na * 100,
+    "% NAs in at least one group removed."))
   return(raw_3)
 }
 
@@ -134,7 +138,7 @@ onegroup_only <- function(df,
   n_proteins <- ncol(transdf) - 1
 
   # Check if there are proteins with 100% missing data in one group and
-  #>66% valid data in the other group
+  #>1-set_na% valid data in the other group
   group_only <- as.data.frame(
     ifelse(
       colSums(is.na(transdf[transdf$Group == abs_group, 1:n_proteins]))
@@ -151,8 +155,10 @@ onegroup_only <- function(df,
   prot_list <- group_only[group_only[1] == "TRUE", 2]
 
   if (identical(prot_list, character(0))) {
-    message(paste0("None of the proteins are expressed only in ",
-                   pres_group))
+    message(paste0(
+      "None of the proteins are expressed only in ",
+      pres_group
+    ))
   } else {
     if (save == TRUE) {
       cat(prot_list,

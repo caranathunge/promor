@@ -8,13 +8,15 @@
 #' @importFrom stats model.matrix
 #' @importFrom utils write.table
 #'
-#' @param data A \code{norm_df} object.
+#' @param norm_df A \code{norm_df} object.
 #' @param save_output Logical. If \code{TRUE} saves results from the
 #' differential expression analysis in a text file labeled "limma_output.txt"
 #' in the working directory.
 #' @param save_tophits Logical. If \code{TRUE} saves \code{n_top}
 #' number of top hits from the differential expression analysis in a text file
 #' labeled "TopHits.txt" in the working directory.
+#' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
+#' 0.05.
 #' @param n_top The number of top differentially expressed proteins to save in
 #' the "TopHits.txt" file. Default is \code{20}.
 #'
@@ -52,19 +54,20 @@
 #' }
 #'
 #' @export
-find_dep <- function(data,
+find_dep <- function(norm_df,
                      save_output = FALSE,
                      save_tophits = FALSE,
+                     cutoff = 0.05,
                      n_top = 20) {
   group <- factor(c(sapply(
-    strsplit(colnames(data), "_"),
+    strsplit(colnames(norm_df), "_"),
     getElement, 1
   )))
 
   # create a design based on groups
   design <- model.matrix(~group)
   # Fit the model to the protein intensity data based on the experimental design
-  fit <- limma::lmFit(data, design)
+  fit <- limma::lmFit(norm_df, design)
   fit <- limma::eBayes(fit,
     robust = T,
     trend = T
@@ -82,8 +85,37 @@ find_dep <- function(data,
     adjust.method = "BH",
     n = length(fit$df.total)
   )
+
+  # add majority protein ids column
+  results_de$majority_protein_id <- rownames(results_de)
+  rownames(results_de) <- NULL
+
+  # rearrange order of columns
+  results_de <- results_de[, c("majority_protein_id",
+                               "logFC",
+                               "AveExpr",
+                               "t",
+                               "P.Value",
+                               "adj.P.Val",
+                               "B")]
+
+  # extract proteins with absolute logfc > 1
   results_de <- results_de[abs(results_de$logFC) > 1, ]
+
+  # extract sig. de. proteins and order from smallest to largest p. values
+  results_de <- results_de[results_de$adj.P.Val < cutoff, ]
   results_de <- results_de[order(results_de$P.Value, results_de$adj.P.Val), ]
+
+  if (nrow(results_de) == 0) {
+    stop(
+      message(
+        paste0(
+        "No differentially expressed proteins found at adj.P.value cutoff = ",
+        cutoff)))
+  } else {
+    message(paste0(nrow(results_de),
+                   " siginificantly differentially expressed proteins found."))
+  }
 
   if (save_tophits == TRUE) {
     if (nrow(results_de) < n_top) {
@@ -130,7 +162,7 @@ find_dep <- function(data,
 #' to indicate the p-value \code{cutoff.}
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param file_name File name to save the plot. Default is "Volcano_plot."
 #' @param file_type File type to save the plot. Default is \code{"pdf".}
@@ -338,7 +370,7 @@ volcano_plot <- function(fit_df,
 #' @param n_top Number of top hits to include in the heat map.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridis: scale_color_viridis]{scale_color_viridis}}
+#' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param text_size Text size for axis text, labels etc.
 #' @param save Logical. If \code{TRUE}, saves a copy of the plot in
