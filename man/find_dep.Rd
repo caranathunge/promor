@@ -4,10 +4,16 @@
 \alias{find_dep}
 \title{Identify differentially expressed proteins between groups}
 \usage{
-find_dep(data, save_output = FALSE, save_tophits = FALSE, n_top = 20)
+find_dep(
+  norm_df,
+  save_output = FALSE,
+  save_tophits = FALSE,
+  cutoff = 0.05,
+  n_top = 20
+)
 }
 \arguments{
-\item{data}{A \code{norm_df} object.}
+\item{norm_df}{A \code{norm_df} object.}
 
 \item{save_output}{Logical. If \code{TRUE} saves results from the
 differential expression analysis in a text file labeled "limma_output.txt"
@@ -16,6 +22,9 @@ in the working directory.}
 \item{save_tophits}{Logical. If \code{TRUE} saves \code{n_top}
 number of top hits from the differential expression analysis in a text file
 labeled "TopHits.txt" in the working directory.}
+
+\item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
+0.05.}
 
 \item{n_top}{The number of top differentially expressed proteins to save in
 the "TopHits.txt" file. Default is \code{20}.}
