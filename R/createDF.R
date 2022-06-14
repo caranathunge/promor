@@ -177,8 +177,8 @@ create_df <- function(prot_groups,
         df,
         df$Unique.peptides > uniq_pep
       )
-      message(paste0(orig_rows_4 - nrow(df), " proteins identified by less than ",
-                     uniq_pep, " unique peptides removed."))
+      message(paste0(orig_rows_4 - nrow(df), " proteins identified by ",
+                     uniq_pep, " or fewer unique peptides removed."))
     }
   } else {
     warning("Proteins have not been filtered")
