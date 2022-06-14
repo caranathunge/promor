@@ -15,6 +15,8 @@
 #' @param save_tophits Logical. If \code{TRUE} saves \code{n_top}
 #' number of top hits from the differential expression analysis in a text file
 #' labeled "TopHits.txt" in the working directory.
+#' @param lfc Minimum absolute log2-fold change to use as threshold for
+#' differential expression.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
 #' 0.05.
 #' @param n_top The number of top differentially expressed proteins to save in
@@ -58,7 +60,10 @@ find_dep <- function(norm_df,
                      save_output = FALSE,
                      save_tophits = FALSE,
                      cutoff = 0.05,
+                     lfc = 1,
                      n_top = 20) {
+
+  #Extract group information from colnames
   group <- factor(c(sapply(
     strsplit(colnames(norm_df), "_"),
     getElement, 1
@@ -66,16 +71,25 @@ find_dep <- function(norm_df,
 
   # create a design based on groups
   design <- model.matrix(~group)
+
   # Fit the model to the protein intensity data based on the experimental design
   fit <- limma::lmFit(norm_df, design)
   fit <- limma::eBayes(fit,
     robust = T,
     trend = T
   )
+
+  #Make a a list of DE results based on provided criteria
+  dec_test <- limma::decideTests(fit,
+                                 lfc = lfc,
+                                 adjust.method = "BH")
+
+  # Write the results of the DE analysis to a text file (tab-separated)
   if (save_output == TRUE) {
-    # Write the results of the DE analysis to a text file (tab-separated)
     limma::write.fit(fit,
-      file = "limma_outout.txt"
+      file = "limma_outout.txt",
+      adjust = "BH",
+      results = dec_test
     )
   }
 
@@ -83,7 +97,7 @@ find_dep <- function(norm_df,
   results_de <- limma::topTable(fit,
     coef = 2,
     adjust.method = "BH",
-    n = length(fit$df.total)
+    n = Inf
   )
 
   # add majority protein ids column
@@ -99,8 +113,8 @@ find_dep <- function(norm_df,
                                "adj.P.Val",
                                "B")]
 
-  # extract proteins with absolute logfc > 1
-  results_de <- results_de[abs(results_de$logFC) > 1, ]
+  # extract proteins with absolute logfc > lfc
+  results_de <- results_de[abs(results_de$logFC) > lfc, ]
 
   # extract sig. de. proteins and order from smallest to largest p. values
   results_de <- results_de[results_de$adj.P.Val < cutoff, ]
@@ -154,10 +168,10 @@ find_dep <- function(norm_df,
 #' testing. Default is \code{"BH."}.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
 #' 0.05.
-#' @param fc Minimum absolute log-fold change to use as threshold for
+#' @param lfc Minimum absolute log2-fold change to use as threshold for
 #' differential expression.
 #' @param line_fc Logical. If \code{TRUE}(default), a dotted line will be shown
-#' to indicate the \code{fc} threshold in the plot.
+#' to indicate the \code{lfc} threshold in the plot.
 #' @param line_p Logical. If \code{TRUE}(default), a dotted line will be shown
 #' to indicate the p-value \code{cutoff.}
 #' @param palette Viridis color palette option for plots. Default is
@@ -205,7 +219,7 @@ find_dep <- function(norm_df,
 #' volcano_plot(fit)
 #'
 #' # Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
-#' volcano_plot(fit, cutoff = 0.05, sig = "P", fc = 1)
+#' volcano_plot(fit, cutoff = 0.05, sig = "P", lfc = 1)
 #' }
 #'
 #' @export
@@ -213,7 +227,7 @@ volcano_plot <- function(fit_df,
                          adj_method = "BH",
                          sig = "adjP",
                          cutoff = 0.05,
-                         fc = 1,
+                         lfc = 1,
                          line_fc = TRUE,
                          line_p = TRUE,
                          palette = "viridis",
@@ -239,9 +253,9 @@ volcano_plot <- function(fit_df,
   )
 
   # Add a new column based on adj.Pval significance status
-  res_de$de_ap <- res_de$adj.P.Val < cutoff & abs(res_de$logFC) > fc
+  res_de$de_ap <- res_de$adj.P.Val < cutoff & abs(res_de$logFC) > lfc
   # Add a new column based on P value significance status alone
-  res_de$dep <- res_de$P.Value < cutoff & abs(res_de$logFC) > fc
+  res_de$dep <- res_de$P.Value < cutoff & abs(res_de$logFC) > lfc
 
   if (sig == "P") {
     res_de <- res_de[order(-res_de$dep, res_de$adj.P.Val), ]
@@ -297,7 +311,7 @@ volcano_plot <- function(fit_df,
   if (line_fc == TRUE) {
     de_volcanoplot <- de_volcanoplot +
       ggplot2::geom_vline(
-        xintercept = c(-fc, fc),
+        xintercept = c(-lfc, lfc),
         color = "grey60",
         linetype = 2,
         size = 0.5,
@@ -363,7 +377,7 @@ volcano_plot <- function(fit_df,
 #' was obtained.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
 #' 0.05.
-#' @param fc Minimum absolute log-fold change to use as threshold for
+#' @param lfc Minimum absolute log2-fold change to use as threshold for
 #' differential expression. Default is 1.
 #' @param sig Criteria to denote significance. Choices are \code{"adjP"}
 #' (default) for adjusted p-value or \code{"P"} for p-value.
@@ -403,14 +417,14 @@ volcano_plot <- function(fit_df,
 #' heatmap_de(fit, raw_nm)
 #'
 #' # Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
-#' heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", fc = 1)
+#' heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", lfc = 1)
 #' }
 #'
 #' @export
 heatmap_de <- function(fit_df,
                        norm_df,
                        cutoff = 0.05,
-                       fc = 1,
+                       lfc = 1,
                        sig = "adjP",
                        n_top = 20,
                        palette = "viridis",
@@ -436,14 +450,14 @@ heatmap_de <- function(fit_df,
 
   if (sig == "P") {
     top_proteins <- rownames(subset(exp_de,
-      abs(logFC) > fc & P.Value < cutoff,
+      abs(logFC) > lfc & P.Value < cutoff,
       drop = FALSE
     ))
 
     # Or default: based on adj.P value
   } else {
     top_proteins <- rownames(subset(exp_de,
-      abs(logFC) > fc & adj.P.Val < cutoff,
+      abs(logFC) > lfc & adj.P.Val < cutoff,
       drop = FALSE
     ))
   }
@@ -508,7 +522,7 @@ heatmap_de <- function(fit_df,
         begin = 0,
         end = 1
       ) +
-      promor::promor_facet_theme() +
+      promor_facet_theme() +
       ggplot2::theme(
         aspect.ratio = 1,
         legend.position = "bottom",
