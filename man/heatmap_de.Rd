@@ -8,7 +8,7 @@ heatmap_de(
   fit_df,
   norm_df,
   cutoff = 0.05,
-  fc = 1,
+  lfc = 1,
   sig = "adjP",
   n_top = 20,
   palette = "viridis",
@@ -30,7 +30,7 @@ was obtained.}
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
 
-\item{fc}{Minimum absolute log-fold change to use as threshold for
+\item{lfc}{Minimum absolute log2-fold change to use as threshold for
 differential expression. Default is 1.}
 
 \item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
@@ -78,7 +78,7 @@ fit <- find_dep(raw_nm)
 heatmap_de(fit, raw_nm)
 
 # Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
-heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", fc = 1)
+heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", lfc = 1)
 }
 
 }

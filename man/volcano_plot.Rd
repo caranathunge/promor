@@ -9,7 +9,7 @@ volcano_plot(
   adj_method = "BH",
   sig = "adjP",
   cutoff = 0.05,
-  fc = 1,
+  lfc = 1,
   line_fc = TRUE,
   line_p = TRUE,
   palette = "viridis",
@@ -36,11 +36,11 @@ testing. Default is \code{"BH."}.}
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
 
-\item{fc}{Minimum absolute log-fold change to use as threshold for
+\item{lfc}{Minimum absolute log2-fold change to use as threshold for
 differential expression.}
 
 \item{line_fc}{Logical. If \code{TRUE}(default), a dotted line will be shown
-to indicate the \code{fc} threshold in the plot.}
+to indicate the \code{lfc} threshold in the plot.}
 
 \item{line_p}{Logical. If \code{TRUE}(default), a dotted line will be shown
 to indicate the p-value \code{cutoff.}}
@@ -95,7 +95,7 @@ fit <- find_dep(raw_nm)
 volcano_plot(fit)
 
 # Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
-volcano_plot(fit, cutoff = 0.05, sig = "P", fc = 1)
+volcano_plot(fit, cutoff = 0.05, sig = "P", lfc = 1)
 }
 
 }

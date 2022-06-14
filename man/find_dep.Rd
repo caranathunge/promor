@@ -9,6 +9,7 @@ find_dep(
   save_output = FALSE,
   save_tophits = FALSE,
   cutoff = 0.05,
+  lfc = 1,
   n_top = 20
 )
 }
@@ -25,6 +26,9 @@ labeled "TopHits.txt" in the working directory.}
 
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
+
+\item{lfc}{Minimum absolute log2-fold change to use as threshold for
+differential expression.}
 
 \item{n_top}{The number of top differentially expressed proteins to save in
 the "TopHits.txt" file. Default is \code{20}.}
