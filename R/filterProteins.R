@@ -7,20 +7,28 @@
 #'
 #' @importFrom stats aggregate
 #'
-#' @param df A \code{raw_df} object (output of \code{\link{create_df}})
-#' @param set_na The percentage of missing data allowed in any group.
+#' @param raw_df A \code{raw_df} object (output of \code{\link{create_df}})
+#' @param set_na The proportion of missing data allowed.
 #' Default is 0.33.
+#' @param filter_condition If set to \code{"each"}, proteins that exceed
+#' the missing value proportion threshold set by \code{set_na} in each group
+#' will be removed.
+#' If set to \code{"either"}(default), proteins that exceed the missing value
+#' proportion threshold set by \code{set_na} in at least one group will be
+#' removed.
 #'
 #' @details
 #'  \itemize{\item This function first
 #'  extracts group or condition information from the \code{raw_df} object and
 #'  assigns samples to their groups.
-#'  \item It then removes proteins (rows) from the data frame if the percentage
-#'  of NAs in any one of the given groups exceeds the threshold indicated by
-#'  \code{set_na} (default is 0.33)}
+#'  \item If \code{filter_condition = "each"}, it then removes proteins (rows)
+#'  from the data frame if the proportion of NAs in each group exceeds the
+#'  threshold indicated by \code{set_na} (default is 0.33)}. This option is
+#'  more lenient in comparison to \code{filter_condition = "either"}, where
+#'  proteins that exceeds the missing data threshold in either group gets
+#'  removed from the data frame.
 #'
-#' @return A \code{raw_df} object or a data frame of filtered proteins
-#'  as rows and sample LFQ intensities as columns.
+#' @return A \code{raw_df} object.
 #'
 #' @examples
 #' \dontrun{
@@ -33,17 +41,18 @@
 #' }
 #' @export
 
-filterbygroup_na <- function(df,
-                             set_na = 0.33) {
+filterbygroup_na <- function(raw_df,
+                             set_na = 0.33,
+                             filter_condition = "either") {
 
   # Extract number of row
-  orig_rows <- nrow(df)
+  orig_rows <- nrow(raw_df)
 
   # Extract group information from sample names in the dataframe x
-  group <- factor(c(sapply(strsplit(colnames(df), "_"), getElement, 1)))
+  group <- factor(c(sapply(strsplit(colnames(raw_df), "_"), getElement, 1)))
 
   # Transpose the data frame. Columns are now proteins and rows are samples.
-  transdf <- as.data.frame(t(df))
+  transdf <- as.data.frame(t(raw_df))
 
   # Add a new column with the group information.
   # Group column is the rightmost column in the data frame.
@@ -63,19 +72,37 @@ filterbygroup_na <- function(df,
   # Remove the first column that contains the group name in the data frame
   df_na[, 1] <- NULL
 
-  # Make a list of proteins with >33% NA or > set_na
-  rem_prot <- as.list(colnames(Filter(
-    function(y) any(as.numeric(y) > set_na),
-    df_na
+  #Remove proteins that don't meet the set_na in at least one group
+  if (filter_condition == "either"){
+    # Make a list of proteins where at least one group NA > set_na
+    rem_prot <- as.list(colnames(Filter(
+      function(y) any(as.numeric(y) > set_na),
+      df_na
   )))
 
   # Subset the dataframe by removing proteins in the list with >33% NA
-  raw_3 <- df[!rownames(df) %in% rem_prot, ]
+  raw_3 <- raw_df[!rownames(raw_df) %in% rem_prot, ]
   message(paste0(
     orig_rows - nrow(raw_3),
     " proteins with higher than ",
     set_na * 100,
     "% NAs in at least one group removed."))
+  }
+  if (filter_condition == "each"){
+    # Make a list of proteins where at least one group NA < set_na
+    keep_prot <- as.list(colnames(Filter(
+      function(y) any(as.numeric(y) < set_na),
+      df_na
+    )))
+
+    # Subset the dataframe by keeping proteins in the list
+    raw_3 <- raw_df[rownames(raw_df) %in% keep_prot, ]
+    message(paste0(
+      orig_rows - nrow(raw_3),
+      " proteins with higher than ",
+      set_na * 100,
+      "% NAs in each group removed."))
+  }
   return(raw_3)
 }
 
@@ -89,7 +116,7 @@ filterbygroup_na <- function(df,
 #'
 #' @author Chathurani Ranathunge
 #'
-#' @param df A \code{raw_df} object (output of \code{\link{create_df}})
+#' @param raw_df A \code{raw_df} object (output of \code{\link{create_df}})
 #' @param abs_group Name of the group in which proteins are not expressed.
 #' @param pres_group Name of the group in which proteins are expressed.
 #' @param set_na The percentage of missing data allowed in \code{pres_group}.
@@ -118,17 +145,17 @@ filterbygroup_na <- function(df,
 #' }
 #'
 #' @export
-onegroup_only <- function(df,
+onegroup_only <- function(raw_df,
                           abs_group,
                           pres_group,
                           set_na = 0.33,
                           save = TRUE) {
 
   # Extract group information from sample names in the data frame x
-  group <- factor(c(sapply(strsplit(colnames(df), "_"), getElement, 1)))
+  group <- factor(c(sapply(strsplit(colnames(raw_df), "_"), getElement, 1)))
 
   # Transpose the data frame: columns are now proteins and rows are samples.
-  transdf <- as.data.frame(t(df))
+  transdf <- as.data.frame(t(raw_df))
 
   # Add a new column with the group information.
   # Group column is the rightmost column in the data frame.

@@ -4,17 +4,23 @@
 \alias{filterbygroup_na}
 \title{Filter proteins by group level missing data}
 \usage{
-filterbygroup_na(df, set_na = 0.33)
+filterbygroup_na(df, set_na = 0.33, filter_condition = "either")
 }
 \arguments{
-\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})}
-
-\item{set_na}{The percentage of missing data allowed in any group.
+\item{set_na}{The proportion of missing data allowed.
 Default is 0.33.}
+
+\item{filter_condition}{If set to \code{"each"}, proteins that exceed
+the missing value proportion threshold set by \code{set_na} in each group
+will be removed.
+If set to \code{"either"}(default), proteins that exceed the missing value
+proportion threshold set by \code{set_na} in at least one group will be
+removed.}
+
+\item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})}
 }
 \value{
-A \code{raw_df} object or a data frame of filtered proteins
-as rows and sample LFQ intensities as columns.
+A \code{raw_df} object.
 }
 \description{
 This function filters out proteins that exceed a given
@@ -24,9 +30,12 @@ missing data percentage in each group.
 \itemize{\item This function first
 extracts group or condition information from the \code{raw_df} object and
 assigns samples to their groups.
-\item It then removes proteins (rows) from the data frame if the percentage
-of NAs in any one of the given groups exceeds the threshold indicated by
-\code{set_na} (default is 0.33)}
+\item If \code{filter_condition = "each"}, it then removes proteins (rows)
+from the data frame if the proportion of NAs in each group exceeds the
+threshold indicated by \code{set_na} (default is 0.33)}. This option is
+more lenient in comparison to \code{filter_condition = "either"}, where
+proteins that exceeds the missing data threshold in either group gets
+removed from the data frame.
 }
 \examples{
 \dontrun{
