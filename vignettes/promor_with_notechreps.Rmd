@@ -36,7 +36,7 @@ For this tutorial we will be using a previously published data set from [Cox et 
 
 ## Workflow
 
-![promor notechreps flowchart by caranathunge](../promor_ProtAnalysis_notechreps_BluYe.png) 
+![promor notechreps flowchart by caranathunge](../man/figures/promor_ProtAnalysis_notechreps_small.png) 
 *Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with no technical replicates*
 
 ## Input data
