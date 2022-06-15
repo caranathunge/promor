@@ -172,7 +172,7 @@ norm_plot <- function(original,
         end = 0.7,
         direction = -1
       ) +
-      promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         legend.position = "none",
         axis.text = element_text(size = text_size * 0.7)
@@ -212,7 +212,7 @@ norm_plot <- function(original,
         begin = 0.3,
         end = 0.7
       ) +
-      promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         legend.position = "bottom",
         axis.text = element_text(size = text_size * 0.7)
