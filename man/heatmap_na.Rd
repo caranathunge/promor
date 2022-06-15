@@ -13,6 +13,7 @@ heatmap_na(
   x_fun = mean,
   y_fun = mean,
   palette = "viridis",
+  label_proteins = FALSE,
   text_size = 10,
   save = FALSE,
   file_type = "pdf",
@@ -47,6 +48,9 @@ include \code{mean} and \code{sum}. Default is \code{mean}.}
 \code{"viridis"}. See
 \code{\link[viridisLite:viridis]{viridis}}
 for available options.}
+
+\item{label_proteins}{If \code{TRUE} proteins on the y axis
+will be labeled with their Protein IDs. Defualt is \code{FALSE}.}
 
 \item{text_size}{Text size for axis labels. Default is \code{10}.}
 
