@@ -4,10 +4,10 @@
 \alias{onegroup_only}
 \title{Proteins that are only expressed in a given group}
 \usage{
-onegroup_only(df, abs_group, pres_group, set_na = 0.33, save = TRUE)
+onegroup_only(raw_df, abs_group, pres_group, set_na = 0.33, save = TRUE)
 }
 \arguments{
-\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})}
+\item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})}
 
 \item{abs_group}{Name of the group in which proteins are not expressed.}
 

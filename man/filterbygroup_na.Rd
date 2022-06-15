@@ -4,9 +4,11 @@
 \alias{filterbygroup_na}
 \title{Filter proteins by group level missing data}
 \usage{
-filterbygroup_na(df, set_na = 0.33, filter_condition = "either")
+filterbygroup_na(raw_df, set_na = 0.33, filter_condition = "either")
 }
 \arguments{
+\item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})}
+
 \item{set_na}{The proportion of missing data allowed.
 Default is 0.33.}
 
@@ -16,8 +18,6 @@ will be removed.
 If set to \code{"either"}(default), proteins that exceed the missing value
 proportion threshold set by \code{set_na} in at least one group will be
 removed.}
-
-\item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})}
 }
 \value{
 A \code{raw_df} object.
