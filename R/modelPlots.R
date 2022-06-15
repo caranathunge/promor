@@ -19,8 +19,8 @@
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
-#' @param nrow The number of rows to print the plots.
-#' @param ncol The number of columns to print the plots.
+#' @param n_row The number of rows to print the plots.
+#' @param n_col The number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file_name file_name File name to save the plot.
@@ -52,8 +52,8 @@ feature_plot <- function(model_df,
                          type = "box",
                          text_size = 10,
                          palette = "viridis",
-                         nrow,
-                         ncol,
+                         n_row,
+                         n_col,
                          save = FALSE,
                          file_name = "Feature_plot",
                          file_type = "pdf",
@@ -65,6 +65,12 @@ feature_plot <- function(model_df,
   modeldf_melted <- reshape2::melt(model_df)
   colnames(modeldf_melted) <- c("Condition", "Protein", "Intensity")
 
+  #n_row and n_col if not defined
+  if(missing(n_row) & missing(n_col)){
+    n_row = length(unique(modeldf_melted$Protein))
+    n_col = 1
+
+  }
 
 
   # Make density plots
@@ -85,8 +91,8 @@ feature_plot <- function(model_df,
       ) +
       ggplot2::facet_wrap(~Protein,
         scale = "free",
-        nrow = nrow,
-        ncol = ncol
+        nrow = n_row,
+        ncol = n_col
       ) +
       ggplot2::xlab("") +
       ggplot2::ylab("") +
@@ -125,8 +131,8 @@ feature_plot <- function(model_df,
       ) +
       ggplot2::facet_wrap(~Protein,
         scales = "free",
-        nrow = nrow,
-        ncol = ncol
+        nrow = n_row,
+        ncol = n_col
       ) +
       ggplot2::xlab("") +
       ggplot2::ylab("") +
@@ -173,8 +179,8 @@ feature_plot <- function(model_df,
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
-#' @param nrow The number of rows to print the plots.
-#' @param ncol The number of columns to print the plots.
+#' @param n_row The number of rows to print the plots.
+#' @param n_col The number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file_name file_name File name to save the plot.
@@ -219,14 +225,20 @@ varimp_plot <- function(model_list,
                         type = "lollipop",
                         text_size = 10,
                         palette = "viridis",
-                        nrow,
-                        ncol,
+                        n_row,
+                        n_col,
                         save = FALSE,
                         file_name = "VarImp_plot",
                         file_type = "pdf",
                         dpi = 80,
                         plot_width = 7,
                         plot_height = 7) {
+
+  #Assign n_row and n_col
+  if(missing(n_row) & missing(n_col)){
+    n_row = length(model_list)
+    n_col = 1
+  }
 
   # Calculate variable importance with VarImp for each ML algorithm-based
   # model in the list
@@ -264,7 +276,6 @@ varimp_plot <- function(model_list,
 
   # Drop empty data frames before proceeding
   plot_imp_data <- Filter(function(x) dim(x)[1] > 0, plot_imp_data)
-
 
   # Make plots based on type
 
@@ -397,11 +408,13 @@ varimp_plot <- function(model_list,
     ggplot2::ggsave(paste0(file_name, ".", file_type),
       marrangeGrob(
         grobs = vi_plots,
-        nrow = nrow,
-        ncol = ncol,
+        nrow = n_row,
+        ncol = n_col,
         top = ""
       ),
-      dpi = dpi
+      dpi = dpi,
+      width = plot_width,
+      height = plot_height,
     )
     grid.arrange(grobs = vi_plots, newpage = TRUE)
   } else {
