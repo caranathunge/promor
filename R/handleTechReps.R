@@ -89,7 +89,7 @@ corr_plot <- function(df,
 
   # split the dataframe by each sample and output a list of dataframes for
   # plotting. 'as.data.frame' forces even those with just one column or
-  #replicate into a dataframe rather than a row
+  #replicate into a dataframe
   sub_df <- lapply(
     sample_name,
     function(y) as.data.frame(df[, grepl(y, names(df))])
@@ -122,7 +122,7 @@ corr_plot <- function(df,
         size = text_size * 0.2,
         check_overlap = TRUE
       ) +
-      promor::promor_facet_theme +
+      promor_facet_theme() +
       ggplot2::theme(
         axis.ticks = element_blank(),
         axis.text = element_blank(),
@@ -134,6 +134,8 @@ corr_plot <- function(df,
       ) +
       ggplot2::ggtitle(gsub("\\_\\d+$", "", colnames(plot_data[[t]][1])))
   })
+
+
   if (save == TRUE) {
     ggplot2::ggsave(paste0("TR", rep1, "vs", "TR", rep2, ".", file_type),
       marrangeGrob(
