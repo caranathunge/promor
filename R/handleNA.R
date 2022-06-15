@@ -27,6 +27,8 @@
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
+#' @param label_proteins If \code{TRUE} proteins on the y axis
+#' will be labeled with their Protein IDs. Defualt is \code{FALSE}.
 #' @param text_size Text size for axis labels. Default is \code{10}.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
@@ -71,6 +73,7 @@ heatmap_na <- function(df,
                        x_fun = mean,
                        y_fun = mean,
                        palette = "viridis",
+                       label_proteins = FALSE,
                        text_size = 10,
                        save = FALSE,
                        file_type = "pdf",
@@ -108,8 +111,8 @@ heatmap_na <- function(df,
     "protgroup"
   )
   # Set colors
-  col.na <- set_col(palette, n = 1, direction = -1)
-  col.val <- set_col(palette, n = 1, direction = 1)
+  col_na <- set_col(palette, n = 1, direction = -1)
+  col_val <- set_col(palette, n = 1, direction = 1)
 
   # Options for arranging the rows and the columns of the heat map
   if (reorder_x == TRUE & reorder_y == TRUE) {
@@ -170,11 +173,11 @@ heatmap_na <- function(df,
   hmap <- hmap +
     ggplot2::geom_tile() +
     ggplot2::scale_fill_gradient(
-      high = col.val,
-      low = col.val,
-      na.value = col.na
+      high = col_val,
+      low = col_val,
+      na.value = col_na
     ) +
-    coord_equal() +
+    #coord_equal() +
     ggplot2::theme(
       plot.background = element_blank(),
       panel.border = element_blank(),
@@ -183,12 +186,19 @@ heatmap_na <- function(df,
         angle = 90,
         size = text_size
       ),
-      axis.text.y = element_text(size = text_size),
+      axis.text.y = element_blank(),
       axis.ticks = element_blank(),
       legend.position = "none"
     ) +
     ggplot2::xlab("") + ggplot2::ylab("")
 
+  #add protein labels
+  if(label_proteins == TRUE){
+    hmap <- hmap +
+      ggplot2::theme(
+        axis.text.y = element_text(size = text_size)
+      )
+  }
   # Save the heatmap as a pdf
   if (save == TRUE) {
     ggplot2::ggsave(paste0(file_name, ".", file_type),
@@ -356,9 +366,9 @@ impute_na <- function(df,
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
-#' @param nrow Required if \code{global = FALSE} to indicate the number of rows
+#' @param n_row Required if \code{global = FALSE} to indicate the number of rows
 #' to print the plots.
-#' @param ncol Required if \code{global = FALSE} to indicate the number of
+#' @param n_col Required if \code{global = FALSE} to indicate the number of
 #' columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
@@ -373,7 +383,7 @@ impute_na <- function(df,
 #' @details
 #' \itemize{\item Given two data frames, one with missing values
 #' (\code{raw_df} object) and the other, an imputed data frame
-#' (\code{imp.df} object) of the same data set, \code{impute_plot}
+#' (\code{imp_df} object) of the same data set, \code{impute_plot}
 #' generates global or sample-wise density plots to visualize the
 #' impact of imputation on the data set.
 #' \item Note, when sample-wise option is selected (\code{global = FALSE}),
@@ -403,8 +413,8 @@ impute_plot <- function(original,
                         global = TRUE,
                         text_size = 10,
                         palette = "viridis",
-                        nrow,
-                        ncol,
+                        n_row,
+                        n_col,
                         save = FALSE,
                         file_name = "Impute_plot",
                         file_type = "pdf",
@@ -414,6 +424,13 @@ impute_plot <- function(original,
 
   # Set global variables to null
   value <- NULL
+
+  #Assign n_row and n_col if not defined
+  if(missing(n_row) & missing(n_col)){
+    n_row = ncol(imputed)
+    n_col = 1
+  }
+
   # Make necessary changes and combine data frames before plotting
   original <- as.matrix(original)
   orig_data <- reshape2::melt(original, na.rm = FALSE)
@@ -517,8 +534,8 @@ impute_plot <- function(original,
         legend.text = element_text(size = text_size),
       ) +
       ggplot2::facet_wrap(~sample,
-        nrow = nrow,
-        ncol = ncol,
+        nrow = n_row,
+        ncol = n_col,
         strip.position = "top"
       )
     if (save == TRUE) {
