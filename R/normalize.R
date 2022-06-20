@@ -80,7 +80,7 @@ normalize_data <- function(df,
 #' Default is \code{"Norm_plot."}
 #' @param file_type File type to save the plot.
 #' Default is \code{"pdf"}.
-#' @param plot_width Width of the plot. Default is \code{7}.
+#' @param plot_width Width of the plot. Default is \code{10}.
 #' @param plot_height Height of the plot. Default is \code{7}.
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
@@ -122,7 +122,7 @@ norm_plot <- function(original,
                       file_name = "Norm_plot",
                       file_type = "pdf",
                       dpi = 80,
-                      plot_width = 7,
+                      plot_width = 10,
                       plot_height = 7) {
 
   # Set global variables to null

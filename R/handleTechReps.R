@@ -24,9 +24,9 @@
 #' for available options.
 #' @param text_size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
-#' @param nrow Numerical. Number of plots to print in a row in a single page.
+#' @param n_row Numerical. Number of plots to print in a row in a single page.
 #' Default is \code{4}.
-#' @param ncol Numerical. Number of plots to print in a column in a single
+#' @param n_col Numerical. Number of plots to print in a column in a single
 #' page. Default is \code{4}.
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
@@ -72,8 +72,8 @@ corr_plot <- function(df,
                       file_type = "pdf",
                       palette = "viridis",
                       text_size = 5,
-                      nrow = 4,
-                      ncol = 4,
+                      n_row = 4,
+                      n_col = 4,
                       dpi = 80) {
 
   # Separate the sample id from the column names, remove duplicates, paste _ and
@@ -140,9 +140,9 @@ corr_plot <- function(df,
     ggplot2::ggsave(paste0("TR", rep1, "vs", "TR", rep2, ".", file_type),
       marrangeGrob(
         grobs = plot_list,
-        nrow = nrow,
-        ncol = ncol,
-        top = ""
+        nrow = n_row,
+        ncol = n_col,
+        top = paste0("TR", rep1, " vs ", "TR", rep2)
       ),
       dpi = dpi
     )

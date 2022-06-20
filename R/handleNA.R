@@ -542,8 +542,8 @@ impute_plot <- function(original,
       ggplot2::ggsave(paste0(file_name, ".", file_type),
         s_densplot,
         dpi = dpi,
-        width = plot_width * ncol,
-        height = plot_height * nrow,
+        width = plot_width * n_col,
+        height = plot_height * n_row,
         units = "cm"
       )
       return(s_densplot)
