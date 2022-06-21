@@ -9,8 +9,8 @@ feature_plot(
   type = "box",
   text_size = 10,
   palette = "viridis",
-  nrow,
-  ncol,
+  n_row,
+  n_col,
   save = FALSE,
   file_name = "Feature_plot",
   file_type = "pdf",
@@ -33,9 +33,9 @@ is \code{"box."}}
 \code{\link[viridisLite:viridis]{viridis}}
 for available options.}
 
-\item{nrow}{The number of rows to print the plots.}
+\item{n_row}{The number of rows to print the plots.}
 
-\item{ncol}{The number of columns to print the plots.}
+\item{n_col}{The number of columns to print the plots.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}

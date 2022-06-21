@@ -12,8 +12,8 @@ corr_plot(
   file_type = "pdf",
   palette = "viridis",
   text_size = 5,
-  nrow = 4,
-  ncol = 4,
+  n_row = 4,
+  n_col = 4,
   dpi = 80
 )
 }
@@ -40,10 +40,10 @@ for available options.}
 \item{text_size}{Text size for plot labels, axis labels etc. Default is
 \code{10}.}
 
-\item{nrow}{Numerical. Number of plots to print in a row in a single page.
+\item{n_row}{Numerical. Number of plots to print in a row in a single page.
 Default is \code{4}.}
 
-\item{ncol}{Numerical. Number of plots to print in a column in a single
+\item{n_col}{Numerical. Number of plots to print in a column in a single
 page. Default is \code{4}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}

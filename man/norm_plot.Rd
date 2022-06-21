@@ -14,7 +14,7 @@ norm_plot(
   file_name = "Norm_plot",
   file_type = "pdf",
   dpi = 80,
-  plot_width = 7,
+  plot_width = 10,
   plot_height = 7
 )
 }
@@ -48,7 +48,7 @@ Default is \code{"pdf"}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
 
-\item{plot_width}{Width of the plot. Default is \code{7}.}
+\item{plot_width}{Width of the plot. Default is \code{10}.}
 
 \item{plot_height}{Height of the plot. Default is \code{7}.}
 }

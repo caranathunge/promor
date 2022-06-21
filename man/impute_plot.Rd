@@ -10,8 +10,8 @@ impute_plot(
   global = TRUE,
   text_size = 10,
   palette = "viridis",
-  nrow,
-  ncol,
+  n_row,
+  n_col,
   save = FALSE,
   file_name = "Impute_plot",
   file_type = "pdf",
@@ -38,10 +38,10 @@ produced. If \code{FALSE}, sample-wise density plots are produced.}
 \code{\link[viridisLite:viridis]{viridis}}
 for available options.}
 
-\item{nrow}{Required if \code{global = FALSE} to indicate the number of rows
+\item{n_row}{Required if \code{global = FALSE} to indicate the number of rows
 to print the plots.}
 
-\item{ncol}{Required if \code{global = FALSE} to indicate the number of
+\item{n_col}{Required if \code{global = FALSE} to indicate the number of
 columns to print the plots.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
@@ -69,7 +69,7 @@ missing data imputation on the data.
 \details{
 \itemize{\item Given two data frames, one with missing values
 (\code{raw_df} object) and the other, an imputed data frame
-(\code{imp.df} object) of the same data set, \code{impute_plot}
+(\code{imp_df} object) of the same data set, \code{impute_plot}
 generates global or sample-wise density plots to visualize the
 impact of imputation on the data set.
 \item Note, when sample-wise option is selected (\code{global = FALSE}),
