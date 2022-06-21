@@ -34,7 +34,7 @@ vignette("promor_with_notechreps")
 For this tutorial we will be using a previously published data set from [Ramond et al. (2015)](https://www.mcponline.org/article/S1535-9476(20)33188-1/fulltext). In this experiment there are two conditions or groups (D8 and WT) with three biological replicates each, and three technical replicates for each biological replicate.\
 
 ## Workflow
-![promor notechreps flowchart by caranathunge](../promor_ProtAnalysis_techreps_BluYe.png) 
+![promor notechreps flowchart by caranathunge](../man/figures/promor_ProtAnalysis_techreps_small.png) 
 *Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with technical replicates*
 
 ## Input data
@@ -82,13 +82,13 @@ If you ran `create_df` with default settings, now your *raw_df* object contains 
 Typically, technical replicates for each sample should show strong correlation. At this stage, we can quickly check if this is the case in our experiment. 
 ```{r corrplot, fig.align = 'center', fig.height = 7, warning = FALSE, dpi = 300}
 # Let's first check the correlation between tech.replicates 1 and 2
-corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text_size = 12)
+corr_plot(raw, rep1 = 1, rep2 = 2, n_row = 3, n_col = 2, text_size = 12)
 
 ```
 Similarly, we can visualize the correlation between technical replicates 1 and 3.
 ```{r corrplot1, warning = FALSE, fig.align = 'center', fig.height = 7, dpi = 300, fig.height = 8}
 # Correlation between tech.replicates 1 and 3.
-corr_plot(raw, rep1 = 1, rep2 = 2, nrow = 3, ncol = 2, text_size = 12)
+corr_plot(raw, rep1 = 1, rep2 = 2, n_row = 3, n_col = 2, text_size = 12)
 ```
 You can repeat the analysis for technical replicates 2 and 3 in the same manner.\
 
@@ -139,7 +139,7 @@ First, lets check the data imputed with `minProb` method.
 
 ```{r imputeplotmp, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
 # Visualize the imputed data with sample-wise density plots.
-impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, nrow = 3, ncol = 2)
+impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, n_row = 3, n_col = 2)
 ```
 It looks like some samples have been imputed with an excess of low intensity values.\
 
@@ -147,7 +147,7 @@ Let's look at the data imputed with the `SVD` method next.
 
 ```{r imputeplotrf, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
 # Visualize the imputed data with a global density plot.
-impute_plot(original = raw_filtered, imputed = imp_df_svd, global = FALSE, nrow = 3, ncol = 2)
+impute_plot(original = raw_filtered, imputed = imp_df_svd, global = FALSE, n_row = 3, n_col = 2)
 ```
 Compared to `minProb`, `SVD` seems to have introduced fewer low intensity values, so let's use that data set in downstream steps.
 

@@ -53,7 +53,7 @@ To run *promor*, you need:
 # Load promor
 library(promor)
 # Let's load the expDesign.txt file
-exp_design <- read.csv("../inst/extdata/expDesign.txt", sep = "\t")
+exp_design <- read.csv("https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt", sep = "\t")
 # Take a peek inside the file
 head(exp_design)
 ```
@@ -70,10 +70,8 @@ head(exp_design)
 Let's first create a *raw_df* object with the input files. 
 ```{r createdf, warning=FALSE}
 #Create a raw_df object with default settings.
-raw <- create_df(prot_groups = system.file("extdata", "ecoli_proteinGroups.txt", 
-                                           package = "promor"), 
-                 exp_design = system.file("extdata", "expDesign.txt", 
-                                          package = "promor"))
+raw <- create_df(prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+                    exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt")
 # We can quickly check the dimensions of the data frame
 dim(raw)
 ```
@@ -125,7 +123,7 @@ First, lets check the data imputed with `minProb` method.
 
 ```{r imputeplotmp, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
 # Visualize the imputed data with sample-wise density plots.
-impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, nrow = 3, ncol = 3, palette = "mako")
+impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, n_row = 3, n_col = 3, palette = "mako")
 ```
 
 It looks like, for most samples, imputation has not changed the distribution of data by much, which is a good sign. However, sample `H_3` seems to have been imputed with a fair amount of low intensity values.\
@@ -134,7 +132,7 @@ Let's look at the data imputed with the `kNN` method next.
 
 ```{r imputeplotrf, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
 # Visualize the imputed data with sample-wise density plots.
-impute_plot(original = raw_filtered, imputed = imp_df_knn, global = FALSE, nrow = 3, ncol = 3, palette = "mako")
+impute_plot(original = raw_filtered, imputed = imp_df_knn, global = FALSE, n_row = 3, n_col = 3, palette = "mako")
 ```
 
 Compared to `minProb`, `kNN` seems to have introduced fewer low intensity values to `H_3` data, so let's use that data set in downstream steps.

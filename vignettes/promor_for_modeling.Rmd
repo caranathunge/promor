@@ -99,8 +99,8 @@ At this stage, we can visualize the feature variation among classes using box pl
 ```{r featureplot, dpi = 300, out.width = '90%', fig.asp=2,  fig.align ='center', warning = FALSE, message = F}
 #Box plots (default) to visualize feature variation
 feature_plot(model_df = covid_model_df, 
-             nrow = 5, 
-             ncol = 2)
+             n_row = 5, 
+             n_col = 2)
 ```
 
 ### Feature plots - density plots
@@ -109,8 +109,8 @@ feature_plot(model_df = covid_model_df,
 #Alternatively, make density plots
 feature_plot(model_df = covid_model_df, 
              type = "density",
-             nrow = 5,
-             ncol = 2)
+             n_row = 5,
+             n_col = 2)
 ```
 
 * At this stage, if you decide to remove a protein or some proteins from the `model_df` object, you can do so with `rem_feature`.
@@ -189,8 +189,8 @@ We can check which proteins out of the 10 are most important in the models.
 #Make lollipop plots (default)
 varimp_plot(model_list = covid_model_list, 
             text_size = 7,
-            nrow = 2,
-            ncol = 2)
+            n_row = 2,
+            n_col = 2)
 ```
 
 ### Variable importance plots - bar plots
@@ -199,8 +199,8 @@ varimp_plot(model_list = covid_model_list,
 varimp_plot(model_list = covid_model_list, 
             type = "bar",
             text_size = 7,
-            nrow = 2,
-            ncol = 2)
+            n_row = 2,
+            n_col = 2)
 ```
 
 * At this stage you can again use `rem_feature` function to **remove proteins with lower importance** in the models and **repeat steps from Step 3**.
