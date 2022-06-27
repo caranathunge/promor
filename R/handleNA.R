@@ -10,7 +10,7 @@
 #' @importFrom stats reorder
 #' @import viridis
 #'
-#' @param df A \code{raw_df} object (output from \code{\link{create_df}}).
+#' @param raw_df A \code{raw_df} object (output from \code{\link{create_df}}).
 #' @param protein_range The range of proteins to plot. Default is \code{ALL},
 #' meaning all the proteins in the data frame.
 #' @param sample_range The range of samples to plot. Default is \code{ALL},
@@ -20,28 +20,28 @@
 #' @param reorder_y Logical. If \code{TRUE} proteins in the y axis are reordered
 #' using the function given in \code{y_fun}. Default is \code{FALSE}.
 #' @param x_fun Function to reorder samples along the x axis. Possible options
-#' include \code{mean} and \code{sum}. Default is \code{mean}.
+#' are \code{mean} and \code{sum}. Default is \code{mean}.
 #' @param y_fun Function to reorder proteins along the y axis. Possible options
-#' include \code{mean} and \code{sum}. Default is \code{mean}.
+#' are \code{mean} and \code{sum}. Default is \code{mean}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param label_proteins If \code{TRUE} proteins on the y axis
-#' will be labeled with their Protein IDs. Defualt is \code{FALSE}.
+#' will be labeled with their Majority Protein IDs. Defualt is \code{FALSE}.
 #' @param text_size Text size for axis labels. Default is \code{10}.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file_type File type to save the heatmap. Default is \code{"pdf"}.
 #' @param file_name File name to save the heatmap.
-#' Default is \code{"MissingData_heatmap"}.
+#' Default is \code{"Missing_data_heatmap"}.
 #' @param plot_width Width of the plot. Default is \code{15}.
 #' @param plot_height Height of the plot. Default is \code{15}.
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
 #' @details
 #' This function visualizes patterns of missing value occurrence using a
-#' heatmap. User can choose to reorder the axes using the available functions
+#' heatmap. The user can choose to reorder the axes using the available functions
 #' (\code{x_fun}, \code{y_fun}) to better understand the underlying cause of
 #' missing data.
 #'
@@ -51,21 +51,40 @@
 #'
 #' @examples
 #' \dontrun{
-#' ## Create a raw_df object from a proteinGroups.txt file.
-#' raw <- create_df(prot.groups = "./proteinGroups.txt")
+#' ## Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' )
 #'
 #' ## Missing data heatmap with default settings.
-#' heatmap_na(raw)
+#' heatmap_na(raw_df)
 #'
-#' ## Missing data heatmap with x and y axes reordered by sum of intensity.
-#' heatmap_na(raw,
+#' ## Missing data heatmap with x and y axes reordered by the mean (default) of
+#' ## protein intensity.
+#' heatmap_na(raw_df,
+#'   reorder_x = TRUE, reorder_y = TRUE
+#' )
+#'
+#' ## Missing data heatmap with x and y axes reordered by the sum of
+#' ## protein intensity.
+#' heatmap_na(raw_df,
 #'   reorder_x = TRUE, reorder_y = TRUE, x_fun = sum,
 #'   y_fun = sum
+#' )
+#'
+#' ## Missing data heatmap for a subset of the proteins with x and y axes
+#' ## reordered by the mean (default) of protein intensity and the y axis
+#' ## labeled with protein IDs.
+#' heatmap_na(raw_df,
+#'   protein_range = 1:30,
+#'   reorder_x = TRUE, reorder_y = TRUE,
+#'   label_proteins = TRUE
 #' )
 #' }
 #'
 #' @export
-heatmap_na <- function(df,
+heatmap_na <- function(raw_df,
                        protein_range = "ALL",
                        sample_range = "ALL",
                        reorder_x = FALSE,
@@ -77,7 +96,7 @@ heatmap_na <- function(df,
                        text_size = 10,
                        save = FALSE,
                        file_type = "pdf",
-                       file_name = "MissingData_heatmap",
+                       file_name = "Missing_data_heatmap",
                        plot_width = 15,
                        plot_height = 15,
                        dpi = 80) {
@@ -87,18 +106,18 @@ heatmap_na <- function(df,
 
   # select the range of data to plot
   if (protein_range == "ALL" && sample_range != "ALL") {
-    df <- as.matrix(df[, sample_range])
+    raw_df <- as.matrix(raw_df[, sample_range])
   } else if (protein_range != "ALL" && sample_range == "ALL") {
-    df <- as.matrix(df[protein_range, ])
+    raw_df <- as.matrix(raw_df[protein_range, ])
   } else if (protein_range != "ALL" && sample_range != "ALL") {
-    df <- as.matrix(df[protein_range, sample_range])
+    raw_df <- as.matrix(raw_df[protein_range, sample_range])
   } else {
-    df <- as.matrix(df)
+    raw_df <- as.matrix(raw_df)
   }
 
   # Convert the data into long format for plotting and make necessary changes
   # i.e. adding column headers etc.
-  hmap_data <- reshape2::melt(df, na.rm = FALSE)
+  hmap_data <- reshape2::melt(raw_df, na.rm = FALSE)
   hmap_data$mjprot <- sapply(
     strsplit(as.character(hmap_data[, 1]), ";"),
     getElement, 1
@@ -177,7 +196,7 @@ heatmap_na <- function(df,
       low = col_val,
       na.value = col_na
     ) +
-    #coord_equal() +
+    # coord_equal() +
     ggplot2::theme(
       plot.background = element_blank(),
       panel.border = element_blank(),
@@ -192,8 +211,8 @@ heatmap_na <- function(df,
     ) +
     ggplot2::xlab("") + ggplot2::ylab("")
 
-  #add protein labels
-  if(label_proteins == TRUE){
+  # add protein labels
+  if (label_proteins == TRUE) {
     hmap <- hmap +
       ggplot2::theme(
         axis.text.y = element_text(size = text_size)
@@ -229,7 +248,7 @@ heatmap_na <- function(df,
 #' @importFrom stats median
 #'
 #'
-#' @param df A \code{raw_df} object (output of \code{\link{create_df}})
+#' @param raw_df A \code{raw_df} object (output of \code{\link{create_df}})
 #' containing missing values.
 #' @param method Imputation method to use. Default is \code{"minProb"}.
 #' Available methods: \code{"minDet", "RF", "kNN", and "SVD"}.
@@ -247,9 +266,12 @@ heatmap_na <- function(df,
 #' @param n_pcs Number of principal components to calculate when using the
 #' \code{"SVD"} method. Default is 2.
 #'
-#' @details \code{impute_na} function imputes missing values using a
+#' @details \itemize{\item Ideally, you should first remove proteins with
+#' high levels of missing data using the \code{filterbygroup_na} function
+#' before running \code{impute_na} on the \code{raw_df} object.
+#' \item \code{impute_na} function imputes missing values using a
 #' user-specified imputation method from the available options, \code{minProb},
-#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
+#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}}.
 #'
 #' @seealso More information on the available imputation methods can be found
 #' in their respective packages.
@@ -264,33 +286,39 @@ heatmap_na <- function(df,
 #' \item For \code{SVD} method, see \code{\link[pcaMethods]{pca}} from the
 #' \code{\link[pcaMethods]{pcaMethods}} package.}
 #'
-#' @return An \code{imp.df} object, which is a data frame of intensities with no
-#' missing values.
+#' @return An \code{imp_df} object, which is a data frame of protein intensities
+#' with no missing values.
+#'
 #' @examples
 #' \dontrun{
-#' ## Create a raw_df object from a proteinGroups.txt file.
-#' raw <- create_df(prot_groups = "./proteinGroups.txt")
+#' ## Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
 #' ## method.
-#' imp_raw <- impute_na(raw)
+#' imp_df1 <- impute_na(raw_df)
 #'
-#' ## Using the RF method with the number of iterations set at 5
+#' ## Impute using the RF method with the number of iterations set at 5
 #' ## and number of trees set at 100.
-#' imp_raw <- impute_na(raw, method = "RF", maxiter = 5, ntree = 100)
+#' imp_df2 <- impute_na(raw_df, method = "RF", maxiter = 5, ntree = 100)
 #'
 #' ## Using the kNN method.
-#' imp_raw <- impute_na(raw, method = "kNN")
+#' imp_df3 <- impute_na(raw_df, method = "kNN")
 #'
 #' ## Using the SVD method with n_pcs set to 3.
-#' imp_raw <- impute_na(raw, method = "SVD", n_pcs = 3)
+#' imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3)
 #'
 #' ## Using the minDet method with q set at 0.001.
-#' imp_raw <- impute_na(raw, method = "minDet", q = 0.001)
+#' imp_df5 <- impute_na(raw, method = "minDet", q = 0.001)
 #' }
-#'
+#' @references Lazar, Cosmin, et al. "Accounting for the multiple natures of
+#' missing values in label-free quantitative proteomics data sets to compare
+#' imputation strategies." Journal of proteome research 15.4 (2016): 1116-1125.
 #' @export
-impute_na <- function(df,
+impute_na <- function(raw_df,
                       method = "minProb",
                       tune_sigma = 1,
                       q = 0.01,
@@ -305,12 +333,13 @@ impute_na <- function(df,
 
   if (method == "minDet") {
     set.seed(327)
-    df_imputed_mindet <- impute.MinDet(df,
-                                       q = q)
+    df_imputed_mindet <- impute.MinDet(raw_df,
+      q = q
+    )
     return(df_imputed_mindet)
   } else if (method == "RF") {
     set.seed(327)
-    df_imp_temp <- missForest::missForest(df,
+    df_imp_temp <- missForest::missForest(raw_df,
       maxiter = maxiter,
       ntree = ntree,
       verbose = TRUE
@@ -319,15 +348,15 @@ impute_na <- function(df,
     return(df_imputed_rf)
   } else if (method == "kNN") {
     set.seed(327)
-    df_imputed_knn <- VIM::kNN(df, imp_var = FALSE)
-    rownames(df_imputed_knn) <- rownames(df)
+    df_imputed_knn <- VIM::kNN(raw_df, imp_var = FALSE)
+    rownames(df_imputed_knn) <- rownames(raw_df)
     return(df_imputed_knn)
   } else if (method == "SVD") {
     set.seed(327)
-    df <- as.matrix(df)
-    df[is.nan(df)] <- NA
+    raw_df <- as.matrix(raw_df)
+    raw_df[is.nan(raw_df)] <- NA
     df_imp_temp <- pcaMethods::pca(
-      object = df,
+      object = raw_df,
       method = "svdImpute",
       n_pcs = n_pcs,
       verbose = TRUE
@@ -336,7 +365,7 @@ impute_na <- function(df,
     return(df_imputed_svd)
   } else if (method == "minProb") {
     set.seed(327)
-    df_imputed_minprob <- impute.Min.Prob(df,
+    df_imputed_minprob <- impute.Min.Prob(raw_df,
       q = q,
       tune_sigma = tune_sigma
     )
@@ -366,9 +395,9 @@ impute_na <- function(df,
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
-#' @param n_row Required if \code{global = FALSE} to indicate the number of rows
+#' @param n_row Used if \code{global = FALSE} to indicate the number of rows
 #' to print the plots.
-#' @param n_col Required if \code{global = FALSE} to indicate the number of
+#' @param n_col Used if \code{global = FALSE} to indicate the number of
 #' columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
@@ -387,25 +416,35 @@ impute_na <- function(df,
 #' generates global or sample-wise density plots to visualize the
 #' impact of imputation on the data set.
 #' \item Note, when sample-wise option is selected (\code{global = FALSE}),
-#' \code{nrow} * \code{ncol} should match the number of samples in the
+#' \code{n_col} and \code{n_row} can be used to specify the number of columns
+#' and rows to print the plots.
+#' \item If you choose to specify \code{n_row} and \code{n_col}, make sure that
+#' \code{n_row} * \code{n_col} matches the total number of samples in the
 #' data frame.}
 #'
 #' @return A \code{ggplot2} plot object.
 #'
 #' @examples
 #' \dontrun{
-#' ## Create a raw_df object from a proteinGroups.txt file.
-#' raw <- create_df(prot.groups = "./proteinGroups.txt")
+#' ## Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' )
 #'
-#' ## Impute missing values in the data frame.
-#' imp_raw <- impute_na(raw)
+#' ## Impute missing values in the data frame using the default minProb
+#' ## method.
+#' imp_df <- impute_na(raw_df)
 #'
 #' ## Visualize the impact of missing data imputation with a global density
 #' ## plot.
-#' impute_plot(original = raw, imputed = imp_raw)
+#' impute_plot(original = raw_df, imputed = imp_df)
 #'
-#' ## Make sample-wise density plots for a data set of 25 samples.
-#' impute_plot(raw, imp_raw, global = FALSE, nrow = 5, ncol = 5)
+#' ## Make sample-wise density plots
+#' impute_plot(raw_df, imp_df, global = FALSE)
+#'
+#' ##Print plots in user-specified numbers of rows and columns
+#' impute_plot(raw_df, imp_df, global = FALSE, n_col = 2, n_row = 3)
 #' }
 #' @export
 impute_plot <- function(original,
@@ -425,10 +464,10 @@ impute_plot <- function(original,
   # Set global variables to null
   value <- NULL
 
-  #Assign n_row and n_col if not defined
-  if(missing(n_row) & missing(n_col)){
-    n_row = ncol(imputed)
-    n_col = 1
+  # Assign n_row and n_col if not defined
+  if (missing(n_row) & missing(n_col)) {
+    n_row <- ncol(imputed)
+    n_col <- 1
   }
 
   # Make necessary changes and combine data frames before plotting
@@ -478,7 +517,7 @@ impute_plot <- function(original,
         begin = 0.3,
         end = 0.7
       ) +
-      promor_theme()+
+      promor_theme() +
       ggplot2::theme(
         axis.title.x = element_text(
           size = text_size,
@@ -527,7 +566,7 @@ impute_plot <- function(original,
         begin = 0.3,
         end = 0.7
       ) +
-      promor_facet_theme()+
+      promor_facet_theme() +
       ggplot2::theme(
         axis.text = element_text(size = text_size * 0.7),
         legend.position = "bottom",

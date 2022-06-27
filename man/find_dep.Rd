@@ -58,13 +58,19 @@ log-fold change > 1 to "TopHits.txt"}
 \examples{
 \dontrun{
 
-# Normalize an already imputed data set.
-raw_nm <- normalize_data(raw_imp)
 
-# Perform differential expression analysis.
-fit <- find_dep(raw_nm)
+## Perform differential expression analysis using default settings
+fit_df1 <- find_dep(ecoli_norm_df)
+
+## Change p-value and adjusted p-value cutoff
+fit_df2 <- find_dep(ecoli_norm_df, cutoff = 0.1)
 }
 
+}
+\references{
+Ritchie, Matthew E., et al. "limma powers differential expression
+analyses for RNA-sequencing and microarray studies." Nucleic acids research
+43.7 (2015): e47-e47.
 }
 \seealso{
 \itemize{\item\code{normalize_data}

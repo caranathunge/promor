@@ -48,12 +48,17 @@
 #' @examples
 #' \dontrun{
 #'
-#' # Normalize an already imputed data set.
-#' raw_nm <- normalize_data(raw_imp)
 #'
-#' # Perform differential expression analysis.
-#' fit <- find_dep(raw_nm)
+#' ## Perform differential expression analysis using default settings
+#' fit_df1 <- find_dep(ecoli_norm_df)
+#'
+#' ## Change p-value and adjusted p-value cutoff
+#' fit_df2 <- find_dep(ecoli_norm_df, cutoff = 0.1)
 #' }
+#'
+#' @references Ritchie, Matthew E., et al. "limma powers differential expression
+#' analyses for RNA-sequencing and microarray studies." Nucleic acids research
+#' 43.7 (2015): e47-e47.
 #'
 #' @export
 find_dep <- function(norm_df,
@@ -165,7 +170,7 @@ find_dep <- function(norm_df,
 #'
 #' @param fit_df A \code{fit_df} object from performing \code{find_dep}.
 #' @param adj_method Method used for adjusting the p-values for multiple
-#' testing. Default is \code{"BH."}.
+#' testing. Default is \code{"BH"}.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
 #' 0.05.
 #' @param lfc Minimum absolute log2-fold change to use as threshold for
@@ -197,7 +202,7 @@ find_dep <- function(norm_df,
 #' and -log10(p-value) on the y-axis.\item \code{volcano_plot} requires a
 #' \code{fit_df} object from performing differential expression analysis
 #' with \code{find_dep.}
-#' \item User has the option to choose the criterion to denote significance.}
+#' \item User has the option to choose criteria that denote significance.}
 #'
 #' @return
 #' A \code{ggplot2} plot object.
@@ -212,14 +217,15 @@ find_dep <- function(norm_df,
 #' @examples
 #' \dontrun{
 #'
-#' # Perform differential expression analysis.
-#' fit <- find_dep(raw_nm)
+#' ## Create a volcano plot with default settings.
+#' volcano_plot(ecoli_fit_df)
 #'
-#' # Create a volcano plot with default settings.
-#' volcano_plot(fit)
+#' ## Change significance criteria and cutoff
+#' volcano_plot(ecoli_fit_df, cutoff = 0.1, sig = "P")
 #'
-#' # Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
-#' volcano_plot(fit, cutoff = 0.05, sig = "P", lfc = 1)
+#' ## Label top 30 differentially expressed proteins and
+#' ## change the color palette of the plot
+#' volcano_plot(ecoli_fit_df, label_top = TRUE, n_top = 30, palette = "mako")
 #' }
 #'
 #' @export
@@ -410,14 +416,18 @@ volcano_plot <- function(fit_df,
 #'
 #' @examples
 #' \dontrun{
-#' # Perform differential expression analysis.
-#' fit <- find_dep(raw_nm)
+#' ## Build a heatmap of differentially expressed proteins using the provided
+#' ## example fit_df and norm_df data objects
+#' heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)
 #'
-#' # Create a heatmap with default settings.
-#' heatmap_de(fit, raw_nm)
+#' ## Create a heatmap with P-value of 0.05 and log fold change of 1 as
+#' ## significance criteria.
+#' heatmap_de(covid_fit_df, covid_norm_df, cutoff = 0.05, sig = "P")
 #'
-#' # Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
-#' heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", lfc = 1)
+#' ## Visualize the top 30 differentially expressed proteins in the heatmap and
+#' ## change the color palette
+#' heatmap_de(covid_fit_df, covid_norm_df, cutoff = 0.05, sig = "P", n_top = 30,
+#' palette = "magma")
 #' }
 #'
 #' @export

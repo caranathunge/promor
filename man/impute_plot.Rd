@@ -38,10 +38,10 @@ produced. If \code{FALSE}, sample-wise density plots are produced.}
 \code{\link[viridisLite:viridis]{viridis}}
 for available options.}
 
-\item{n_row}{Required if \code{global = FALSE} to indicate the number of rows
+\item{n_row}{Used if \code{global = FALSE} to indicate the number of rows
 to print the plots.}
 
-\item{n_col}{Required if \code{global = FALSE} to indicate the number of
+\item{n_col}{Used if \code{global = FALSE} to indicate the number of
 columns to print the plots.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
@@ -73,23 +73,33 @@ missing data imputation on the data.
 generates global or sample-wise density plots to visualize the
 impact of imputation on the data set.
 \item Note, when sample-wise option is selected (\code{global = FALSE}),
-\code{nrow} * \code{ncol} should match the number of samples in the
+\code{n_col} and \code{n_row} can be used to specify the number of columns
+and rows to print the plots.
+\item If you choose to specify \code{n_row} and \code{n_col}, make sure that
+\code{n_row} * \code{n_col} matches the total number of samples in the
 data frame.}
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(prot.groups = "./proteinGroups.txt")
+## Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+)
 
-## Impute missing values in the data frame.
-imp_raw <- impute_na(raw)
+## Impute missing values in the data frame using the default minProb
+## method.
+imp_df <- impute_na(raw_df)
 
 ## Visualize the impact of missing data imputation with a global density
 ## plot.
-impute_plot(original = raw, imputed = imp_raw)
+impute_plot(original = raw_df, imputed = imp_df)
 
-## Make sample-wise density plots for a data set of 25 samples.
-impute_plot(raw, imp_raw, global = FALSE, nrow = 5, ncol = 5)
+## Make sample-wise density plots
+impute_plot(raw_df, imp_df, global = FALSE)
+
+##Print plots in user-specified numbers of rows and columns
+impute_plot(raw_df, imp_df, global = FALSE, n_col = 2, n_row = 3)
 }
 }
 \author{

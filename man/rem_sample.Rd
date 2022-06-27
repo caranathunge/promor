@@ -4,10 +4,10 @@
 \alias{rem_sample}
 \title{Remove user-specified samples}
 \usage{
-rem_sample(df, rem)
+rem_sample(raw_df, rem)
 }
 \arguments{
-\item{df}{A \code{raw_df} object.}
+\item{raw_df}{A \code{raw_df} object.}
 
 \item{rem}{Name of the sample to remove.}
 }
@@ -20,7 +20,8 @@ data frame.
 }
 \details{
 \itemize{\item\code{rem_sample} assumes that sample names follow the
-"Group_Sample_TechnicalReplicate" notation.
+"Group_UniqueSampleID_TechnicalReplicate" notation (Use \code{head(raw_df)}
+to see the structure of the \code{raw_df} object.)
 \item If all the technical replicates representing a sample needs to be
 removed, provide "Group_UniqueSampleID" as \code{rem}.
 \item If a specific technical replicate needs to be removed in case it
@@ -32,14 +33,20 @@ remove that particular technical replicate by providing
 \examples{
 \dontrun{
 
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+## Use a data set containing technical replicates to create a raw_df object
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
+  tech_reps = TRUE
+)
+#Check the first few rows of the raw_df object
+head(raw_df)
 
-## Remove all technical replicates of "A_10"
-raw_1 <- rem_sample(raw, "A_10")
+## Remove all technical replicates of "WT_4"
+raw_df1 <- rem_sample(raw_df, "WT_4")
 
-## Remove only technical replicate number 2 of "A_10"
-raw_1 <- rem_sample(raw, "A_10_2")
+## Remove only technical replicate number 2 of "WT_4"
+raw_df2 <- rem_sample(raw_df, "WT_4_2")
 }
 
 }

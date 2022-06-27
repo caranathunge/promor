@@ -5,20 +5,23 @@
 #' normalization method.
 #' @import limma
 #'
-#' @param df An \code{imp.df} object with missing values imputed using
+#' @param df An \code{imp_df} object with missing values imputed using
 #' \code{impute_na}.
 #' @param method Name of the normalization method to use. Choices are
 #' \code{"none", "scale", "quantile" or "cyclicloess."}
 #' Default is \code{"quantile."}
 #'
-#' @details \code{normalize_data} normalizes intensity values to achieve
-#' consistency among samples. The function assumes that the intensities in the
+#' @details \itemize{\item\code{normalize_data} is a wrapper function around
+#' the \code{\link[limma]{normalizeBetweenArrays}} function from the
+#' \code{limma} package. \item This function normalizes
+#' intensity values to achieve consistency among samples.
+#' \item It assumes that the intensities in the
 #' data frame have been log-transformed, therefore, it is important to make sure
-#' that \code{create_df} was run with \code{log.tr = TRUE} when creating the
-#' \code{raw_df} object.
+#' that \code{create_df} was run with \code{log_tr = TRUE}(default) when
+#' creating the \code{raw_df} object.}
 #'
-#' @return A \code{norm.df} object, which is a data frame with
-#' normalized intensities.
+#' @return A \code{norm_df} object, which is a data frame of
+#' normalized protein intensities.
 #'
 #' @seealso \itemize{\item \code{create_df}
 #' \item \code{impute_na}
@@ -29,22 +32,29 @@
 #'
 #' @examples
 #' \dontrun{
-#' ## Create a raw_df object from a proteinGroups.txt file.
-#' raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+#' ## Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' )
 #'
-#' ## Normalize a data set.
-#' raw_nm <- normalize_data(raw, method = "cyclicloess")
+#' ## Impute missing values in the data frame using the default minProb
+#' ## method.
+#' imp_df <- impute_na(raw_df)
 #'
-#' ## Normalize an imputed data set.
-#' raw_imp <- impute_na(raw)
-#' raw_nm <- normalize_data(raw_imp)
+#' ## Normalize the imp_df object using the default quantile method
+#' norm_df1 <- normalize_data(imp_df)
+#'
+#' ## Use the cyclicloess method
+#' norm_df2 <- normalize_data(imp_df, method = "cyclicloess")
+#'
 #' }
 #'
 #' @export
 
-normalize_data <- function(df,
+normalize_data <- function(imp_df,
                            method = "quantile") {
-  norm_df <- limma::normalizeBetweenArrays(df,
+  norm_df <- limma::normalizeBetweenArrays(imp_df,
     method = method
   )
 
@@ -55,17 +65,17 @@ normalize_data <- function(df,
 #' Visualize the effect of normalization
 #' @author Chathurani Ranathunge
 #' @description This function visualizes the impact of normalization on
-#' the data with plots.
+#' the data
 #' @importFrom reshape2 melt
 #' @import ggplot2
 #' @import viridis
 
 
 #' @param original A \code{raw_df} object (output of \code{\link{create_df}})
-#' containing missing values or an \code{imp.df} object after imputing the
-#' missing values with \code{impute_na}.
-#' @param normalized A \code{norm.df} object after normalizing the data frame
-#' provided as \code{original}.
+#' containing missing values, or ideally, an \code{imp_df} object after
+#' imputing the missing values with \code{impute_na}.
+#' @param normalized A \code{norm_df} object after normalizing the data frame
+#' provided as \code{original} using \code{normalize_data}.
 #' @param type Type of plot to generate. Choices are "box" or "density." Default
 #' is \code{"box."}
 #' @param text_size Text size for plot labels, axis labels etc. Default is
@@ -85,9 +95,9 @@ normalize_data <- function(df,
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
 #' @details Given two data frames, one with data prior to normalization
-#' (\code{original}) and one after normalization (\code{normalized}),
+#' (\code{original}), and the other, after normalization (\code{normalized}),
 #' \code{norm_plot} generates side-by-side plots to visualize the effect of
-#' normalization on the intensity data.
+#' normalization on the protein intensity data.
 #'
 #' @seealso \itemize{\item \code{\link{normalize_data}}
 #' \item \code{create_df}
@@ -98,18 +108,24 @@ normalize_data <- function(df,
 #'
 #' @examples
 #' \dontrun{
-#' ## Create a raw_df object from a proteinGroups.txt file.
-#' raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+#' ## Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' )
 #'
-#' ## Normalize an imputed data set.
-#' raw_imp <- impute_na(raw)
-#' raw_nm <- normalize_data(raw_imp)
+#' ## Impute missing values in the data frame using the default minProb
+#' ## method.
+#' imp_df <- impute_na(raw_df)
 #'
-#' ## Visualize normalization with box plots.
-#' norm_plot(raw_imp, raw_nm)
+#' ## Normalize the imp_df object using the default quantile method
+#' norm_df <- normalize_data(imp_df)
 #'
-#' ## Visualize normalization with density plots.
-#' norm_plot(raw_imp, raw_nm, type = "density")
+#' ## Visualize normalization using box plots
+#' norm_plot(original = imp_df, normalized = norm_df)
+#'
+#' ## Visualize normalization using density plots
+#' norm_plot(imp_df, norm_df, type = "density")
 #' }
 #'
 #' @export

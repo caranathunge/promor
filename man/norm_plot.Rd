@@ -20,11 +20,11 @@ norm_plot(
 }
 \arguments{
 \item{original}{A \code{raw_df} object (output of \code{\link{create_df}})
-containing missing values or an \code{imp.df} object after imputing the
-missing values with \code{impute_na}.}
+containing missing values, or ideally, an \code{imp_df} object after
+imputing the missing values with \code{impute_na}.}
 
-\item{normalized}{A \code{norm.df} object after normalizing the data frame
-provided as \code{original}.}
+\item{normalized}{A \code{norm_df} object after normalizing the data frame
+provided as \code{original} using \code{normalize_data}.}
 
 \item{type}{Type of plot to generate. Choices are "box" or "density." Default
 is \code{"box."}}
@@ -57,28 +57,34 @@ A \code{ggplot2} plot object.
 }
 \description{
 This function visualizes the impact of normalization on
-the data with plots.
+the data
 }
 \details{
 Given two data frames, one with data prior to normalization
-(\code{original}) and one after normalization (\code{normalized}),
+(\code{original}), and the other, after normalization (\code{normalized}),
 \code{norm_plot} generates side-by-side plots to visualize the effect of
-normalization on the intensity data.
+normalization on the protein intensity data.
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+## Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+)
 
-## Normalize an imputed data set.
-raw_imp <- impute_na(raw)
-raw_nm <- normalize_data(raw_imp)
+## Impute missing values in the data frame using the default minProb
+## method.
+imp_df <- impute_na(raw_df)
 
-## Visualize normalization with box plots.
-norm_plot(raw_imp, raw_nm)
+## Normalize the imp_df object using the default quantile method
+norm_df <- normalize_data(imp_df)
 
-## Visualize normalization with density plots.
-norm_plot(raw_imp, raw_nm, type = "density")
+## Visualize normalization using box plots
+norm_plot(original = imp_df, normalized = norm_df)
+
+## Visualize normalization using density plots
+norm_plot(imp_df, norm_df, type = "density")
 }
 
 }

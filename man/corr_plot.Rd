@@ -5,9 +5,9 @@
 \title{Correlation between technical replicates}
 \usage{
 corr_plot(
-  df,
-  rep1,
-  rep2,
+  raw_df,
+  rep_1,
+  rep_2,
   save = FALSE,
   file_type = "pdf",
   palette = "viridis",
@@ -18,12 +18,12 @@ corr_plot(
 )
 }
 \arguments{
-\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})
+\item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})
 containing technical replicates.}
 
-\item{rep1}{Numerical. Technical replicate number.}
+\item{rep_1}{Numerical. Technical replicate number.}
 
-\item{rep2}{Numerical. Number of the second technical replicate to compare
+\item{rep_2}{Numerical. Number of the second technical replicate to compare
 to \code{rep1}.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
@@ -62,23 +62,22 @@ for each sample.
 replicates, \code{corr_plot} produces a list of scatter plots showing
 correlation between the given pair of technical replicates for all the
 samples provided in the data frame.
-\item Note: \code{corr_plot} assumes that the sample names (columns) in the
-data frame follow the "Group_UniqueSampleID_TechnicalReplicate" notation.
-For example,
-"technical replicate 01" of "sample 10" belonging to "group A" should be
-labeled as "A_10_01" in the data frame.
-\item Note: \code{nrow} * \code{ncol} should be equal to the number of
+\item Note: \code{n_row} * \code{n_col} should be equal to the number of
 samples to display in a single page.
 }
 }
 \examples{
 \dontrun{
 
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+## Use a data set containing technical replicates to create a raw_df object
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
+  tech_reps = TRUE
+)
 
 ## Compare technical replicates 1 vs. 2 for all samples.
-corr_plot(raw, 1, 2, nrow = 4, ncol = 6)
+corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2)
 }
 
 }

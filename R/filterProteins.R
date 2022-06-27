@@ -1,7 +1,7 @@
 # Filter proteins by group level missing data -----------------------------
 #' Filter proteins by group level missing data
-#' @description This function filters out proteins that exceed a given
-#' missing data percentage in each group.
+#' @description This function filters out proteins based on missing data
+#' at the group level.
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -9,40 +9,51 @@
 #'
 #' @param raw_df A \code{raw_df} object (output of \code{\link{create_df}})
 #' @param set_na The proportion of missing data allowed.
-#' Default is 0.33.
+#' Default is 0.34 (one third of the samples in the group).
 #' @param filter_condition If set to \code{"each"}, proteins that exceed
 #' the missing value proportion threshold set by \code{set_na} in each group
-#' will be removed.
+#' will be removed (lenient).
 #' If set to \code{"either"}(default), proteins that exceed the missing value
 #' proportion threshold set by \code{set_na} in at least one group will be
-#' removed.
+#' removed (stringent).
 #'
 #' @details
 #'  \itemize{\item This function first
 #'  extracts group or condition information from the \code{raw_df} object and
 #'  assigns samples to their groups.
 #'  \item If \code{filter_condition = "each"}, it then removes proteins (rows)
-#'  from the data frame if the proportion of NAs in each group exceeds the
-#'  threshold indicated by \code{set_na} (default is 0.33)}. This option is
+#'  from the data frame if the proportion of NAs in **each** group exceeds the
+#'  threshold indicated by \code{set_na} (default is 0.34). This option is
 #'  more lenient in comparison to \code{filter_condition = "either"}, where
-#'  proteins that exceeds the missing data threshold in either group gets
-#'  removed from the data frame.
+#'  proteins that exceeds the missing data threshold in **either** group gets
+#'  removed from the data frame.}
 #'
 #' @return A \code{raw_df} object.
+#' @seealso \code{\link{create_df}}
 #'
 #' @examples
 #' \dontrun{
 #'
-#' ## Missing data percentage allowed in each group = 0.33
-#' raw_filtered <- filterbygroup_na(raw)
+#' # Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' )
 #'
-#' ## Missing data percentage allowed in each group = 0.5
-#' raw_filtered1 <- filterbygroup_na(raw, set_na = 0.5)
+#' ## Remove proteins that exceed 34% NAs in either group (default)
+#' rawdf_filt1 <- filterbygroup_na(raw_df)
+#'
+#' ## Remove proteins that exceed 34% NAs in each group
+#' rawdf_filt2 <- filterbygroup_na(raw_df, filter_condition = "each")
+#'
+#' ## Proportion of samples with NAs allowed in each group = 0.5
+#' rawdf_filt3 <- filterbygroup_na(raw_df, set_na = 0.5, filter_condition = "each")
 #' }
+#'
 #' @export
 
 filterbygroup_na <- function(raw_df,
-                             set_na = 0.33,
+                             set_na = 0.34,
                              filter_condition = "either") {
 
   # Extract number of row
@@ -120,13 +131,15 @@ filterbygroup_na <- function(raw_df,
 #' @param abs_group Name of the group in which proteins are not expressed.
 #' @param pres_group Name of the group in which proteins are expressed.
 #' @param set_na The percentage of missing data allowed in \code{pres_group}.
-#' Default is 0.33.
+#' Default is 0.34 (one thrid of the samples in the group).
 #' @param save Logical. If \code{TRUE} (default), it saves the output in a text
 #' file named "Group_\code{pres_group}_only.txt."
 #'
-#' @details Note: \code{onegroup_only} function assumes that column headers in
+#' @details Note: \code{onegroup_only} function assumes that column names in
 #' the \code{raw_df} object provided as \code{df} follow "Group_UniqueSampleID"
-#' notation. \itemize{\item Given a pair of groups, \code{onegroup_only}
+#' notation. (Use \code{head(raw_df)} to check the structure of your
+#' \code{raw_df} object.)
+#' \itemize{\item Given a pair of groups, \code{onegroup_only}
 #' function finds proteins that are only expressed in \code{pres_group} while
 #' completely absent or not expressed in \code{abs_group}.}
 #'
@@ -134,21 +147,23 @@ filterbygroup_na <- function(raw_df,
 #'
 #' @examples
 #' \dontrun{
-#' ## Create a raw_df object from a proteinGroups.txt file.
-#' raw <- create_df(file.path = "./proteinGroups.txt")
 #'
-#' ## Save a list of proteins only expressed in group B, but absent in group A.
-#' onegroup_only(raw, abs_group = "A", pres_group = "B")
+#' # Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' )
 #'
-#' ## Save the above list in a variable.
-#' protein_list <- onegroup_only(raw, abs_group = "A", pres_group = "B")
+#' ## Save a list of proteins only expressed in group L, but absent in group H.
+#' onegroup_only(raw_df,abs_group = "H", pres_group = "L")
+#'
 #' }
 #'
 #' @export
 onegroup_only <- function(raw_df,
                           abs_group,
                           pres_group,
-                          set_na = 0.33,
+                          set_na = 0.34,
                           save = TRUE) {
 
   # Extract group information from sample names in the data frame x

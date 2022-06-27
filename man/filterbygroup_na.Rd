@@ -4,48 +4,61 @@
 \alias{filterbygroup_na}
 \title{Filter proteins by group level missing data}
 \usage{
-filterbygroup_na(raw_df, set_na = 0.33, filter_condition = "either")
+filterbygroup_na(raw_df, set_na = 0.34, filter_condition = "either")
 }
 \arguments{
 \item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})}
 
 \item{set_na}{The proportion of missing data allowed.
-Default is 0.33.}
+Default is 0.34 (one third of the samples in the group).}
 
 \item{filter_condition}{If set to \code{"each"}, proteins that exceed
 the missing value proportion threshold set by \code{set_na} in each group
-will be removed.
+will be removed (lenient).
 If set to \code{"either"}(default), proteins that exceed the missing value
 proportion threshold set by \code{set_na} in at least one group will be
-removed.}
+removed (stringent).}
 }
 \value{
 A \code{raw_df} object.
 }
 \description{
-This function filters out proteins that exceed a given
-missing data percentage in each group.
+This function filters out proteins based on missing data
+at the group level.
 }
 \details{
 \itemize{\item This function first
 extracts group or condition information from the \code{raw_df} object and
 assigns samples to their groups.
 \item If \code{filter_condition = "each"}, it then removes proteins (rows)
-from the data frame if the proportion of NAs in each group exceeds the
-threshold indicated by \code{set_na} (default is 0.33)}. This option is
+from the data frame if the proportion of NAs in \strong{each} group exceeds the
+threshold indicated by \code{set_na} (default is 0.34). This option is
 more lenient in comparison to \code{filter_condition = "either"}, where
-proteins that exceeds the missing data threshold in either group gets
-removed from the data frame.
+proteins that exceeds the missing data threshold in \strong{either} group gets
+removed from the data frame.}
 }
 \examples{
 \dontrun{
 
-## Missing data percentage allowed in each group = 0.33
-raw_filtered <- filterbygroup_na(raw)
+# Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+)
 
-## Missing data percentage allowed in each group = 0.5
-raw_filtered1 <- filterbygroup_na(raw, set_na = 0.5)
+## Remove proteins that exceed 34\% NAs in either group (default)
+rawdf_filt1 <- filterbygroup_na(raw_df)
+
+## Remove proteins that exceed 34\% NAs in each group
+rawdf_filt2 <- filterbygroup_na(raw_df, filter_condition = "each")
+
+## Proportion of samples with NAs allowed in each group = 0.5
+rawdf_filt3 <- filterbygroup_na(raw_df, set_na = 0.5, filter_condition = "each")
 }
+
+}
+\seealso{
+\code{\link{create_df}}
 }
 \author{
 Chathurani Ranathunge

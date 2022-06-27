@@ -72,19 +72,25 @@ rows from the data  frame.
 }
 \examples{
 \dontrun{
-# Generate a raw_df object with default settings. No technical replicates.
-raw <- create_df(
-prot_groups = system.file("extdata", "ecoli_proteinGroups.txt"),
-exp_design = system.file("extdata", "expDesign.txt")
+## Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
 )
 
-#Data containing technical replicates
-raw_1 <- create_df(
-prot_groups = system.file("extdata", "PXD001584_proteinGroups.txt"),
-exp_design = system.file("extdata", "PXD001584_expDesign.txt",
-tech_reps = TRUE)
+## Data containing technical replicates
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
+  tech_reps = TRUE
 )
 
+## Alter the number of unique peptides needed to retain a protein
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+  uniq_pep = 1
+)
 }
 }
 \author{

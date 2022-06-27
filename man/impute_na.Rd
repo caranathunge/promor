@@ -5,7 +5,7 @@
 \title{Impute missing values}
 \usage{
 impute_na(
-  df,
+  raw_df,
   method = "minProb",
   tune_sigma = 1,
   q = 0.01,
@@ -15,7 +15,7 @@ impute_na(
 )
 }
 \arguments{
-\item{df}{A \code{raw_df} object (output of \code{\link{create_df}})
+\item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})
 containing missing values.}
 
 \item{method}{Imputation method to use. Default is \code{"minProb"}.
@@ -40,41 +40,51 @@ very low value. Default is 0.01.}
 \code{"SVD"} method. Default is 2.}
 }
 \value{
-An \code{imp.df} object, which is a data frame of intensities with no
-missing values.
+An \code{imp_df} object, which is a data frame of protein intensities
+with no missing values.
 }
 \description{
 This function imputes missing values using a user-specified
 imputation method.
 }
 \details{
-\code{impute_na} function imputes missing values using a
+\itemize{\item Ideally, you should first remove proteins with
+high levels of missing data using the \code{filterbygroup_na} function
+before running \code{impute_na} on the \code{raw_df} object.
+\item \code{impute_na} function imputes missing values using a
 user-specified imputation method from the available options, \code{minProb},
-\code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
+\code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}}.
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(prot_groups = "./proteinGroups.txt")
+## Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+)
 
 ## Impute missing values in the data frame using the default minProb
 ## method.
-imp_raw <- impute_na(raw)
+imp_df1 <- impute_na(raw_df)
 
-## Using the RF method with the number of iterations set at 5
+## Impute using the RF method with the number of iterations set at 5
 ## and number of trees set at 100.
-imp_raw <- impute_na(raw, method = "RF", maxiter = 5, ntree = 100)
+imp_df2 <- impute_na(raw_df, method = "RF", maxiter = 5, ntree = 100)
 
 ## Using the kNN method.
-imp_raw <- impute_na(raw, method = "kNN")
+imp_df3 <- impute_na(raw_df, method = "kNN")
 
 ## Using the SVD method with n_pcs set to 3.
-imp_raw <- impute_na(raw, method = "SVD", n_pcs = 3)
+imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3)
 
 ## Using the minDet method with q set at 0.001.
-imp_raw <- impute_na(raw, method = "minDet", q = 0.001)
+imp_df5 <- impute_na(raw, method = "minDet", q = 0.001)
 }
-
+}
+\references{
+Lazar, Cosmin, et al. "Accounting for the multiple natures of
+missing values in label-free quantitative proteomics data sets to compare
+imputation strategies." Journal of proteome research 15.4 (2016): 1116-1125.
 }
 \seealso{
 More information on the available imputation methods can be found

@@ -4,10 +4,10 @@
 \alias{aver_techreps}
 \title{Compute average intensity}
 \usage{
-aver_techreps(df)
+aver_techreps(raw_df)
 }
 \arguments{
-\item{df}{A \code{raw_df} object containing technical replicates.}
+\item{raw_df}{A \code{raw_df} object containing technical replicates.}
 }
 \value{
 A \code{raw_df} object of averaged intensities.
@@ -17,22 +17,29 @@ This function computes average intensities across
 technical replicates for each sample.
 }
 \details{
-\code{aver_techreps} assumes that sample names in the data frame
-follow the "Group_UniqueSampleID_TechnicalReplicate" notation.
+\code{aver_techreps} assumes that column names in the data frame
+follow the "Group_UniqueSampleID_TechnicalReplicate" notation. (Use
+\code{head(raw_df)} to see the structure of the \code{raw_df} object.)
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+
+## Use a data set containing technical replicates to create a raw_df object
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
+  tech_reps = TRUE
+)
 
 # Compute average intensities across technical replicates.
-raw_1 <- aver_techreps(raw)
+rawdf_ave <- aver_techreps(raw_df)
 }
 
 }
 \seealso{
-\code{\link[limma]{avearrays}} from \code{\link[limma]{limma}}
-package.
+\itemize{\item\code{\link[limma]{avearrays}} from \code{\link[limma]{limma}}
+package.\item \code{\link{create_df}}
+}
 }
 \author{
 Chathurani Ranathunge

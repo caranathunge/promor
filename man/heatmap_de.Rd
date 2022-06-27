@@ -71,14 +71,18 @@ along both axes (x axis = samples, y axis = proteins).
 }
 \examples{
 \dontrun{
-# Perform differential expression analysis.
-fit <- find_dep(raw_nm)
+## Build a heatmap of differentially expressed proteins using the provided
+## example fit_df and norm_df data objects
+heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)
 
-# Create a heatmap with default settings.
-heatmap_de(fit, raw_nm)
+## Create a heatmap with P-value of 0.05 and log fold change of 1 as
+## significance criteria.
+heatmap_de(covid_fit_df, covid_norm_df, cutoff = 0.05, sig = "P")
 
-# Create a heatmap with log fold change of 1 and p-value cutoff of 0.05.
-heatmap_de(fit, raw_nm, cutoff = 0.05, sig = "P", lfc = 1)
+## Visualize the top 30 differentially expressed proteins in the heatmap and
+## change the color palette
+heatmap_de(covid_fit_df, covid_norm_df, cutoff = 0.05, sig = "P", n_top = 30,
+palette = "magma")
 }
 
 }

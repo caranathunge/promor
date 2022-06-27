@@ -5,7 +5,7 @@
 \title{Visualize missing data}
 \usage{
 heatmap_na(
-  df,
+  raw_df,
   protein_range = "ALL",
   sample_range = "ALL",
   reorder_x = FALSE,
@@ -17,14 +17,14 @@ heatmap_na(
   text_size = 10,
   save = FALSE,
   file_type = "pdf",
-  file_name = "MissingData_heatmap",
+  file_name = "Missing_data_heatmap",
   plot_width = 15,
   plot_height = 15,
   dpi = 80
 )
 }
 \arguments{
-\item{df}{A \code{raw_df} object (output from \code{\link{create_df}}).}
+\item{raw_df}{A \code{raw_df} object (output from \code{\link{create_df}}).}
 
 \item{protein_range}{The range of proteins to plot. Default is \code{ALL},
 meaning all the proteins in the data frame.}
@@ -39,10 +39,10 @@ using the function given in \code{x_fun}. Default is \code{FALSE}.}
 using the function given in \code{y_fun}. Default is \code{FALSE}.}
 
 \item{x_fun}{Function to reorder samples along the x axis. Possible options
-include \code{mean} and \code{sum}. Default is \code{mean}.}
+are \code{mean} and \code{sum}. Default is \code{mean}.}
 
 \item{y_fun}{Function to reorder proteins along the y axis. Possible options
-include \code{mean} and \code{sum}. Default is \code{mean}.}
+are \code{mean} and \code{sum}. Default is \code{mean}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
 \code{"viridis"}. See
@@ -50,7 +50,7 @@ include \code{mean} and \code{sum}. Default is \code{mean}.}
 for available options.}
 
 \item{label_proteins}{If \code{TRUE} proteins on the y axis
-will be labeled with their Protein IDs. Defualt is \code{FALSE}.}
+will be labeled with their Majority Protein IDs. Defualt is \code{FALSE}.}
 
 \item{text_size}{Text size for axis labels. Default is \code{10}.}
 
@@ -60,7 +60,7 @@ working directory.}
 \item{file_type}{File type to save the heatmap. Default is \code{"pdf"}.}
 
 \item{file_name}{File name to save the heatmap.
-Default is \code{"MissingData_heatmap"}.}
+Default is \code{"Missing_data_heatmap"}.}
 
 \item{plot_width}{Width of the plot. Default is \code{15}.}
 
@@ -77,22 +77,41 @@ occurrence using a heatmap.
 }
 \details{
 This function visualizes patterns of missing value occurrence using a
-heatmap. User can choose to reorder the axes using the available functions
+heatmap. The user can choose to reorder the axes using the available functions
 (\code{x_fun}, \code{y_fun}) to better understand the underlying cause of
 missing data.
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(prot.groups = "./proteinGroups.txt")
+## Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+)
 
 ## Missing data heatmap with default settings.
-heatmap_na(raw)
+heatmap_na(raw_df)
 
-## Missing data heatmap with x and y axes reordered by sum of intensity.
-heatmap_na(raw,
+## Missing data heatmap with x and y axes reordered by the mean (default) of
+## protein intensity.
+heatmap_na(raw_df,
+  reorder_x = TRUE, reorder_y = TRUE
+)
+
+## Missing data heatmap with x and y axes reordered by the sum of
+## protein intensity.
+heatmap_na(raw_df,
   reorder_x = TRUE, reorder_y = TRUE, x_fun = sum,
   y_fun = sum
+)
+
+## Missing data heatmap for a subset of the proteins with x and y axes
+## reordered by the mean (default) of protein intensity and the y axis
+## labeled with protein IDs.
+heatmap_na(raw_df,
+  protein_range = 1:30,
+  reorder_x = TRUE, reorder_y = TRUE,
+  label_proteins = TRUE
 )
 }
 

@@ -4,42 +4,52 @@
 \alias{normalize_data}
 \title{Normalize intensity data}
 \usage{
-normalize_data(df, method = "quantile")
+normalize_data(imp_df, method = "quantile")
 }
 \arguments{
-\item{df}{An \code{imp.df} object with missing values imputed using
-\code{impute_na}.}
-
 \item{method}{Name of the normalization method to use. Choices are
 \code{"none", "scale", "quantile" or "cyclicloess."}
 Default is \code{"quantile."}}
+
+\item{df}{An \code{imp_df} object with missing values imputed using
+\code{impute_na}.}
 }
 \value{
-A \code{norm.df} object, which is a data frame with
-normalized intensities.
+A \code{norm_df} object, which is a data frame of
+normalized protein intensities.
 }
 \description{
 This function normalizes data using a user-specified
 normalization method.
 }
 \details{
-\code{normalize_data} normalizes intensity values to achieve
-consistency among samples. The function assumes that the intensities in the
+\itemize{\item\code{normalize_data} is a wrapper function around
+the \code{\link[limma]{normalizeBetweenArrays}} function from the
+\code{limma} package. \item This function normalizes
+intensity values to achieve consistency among samples.
+\item It assumes that the intensities in the
 data frame have been log-transformed, therefore, it is important to make sure
-that \code{create_df} was run with \code{log.tr = TRUE} when creating the
-\code{raw_df} object.
+that \code{create_df} was run with \code{log_tr = TRUE}(default) when
+creating the \code{raw_df} object.}
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(file.path = "./proteinGroups.txt", log.tr = TRUE)
+## Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+)
 
-## Normalize a data set.
-raw_nm <- normalize_data(raw, method = "cyclicloess")
+## Impute missing values in the data frame using the default minProb
+## method.
+imp_df <- impute_na(raw_df)
 
-## Normalize an imputed data set.
-raw_imp <- impute_na(raw)
-raw_nm <- normalize_data(raw_imp)
+## Normalize the imp_df object using the default quantile method
+norm_df1 <- normalize_data(imp_df)
+
+## Use the cyclicloess method
+norm_df2 <- normalize_data(imp_df, method = "cyclicloess")
+
 }
 
 }

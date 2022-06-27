@@ -4,7 +4,7 @@
 \alias{onegroup_only}
 \title{Proteins that are only expressed in a given group}
 \usage{
-onegroup_only(raw_df, abs_group, pres_group, set_na = 0.33, save = TRUE)
+onegroup_only(raw_df, abs_group, pres_group, set_na = 0.34, save = TRUE)
 }
 \arguments{
 \item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})}
@@ -14,7 +14,7 @@ onegroup_only(raw_df, abs_group, pres_group, set_na = 0.33, save = TRUE)
 \item{pres_group}{Name of the group in which proteins are expressed.}
 
 \item{set_na}{The percentage of missing data allowed in \code{pres_group}.
-Default is 0.33.}
+Default is 0.34 (one thrid of the samples in the group).}
 
 \item{save}{Logical. If \code{TRUE} (default), it saves the output in a text
 file named "Group_\code{pres_group}_only.txt."}
@@ -28,22 +28,26 @@ expressed (present) in one user-specified group while not expressed
 (completely absent) in another user-specified group.
 }
 \details{
-Note: \code{onegroup_only} function assumes that column headers in
+Note: \code{onegroup_only} function assumes that column names in
 the \code{raw_df} object provided as \code{df} follow "Group_UniqueSampleID"
-notation. \itemize{\item Given a pair of groups, \code{onegroup_only}
+notation. (Use \code{head(raw_df)} to check the structure of your
+\code{raw_df} object.)
+\itemize{\item Given a pair of groups, \code{onegroup_only}
 function finds proteins that are only expressed in \code{pres_group} while
 completely absent or not expressed in \code{abs_group}.}
 }
 \examples{
 \dontrun{
-## Create a raw_df object from a proteinGroups.txt file.
-raw <- create_df(file.path = "./proteinGroups.txt")
 
-## Save a list of proteins only expressed in group B, but absent in group A.
-onegroup_only(raw, abs_group = "A", pres_group = "B")
+# Generate a raw_df object with default settings. No technical replicates.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+)
 
-## Save the above list in a variable.
-protein_list <- onegroup_only(raw, abs_group = "A", pres_group = "B")
+## Save a list of proteins only expressed in group L, but absent in group H.
+onegroup_only(raw_df,abs_group = "H", pres_group = "L")
+
 }
 
 }

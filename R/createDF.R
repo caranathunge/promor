@@ -49,19 +49,25 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Generate a raw_df object with default settings. No technical replicates.
-#' raw <- create_df(
-#' prot_groups = system.file("extdata", "ecoli_proteinGroups.txt"),
-#' exp_design = system.file("extdata", "expDesign.txt")
+#' ## Generate a raw_df object with default settings. No technical replicates.
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
 #' )
 #'
-#' #Data containing technical replicates
-#' raw_1 <- create_df(
-#' prot_groups = system.file("extdata", "PXD001584_proteinGroups.txt"),
-#' exp_design = system.file("extdata", "PXD001584_expDesign.txt",
-#' tech_reps = TRUE)
+#' ## Data containing technical replicates
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
+#'   tech_reps = TRUE
 #' )
 #'
+#' ## Alter the number of unique peptides needed to retain a protein
+#' raw_df <- create_df(
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#'   uniq_pep = 1
+#' )
 #' }
 #' @export
 
@@ -104,9 +110,9 @@ create_df <- function(prot_groups,
       sep = "_"
     )
   }
-  #extract number of rows
+  # extract number of rows
   orig_rows <- nrow(df)
-  #extract number of columns
+  # extract number of columns
   orig_col <- ncol(df)
 
   # Filter out empty rows and columns if they exist in the dataframe.
@@ -115,19 +121,18 @@ create_df <- function(prot_groups,
     df <- df[rowSums(is.na(df)) != ncol(df), ]
     # Remove samples (columns) with missing values (NA) across all proteins
     df <- df[, colSums(is.na(df)) != nrow(df)]
-    #calculate number of rows and columns removed
+    # calculate number of rows and columns removed
     rem_row <- orig_rows - nrow(df)
     rem_col <- orig_col - ncol(df)
     message(paste0(rem_row, " empty rows removed."))
     message(paste0(rem_col, " empty columns removed."))
-
   } else {
     warning("Data frame may contain empty rows and/or columns.")
   }
   # Filter out some proteins based on specific columns. First check if the columns
   # are present in the data frame before removing rows based on the presence of
   # "+" signs.
-  #Get number of rows in the df
+  # Get number of rows in the df
   orig_rows_1 <- nrow(df)
 
   if (filter_prot == TRUE) {
@@ -136,10 +141,13 @@ create_df <- function(prot_groups,
         df,
         df$Only.identified.by.site != "+"
       )
-      message(paste0(orig_rows_1 - nrow(df), " proteins (rows) only identified by site removed."))
+      message(paste0(
+        orig_rows_1 - nrow(df),
+        " proteins (rows) only identified by site removed."
+      ))
     }
 
-    #get number of rows
+    # get number of rows
     orig_rows_2 <- nrow(df)
 
     if ("Reverse" %in% colnames(df)) {
@@ -147,10 +155,13 @@ create_df <- function(prot_groups,
         df,
         df$Reverse != "+"
       )
-      message(paste0(orig_rows_2 - nrow(df), " reverse proteins (rows) removed."))
+      message(paste0(
+        orig_rows_2 - nrow(df),
+        " reverse proteins (rows) removed."
+      ))
     }
 
-    #get number of rows
+    # get number of rows
     orig_rows_3 <- nrow(df)
 
     if ("Potential.contaminant" %in% colnames(df)) {
@@ -158,7 +169,6 @@ create_df <- function(prot_groups,
         df,
         df$Potential.contaminant != "+"
       )
-
     }
 
     if ("Contaminant" %in% colnames(df)) {
@@ -166,10 +176,13 @@ create_df <- function(prot_groups,
         df,
         df$Contaminant != "+"
       )
-      message(paste0(orig_rows_3 - nrow(df), " protein contaminants (rows) removed."))
+      message(paste0(
+        orig_rows_3 - nrow(df),
+        " protein contaminants (rows) removed."
+      ))
     }
 
-    #get number of rows
+    # get number of rows
     orig_rows_4 <- nrow(df)
 
     if ("Unique.peptides" %in% colnames(df)) {
@@ -177,8 +190,10 @@ create_df <- function(prot_groups,
         df,
         df$Unique.peptides > uniq_pep
       )
-      message(paste0(orig_rows_4 - nrow(df), " proteins identified by ",
-                     uniq_pep, " or fewer unique peptides removed."))
+      message(paste0(
+        orig_rows_4 - nrow(df), " proteins identified by ",
+        uniq_pep, " or fewer unique peptides removed."
+      ))
     }
   } else {
     warning("Proteins have not been filtered")
@@ -199,7 +214,7 @@ create_df <- function(prot_groups,
   raw_col <- gsub("LFQ.intensity.", "", colnames(df))
 
   # sort the design table by mq_label so that the order matches to that of
-  #raw_col
+  # raw_col
   design <- design[order(as.character(design$mq_label)), ]
 
   # Compare the mq_label column in the design file with raw_col and replace

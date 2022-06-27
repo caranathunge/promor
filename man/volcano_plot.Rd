@@ -28,7 +28,7 @@ volcano_plot(
 \item{fit_df}{A \code{fit_df} object from performing \code{find_dep}.}
 
 \item{adj_method}{Method used for adjusting the p-values for multiple
-testing. Default is \code{"BH."}.}
+testing. Default is \code{"BH"}.}
 
 \item{sig}{Criteria to denote significance. Choices are \code{"adjP"}
 (default) for adjusted p-value or \code{"P"} for p-value.}
@@ -83,19 +83,20 @@ differentially expressed proteins between groups.
 and -log10(p-value) on the y-axis.\item \code{volcano_plot} requires a
 \code{fit_df} object from performing differential expression analysis
 with \code{find_dep.}
-\item User has the option to choose the criterion to denote significance.}
+\item User has the option to choose criteria that denote significance.}
 }
 \examples{
 \dontrun{
 
-# Perform differential expression analysis.
-fit <- find_dep(raw_nm)
+## Create a volcano plot with default settings.
+volcano_plot(ecoli_fit_df)
 
-# Create a volcano plot with default settings.
-volcano_plot(fit)
+## Change significance criteria and cutoff
+volcano_plot(ecoli_fit_df, cutoff = 0.1, sig = "P")
 
-# Create a volcano plot with log fold change of 1 and p-value cutoff of 0.05.
-volcano_plot(fit, cutoff = 0.05, sig = "P", lfc = 1)
+## Label top 30 differentially expressed proteins and
+## change the color palette of the plot
+volcano_plot(ecoli_fit_df, label_top = TRUE, n_top = 30, palette = "mako")
 }
 
 }
