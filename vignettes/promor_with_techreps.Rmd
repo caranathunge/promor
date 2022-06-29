@@ -8,8 +8,10 @@ output:
   rmarkdown::html_vignette:
     number_sections: yes
   pdf_document: default
-vignette: |
-  %\VignetteEncoding{UTF-8} %\VignetteIndexEntry{Proteomics data analysis with promor:technical replicates} %\VignetteEngine{knitr::rmarkdown}
+vignette: >
+  %\VignetteEncoding{UTF-8} 
+  %\VignetteIndexEntry{Proteomics data analysis with promor:technical replicates} 
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r, include = FALSE}
@@ -25,9 +27,9 @@ We recommend that you first go through the simple working example provided in **
 vignette("intro_to_promor")
 ```
 
-A tutorial for proteomics data with no technical replicates is provided here:
+A tutorial for proteomics data **without technical replicates** is provided here:
 ```{r, eval=FALSE}
-vignette("promor_with_notechreps")
+vignette("promor_no_techreps")
 ```
 
 
@@ -52,7 +54,7 @@ To run *promor*, you need:
 # Load promor
 library(promor)
 # Let's load the expDesign.txt file
-exp_design <- read.csv("../inst/extdata/PXD001584_expDesign.txt", sep = "\t")
+exp_design <- read.csv("https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt", sep = "\t")
 # Take a peek inside the file
 head(exp_design, n = 12)
 ```
@@ -68,10 +70,8 @@ head(exp_design, n = 12)
 Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech_reps == TRUE`.
 ```{r createdf, warning=FALSE}
 #Create a raw_df object with default settings.
-raw <- create_df(prot_groups = system.file("extdata", "PXD001584_proteinGroups.txt", 
-                                           package = "promor"), 
-                 exp_design = system.file("extdata", "PXD001584_expDesign.txt", 
-                                          package = "promor"),
+raw <- create_df(prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt", 
+                 exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
                  tech_reps = TRUE )
 # We can quickly check how the data frame looks like
 head(raw)
@@ -82,13 +82,13 @@ If you ran `create_df` with default settings, now your *raw_df* object contains 
 Typically, technical replicates for each sample should show strong correlation. At this stage, we can quickly check if this is the case in our experiment. 
 ```{r corrplot, fig.align = 'center', fig.height = 7, warning = FALSE, dpi = 300}
 # Let's first check the correlation between tech.replicates 1 and 2
-corr_plot(raw, rep1 = 1, rep2 = 2, n_row = 3, n_col = 2, text_size = 12)
+corr_plot(raw, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, text_size = 12)
 
 ```
 Similarly, we can visualize the correlation between technical replicates 1 and 3.
 ```{r corrplot1, warning = FALSE, fig.align = 'center', fig.height = 7, dpi = 300, fig.height = 8}
 # Correlation between tech.replicates 1 and 3.
-corr_plot(raw, rep1 = 1, rep2 = 2, n_row = 3, n_col = 2, text_size = 12)
+corr_plot(raw, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, text_size = 12)
 ```
 You can repeat the analysis for technical replicates 2 and 3 in the same manner.\
 
