@@ -269,7 +269,7 @@ test_that("rem_sample works", {
   )
 })
 
-# Missing data imputation--------------------------------------------------------
+# Missing data imputation-------------------------------------------------------
 
 # minprob results
 df_mp <- structure(
@@ -439,10 +439,10 @@ test_that("normalization works for cyclicloess", {
 # Differential expression -------------------------------------------------------
 # make a fake - norm_df
 set.seed(581)
-sigma2 <- 0.05 / rchisq(1000, df=10) * 10
-fake_norm_df <- matrix(rnorm(100*6,sd=sqrt(sigma2)),100,6)
-fake_norm_df[1,4:6] <- fake_norm_df[1,4:6] + 1
-colnames(fake_norm_df) <- c("Ctrl_1","Ctrl_2","Ctrl_3","Case_1","Case_2","Case_3")
+sigma2 <- 0.05 / rchisq(1000, df = 10) * 10
+fake_norm_df <- matrix(rnorm(100 * 6, sd = sqrt(sigma2)), 100, 6)
+fake_norm_df[1, 4:6] <- fake_norm_df[1, 4:6] + 1
+colnames(fake_norm_df) <- c("Ctrl_1", "Ctrl_2", "Ctrl_3", "Case_1", "Case_2", "Case_3")
 
 # Load fit_df
 fake_fit_df <- readRDS("./testdata/fake_fit_df.rds")

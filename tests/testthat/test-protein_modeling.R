@@ -204,7 +204,7 @@ test_that("train_models works", {
 })
 
 # Testing test_models------------------------------------------------------------
-#Load test_model_list
+# Load test_model_list
 test_model_list <- readRDS("./testdata/test_model_list.RDS")
 
 # Create a test_prob_list
@@ -238,10 +238,11 @@ test_prob_list <- list(glm = structure(list(Case = c(
 )), class = "data.frame", row.names = c(NA, -6L)))
 
 
-#Test if function works
+# Test if function works
 testthat::test_that("test_models works", {
-  prob_list <- test_models(test_model_list,
-                           test_split_df)
+  prob_list <- test_models(
+    test_model_list,
+    test_split_df
+  )
   testthat::expect_equal(prob_list, test_prob_list)
-
 })
