@@ -5,7 +5,7 @@
 #' normalization method.
 #' @import limma
 #'
-#' @param df An \code{imp_df} object with missing values imputed using
+#' @param imp_df An \code{imp_df} object with missing values imputed using
 #' \code{impute_na}.
 #' @param method Name of the normalization method to use. Choices are
 #' \code{"none", "scale", "quantile" or "cyclicloess."}
@@ -47,7 +47,6 @@
 #'
 #' ## Use the cyclicloess method
 #' norm_df2 <- normalize_data(imp_df, method = "cyclicloess")
-#'
 #' }
 #'
 #' @export
