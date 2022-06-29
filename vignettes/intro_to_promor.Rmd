@@ -138,7 +138,7 @@ vignette("intro_to_promor", package = "promor")
 2. If your data does NOT contain technical replicates:
 
 ``` r
-vignette("promor_with_notechreps", package = "promor")
+vignette("promor_no_techreps", package = "promor")
 ```
 
 3. If your data contains technical replicates:
