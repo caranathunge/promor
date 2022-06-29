@@ -16,12 +16,13 @@ train_models(
 \arguments{
 \item{split_df}{A \code{split_df} object from performing \code{split_data}.}
 
-\item{resample_method}{The resampling method to use. Default is "repeatedcv"
-for repeated cross validation.
+\item{resample_method}{The resampling method to use. Default is
+\code{"repeatedcv"} for repeated cross validation.
 See \code{\link[caret:trainControl]{trainControl}} for
 details on other available methods.}
 
-\item{resample_iterations}{Number of resampling iterations. Default is 10.}
+\item{resample_iterations}{Number of resampling iterations. Default is
+\code{10}.}
 
 \item{num_repeats}{The number of complete sets of folds to compute (For
 \code{resampling method = "repeatedcv"} only).}
@@ -29,9 +30,12 @@ details on other available methods.}
 \item{algorithm_list}{A list of classification or regression algorithms to
 use.
 A full list of machine learning algorithms available through
-the \code{caret} can be found here:
+the \code{caret} package can be found here:
 \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
 default options.}
+
+\item{...}{Additional arguments to be passed on to
+\code{\link[caret:train]{train}} function in the \code{caret} package.}
 }
 \value{
 A list of class \code{train} for each machine-learning algorithm.
@@ -55,18 +59,25 @@ for building and training models. Default \code{algorithm_list}:
 }
 \examples{
 \dontrun{
-# Fit models based on the default list of ML algorithms.
-model_fit <- train_models(split_df = split_df)
 
-# Fit models using a user-specified list of ML algorithms.
-model_fit <- train_models(
-  split_df = split_df,
-  algorithm_list = c("svmRadial", "rpart")
+## Create a model_df object
+covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
+
+## Split the data frame into training and test data sets
+covid_split_df <- split_data(covid_model_df)
+
+## Fit models based on the default list of machine learning (ML) algorithms
+covid_model_list1 <- train_models(split_df = covid_split_df)
+
+## Fit models using a user-specified list of ML algorithms.
+covid_model_list2 <- train_models(
+  covid_split_df,
+  algorithm_list = c("svmRadial", "glmboost")
 )
 
-# Change resampling method and resampling iterations.
-model_fit <- train_models(
-  split_df = split_df,
+## Change resampling method and resampling iterations.
+covid_model_list3 <- train_models(
+  covid_split_df,
   resample_method = "cv",
   resample_iterations = 50
 )

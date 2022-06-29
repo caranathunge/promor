@@ -51,11 +51,11 @@ Default is \code{"pdf"}.}
 A \code{ggplot2} object.
 }
 \description{
-This function visualizes model performance
+This function generates plots to visualize model performance
 }
 \details{
 \itemize{\item \code{performance_plot} uses resampling results from
-models included in the \code{model_list} to generate plots of model
+models included in the \code{model_list} to generate plots showing model
 performance.
 \item The default metrics used for classification based models are "Accuracy"
 and "Kappa."
@@ -66,22 +66,31 @@ the \code{train_models} function. See \code{\link[caret: train]{train}} and
 \examples{
 \dontrun{
 
-## Train models using default settings
-model_list <- train_models(split_df)
+## Create a model_df object
+covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 
-## Generate box plots to visualize performance of different methods
-performance_plot(model_list)
+## Split the data frame into training and test data sets
+covid_split_df <- split_data(covid_model_df)
+
+## Fit models based on the default list of machine learning (ML) algorithms
+covid_model_list <- train_models(covid_split_df)
+
+## Generate box plots to visualize performance of different ML algorithms
+performance_plot(covid_model_list)
 
 ## Generate dot plots
-performance_plot(model_list, type = "dot")
+performance_plot(covid_model_list, type = "dot")
+
+## Change color palette
+performance_plot(covid_model_list, type = "dot", palette = "inferno")
 }
 }
 \seealso{
 \itemize{
 \item \code{train_models}
-\item\code{\link[caret: resample]{caret: resamples}}
+\item\code{\link[caret: resamples]{caret: resamples}}
 \item \code{\link[caret:train]{caret: train}}
-\item \code{\link[caret:trnControl]{caret: trnControl}}
+\item \code{\link[caret:trainControl]{caret: trainControl}}
 }
 }
 \author{

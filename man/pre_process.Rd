@@ -28,19 +28,19 @@ Choices are \code{"adjP"} (default) for adjusted p-value or \code{"P"}
 for p-value.}
 
 \item{sig_cutoff}{Cutoff value for p-values and adjusted p-values in
-differential expression. Default is 0.05.}
+differential expression. Default is \code{0.05}.}
 
 \item{fc}{Minimum absolute log-fold change to use as threshold for
-differential expression. Default is 1.}
+differential expression. Default is \code{1}.}
 
 \item{n_top}{The number of top hits from \code{find_dep} to be used in
-modeling. Default is 20.}
+modeling. Default is \code{20}.}
 
 \item{find_highcorr}{Logical. If \code{TRUE} (default), finds highly
 correlated proteins.}
 
 \item{corr_cutoff}{A numeric value specifying the correlation cutoff.
-Default is 0.90.}
+Default is \code{0.90}.}
 
 \item{save_corrmatrix}{Logical. If \code{TRUE}, saves a copy of the
 protein correlation matrix in a tab-delimited text file labeled
@@ -67,20 +67,25 @@ proteins can be identified, and can be removed with
 \item Note: Most models will benefit from reducing correlation between
 proteins (predictors or features), therefore we recommend removing those
 proteins at this stage to reduce pairwise-correlation.
-\item If no proteins meet the significance threshold for differential
-expression, you may adjust \code{sig}, \code{fc}, and \code{sig_cutoff}
-accordingly to obtain a set of proteins for modeling.}
+\item If no or few proteins meet the significance threshold for differential
+expression, you may adjust \code{sig}, \code{fc}, and/or \code{sig_cutoff}
+accordingly to obtain more proteins for modeling.}
 }
 \examples{
 \dontrun{
 
 ## Create a model_df object with default settings.
-model_df <- pre_process(fit_df, norm_df)
+covid_model_df1 <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
 
 ## Change the correlation cutoff.
-model_df <- pre_process(fit_df, norm_df, corr_cutoff = 0.95)
-}
+covid_model_df2 <- pre_process(covid_fit_df, covid_norm_df, corr_cutoff = 0.95)
 
+## Change the significance criteria to include more proteins
+covid_model_df3 <- pre_process(covid_fit_df, covid_norm_df, sig = "P")
+
+## Change the number of top differentially expressed proteins to include
+covid_model_df4 <- pre_process(covid_fit_df, covid_norm_df, sig = "P", n_top = 24)
+}
 }
 \seealso{
 \itemize{

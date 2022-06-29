@@ -59,7 +59,7 @@ Default is \code{"pdf"}.}
 A \code{ggplot2} object.
 }
 \description{
-This function generates Receiver Operator Characteristic (ROC)
+This function generates Receiver Operating Characteristic (ROC)
 curves to evaluate models
 }
 \details{
@@ -70,18 +70,26 @@ plot the ROC curves.}
 }
 \examples{
 \dontrun{
+## Create a model_df object
+covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 
-## Test models
-model_probs <- test_models(
-  model_list = model_fit, split_df = split_df,
-  type = "prob"
-)
+## Split the data frame into training and test data sets
+covid_split_df <- split_data(covid_model_df)
+
+## Fit models using the default list of machine learning (ML) algorithms
+covid_model_list <- train_models(covid_split_df)
+
+# Test a list of models on a test data set and output class probabilities,
+covid_prob_list <- test_models(covid_model_list, covid_split_df, type = "prob")
+
+## Plot ROC curves separately for each ML algorithm
+roc_plot(covid_prob_list, covid_split_df)
 
 ## Plot all ROC curves in one plot
-roc_plot(model_probs, multiple_plots = FALSE)
+roc_plot(covid_prob_list, covid_split_df, multiple_plots = FALSE)
 
-## Plot ROC curves separately for each algorithm
-roc_plot(model_probs)
+## Change color palette
+roc_plot(covid_prob_list, covid_split_df, palette = "plasma")
 }
 }
 \seealso{

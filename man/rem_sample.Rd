@@ -39,7 +39,7 @@ raw_df <- create_df(
   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
   tech_reps = TRUE
 )
-#Check the first few rows of the raw_df object
+# Check the first few rows of the raw_df object
 head(raw_df)
 
 ## Remove all technical replicates of "WT_4"

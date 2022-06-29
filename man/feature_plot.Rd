@@ -33,9 +33,9 @@ is \code{"box."}}
 \code{\link[viridisLite:viridis]{viridis}}
 for available options.}
 
-\item{n_row}{The number of rows to print the plots.}
+\item{n_row}{Number of rows to print the plots.}
 
-\item{n_col}{The number of columns to print the plots.}
+\item{n_col}{Number of columns to print the plots.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
@@ -57,7 +57,7 @@ A \code{ggplot2} object
 }
 \description{
 This function visualizes protein intensity differences among
-conditions (classes) with plots.
+conditions (classes) using box plots or density distribution plots.
 }
 \details{
 This function visualizes condition-wise differences in protein
@@ -66,16 +66,22 @@ intensity using boxplots and/or density plots.
 \examples{
 \dontrun{
 
-## Box plots
-predictor_plot(model_df, type = "box", nrow = 2, ncol = 4)
+## Create a model_df object with default settings.
+covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
+
+## Feature variation - box plots
+feature_plot(covid_model_df, type = "box", n_row = 4, n_col = 2)
 
 ## Density plots
-predictor_plot(model_df, type = "density", nrow = 2, ncol = 4)
+feature_plot(covid_model_df, type = "density")
+
+## Change color palette
+feature_plot(covid_model_df, type = "density", n_row = 4, n_col = 2, palette = "rocket")
 }
 }
 \seealso{
 \itemize{
-\item \code{pre_process}, \code{rem_predictors}}
+\item \code{pre_process}, \code{rem_feature}}
 }
 \author{
 Chathurani Ranathunge

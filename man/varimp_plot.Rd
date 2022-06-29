@@ -38,9 +38,9 @@ Default is \code{"lollipop."}}
 \code{\link[viridisLite:viridis]{viridis}}
 for available options.}
 
-\item{n_row}{The number of rows to print the plots.}
+\item{n_row}{Number of rows to print the plots.}
 
-\item{n_col}{The number of columns to print the plots.}
+\item{n_col}{Number of columns to print the plots.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
 working directory.}
@@ -68,30 +68,40 @@ This function visualizes variable importance in models
 variable importance measures calculated from models generated with different
 machine-learning algorithms.
 \item Note: Variables are ordered by variable importance in
-descending order and by default, importance values are scaled to 0 and 100.
-This can be changed by providing \code{scale = FALSE}. See
+descending order, and by default, importance values are scaled to 0 and 100.
+This can be changed by specifying \code{scale = FALSE}. See
 \code{\link[caret:varImp]{varImp}} for more information.}
 }
 \examples{
 \dontrun{
 
-## Train models using default settings
-model_list <- train_models(split_df)
+## Create a model_df object
+covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 
-## Lollipop plots
-varimp_plot(model_list)
+## Split the data frame into training and test data sets
+covid_split_df <- split_data(covid_model_df)
+
+## Fit models based on the default list of machine learning (ML) algorithms
+covid_model_list <- train_models(covid_split_df)
+
+## Variable importance - lollipop plots
+varimp_plot(covid_model_list)
 
 ## Bar plots
-varimp_plot(model_list, type = "bar")
+varimp_plot(covid_model_list, type = "bar")
 
 ## Do not scale variable importance values
-varimp_plot(model_list, scale = FALSE)
+varimp_plot(covid_model_list, scale = FALSE)
+
+## Change color palette
+varimp_plot(covid_model_list, palette = "magma")
 }
 }
 \seealso{
 \itemize{
-\item \code{train_models}
-\item \code{\link[caret:varImp]{caret: varImp}}}
+\item \code{train_models}, \code{rem_feature}
+\item \code{\link[caret:varImp]{caret: varImp}}
+}
 }
 \author{
 Chathurani Ranathunge

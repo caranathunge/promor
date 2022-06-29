@@ -81,8 +81,10 @@ heatmap_de(covid_fit_df, covid_norm_df, cutoff = 0.05, sig = "P")
 
 ## Visualize the top 30 differentially expressed proteins in the heatmap and
 ## change the color palette
-heatmap_de(covid_fit_df, covid_norm_df, cutoff = 0.05, sig = "P", n_top = 30,
-palette = "magma")
+heatmap_de(covid_fit_df, covid_norm_df,
+  cutoff = 0.05, sig = "P", n_top = 30,
+  palette = "magma"
+)
 }
 
 }

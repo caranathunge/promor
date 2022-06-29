@@ -46,8 +46,7 @@ raw_df <- create_df(
 )
 
 ## Save a list of proteins only expressed in group L, but absent in group H.
-onegroup_only(raw_df,abs_group = "H", pres_group = "L")
-
+onegroup_only(raw_df, abs_group = "H", pres_group = "L")
 }
 
 }

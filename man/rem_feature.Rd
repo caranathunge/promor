@@ -2,7 +2,7 @@
 % Please edit documentation in R/modelProteins.R
 \name{rem_feature}
 \alias{rem_feature}
-\title{Remove user-specified proteins (predictors) from the data frame}
+\title{Remove user-specified proteins (features) from a data frame}
 \usage{
 rem_feature(model_df, rem_protein)
 }
@@ -15,27 +15,34 @@ rem_feature(model_df, rem_protein)
 A \code{model_df} object.
 }
 \description{
-This function removes user-specified proteins from the
-data frame.
+This function removes user-specified proteins from a \code{model_df}
+object
 }
 \details{
 \itemize{\item After visualizing protein intensity variation
-among conditions with \code{predictor_plot}, you can choose to remove
-specific proteins (predictors) from the data frame before modeling if they
-do not show distinct patterns of variation among conditions. For
-example, these proteins could have overlapping density distributions.
+among conditions with \code{feature_plot} or after assessing the importance
+of each protein in models using \code{varimp_plot}, you can choose to remove
+specific proteins (features) from the data frame. \item For example, you can
+choose to remove a protein from the \code{model_df} object if the protein
+does not show distinct patterns of variation among conditions. This protein
+may show mostly overlapping distributions in the feature plots.
+\item Another incidence would be removing a protein that is very low in
+variable importance in the models built using \code{train_models}. You can
+visualize variable importance using \code{varimp_plot}.
 }
 }
 \examples{
 \dontrun{
 
-## Remove protein "A113403" from model_df data frame.
-model_df <- rem_feature(model_df, "A113403")
+model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
+
+## Remove sp|P22352|GPX3_HUMAN protein from the model_df object
+covid_model_df1 <- rem_feature(covid_model_df, rem_protein = "sp|P22352|GPX3_HUMAN")
 }
 
 }
 \seealso{
-\code{\link{predictor_plot}}, \code{\link{pre_process}}
+\code{\link{feature_plot}}, \code{\link{pre_process}}
 }
 \author{
 Chathurani Ranathunge

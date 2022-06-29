@@ -7,12 +7,12 @@
 normalize_data(imp_df, method = "quantile")
 }
 \arguments{
+\item{imp_df}{An \code{imp_df} object with missing values imputed using
+\code{impute_na}.}
+
 \item{method}{Name of the normalization method to use. Choices are
 \code{"none", "scale", "quantile" or "cyclicloess."}
 Default is \code{"quantile."}}
-
-\item{df}{An \code{imp_df} object with missing values imputed using
-\code{impute_na}.}
 }
 \value{
 A \code{norm_df} object, which is a data frame of
@@ -49,7 +49,6 @@ norm_df1 <- normalize_data(imp_df)
 
 ## Use the cyclicloess method
 norm_df2 <- normalize_data(imp_df, method = "cyclicloess")
-
 }
 
 }

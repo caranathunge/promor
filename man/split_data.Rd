@@ -9,7 +9,7 @@ split_data(model_df, train_size = 0.8)
 \arguments{
 \item{model_df}{A \code{model_df} object from performing \code{pre_process}.}
 
-\item{train_size}{The size of the training data set as a percentage of the
+\item{train_size}{The size of the training data set as a proportion of the
 complete data set. Default is 0.8.}
 }
 \value{
@@ -17,7 +17,7 @@ A list of data frames.
 }
 \description{
 This function can be used to create balanced splits of the
-protein intensity data to create training and test data
+protein intensity data in a \code{model_df} object to create training and test data
 }
 \details{
 This function splits the \code{model_df} object in to training and
@@ -27,15 +27,21 @@ class distribution of the data.
 \examples{
 \dontrun{
 
+## Create a model_df object
+covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
+
+## Split the data frame into training and test data sets using default settings
+covid_split_df1 <- split_data(covid_model_df)
+
 ## Split the data frame into training and test data sets with 70\% of the
 ## data in training and 30\% in test data sets
-split_df <- split_data(model - df, train_size = 0.7)
+covid_split_df2 <- split_data(covid_model_df, train_size = 0.7)
 
 ## Access training data set
-split_df$training
+covid_split_df1$training
 
 ## Access test data set
-split_df$test
+covid_split_df1$test
 }
 
 }
