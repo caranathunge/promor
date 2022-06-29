@@ -1,47 +1,45 @@
 #' Theme for single plots
 #' @noRd
-promor_theme <- function(){
+promor_theme <- function() {
   ggplot2::theme_classic() +
-  ggplot2::theme(
-    panel.border = element_rect(
-      fill = NA,
-      colour = "grey40",
-      size = 0.5
-    ),
-    legend.title = element_blank(),
-    axis.ticks = element_line(colour = "grey40"),
-    axis.line = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.grid.major = element_blank()
-  )
-
+    ggplot2::theme(
+      panel.border = element_rect(
+        fill = NA,
+        colour = "grey40",
+        size = 0.5
+      ),
+      legend.title = element_blank(),
+      axis.ticks = element_line(colour = "grey40"),
+      axis.line = element_blank(),
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_blank()
+    )
 }
 
 # Theme for faceted plots
-promor_facet_theme <- function(){
- ggplot2::theme_classic() +
-  ggplot2::theme(
-    panel.border = element_rect(
-      fill = NA,
-      colour = "grey40",
-      size = 0.5
-    ),
-    panel.grid.minor = element_blank(),
-    panel.grid.major = element_blank(),
-    legend.title = element_blank(),
-    axis.title.x = element_blank(),
-    axis.title.y = element_blank(),
-    axis.ticks = element_line(colour = "grey40"),
-    axis.line = element_blank(),
-    strip.background = element_blank(),
-    strip.text = element_text(
-      colour = "grey20",
-      hjust = 0.01,
-      face = "bold",
-      vjust = 0
+promor_facet_theme <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      panel.border = element_rect(
+        fill = NA,
+        colour = "grey40",
+        size = 0.5
+      ),
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_blank(),
+      legend.title = element_blank(),
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      axis.ticks = element_line(colour = "grey40"),
+      axis.line = element_blank(),
+      strip.background = element_blank(),
+      strip.text = element_text(
+        colour = "grey20",
+        hjust = 0.01,
+        face = "bold",
+        vjust = 0
+      )
     )
-  )
-
 }
 
 # Pick viridis colors
