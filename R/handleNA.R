@@ -443,7 +443,7 @@ impute_na <- function(raw_df,
 #' ## Make sample-wise density plots
 #' impute_plot(raw_df, imp_df, global = FALSE)
 #'
-#' ##Print plots in user-specified numbers of rows and columns
+#' ## Print plots in user-specified numbers of rows and columns
 #' impute_plot(raw_df, imp_df, global = FALSE, n_col = 2, n_row = 3)
 #' }
 #' @export

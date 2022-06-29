@@ -83,23 +83,24 @@ filterbygroup_na <- function(raw_df,
   # Remove the first column that contains the group name in the data frame
   df_na[, 1] <- NULL
 
-  #Remove proteins that don't meet the set_na in at least one group
-  if (filter_condition == "either"){
+  # Remove proteins that don't meet the set_na in at least one group
+  if (filter_condition == "either") {
     # Make a list of proteins where at least one group NA > set_na
     rem_prot <- as.list(colnames(Filter(
       function(y) any(as.numeric(y) > set_na),
       df_na
-  )))
+    )))
 
-  # Subset the dataframe by removing proteins in the list with >33% NA
-  raw_3 <- raw_df[!rownames(raw_df) %in% rem_prot, ]
-  message(paste0(
-    orig_rows - nrow(raw_3),
-    " proteins with higher than ",
-    set_na * 100,
-    "% NAs in at least one group removed."))
+    # Subset the dataframe by removing proteins in the list with >33% NA
+    raw_3 <- raw_df[!rownames(raw_df) %in% rem_prot, ]
+    message(paste0(
+      orig_rows - nrow(raw_3),
+      " proteins with higher than ",
+      set_na * 100,
+      "% NAs in at least one group removed."
+    ))
   }
-  if (filter_condition == "each"){
+  if (filter_condition == "each") {
     # Make a list of proteins where at least one group NA < set_na
     keep_prot <- as.list(colnames(Filter(
       function(y) any(as.numeric(y) < set_na),
@@ -112,7 +113,8 @@ filterbygroup_na <- function(raw_df,
       orig_rows - nrow(raw_3),
       " proteins with higher than ",
       set_na * 100,
-      "% NAs in each group removed."))
+      "% NAs in each group removed."
+    ))
   }
   return(raw_3)
 }
@@ -155,8 +157,7 @@ filterbygroup_na <- function(raw_df,
 #' )
 #'
 #' ## Save a list of proteins only expressed in group L, but absent in group H.
-#' onegroup_only(raw_df,abs_group = "H", pres_group = "L")
-#'
+#' onegroup_only(raw_df, abs_group = "H", pres_group = "L")
 #' }
 #'
 #' @export

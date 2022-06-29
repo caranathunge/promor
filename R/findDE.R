@@ -68,7 +68,7 @@ find_dep <- function(norm_df,
                      lfc = 1,
                      n_top = 20) {
 
-  #Extract group information from colnames
+  # Extract group information from colnames
   group <- factor(c(sapply(
     strsplit(colnames(norm_df), "_"),
     getElement, 1
@@ -84,10 +84,11 @@ find_dep <- function(norm_df,
     trend = T
   )
 
-  #Make a a list of DE results based on provided criteria
+  # Make a a list of DE results based on provided criteria
   dec_test <- limma::decideTests(fit,
-                                 lfc = lfc,
-                                 adjust.method = "BH")
+    lfc = lfc,
+    adjust.method = "BH"
+  )
 
   # Write the results of the DE analysis to a text file (tab-separated)
   if (save_output == TRUE) {
@@ -110,13 +111,15 @@ find_dep <- function(norm_df,
   rownames(results_de) <- NULL
 
   # rearrange order of columns
-  results_de <- results_de[, c("majority_protein_id",
-                               "logFC",
-                               "AveExpr",
-                               "t",
-                               "P.Value",
-                               "adj.P.Val",
-                               "B")]
+  results_de <- results_de[, c(
+    "majority_protein_id",
+    "logFC",
+    "AveExpr",
+    "t",
+    "P.Value",
+    "adj.P.Val",
+    "B"
+  )]
 
   # extract proteins with absolute logfc > lfc
   results_de <- results_de[abs(results_de$logFC) > lfc, ]
@@ -129,11 +132,16 @@ find_dep <- function(norm_df,
     stop(
       message(
         paste0(
-        "No differentially expressed proteins found at adj.P.value cutoff = ",
-        cutoff)))
+          "No differentially expressed proteins found at adj.P.value cutoff = ",
+          cutoff
+        )
+      )
+    )
   } else {
-    message(paste0(nrow(results_de),
-                   " siginificantly differentially expressed proteins found."))
+    message(paste0(
+      nrow(results_de),
+      " siginificantly differentially expressed proteins found."
+    ))
   }
 
   if (save_tophits == TRUE) {
@@ -426,8 +434,10 @@ volcano_plot <- function(fit_df,
 #'
 #' ## Visualize the top 30 differentially expressed proteins in the heatmap and
 #' ## change the color palette
-#' heatmap_de(covid_fit_df, covid_norm_df, cutoff = 0.05, sig = "P", n_top = 30,
-#' palette = "magma")
+#' heatmap_de(covid_fit_df, covid_norm_df,
+#'   cutoff = 0.05, sig = "P", n_top = 30,
+#'   palette = "magma"
+#' )
 #' }
 #'
 #' @export
