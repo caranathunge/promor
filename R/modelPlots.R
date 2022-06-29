@@ -1,7 +1,7 @@
 # Feature plots ----------------------------------------------------------------
 #' Visualize feature (protein) variation among conditions
 #' @description This function visualizes protein intensity differences among
-#' conditions (classes) with plots.
+#' conditions (classes) using box plots or density distribution plots.
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -19,8 +19,8 @@
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
-#' @param n_row The number of rows to print the plots.
-#' @param n_col The number of columns to print the plots.
+#' @param n_row Number of rows to print the plots.
+#' @param n_col Number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file_name file_name File name to save the plot.
@@ -37,15 +37,21 @@
 #' @return A \code{ggplot2} object
 #' @seealso
 #' \itemize{
-#' \item \code{pre_process}, \code{rem_predictors}}
+#' \item \code{pre_process}, \code{rem_feature}}
 #' @examples
 #' \dontrun{
 #'
-#' ## Box plots
-#' predictor_plot(model_df, type = "box", nrow = 2, ncol = 4)
+#' ## Create a model_df object with default settings.
+#' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
+#'
+#' ## Feature variation - box plots
+#' feature_plot(covid_model_df, type = "box", n_row = 4, n_col = 2)
 #'
 #' ## Density plots
-#' predictor_plot(model_df, type = "density", nrow = 2, ncol = 4)
+#' feature_plot(covid_model_df, type = "density")
+#'
+#' ## Change color palette
+#' feature_plot(covid_model_df, type = "density", n_row = 4, n_col = 2, palette = "rocket")
 #' }
 #' @export
 feature_plot <- function(model_df,
@@ -61,15 +67,17 @@ feature_plot <- function(model_df,
                          plot_width = 7,
                          plot_height = 7) {
 
+  #binding for global variable
+  Intensity <- Condition <- NULL
+
   # Create plot data
   modeldf_melted <- reshape2::melt(model_df)
   colnames(modeldf_melted) <- c("Condition", "Protein", "Intensity")
 
-  #n_row and n_col if not defined
-  if(missing(n_row) & missing(n_col)){
-    n_row = length(unique(modeldf_melted$Protein))
-    n_col = 1
-
+  # n_row and n_col if not defined
+  if (missing(n_row) & missing(n_col)) {
+    n_row <- length(unique(modeldf_melted$Protein))
+    n_col <- 1
   }
 
 
@@ -179,8 +187,8 @@ feature_plot <- function(model_df,
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
-#' @param n_row The number of rows to print the plots.
-#' @param n_col The number of columns to print the plots.
+#' @param n_row Number of rows to print the plots.
+#' @param n_col Number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' working directory.
 #' @param file_name file_name File name to save the plot.
@@ -195,29 +203,40 @@ feature_plot <- function(model_df,
 #' variable importance measures calculated from models generated with different
 #' machine-learning algorithms.
 #' \item Note: Variables are ordered by variable importance in
-#' descending order and by default, importance values are scaled to 0 and 100.
-#' This can be changed by providing \code{scale = FALSE}. See
+#' descending order, and by default, importance values are scaled to 0 and 100.
+#' This can be changed by specifying \code{scale = FALSE}. See
 #' \code{\link[caret:varImp]{varImp}} for more information.}
 #'
 #' @return A list of \code{ggplot2} objects.
 #' @seealso
 #' \itemize{
-#' \item \code{train_models}
-#' \item \code{\link[caret:varImp]{caret: varImp}}}
+#' \item \code{train_models}, \code{rem_feature}
+#' \item \code{\link[caret:varImp]{caret: varImp}}
+#' }
+#'
 #' @examples
 #' \dontrun{
 #'
-#' ## Train models using default settings
-#' model_list <- train_models(split_df)
+#' ## Create a model_df object
+#' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #'
-#' ## Lollipop plots
-#' varimp_plot(model_list)
+#' ## Split the data frame into training and test data sets
+#' covid_split_df <- split_data(covid_model_df)
+#'
+#' ## Fit models based on the default list of machine learning (ML) algorithms
+#' covid_model_list <- train_models(covid_split_df)
+#'
+#' ## Variable importance - lollipop plots
+#' varimp_plot(covid_model_list)
 #'
 #' ## Bar plots
-#' varimp_plot(model_list, type = "bar")
+#' varimp_plot(covid_model_list, type = "bar")
 #'
 #' ## Do not scale variable importance values
-#' varimp_plot(model_list, scale = FALSE)
+#' varimp_plot(covid_model_list, scale = FALSE)
+#'
+#' ## Change color palette
+#' varimp_plot(covid_model_list, palette = "magma")
 #' }
 #' @export
 varimp_plot <- function(model_list,
@@ -234,10 +253,13 @@ varimp_plot <- function(model_list,
                         plot_width = 7,
                         plot_height = 7) {
 
-  #Assign n_row and n_col
-  if(missing(n_row) & missing(n_col)){
-    n_row = length(model_list)
-    n_col = 1
+  #binding for global variable
+  Protein <- Importance <- NULL
+
+  # Assign n_row and n_col
+  if (missing(n_row) & missing(n_col)) {
+    n_row <- length(model_list)
+    n_col <- 1
   }
 
   # Calculate variable importance with VarImp for each ML algorithm-based
@@ -314,13 +336,12 @@ varimp_plot <- function(model_list,
             size = text_size * 0.8,
             face = "bold"
           ),
-
           panel.grid.major.x = element_line(
             size = 0.1,
             color = "grey80"
           )
         ) +
-          ggplot2::guides(fill = guide_colorbar(
+        ggplot2::guides(fill = guide_colorbar(
           title.position = "top",
         ))
     })
@@ -423,7 +444,7 @@ varimp_plot <- function(model_list,
 }
 # Model performance plot-------------------------------------------------------
 #' Model performance plot
-#' @description This function visualizes model performance
+#' @description This function generates plots to visualize model performance
 #'
 #'
 #' @author Chathurani Ranathunge
@@ -455,7 +476,7 @@ varimp_plot <- function(model_list,
 #' @param dpi Plot resolution. Default is \code{80}.
 #'
 #' @details \itemize{\item \code{performance_plot} uses resampling results from
-#' models included in the \code{model_list} to generate plots of model
+#' models included in the \code{model_list} to generate plots showing model
 #' performance.
 #' \item The default metrics used for classification based models are "Accuracy"
 #' and "Kappa."
@@ -467,21 +488,30 @@ varimp_plot <- function(model_list,
 #' @seealso
 #' \itemize{
 #' \item \code{train_models}
-#' \item\code{\link[caret: resample]{caret: resamples}}
+#' \item\code{\link[caret: resamples]{caret: resamples}}
 #' \item \code{\link[caret:train]{caret: train}}
-#' \item \code{\link[caret:trnControl]{caret: trnControl}}
+#' \item \code{\link[caret:trainControl]{caret: trainControl}}
 #' }
 #' @examples
 #' \dontrun{
 #'
-#' ## Train models using default settings
-#' model_list <- train_models(split_df)
+#' ## Create a model_df object
+#' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #'
-#' ## Generate box plots to visualize performance of different methods
-#' performance_plot(model_list)
+#' ## Split the data frame into training and test data sets
+#' covid_split_df <- split_data(covid_model_df)
+#'
+#' ## Fit models based on the default list of machine learning (ML) algorithms
+#' covid_model_list <- train_models(covid_split_df)
+#'
+#' ## Generate box plots to visualize performance of different ML algorithms
+#' performance_plot(covid_model_list)
 #'
 #' ## Generate dot plots
-#' performance_plot(model_list, type = "dot")
+#' performance_plot(covid_model_list, type = "dot")
+#'
+#' ## Change color palette
+#' performance_plot(covid_model_list, type = "dot", palette = "inferno")
 #' }
 #' @export
 performance_plot <- function(model_list,
@@ -495,6 +525,8 @@ performance_plot <- function(model_list,
                              plot_height = 7,
                              dpi = 80) {
 
+  #binding for global variable
+  method <- value <- NULL
 
   # Extract resample data from the model_list object
   resample_data <- resamples(model_list)
@@ -611,9 +643,8 @@ performance_plot <- function(model_list,
 
 # ROC plot--------------------------------------------------------------------
 #' ROC plot
-#' @description This function generates Receiver Operator Characteristic (ROC)
+#' @description This function generates Receiver Operating Characteristic (ROC)
 #' curves to evaluate models
-#'
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -661,18 +692,26 @@ performance_plot <- function(model_list,
 #' }
 #' @examples
 #' \dontrun{
+#' ## Create a model_df object
+#' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #'
-#' ## Test models
-#' model_probs <- test_models(
-#'   model_list = model_fit, split_df = split_df,
-#'   type = "prob"
-#' )
+#' ## Split the data frame into training and test data sets
+#' covid_split_df <- split_data(covid_model_df)
+#'
+#' ## Fit models using the default list of machine learning (ML) algorithms
+#' covid_model_list <- train_models(covid_split_df)
+#'
+#' # Test a list of models on a test data set and output class probabilities,
+#' covid_prob_list <- test_models(covid_model_list, covid_split_df, type = "prob")
+#'
+#' ## Plot ROC curves separately for each ML algorithm
+#' roc_plot(covid_prob_list, covid_split_df)
 #'
 #' ## Plot all ROC curves in one plot
-#' roc_plot(model_probs, multiple_plots = FALSE)
+#' roc_plot(covid_prob_list, covid_split_df, multiple_plots = FALSE)
 #'
-#' ## Plot ROC curves separately for each algorithm
-#' roc_plot(model_probs)
+#' ## Change color palette
+#' roc_plot(covid_prob_list, covid_split_df, palette = "plasma")
 #' }
 #' @export
 roc_plot <- function(probability_list,
@@ -687,6 +726,9 @@ roc_plot <- function(probability_list,
                      plot_width = 7,
                      plot_height = 7,
                      dpi = 80) {
+
+  #binding for global variable
+  method <- auc <- NULL
 
   # Generate ROC objects and add them to a list
   roc_list <- lapply(

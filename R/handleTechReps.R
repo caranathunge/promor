@@ -88,14 +88,14 @@ corr_plot <- function(raw_df,
 
   # split the dataframe by each sample and output a list of dataframes for
   # plotting. 'as.data.frame' forces even those with just one column or
-  #replicate into a dataframe
+  # replicate into a dataframe
   sub_df <- lapply(
     sample_name,
     function(y) as.data.frame(raw_df[, grepl(y, names(raw_df))])
   )
 
   # Only keep the samples with at least 2 replicates for plotting TR1 v TR2
-  if (rep1 == 3 || rep2 == 3) {
+  if (rep_1 == 3 || rep_2 == 3) {
     plot_data <- Filter(function(c) ncol(c) == 3, sub_df)
   } else {
     plot_data <- Filter(function(c) ncol(c) >= 2, sub_df)
@@ -108,7 +108,7 @@ corr_plot <- function(raw_df,
   plot_list <- lapply(seq_along(plot_data), function(t) {
     ggplot2::ggplot(
       plot_data[[t]],
-      ggplot2::aes(x = plot_data[[t]][, rep1], y = plot_data[[t]][, rep2])
+      ggplot2::aes(x = plot_data[[t]][, rep_1], y = plot_data[[t]][, rep_2])
     ) +
       ggplot2::geom_point(col = pal_col, size = text_size * 0.1) +
       ggplot2::geom_text(
@@ -136,12 +136,12 @@ corr_plot <- function(raw_df,
 
 
   if (save == TRUE) {
-    ggplot2::ggsave(paste0("TR", rep1, "vs", "TR", rep2, ".", file_type),
+    ggplot2::ggsave(paste0("TR", rep_1, "vs", "TR", rep_2, ".", file_type),
       marrangeGrob(
         grobs = plot_list,
         nrow = n_row,
         ncol = n_col,
-        top = paste0("TR", rep1, " vs ", "TR", rep2)
+        top = paste0("TR", rep_1, " vs ", "TR", rep_2)
       ),
       dpi = dpi
     )
@@ -183,7 +183,7 @@ corr_plot <- function(raw_df,
 #'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
 #'   tech_reps = TRUE
 #' )
-#' #Check the first few rows of the raw_df object
+#' # Check the first few rows of the raw_df object
 #' head(raw_df)
 #'
 #' ## Remove all technical replicates of "WT_4"

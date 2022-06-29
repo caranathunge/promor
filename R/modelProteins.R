@@ -16,15 +16,15 @@
 #' Choices are \code{"adjP"} (default) for adjusted p-value or \code{"P"}
 #' for p-value.
 #' @param sig_cutoff Cutoff value for p-values and adjusted p-values in
-#' differential expression. Default is 0.05.
+#' differential expression. Default is \code{0.05}.
 #' @param fc Minimum absolute log-fold change to use as threshold for
-#' differential expression. Default is 1.
+#' differential expression. Default is \code{1}.
 #' @param n_top The number of top hits from \code{find_dep} to be used in
-#' modeling. Default is 20.
+#' modeling. Default is \code{20}.
 #' @param find_highcorr Logical. If \code{TRUE} (default), finds highly
 #' correlated proteins.
 #' @param corr_cutoff A numeric value specifying the correlation cutoff.
-#' Default is 0.90.
+#' Default is \code{0.90}.
 #' @param save_corrmatrix Logical. If \code{TRUE}, saves a copy of the
 #' protein correlation matrix in a tab-delimited text file labeled
 #' "Protein_correlation.txt" in the working directory.
@@ -39,9 +39,9 @@
 #'  \item Note: Most models will benefit from reducing correlation between
 #'  proteins (predictors or features), therefore we recommend removing those
 #'  proteins at this stage to reduce pairwise-correlation.
-#'  \item If no proteins meet the significance threshold for differential
-#'  expression, you may adjust \code{sig}, \code{fc}, and \code{sig_cutoff}
-#'  accordingly to obtain a set of proteins for modeling.}
+#'  \item If no or few proteins meet the significance threshold for differential
+#'  expression, you may adjust \code{sig}, \code{fc}, and/or \code{sig_cutoff}
+#'  accordingly to obtain more proteins for modeling.}
 #'
 #' @return A \code{model_df} object, which is a data frame of protein
 #' intensities with proteins indicated by columns.
@@ -53,12 +53,17 @@
 #' \dontrun{
 #'
 #' ## Create a model_df object with default settings.
-#' model_df <- pre_process(fit_df, norm_df)
+#' covid_model_df1 <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
 #'
 #' ## Change the correlation cutoff.
-#' model_df <- pre_process(fit_df, norm_df, corr_cutoff = 0.95)
-#' }
+#' covid_model_df2 <- pre_process(covid_fit_df, covid_norm_df, corr_cutoff = 0.95)
 #'
+#' ## Change the significance criteria to include more proteins
+#' covid_model_df3 <- pre_process(covid_fit_df, covid_norm_df, sig = "P")
+#'
+#' ## Change the number of top differentially expressed proteins to include
+#' covid_model_df4 <- pre_process(covid_fit_df, covid_norm_df, sig = "P", n_top = 24)
+#' }
 #' @export
 pre_process <- function(fit_df,
                         norm_df,
@@ -70,6 +75,9 @@ pre_process <- function(fit_df,
                         corr_cutoff = 0.90,
                         save_corrmatrix = FALSE,
                         rem_highcorr = TRUE) {
+
+  #binding for global variable
+  logFC <- P.Value <- adj.P.Val <-  NULL
 
   # Extract the results from the differential expression analysis.
   exp_de <- limma::topTable(fit_df,
@@ -157,11 +165,11 @@ pre_process <- function(fit_df,
   if (find_highcorr == TRUE) {
     # Identify protein columns with high pairwise-correlation to remove
     highcor <- findCorrelation(cor_matrix, cutoff = corr_cutoff, names = TRUE)
-    if(length(highcor != 0)){
+    if (length(highcor != 0)) {
       message(
-      "Following protein(s) show high pariwise-correlation"
-    )
-    }else{
+        "Following protein(s) show high pariwise-correlation"
+      )
+    } else {
       message(
         "None of the proteins show high pair-wise correlation."
       )
@@ -170,17 +178,16 @@ pre_process <- function(fit_df,
 
     if (rem_highcorr == TRUE) {
       topint_trans_1 <- topint_trans[, !(colnames(topint_trans) %in% highcor)]
-      if(ncol(topint_trans_1) == ncol(topint_trans)){
+      if (ncol(topint_trans_1) == ncol(topint_trans)) {
         message("No highly correlated poteins to be removed.")
-      }else{
+      } else {
         message("Proteins with high pairwise-correlation have been removed.")
       }
-
-      } else {
+    } else {
       warning("Proteins with high pairwise-correlation have NOT been removed.",
         call. = FALSE
       )
-        topint_trans_1 <- topint_trans
+      topint_trans_1 <- topint_trans
     }
   } else {
     warning("Your data could have proteins with high pairwise-correlation.",
@@ -189,39 +196,47 @@ pre_process <- function(fit_df,
     topint_trans_1 <- topint_trans
   }
 
-  #Convert condition names to R compatible names
+  # Convert condition names to R compatible names
   topint_trans_1$condition <- make.names(topint_trans_1$condition)
 
-  #Convert condition to a factor (important for varimp calculations)
+  # Convert condition to a factor (important for varimp calculations)
   topint_trans_1$condition <- factor(topint_trans_1$condition)
   return(topint_trans_1)
 }
 
 
-# Remove user-specified predictors -------------------------------------------
-#' Remove user-specified proteins (predictors) from the data frame
+# Remove user-specified features -------------------------------------------
+#' Remove user-specified proteins (features) from a data frame
 #' @author Chathurani Ranathunge
-#' @description This function removes user-specified proteins from the
-#' data frame.
+#' @description This function removes user-specified proteins from a `model_df`
+#' object
 #'
 #' @param model_df A \code{model_df} object.
 #' @param rem_protein Name of the protein to remove.
 #'
 #' @details \itemize{\item After visualizing protein intensity variation
-#' among conditions with \code{predictor_plot}, you can choose to remove
-#' specific proteins (predictors) from the data frame before modeling if they
-#' do not show distinct patterns of variation among conditions. For
-#' example, these proteins could have overlapping density distributions.
+#' among conditions with \code{feature_plot} or after assessing the importance
+#' of each protein in models using \code{varimp_plot}, you can choose to remove
+#' specific proteins (features) from the data frame. \item For example, you can
+#' choose to remove a protein from the \code{model_df} object if the protein
+#' does not show distinct patterns of variation among conditions. This protein
+#' may show mostly overlapping distributions in the feature plots.
+#' \item Another incidence would be removing a protein that is very low in
+#' variable importance in the models built using \code{train_models}. You can
+#' visualize variable importance using \code{varimp_plot}.
 #' }
 #' @return A \code{model_df} object.
 #'
-#' @seealso \code{\link{predictor_plot}}, \code{\link{pre_process}}
+#' @seealso \code{\link{feature_plot}}, \code{\link{pre_process}}
 #'
 #' @examples
 #' \dontrun{
 #'
-#' ## Remove protein "A113403" from model_df data frame.
-#' model_df <- rem_feature(model_df, "A113403")
+## Create a model_df object with default settings.
+#' model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
+#'
+#' ## Remove sp|P22352|GPX3_HUMAN protein from the model_df object
+#' covid_model_df1 <- rem_feature(covid_model_df, rem_protein = "sp|P22352|GPX3_HUMAN")
 #' }
 #'
 #' @export
@@ -235,14 +250,14 @@ rem_feature <- function(model_df,
 # Split data frame -------------------------------------------------------------
 #' Split the data frame to create training and test data
 #' @description This function can be used to create balanced splits of the
-#' protein intensity data to create training and test data
+#' protein intensity data in a `model_df` object to create training and test data
 #'
 #' @author Chathurani Ranathunge
 #'
 #' @import caret
 #'
 #' @param model_df A \code{model_df} object from performing \code{pre_process}.
-#' @param train_size The size of the training data set as a percentage of the
+#' @param train_size The size of the training data set as a proportion of the
 #' complete data set. Default is 0.8.
 #'
 #' @details This function splits the \code{model_df} object in to training and
@@ -257,15 +272,21 @@ rem_feature <- function(model_df,
 #' @examples
 #' \dontrun{
 #'
+#' ## Create a model_df object
+#' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
+#'
+#' ## Split the data frame into training and test data sets using default settings
+#' covid_split_df1 <- split_data(covid_model_df)
+#'
 #' ## Split the data frame into training and test data sets with 70% of the
 #' ## data in training and 30% in test data sets
-#' split_df <- split_data(model - df, train_size = 0.7)
+#' covid_split_df2 <- split_data(covid_model_df, train_size = 0.7)
 #'
 #' ## Access training data set
-#' split_df$training
+#' covid_split_df1$training
 #'
 #' ## Access test data set
-#' split_df$test
+#' covid_split_df1$test
 #' }
 #'
 #' @export
@@ -298,7 +319,7 @@ split_data <- function(model_df,
 }
 
 
-# Train the model -------------------------------------------------------------
+# Train models -------------------------------------------------------------
 #' Train machine learning models on training data
 #' @description This function can be used to train models on protein intensity
 #' data using different machine learning algorithms
@@ -306,21 +327,25 @@ split_data <- function(model_df,
 #' @author Chathurani Ranathunge
 #'
 #' @import caret
+#' @importFrom kernlab sigest
 #'
 #' @param split_df A \code{split_df} object from performing \code{split_data}.
-#' @param resample_method The resampling method to use. Default is "repeatedcv"
-#' for repeated cross validation.
+#' @param resample_method The resampling method to use. Default is
+#' \code{"repeatedcv"} for repeated cross validation.
 #' See \code{\link[caret:trainControl]{trainControl}} for
 #' details on other available methods.
-#' @param resample_iterations Number of resampling iterations. Default is 10.
+#' @param resample_iterations Number of resampling iterations. Default is
+#' \code{10}.
 #' @param num_repeats The number of complete sets of folds to compute (For
 #' \code{resampling method = "repeatedcv"} only).
 #' @param algorithm_list A list of classification or regression algorithms to
 #' use.
 #' A full list of machine learning algorithms available through
-#' the \code{caret} can be found here:
+#' the \code{caret} package can be found here:
 #' \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
 #' default options.
+#' @param ... Additional arguments to be passed on to
+#' \code{\link[caret:train]{train}} function in the \code{caret} package.
 #'
 #' @details \itemize{\item \code{train_models} function can be used to first
 #' define the control parameters to be used in training models, calculate
@@ -345,18 +370,25 @@ split_data <- function(model_df,
 #' }
 #' @examples
 #' \dontrun{
-#' # Fit models based on the default list of ML algorithms.
-#' model_fit <- train_models(split_df = split_df)
 #'
-#' # Fit models using a user-specified list of ML algorithms.
-#' model_fit <- train_models(
-#'   split_df = split_df,
-#'   algorithm_list = c("svmRadial", "rpart")
+#' ## Create a model_df object
+#' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
+#'
+#' ## Split the data frame into training and test data sets
+#' covid_split_df <- split_data(covid_model_df)
+#'
+#' ## Fit models based on the default list of machine learning (ML) algorithms
+#' covid_model_list1 <- train_models(split_df = covid_split_df)
+#'
+#' ## Fit models using a user-specified list of ML algorithms.
+#' covid_model_list2 <- train_models(
+#'   covid_split_df,
+#'   algorithm_list = c("svmRadial", "glmboost")
 #' )
 #'
-#' # Change resampling method and resampling iterations.
-#' model_fit <- train_models(
-#'   split_df = split_df,
+#' ## Change resampling method and resampling iterations.
+#' covid_model_list3 <- train_models(
+#'   covid_split_df,
 #'   resample_method = "cv",
 #'   resample_iterations = 50
 #' )
@@ -422,8 +454,8 @@ train_models <- function(split_df,
 
 # Test the models -------------------------------------------------------------
 #' Test machine learning models on test data
-#' @description This function can be used to test models generated using
-#' different machine learning algorithms on a test data set
+#' @description This function can be used to predict test data using models
+#' generated by different machine learning algorithms
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -447,13 +479,13 @@ train_models <- function(split_df,
 #' models obtained from \code{train_models} to predict a given test data set.
 #' \item Setting \code{type = "raw"} is required to obtain confusion matrices.
 #' \item Setting \code{type = "prob"} (default) will output a list of
-#' probabilities that can be used to generate ROC curves with \code{ROC_plot}.}
+#' probabilities that can be used to generate ROC curves using \code{roc_plot}.}
 #'
 #' @return
-#' \itemize{\item \code{probability.list}: If \code{type = "prob"}, a list of
+#' \itemize{\item \code{probability_list}: If \code{type = "prob"}, a list of
 #' data frames containing class probabilities for each method in the
 #' \code{model_list} will be returned.
-#' \item \code{prediction.list}: If \code{type = "raw"}, a list of factors
+#' \item \code{prediction_list}: If \code{type = "raw"}, a list of factors
 #' containing class predictions for each method will be returned.}
 #'
 #' @seealso
@@ -465,13 +497,22 @@ train_models <- function(split_df,
 #' }
 #' @examples
 #' \dontrun{
+#' ## Create a model_df object
+#' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
+#'
+#' ## Split the data frame into training and test data sets
+#' covid_split_df <- split_data(covid_model_df)
+#'
+#' ## Fit models using the default list of machine learning (ML) algorithms
+#' covid_model_list <- train_models(covid_split_df)
+#'
 #' # Test a list of models on a test data set and output class probabilities,
-#' model_prob <- test_models(model_list = model_fit, split_df = split_df)
+#' covid_prob_list <- test_models(model_list = covid_model_list, split_df = covid_split_df)
 #'
 #' # Save confusion matrices and output class predictions
-#' model_pred <- test_models(
-#'   model_list = model_fit,
-#'   split_df = split_df,
+#' covid_pred_list <- test_models(
+#'   model_list = covid_model_list,
+#'   split_df = covid_split_df,
 #'   type = "raw",
 #'   save_confusionmatrix = TRUE
 #' )
@@ -504,7 +545,7 @@ test_models <- function(model_list,
       )
     }
   )
-message(paste0("\n","Done!"))
+  message(paste0("\n", "Done!"))
 
   # Get confusion matrices and associated statistics
   if (type == "raw") {
