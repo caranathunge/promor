@@ -179,7 +179,7 @@ pre_process <- function(fit_df,
     if (rem_highcorr == TRUE) {
       topint_trans_1 <- topint_trans[, !(colnames(topint_trans) %in% highcor)]
       if (ncol(topint_trans_1) == ncol(topint_trans)) {
-        message("No highly correlated poteins to be removed.")
+        message("No highly correlated proteins to be removed.")
       } else {
         message("Proteins with high pairwise-correlation have been removed.")
       }
