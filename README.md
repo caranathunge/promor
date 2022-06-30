@@ -13,6 +13,8 @@
 ### A comprehensive R package for proteomics data analysis and modeling
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 -   `promor` is a user-friendly, comprehensive R package that combines
