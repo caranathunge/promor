@@ -67,16 +67,15 @@ feature_plot <- function(model_df,
                          plot_width = 7,
                          plot_height = 7) {
 
-  #binding for global variable
-  Intensity <- Condition <- NULL
+
 
   # Create plot data
   modeldf_melted <- reshape2::melt(model_df)
-  colnames(modeldf_melted) <- c("Condition", "Protein", "Intensity")
+  colnames(modeldf_melted) <- c("condition", "protein", "intensity")
 
   # n_row and n_col if not defined
   if (missing(n_row) & missing(n_col)) {
-    n_row <- length(unique(modeldf_melted$Protein))
+    n_row <- length(unique(modeldf_melted$protein))
     n_col <- 1
   }
 
@@ -84,8 +83,8 @@ feature_plot <- function(model_df,
   # Make density plots
   if (type == "density") {
     pred_plot <- ggplot2::ggplot(modeldf_melted, aes(
-      x = Intensity,
-      color = Condition
+      x = intensity,
+      color = condition
     )) +
       ggplot2::geom_density(
         alpha = 0.25,
@@ -97,7 +96,7 @@ feature_plot <- function(model_df,
         begin = 0.3,
         end = 0.7
       ) +
-      ggplot2::facet_wrap(~Protein,
+      ggplot2::facet_wrap(~protein,
         scale = "free",
         nrow = n_row,
         ncol = n_col
@@ -118,9 +117,9 @@ feature_plot <- function(model_df,
     pred_plot <- ggplot2::ggplot(
       modeldf_melted,
       ggplot2::aes(
-        x = Condition,
-        y = Intensity,
-        col = Condition
+        x = condition,
+        y = intensity,
+        col = condition
       )
     ) +
       geom_boxplot(
@@ -137,7 +136,7 @@ feature_plot <- function(model_df,
         begin = 0.3,
         end = 0.7
       ) +
-      ggplot2::facet_wrap(~Protein,
+      ggplot2::facet_wrap(~protein,
         scales = "free",
         nrow = n_row,
         ncol = n_col
@@ -254,7 +253,7 @@ varimp_plot <- function(model_list,
                         plot_height = 7) {
 
   #binding for global variable
-  Protein <- Importance <- NULL
+  protein <- Importance <- NULL
 
   # Assign n_row and n_col
   if (missing(n_row) & missing(n_col)) {
@@ -288,8 +287,8 @@ varimp_plot <- function(model_list,
       x <- x$importance[1]
       x$protein <- rownames(x)
       rownames(x) <- NULL
-      colnames(x) <- c("Importance", "Protein")
-      x$Protein <- gsub("`|\\\\", "", x$Protein)
+      colnames(x) <- c("Importance", "protein")
+      x$protein <- gsub("`|\\\\", "", x$protein)
       x$Importance[is.nan(x$Importance)] <- NA
       x <- x[rowSums(is.na(x)) == 0, ]
       x
@@ -307,7 +306,7 @@ varimp_plot <- function(model_list,
       ggplot2::ggplot(
         data = t,
         aes(
-          x = reorder(Protein, Importance),
+          x = reorder(protein, Importance),
           y = Importance,
           fill = Importance
         )
@@ -356,13 +355,13 @@ varimp_plot <- function(model_list,
       ggplot2::ggplot(
         data = t,
         aes(
-          x = reorder(Protein, Importance),
+          x = reorder(protein, Importance),
           y = Importance,
           color = Importance
         )
       ) +
         ggplot2::geom_segment(aes(
-          xend = Protein,
+          xend = protein,
           y = 0,
           yend = Importance
         ),
