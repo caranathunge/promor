@@ -15,12 +15,19 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-*promor* is an R package that combines proteomics data analysis with
-machine learning-based modeling. Input files for *promor* are the
-*proteinGroups.txt* file produced by *MaxQuant* and an *expDesign.txt*
-file, which contains the experimental design of your proteomics data.  
-*promor* provides a wealth of data analysis and visualization tools at
-the protein level to analyze label-free proteomics data.
+-   `promor` is a user-friendly, comprehensive R package that combines
+    proteomics data analysis with machine learning-based modeling.
+-   `promor` streamlines differential expression analysis of
+    **label-free quantification (LFQ)** proteomics data and building
+    predictive models with top protein candidates.
+-   Input files for `promor` are the
+    [**proteinGroups.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt)
+    file produced by **MaxQuant** and an
+    [**expDesign.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt)
+    file, which contains the experimental design of your proteomics
+    data.
+-   `promor` provides a wealth of data analysis and visualization tools
+    at the protein level to analyze label-free proteomics data.
 
 ## Installation
 
@@ -28,21 +35,12 @@ You can install the development version of promor from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
+# install devtools, if you haven't already:
+install.packages("devtools")
+
+# install promor from github
 devtools::install_github("caranathunge/promor")
 ```
-
-Alternatively, *promor* can be installed directly from a source. First,
-you need to download and save the package files in a local directory.
-Then you may install *promor* as follows:
-
-``` r
-install.packages("path/to/promor", repos = NULL, type = "source", dependencies = TRUE)
-```
-
-Note: Full path and file name should be provided as “path/to/promor.”
-For example, if promor is saved on your C drive, it could be :
-`"C://promor_0.1.0.tar.gz"`
 
 ## Proteomics data analysis with promor
 
@@ -54,19 +52,22 @@ with promor.*
 
 ### Example
 
-Here is a minimal working example that shows how to identify
-differentially expressed proteins between two conditions in five simple
-steps using *promor*. We use a previously published data set from [Cox
-et al. (2014)](https://europepmc.org/article/MED/24942700#id609082).
+Here is a minimal working example showing how to identify differentially
+expressed proteins between two conditions using `promor` in five simple
+steps. We use a previously published data set from [Cox et
+al. (2014)](https://europepmc.org/article/MED/24942700#id609082) (PRIDE
+ID: PXD000279).
 
 ``` r
 #Load promor
 library(promor)
-#Create a raw_df object with the files provided in extdata folder.
-raw <- create_df(prot_groups = system.file("extdata", "ecoli_proteinGroups.txt", 
-                                           package = "promor"), 
-                 exp_design = system.file("extdata", "expDesign.txt", 
-                                          package = "promor"))
+#Create a raw_df object with the files provided in this github account.
+raw <- create_df(
+prot_groups = 
+  "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
+exp_design = 
+  "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt"
+)
 #Filter out proteins with high levels of missing data in each condition
 raw_filtered <- filterbygroup_na(raw)
 #Impute missing data and create an imp_df object.
@@ -91,16 +92,16 @@ Lets take a look at the results using a volcano plot.
 
 ## Modeling with promor
 
-![promor flowchart-modeling by
-caranathunge](./man/figures/promor_ProtModelingFlowChart_small.png)
-{width=100%} *Figure 2. A schematic diagram of suggested workflows for
-building predictive models with promor.*
+<img src="./man/figures/promor_ProtModelingFlowChart_small.png"
+style="width:100.0%" alt="promor flowchart-modeling by caranathunge" />
+*Figure 2. A schematic diagram of suggested workflows for building
+predictive models with promor.*
 
 ### Example
 
 The following minimal working example shows you how to use your results
 from differential expression analysis to build machine learning-based
-predictive models using *promor*.
+predictive models using `promor`.
 
 We use a previously published data set from [Suvarna et
 al. (2021)](https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3)
@@ -139,7 +140,7 @@ roc_plot(probability_list = covid_prob_list,
 You can choose a tutorial from the list below that best fits your
 experiment and the structure of your proteomics data.
 
-1.  This README file can be accessed from inside *promor* as follows,
+1.  This README file can be accessed from RStudio as follows,
 
 ``` r
 vignette("intro_to_promor", package = "promor")
@@ -148,7 +149,7 @@ vignette("intro_to_promor", package = "promor")
 2.  If your data does NOT contain technical replicates:
 
 ``` r
-vignette("promor_with_notechreps", package = "promor")
+vignette("promor_no_techreps", package = "promor")
 ```
 
 3.  If your data contains technical replicates:

@@ -3,7 +3,7 @@ title: 'Proteomics data analysis with promor: technical replicates'
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  html_document:
+  html_vignette:
     df_print: paged
   rmarkdown::html_vignette:
     number_sections: yes

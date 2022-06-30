@@ -5,7 +5,7 @@ package: promor
 output:
   rmarkdown::html_vignette:
     number_sections: yes
-  html_document:
+  html_vignette:
     toc: true
     df_print: paged
 vignette: >
@@ -77,10 +77,9 @@ Let's first create a *model_df* object with the example `fit_df` and `norm_df` o
 # Load promor
 library(promor)
 
-#Create a model_df object with the top 10 differentially expressed proteins.
+#Create a model_df object with the top differentially expressed proteins.
 covid_model_df <- pre_process(fit_df = covid_fit_df,
-                        norm_df = covid_norm_df,
-                        n_top = 10)
+                        norm_df = covid_norm_df)
 
 #Let's take a look at the model_df object
 head(covid_model_df)
@@ -99,7 +98,7 @@ At this stage, we can visualize the feature variation among classes using box pl
 ```{r featureplot, dpi = 300, out.width = '90%', fig.asp=2,  fig.align ='center', warning = FALSE, message = F}
 #Box plots (default) to visualize feature variation
 feature_plot(model_df = covid_model_df, 
-             n_row = 5, 
+             n_row = 4, 
              n_col = 2)
 ```
 
@@ -109,7 +108,7 @@ feature_plot(model_df = covid_model_df,
 #Alternatively, make density plots
 feature_plot(model_df = covid_model_df, 
              type = "density",
-             n_row = 5,
+             n_row = 4,
              n_col = 2)
 ```
 
@@ -151,15 +150,15 @@ We will be using some functions from the `caret` package to train models on our 
 >     + `"xgbLinear"` - An extreme gradient boosting algorithm
 
 
-```{r traindata, warning = FALSE, message = F}
+```{r traindata, warning = FALSE, message = F, eval = FALSE}
 #Create a model_list object by training models on the training data set using the default list of algorithms.
 covid_model_list <- train_models(split_df = covid_split_df)
 ```
 
-```{r customalgo, warning = FALSE, message = F, eval=FALSE}
+```{r customalgo, warning = FALSE, message = F, eval=TRUE}
 #Alternatively, you may use a custom list of algorithms.
-covid_model_list_1 <- train_models(split_df = covid_split_df, 
-                                   algorithm_list = c("glmnet", "svmRadial"))
+covid_model_list <- train_models(split_df = covid_split_df, 
+                                   algorithm_list = c("glm", "rf"))
 ```
 
 
