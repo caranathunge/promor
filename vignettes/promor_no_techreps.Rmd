@@ -89,17 +89,25 @@ dim(raw_filtered)
 
 ## 3. Visualize missing data
 Now, we are going to see how missing data is distributed in the data. This will help us make an informed decision on how to impute missing data in the next step. 
+
 ```{r heatmapna, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
 #Visualize missing data in a subset of proteins. 
-#heatmap_na(raw_filtered, protein_range = 30:70, palette = "mako")
+heatmap_na(raw_filtered, palette = "mako")
 ```
 
 Note that your proteins are alphabetically ordered by default, but if you would
 rather order them by the mean intensity to check if proteins with low intensities are more likely to have missing data, you can do the following:
 
-```{r heatmapna_1, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center' }
+```{r heatmapna2, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center' }
 # Order proteins by mean intensity.
-#heatmap_na(raw_filtered, reorder_y = TRUE, y_fun = mean, palette = "mako")
+heatmap_na(raw_filtered, reorder_y = TRUE, palette = "mako")
+```
+
+For larger data sets, you can choose to visualize subsets of the data
+
+```{r heatmapna1, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
+#Visualize missing data in a subset of proteins. 
+heatmap_na(raw_filtered, protein_range = 30:70, palette = "mako")
 ```
 
 ## 4. Impute missing data

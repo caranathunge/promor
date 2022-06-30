@@ -3,14 +3,14 @@ title: 'Proteomics data analysis with promor: technical replicates'
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  html_vignette:
+  html_document:
     df_print: paged
+    toc: true
   rmarkdown::html_vignette:
     number_sections: yes
-  pdf_document: default
 vignette: >
   %\VignetteEncoding{UTF-8} 
-  %\VignetteIndexEntry{Proteomics data analysis with promor:technical replicates} 
+  %\VignetteIndexEntry{Proteomics data analysis with promor: technical replicates} 
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -20,9 +20,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-This tutorial shows how you can use *promor* to analyse label-free quantification (LFQ) proteomics data that **contains technical replicates**. 
+This tutorial shows how you can use `promor` to analyse label-free quantification (LFQ) proteomics data that **contains technical replicates**. 
 
-We recommend that you first go through the simple working example provided in **Introduction to promor** to get acquainted with *promor*'s functionality.
+We recommend that you first go through the simple working example provided in **Introduction to promor** to get acquainted with `promor`'s functionality.
 ```{r, eval=FALSE}
 vignette("intro_to_promor")
 ```
@@ -102,7 +102,7 @@ Now, we are ready to calculate average intensity across technical replicates for
 ```{r avertechreps, warning = FALSE}
 raw_ave <- aver_techreps(raw)
 
-# A quick check on the dimensions of the data frame show that the number of columns have reduced from 18 to 6 as we averaged the tech.replicates.
+# A quick check on the dimensions of the data frame show that the number of columns is reduced from 18 to 6 as we averaged the tech.replicates.
 dim(raw_ave)
 ```
 ## 4. Filter proteins by groupwise missing data
@@ -110,13 +110,28 @@ Next, we will remove proteins if they have more than 0.4% (default is 0.33%) mis
 ```{r filterbygroupna, warning = FALSE}
 #Filter out proteins with high levels of missing data in each condition
 raw_filtered <- filterbygroup_na(raw_ave, set_na = 0.40)
-# We can check the dimensions of the new data frame. Note that the number of rows have changed.
+# We can check the dimensions of the new data frame. Note that the number of rows has changed.
 dim(raw_filtered)
 ```
 ## 5. Visualize missing data
-Now, we are going to see how missing data is distributed in the data. Because our data object has hundreds of proteins, we will limit the heatmap to 40 proteins for ease of visualization. You can choose to visualize the full data set if you want, but it will be a very large heatmap.
+Now, we are going to see how missing data is distributed in the data. 
 
-```{r heatmapna, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
+```{r heatmapna1, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
+#Visualize missing data in a subset of proteins. 
+heatmap_na(raw_filtered)
+```
+
+We can reorder proteins by their mean intensity to see if proteins with low intensity show higher levels of missing data
+
+```{r heatmapna2, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
+#Visualize missing data in a subset of proteins. 
+heatmap_na(raw_filtered, reorder_y = TRUE)
+```
+
+
+For larger data sets, you can choose to visualize subsets of the data.
+
+```{r heatmapna3, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
 #Visualize missing data in a subset of proteins. 
 heatmap_na(raw_filtered, protein_range = 1:40)
 ```
