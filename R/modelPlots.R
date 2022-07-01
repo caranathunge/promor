@@ -69,6 +69,9 @@ feature_plot <- function(model_df,
 
 
 
+  #global variables
+  intensity <- condition <- NULL
+
   # Create plot data
   modeldf_melted <- reshape2::melt(model_df)
   colnames(modeldf_melted) <- c("condition", "protein", "intensity")
@@ -210,7 +213,7 @@ feature_plot <- function(model_df,
 #' @seealso
 #' \itemize{
 #' \item \code{train_models}, \code{rem_feature}
-#' \item \code{\link[caret:varImp]{caret: varImp}}
+#' \item \code{\link[caret:varImp]{varImp}}
 #' }
 #'
 #' @examples
@@ -480,16 +483,16 @@ varimp_plot <- function(model_list,
 #' \item The default metrics used for classification based models are "Accuracy"
 #' and "Kappa."
 #' \item These metric types can be changed by providing additional arguments to
-#' the \code{train_models} function. See \code{\link[caret: train]{train}} and
-#' \code{\link[caret: trnControl]{trnControl}} for more information.}
+#' the \code{train_models} function. See \code{\link[caret:train]{train}} and
+#' \code{\link[caret:trainControl]{trainControl}} for more information.}
 #'
 #' @return A \code{ggplot2} object.
 #' @seealso
 #' \itemize{
 #' \item \code{train_models}
-#' \item\code{\link[caret: resamples]{caret: resamples}}
-#' \item \code{\link[caret:train]{caret: train}}
-#' \item \code{\link[caret:trainControl]{caret: trainControl}}
+#' \item\code{\link[caret:resamples]{resamples}}
+#' \item \code{\link[caret:train]{train}}
+#' \item \code{\link[caret:trainControl]{trainControl}}
 #' }
 #' @examples
 #' \dontrun{
@@ -658,7 +661,7 @@ performance_plot <- function(model_list,
 #' \code{test_models} with \code{type = "prob"}.
 #' @param split_df A \code{split_df} object from performing \code{split_data}
 #' @param ... Additional arguments to be passed on to
-#' \code{\link[pROC: roc]{roc}}.
+#' \code{\link[pROC:roc]{roc}}.
 #' @param multiple_plots Logical. If \code{FALSE} plots all ROC curves
 #' representing algorithms included in the \code{probability_list} in a single
 #' plot.
@@ -687,7 +690,7 @@ performance_plot <- function(model_list,
 #' @seealso
 #' \itemize{
 #' \item \code{test_models}
-#' \item\code{\link[pROC: roc]{pROC: roc}}
+#' \item\code{\link[pROC:roc]{roc}}
 #' }
 #' @examples
 #' \dontrun{

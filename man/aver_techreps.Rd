@@ -26,9 +26,9 @@ follow the "Group_UniqueSampleID_TechnicalReplicate" notation. (Use
 
 ## Use a data set containing technical replicates to create a raw_df object
 raw_df <- create_df(
-  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt",
-  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
-  tech_reps = TRUE
+prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
+exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
+tech_reps = TRUE
 )
 
 # Compute average intensities across technical replicates.

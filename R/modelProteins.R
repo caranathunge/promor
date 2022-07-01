@@ -365,8 +365,8 @@ split_data <- function(model_df,
 #' @seealso
 #' \itemize{
 #' \item \code{pre_process}
-#' \item \code{\link[caret:trainControl]{caret: trainControl}}
-#' \item \code{\link[caret:train]{caret: train}}
+#' \item \code{\link[caret:trainControl]{trainControl}}
+#' \item \code{\link[caret:train]{train}}
 #' }
 #' @examples
 #' \dontrun{
@@ -492,8 +492,8 @@ train_models <- function(split_df,
 #' \itemize{
 #' \item \code{split_df}
 #' \item \code{train_models}
-#' \item \code{\link[stats:predict]{stats: predict}}
-#' \item \code{\link[caret:confusionMatrix]{caret: confusionMatrix}}
+#' \item \code{\link[stats:predict]{predict}}
+#' \item \code{\link[caret:confusionMatrix]{confusionMatrix}}
 #' }
 #' @examples
 #' \dontrun{
