@@ -3,7 +3,7 @@ title: "Modeling with promor"
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  html_document:
+  pdf_document:
      df_print: paged
      toc: true
   rmarkdown::html_vignette:

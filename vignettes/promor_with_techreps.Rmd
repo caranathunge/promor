@@ -3,7 +3,8 @@ title: 'Proteomics data analysis with promor: technical replicates'
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  html_document:
+  pdf_document:
+    latex_engine: xelatex
     df_print: paged
     toc: true
   rmarkdown::html_vignette:
@@ -54,7 +55,7 @@ To run *promor*, you need:
 # Load promor
 library(promor)
 # Let's load the expDesign.txt file
-exp_design <- read.csv("https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt", sep = "\t")
+exp_design <- read.csv("https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt", sep = "\t")
 # Take a peek inside the file
 head(exp_design, n = 12)
 ```
@@ -70,8 +71,9 @@ head(exp_design, n = 12)
 Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech_reps == TRUE`.
 ```{r createdf, warning=FALSE}
 #Create a raw_df object with default settings.
-raw <- create_df(prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_proteinGroups.txt", 
-                 exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD001584_expDesign.txt",
+raw <- create_df(
+prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
+exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
                  tech_reps = TRUE )
 # We can quickly check how the data frame looks like
 head(raw)
@@ -80,15 +82,15 @@ If you ran `create_df` with default settings, now your *raw_df* object contains 
 
 ## 2. Correlation plots: technical replicates
 Typically, technical replicates for each sample should show strong correlation. At this stage, we can quickly check if this is the case in our experiment. 
-```{r corrplot, fig.align = 'center', fig.height = 7, warning = FALSE, dpi = 300}
+```{r corrplot, fig.align = 'center', fig.height = 7, warning = FALSE}
 # Let's first check the correlation between tech.replicates 1 and 2
 corr_plot(raw, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, text_size = 12)
 
 ```
 Similarly, we can visualize the correlation between technical replicates 1 and 3.
-```{r corrplot1, warning = FALSE, fig.align = 'center', fig.height = 7, dpi = 300, fig.height = 8}
+```{r corrplot1, fig.height = 7, warning = FALSE, fig.align = 'center'}
 # Correlation between tech.replicates 1 and 3.
-corr_plot(raw, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, text_size = 12)
+corr_plot(raw, rep_1 = 1, rep_2 = 3, n_row = 3, n_col = 2, text_size = 12)
 ```
 You can repeat the analysis for technical replicates 2 and 3 in the same manner.\
 
@@ -116,14 +118,14 @@ dim(raw_filtered)
 ## 5. Visualize missing data
 Now, we are going to see how missing data is distributed in the data. 
 
-```{r heatmapna1, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
+```{r heatmapna1, warning = FALSE, results = 'hide', out.width='50%', fig.align = 'center'}
 #Visualize missing data in a subset of proteins. 
 heatmap_na(raw_filtered)
 ```
 
 We can reorder proteins by their mean intensity to see if proteins with low intensity show higher levels of missing data
 
-```{r heatmapna2, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
+```{r heatmapna2, warning = FALSE, results = 'hide', out.width='50%', fig.align = 'center'}
 #Visualize missing data in a subset of proteins. 
 heatmap_na(raw_filtered, reorder_y = TRUE)
 ```
@@ -131,7 +133,7 @@ heatmap_na(raw_filtered, reorder_y = TRUE)
 
 For larger data sets, you can choose to visualize subsets of the data.
 
-```{r heatmapna3, warning = FALSE, results = 'hide', fig.height=7, fig.align = 'center'}
+```{r heatmapna3, warning = FALSE, results = 'hide', out.width='50%', fig.align = 'center'}
 #Visualize missing data in a subset of proteins. 
 heatmap_na(raw_filtered, protein_range = 1:40)
 ```
@@ -168,7 +170,7 @@ Compared to `minProb`, `SVD` seems to have introduced fewer low intensity values
 
 Additionally, we can also visualize the imputed data of all six samples with a global density plot.
 
-```{r imputeplotglobal, fig.align='center', warning = FALSE, dpi= 300, results='hide'}
+```{r imputeplotglobal, fig.align='center', warning = FALSE, out.width='50%', results='hide'}
 # Visualize the imputed data with a global density plot.
 impute_plot(original = raw_filtered, imputed = imp_df_svd, global = TRUE)
 ```
@@ -183,7 +185,7 @@ norm_df <- normalize_data(imp_df_svd)
 
 ## 9. Visualize normalized data
 Let's check if our data set was successfully normalized with a density plot.
-```{r normplot, warning = FALSE, results = 'hide', fig.align = 'center'}
+```{r normplot, warning = FALSE, results = 'hide', fig.align = 'center', out.width='60%'}
 norm_plot(original = imp_df_svd, normalized = norm_df, type = "density")
 ```
 
@@ -203,7 +205,7 @@ fit_df <- find_dep(norm_df, save_tophits = TRUE, n_top = 10)
 Let's visualize the results from **Step 10** using a volcano plot.
 
 
-```{r volcanoplot, warning = FALSE, results ='hide', fig.align = 'center'}
+```{r volcanoplot, warning = FALSE, results ='hide', fig.align = 'center', out.width='60%',}
 volcano_plot(fit_df)
 ```
 
