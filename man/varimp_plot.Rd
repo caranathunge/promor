@@ -100,7 +100,7 @@ varimp_plot(covid_model_list, palette = "magma")
 \seealso{
 \itemize{
 \item \code{train_models}, \code{rem_feature}
-\item \code{\link[caret:varImp]{caret: varImp}}
+\item \code{\link[caret:varImp]{varImp}}
 }
 }
 \author{

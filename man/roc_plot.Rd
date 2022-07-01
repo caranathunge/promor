@@ -26,7 +26,7 @@ roc_plot(
 \item{split_df}{A \code{split_df} object from performing \code{split_data}}
 
 \item{...}{Additional arguments to be passed on to
-\code{\link[pROC: roc]{roc}}.}
+\code{\link[pROC:roc]{roc}}.}
 
 \item{multiple_plots}{Logical. If \code{FALSE} plots all ROC curves
 representing algorithms included in the \code{probability_list} in a single
@@ -95,7 +95,7 @@ roc_plot(covid_prob_list, covid_split_df, palette = "plasma")
 \seealso{
 \itemize{
 \item \code{test_models}
-\item\code{\link[pROC: roc]{pROC: roc}}
+\item\code{\link[pROC:roc]{roc}}
 }
 }
 \author{

@@ -87,8 +87,8 @@ covid_model_list3 <- train_models(
 \seealso{
 \itemize{
 \item \code{pre_process}
-\item \code{\link[caret:trainControl]{caret: trainControl}}
-\item \code{\link[caret:train]{caret: train}}
+\item \code{\link[caret:trainControl]{trainControl}}
+\item \code{\link[caret:train]{train}}
 }
 }
 \author{

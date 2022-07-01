@@ -60,8 +60,8 @@ performance.
 \item The default metrics used for classification based models are "Accuracy"
 and "Kappa."
 \item These metric types can be changed by providing additional arguments to
-the \code{train_models} function. See \code{\link[caret: train]{train}} and
-\code{\link[caret: trnControl]{trnControl}} for more information.}
+the \code{train_models} function. See \code{\link[caret:train]{train}} and
+\code{\link[caret:trainControl]{trainControl}} for more information.}
 }
 \examples{
 \dontrun{
@@ -88,9 +88,9 @@ performance_plot(covid_model_list, type = "dot", palette = "inferno")
 \seealso{
 \itemize{
 \item \code{train_models}
-\item\code{\link[caret: resamples]{caret: resamples}}
-\item \code{\link[caret:train]{caret: train}}
-\item \code{\link[caret:trainControl]{caret: trainControl}}
+\item\code{\link[caret:resamples]{resamples}}
+\item \code{\link[caret:train]{train}}
+\item \code{\link[caret:trainControl]{trainControl}}
 }
 }
 \author{

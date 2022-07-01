@@ -74,8 +74,8 @@ covid_pred_list <- test_models(
 \itemize{
 \item \code{split_df}
 \item \code{train_models}
-\item \code{\link[stats:predict]{stats: predict}}
-\item \code{\link[caret:confusionMatrix]{caret: confusionMatrix}}
+\item \code{\link[stats:predict]{predict}}
+\item \code{\link[caret:confusionMatrix]{confusionMatrix}}
 }
 }
 \author{
