@@ -23,9 +23,9 @@
     **label-free quantification (LFQ)** proteomics data and building
     predictive models with top protein candidates.
 -   Input files for `promor` are the
-    [**proteinGroups.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt)
+    [**proteinGroups.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
     file produced by **MaxQuant** and an
-    [**expDesign.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt)
+    [**expDesign.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt)
     file, which contains the experimental design of your proteomics
     data.
 -   `promor` provides a wealth of data analysis and visualization tools
@@ -65,10 +65,8 @@ ID: PXD000279).
 library(promor)
 #Create a raw_df object with the files provided in this github account.
 raw <- create_df(
-prot_groups = 
-  "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
-exp_design = 
-  "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt"
+prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 )
 #Filter out proteins with high levels of missing data in each condition
 raw_filtered <- filterbygroup_na(raw)
