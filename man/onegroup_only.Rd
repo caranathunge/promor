@@ -41,8 +41,8 @@ completely absent or not expressed in \code{abs_group}.}
 
 # Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
-  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
-  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 )
 
 ## Save a list of proteins only expressed in group L, but absent in group H.

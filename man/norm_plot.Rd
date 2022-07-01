@@ -69,8 +69,8 @@ normalization on the protein intensity data.
 \dontrun{
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
-  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
-  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 )
 
 ## Impute missing values in the data frame using the default minProb
