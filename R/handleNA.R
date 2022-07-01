@@ -53,8 +53,8 @@
 #' \dontrun{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
-#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Missing data heatmap with default settings.
@@ -85,8 +85,8 @@
 #'
 #' @export
 heatmap_na <- function(raw_df,
-                       protein_range = "ALL",
-                       sample_range = "ALL",
+                       protein_range,
+                       sample_range,
                        reorder_x = FALSE,
                        reorder_y = FALSE,
                        x_fun = mean,
@@ -104,16 +104,16 @@ heatmap_na <- function(raw_df,
   # Binding global variables to the local function
   value <- protgroup <- NULL
 
-  # select the range of data to plot
-  if (protein_range == "ALL" && sample_range != "ALL") {
-    raw_df <- as.matrix(raw_df[, sample_range])
-  } else if (protein_range != "ALL" && sample_range == "ALL") {
-    raw_df <- as.matrix(raw_df[protein_range, ])
-  } else if (protein_range != "ALL" && sample_range != "ALL") {
-    raw_df <- as.matrix(raw_df[protein_range, sample_range])
-  } else {
-    raw_df <- as.matrix(raw_df)
+  #Assign all rows and columns if protein_range and sample_range aren't defined
+  if (missing(protein_range)) {
+    protein_range = 1 : nrow(raw_df)
   }
+  if(missing(sample_range)){
+    sample_range = 1 : ncol(raw_df)
+  }
+
+    raw_df <- as.matrix(raw_df[protein_range, sample_range])
+
 
   # Convert the data into long format for plotting and make necessary changes
   # i.e. adding column headers etc.
@@ -293,8 +293,8 @@ heatmap_na <- function(raw_df,
 #' \dontrun{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
-#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
@@ -428,8 +428,8 @@ impute_na <- function(raw_df,
 #' \dontrun{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_proteinGroups.txt",
-#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/PXD000279_expDesign.txt",
+#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
