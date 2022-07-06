@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
+## Introduction
 This tutorial shows how you can use `promor` to analyse label-free quantification (LFQ) proteomics data that do **NOT**  contain technical replicates. 
 
 We recommend that you first go through the simple working example provided in **Introduction to promor** to get acquainted with `promor's` functionality.
@@ -25,9 +27,8 @@ vignette("intro_to_promor")
 ```
 
 A tutorial for proteomics data **with technical replicates** is provided here:
-```{r, eval=FALSE}
-vignette("promor_with_techreps")
-```
+[promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
+
 
 For this tutorial we will be using a previously published data set from [Cox et al. (2014)](https://europepmc.org/article/MED/24942700#id609082).\
 
@@ -35,6 +36,8 @@ For this tutorial we will be using a previously published data set from [Cox et 
 
 ![promor notechreps flowchart by caranathunge](../man/figures/promor_ProtAnalysis_notechreps_small.png) 
 *Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with no technical replicates*
+
+**You can access the help pages for functions shown above and more using** `?function_name`
 
 ## Input data
 To run `promor`, you need:

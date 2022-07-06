@@ -146,21 +146,13 @@ experiment and the structure of your proteomics data.
 vignette("intro_to_promor", package = "promor")
 ```
 
-2.  If your data does NOT contain technical replicates:
+2.  If your data do NOT contain technical replicates: [promor: No
+    technical
+    replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
 
-``` r
-vignette("promor_no_techreps", package = "promor")
-```
-
-3.  If your data contains technical replicates:
-
-``` r
-vignette("promor_with_techreps", package = "promor")
-```
+3.  If your data contains technical replicates: [promor: Technical
+    replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
 
 4.  If you would like to use your proteomics data to build predictive
-    models:
-
-``` r
-vignette("promor_for_modeling", package = "promor")
-```
+    models: [promor:
+    Modeling](https://caranathunge.github.io/promor/articles/promor_for_modeling.html)
