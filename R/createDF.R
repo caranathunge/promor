@@ -58,15 +58,15 @@
 #' ## Data containing technical replicates
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
-#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt"
-#'   tech_reps = TRUE
+#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
+#' tech_reps = TRUE
 #' )
 #'
 #' ## Alter the number of unique peptides needed to retain a protein
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
-#'   uniq_pep = 1
+#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
+#' uniq_pep = 1
 #' )
 #' }
 #' @export
