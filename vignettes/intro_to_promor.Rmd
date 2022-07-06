@@ -129,6 +129,7 @@ You can choose a tutorial from the list below that best fits your experiment
 and the structure of your proteomics data.
 
 1. If your data do NOT contain technical replicates:
+
 [promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
 
 2. If your data contains technical replicates:
@@ -136,5 +137,13 @@ and the structure of your proteomics data.
 
 3. If you would like to use your proteomics data to build predictive models:
 [promor: Modeling](https://caranathunge.github.io/promor/articles/promor_for_modeling.html)
+
+[Promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
+
+2. If your data contains technical replicates:
+[Promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
+
+3. If you would like to use your proteomics data to build predictive models:
+[Promor: Modeling](https://caranathunge.github.io/promor/articles/promor_for_modeling.html)
 
 

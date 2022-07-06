@@ -5,3 +5,4 @@ template:
   mathjax: yes
   bslib:
     pkgdown-nav-height: 100px
+

@@ -27,7 +27,11 @@ vignette("intro_to_promor")
 ```
 
 A tutorial for proteomics data **with technical replicates** is provided here:
+
 [promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
+
+[Promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
+
 
 
 For this tutorial we will be using a previously published data set from [Cox et al. (2014)](https://europepmc.org/article/MED/24942700#id609082).\
