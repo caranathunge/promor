@@ -128,23 +128,13 @@ roc_plot(probability_list = covid_prob_list,
 You can choose a tutorial from the list below that best fits your experiment 
 and the structure of your proteomics data.
 
-1. If your data do **not contain technical replicates**:
+1. If your data do NOT contain technical replicates:
+[Promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
 
-``` r
-vignette("promor_no_techreps", package = "promor")
-```
-
-2. If your data **contains technical replicates**:
-
-``` r
-vignette("promor_with_techreps", package = "promor")
-```
+2. If your data contains technical replicates:
+[Promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
 
 3. If you would like to use your proteomics data to build predictive models:
-
-``` r
-vignette("promor_for_modeling", package = "promor")
-```
-
+[Promor: Modeling](https://caranathunge.github.io/promor/articles/promor_for_modeling.html)
 
 

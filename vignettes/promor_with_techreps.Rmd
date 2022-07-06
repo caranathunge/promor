@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+
+## Introduction
 This tutorial shows how you can use `promor` to analyse label-free quantification (LFQ) proteomics data that **contains technical replicates**. 
 
 We recommend that you first go through the simple working example provided in **Introduction to promor** to get acquainted with `promor`'s functionality.
@@ -26,9 +28,7 @@ vignette("intro_to_promor")
 ```
 
 A tutorial for proteomics data **without technical replicates** is provided here:
-```{r, eval=FALSE}
-vignette("promor_no_techreps")
-```
+[Promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
 
 
 For this tutorial we will be using a previously published data set from [Ramond et al. (2015)](https://www.mcponline.org/article/S1535-9476(20)33188-1/fulltext). In this experiment there are two conditions or groups (D8 and WT) with three biological replicates each, and three technical replicates for each biological replicate.\
@@ -36,6 +36,8 @@ For this tutorial we will be using a previously published data set from [Ramond 
 ## Workflow
 ![promor notechreps flowchart by caranathunge](../man/figures/promor_ProtAnalysis_techreps_small.png) 
 *Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with technical replicates*
+
+**You can access the help pages for functions shown above and more using** `?function_name`
 
 ## Input data
 To run *promor*, you need:
@@ -65,7 +67,7 @@ head(exp_design, n = 12)
 **tech_rep** is a number denoting the technical replicate number. In this example, there are three technical replicates for each biological replicate (see **sample_ID**).
 
 ## 1. Create a *raw_df* object
-Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech_reps == TRUE`.
+Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech_reps = TRUE`.
 ```{r createdf, warning=FALSE}
 #Create a raw_df object with default settings.
 raw <- create_df(
