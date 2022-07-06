@@ -2,6 +2,7 @@ url: https://caranathunge.github.io/promor/
 template:
   bootstrap: 5
   bootswatch: flatly
-  mathjax: true
+  mathjax: yes
   bslib:
     pkgdown-nav-height: 100px
+
