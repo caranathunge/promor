@@ -92,16 +92,16 @@ blockquote {
     border-left: 5px solid #eee;
 }
 </style>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>This tutorial shows you how you can use <em>promor</em> to build predictive models using top differentially expressed proteins.</p>
 <p>We recommend that you first go through the simple working example provided in <strong>Introduction to promor</strong> to get acquainted with <em>promor</em>’s functionality.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"intro_to_promor"</span><span class="op">)</span></span></code></pre></div>
-<p>A tutorial for <strong>proteomics data without technical replicates</strong> is provided here:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"promor_no_techreps"</span><span class="op">)</span></span></code></pre></div>
-<p>A tutorial for <strong>proteomics data with technical replicates</strong> is provided here:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"promor_with_techreps"</span><span class="op">)</span></span></code></pre></div>
+<p>A tutorial for <strong>proteomics data without technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_no_techreps.html">Promor: No technical replicates</a></p>
+<p>A tutorial for <strong>proteomics data with technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_with_techreps.html">Promor: Technical replicates</a></p>
+</div>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
@@ -111,7 +111,7 @@ blockquote {
 <h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h2>
 <p><img src="../reference/figures/promor_ProtModelingFlowChart_small.png" style="width:100.0%" alt="promor for modeling flowchart by caranathunge"><em>Figure 1. A schematic diagram showing the suggested promor workflow for building predictive models with protein candidates</em></p>
-<p><strong>You can access the help pages for functions shown above and more using</strong> <code>?function name</code></p>
+<p><strong>You can access the help pages for functions shown above and more using</strong> <code>?function_name</code></p>
 </div>
 <div class="section level2">
 <h2 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a>
@@ -141,7 +141,7 @@ blockquote {
 <li>See <code><a href="../reference/pre_process.html">?pre_process</a></code> for more information.</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load promor</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/caranathunge/promor" class="external-link">promor</a></span><span class="op">)</span></span>
 <span></span>
@@ -188,7 +188,7 @@ blockquote {
 <div class="section level3">
 <h3 id="feature-plots---box-plots">Feature plots - box plots<a class="anchor" aria-label="anchor" href="#feature-plots---box-plots"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Box plots (default) to visualize feature variation</span></span>
 <span><span class="fu"><a href="../reference/feature_plot.html">feature_plot</a></span><span class="op">(</span>model_df <span class="op">=</span> <span class="va">covid_model_df</span>, </span>
 <span>             n_row <span class="op">=</span> <span class="fl">4</span>, </span>
@@ -198,7 +198,7 @@ blockquote {
 <div class="section level3">
 <h3 id="feature-plots---density-plots">Feature plots - density plots<a class="anchor" aria-label="anchor" href="#feature-plots---density-plots"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Alternatively, make density plots</span></span>
 <span><span class="fu"><a href="../reference/feature_plot.html">feature_plot</a></span><span class="op">(</span>model_df <span class="op">=</span> <span class="va">covid_model_df</span>, </span>
 <span>             type <span class="op">=</span> <span class="st">"density"</span>,</span>
@@ -221,11 +221,11 @@ blockquote {
 <li>You can change these proportions by setting <code>train_size</code> to a higher or a lower value.</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Create a split_df object by splitting data into training and test data set</span></span>
 <span><span class="va">covid_split_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/split_data.html">split_data</a></span><span class="op">(</span>model_df <span class="op">=</span> <span class="va">covid_model_df</span><span class="op">)</span></span></code></pre></div>
 <p>Access items in the <code>split_df</code> object.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#You can access the items in the training data set as follows,</span></span>
 <span><span class="va">covid_split_df</span><span class="op">$</span><span class="va">training</span></span>
 <span><span class="co">#Similarly, access the test data set</span></span>
@@ -254,10 +254,10 @@ blockquote {
 </li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Create a model_list object by training models on the training data set using the default list of algorithms.</span></span>
 <span><span class="va">covid_model_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/train_models.html">train_models</a></span><span class="op">(</span>split_df <span class="op">=</span> <span class="va">covid_split_df</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Alternatively, you may use a custom list of algorithms.</span></span>
 <span><span class="va">covid_model_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/train_models.html">train_models</a></span><span class="op">(</span>split_df <span class="op">=</span> <span class="va">covid_split_df</span>, </span>
 <span>                                   algorithm_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"glm"</span>, <span class="st">"rf"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -269,7 +269,7 @@ blockquote {
 <div class="section level3">
 <h3 id="performance-plots---box-plots">Performance plots - box plots<a class="anchor" aria-label="anchor" href="#performance-plots---box-plots"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Box plots (default) to visualize model performance</span></span>
 <span><span class="fu"><a href="../reference/performance_plot.html">performance_plot</a></span><span class="op">(</span>model_list <span class="op">=</span> <span class="va">covid_model_list</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_for_modeling_files/figure-html/performplot-1.png" width="80%" style="display: block; margin: auto;"></p>
@@ -277,7 +277,7 @@ blockquote {
 <div class="section level3">
 <h3 id="performance-plots---dot-plots">Performance plots - dot plots<a class="anchor" aria-label="anchor" href="#performance-plots---dot-plots"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Make dot plots</span></span>
 <span><span class="fu"><a href="../reference/performance_plot.html">performance_plot</a></span><span class="op">(</span>model_list <span class="op">=</span> <span class="va">covid_model_list</span>,</span>
 <span>                 type <span class="op">=</span> <span class="st">"dot"</span><span class="op">)</span></span></code></pre></div>
@@ -292,7 +292,7 @@ blockquote {
 <div class="section level3">
 <h3 id="variable-importance-plots---lollipop-plots">Variable importance plots - lollipop plots<a class="anchor" aria-label="anchor" href="#variable-importance-plots---lollipop-plots"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Make lollipop plots (default)</span></span>
 <span><span class="fu"><a href="../reference/varimp_plot.html">varimp_plot</a></span><span class="op">(</span>model_list <span class="op">=</span> <span class="va">covid_model_list</span>, </span>
 <span>            text_size <span class="op">=</span> <span class="fl">7</span>,</span>
@@ -303,7 +303,7 @@ blockquote {
 <div class="section level3">
 <h3 id="variable-importance-plots---bar-plots">Variable importance plots - bar plots<a class="anchor" aria-label="anchor" href="#variable-importance-plots---bar-plots"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Make bar plots</span></span>
 <span><span class="fu"><a href="../reference/varimp_plot.html">varimp_plot</a></span><span class="op">(</span>model_list <span class="op">=</span> <span class="va">covid_model_list</span>, </span>
 <span>            type <span class="op">=</span> <span class="st">"bar"</span>,</span>
@@ -320,13 +320,13 @@ blockquote {
 <h2 id="test-models-on-the-test-data-set">7. Test models on the test data set<a class="anchor" aria-label="anchor" href="#test-models-on-the-test-data-set"></a>
 </h2>
 <p>We are now ready to test our models on never-before-seen data or our test data set.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#First we run the function with type = "prob" to get a probability list</span></span>
 <span><span class="va">covid_prob_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/test_models.html">test_models</a></span><span class="op">(</span>model_list <span class="op">=</span> <span class="va">covid_model_list</span>, </span>
 <span>                               split_df <span class="op">=</span> <span class="va">covid_split_df</span>,</span>
 <span>                               type <span class="op">=</span> <span class="st">"prob"</span> <span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can output a list of predictions and output a confusion matrix for further analysis.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#We run the function with type = "raw" to get a prediction list and output a confusion matrix</span></span>
 <span><span class="va">covid_pred_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/test_models.html">test_models</a></span><span class="op">(</span>model_list <span class="op">=</span> <span class="va">covid_model_list</span>, </span>
 <span>                               split_df <span class="op">=</span> <span class="va">covid_split_df</span>,</span>
@@ -345,7 +345,7 @@ blockquote {
 <li>Make sure to set <code>type = "prob"</code> when running <code>test_models</code> to output a <code>probability_list</code> object.</li>
 </ul>
 </blockquote>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#Make bar plots</span></span>
 <span><span class="fu"><a href="../reference/roc_plot.html">roc_plot</a></span><span class="op">(</span>probability_list <span class="op">=</span> <span class="va">covid_prob_list</span>, </span>
 <span>         split_df <span class="op">=</span> <span class="va">covid_split_df</span><span class="op">)</span></span></code></pre></div>
