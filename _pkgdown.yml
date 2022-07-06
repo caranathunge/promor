@@ -5,3 +5,6 @@ template:
   mathjax: true
   bslib:
     pkgdown-nav-height: 100px
+
+authors:
+  Chathurani Ranathunge
