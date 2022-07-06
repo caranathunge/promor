@@ -34,17 +34,10 @@ vignette("intro_to_promor")
 ```
 
 A tutorial for **proteomics data without technical replicates** is provided here:
-
 [promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
 
 A tutorial for **proteomics data with technical replicates** is provided here:
 [promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
-
-[Promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
-
-A tutorial for **proteomics data with technical replicates** is provided here:
-[Promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
-
 
 ## Data
 For this tutorial we will be using a previously published data set from [Suvarna et al. (2021)](https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3). In this study, authors used differentially expressed proteins between **33 severe** and **18 non-severe** COVID patients to build models to predict COVID severity. Here, we are using a subset of that data set (18 severe and 18 non-severe COVID patients).

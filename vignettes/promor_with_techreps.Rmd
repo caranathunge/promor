@@ -28,12 +28,7 @@ vignette("intro_to_promor")
 ```
 
 A tutorial for proteomics data **without technical replicates** is provided here:
-
 [promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
-
-[Promor: No technical replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
-
-
 
 For this tutorial we will be using a previously published data set from [Ramond et al. (2015)](https://www.mcponline.org/article/S1535-9476(20)33188-1/fulltext). In this experiment there are two conditions or groups (D8 and WT) with three biological replicates each, and three technical replicates for each biological replicate.\
 
