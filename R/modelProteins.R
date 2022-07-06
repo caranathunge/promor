@@ -328,6 +328,7 @@ split_data <- function(model_df,
 #'
 #' @import caret
 #' @importFrom kernlab sigest
+#' @import xgboost
 #'
 #' @param split_df A \code{split_df} object from performing \code{split_data}.
 #' @param resample_method The resampling method to use. Default is

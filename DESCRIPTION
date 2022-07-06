@@ -30,6 +30,7 @@ Imports:
     missForest,
     caret,
     kernlab,
+    xgboost,
     viridis,
     pROC
 LazyData: true

@@ -137,7 +137,7 @@ We will be using some functions from the `caret` package to train models on our 
 >**Notes**
 >
 >* A list of all the available machine learning algorithms can be found here: http://topepo.github.io/caret/train-models-by-tag.html.
->* Note that some algorithms may require additional arguments. See `caret` functions `train` and `trControl` for more details.
+>* Note that some algorithms may require additional arguments. See `caret` functions `train` and `trainControl` for more details.
 >* The default list of classification-based algorithms  provided include:
 >     + `"svmRadial"` - A support vector machine algorithm
 >     + `"glm"`- A generalized linear model algorithm
