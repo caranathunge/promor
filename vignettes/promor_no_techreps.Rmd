@@ -3,15 +3,12 @@ title: "Proteomics data analysis with promor: no technical replicates"
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  pdf_document:
+  html_document:
     toc: true
     df_print: paged
   rmarkdown::html_vignette:
     number_sections: yes
-vignette: >
-  %\VignetteIndexEntry{Proteomics data analysis with promor: no technical replicates}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+
 ---
 
 ```{r, include = FALSE}

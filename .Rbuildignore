@@ -8,3 +8,7 @@
 ^docs$
 ^pkgdown$
 ^\.github$
+^vignettes/promor_no_techreps\.Rmd$
+^vignettes/promor_with_techreps\.Rmd$
+^vignettes/promor_for_modeling\.Rmd$
+^LICENSE\.md$

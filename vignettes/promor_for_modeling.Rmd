@@ -3,15 +3,12 @@ title: "Modeling with promor"
 author: "Chathurani Ranathunge"
 package: promor
 output:
-  pdf_document:
+  html_document:
      df_print: paged
      toc: true
   rmarkdown::html_vignette:
     number_sections: yes
-vignette: >
-  %\VignetteIndexEntry{Modeling with promor}
-  %\VignetteEncoding{UTF-8}
-  %\VignetteEngine{knitr::rmarkdown}
+
 ---
 ```{css style settings, echo = FALSE}
 blockquote {
