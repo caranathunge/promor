@@ -1,3 +1,9 @@
-url: ~
+url: https://caranathunge.github.io/promor/
 template:
   bootstrap: 5
+  bootswatch: flatly
+  mathjax: true
+  bslib:
+    pkgdown-nav-height: 100px
+authors:
+  Chathurani Ranathunge
