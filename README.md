@@ -35,6 +35,8 @@
 -   `promor` provides a wealth of data analysis and visualization tools
     at the protein level to analyze label-free proteomics data.
 
+------------------------------------------------------------------------
+
 ### Installation
 
 You can install the development version of promor from
@@ -47,6 +49,8 @@ install.packages("devtools")
 # install promor from github
 devtools::install_github("caranathunge/promor")
 ```
+
+------------------------------------------------------------------------
 
 ### Proteomics data analysis with promor
 
@@ -99,6 +103,8 @@ volcano_plot(fit_df, text_size = 5)
 
 </center>
 
+------------------------------------------------------------------------
+
 ### Modeling with promor
 
 <img src="./man/figures/promor_ProtModelingFlowChart_small.png"
@@ -150,6 +156,8 @@ roc_plot(
 <center>
 <img src="./man/figures/README-rocplot-1.png" style="width:70.0%" />
 </center>
+
+------------------------------------------------------------------------
 
 ### Tutorials
 
