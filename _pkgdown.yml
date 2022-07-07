@@ -2,12 +2,15 @@ url: https://caranathunge.github.io/promor/
 template:
   bootstrap: 5
   bootswatch: flatly
-  theme: breeze-light
+  theme: github-light
   mathjax: yes
   bslib:
-    base_font: {google: "Roboto"}
-    heading_font: {google: "Roboto Slab"}
-    code_font: {google: "JetBrains Mono"}
+    primary: "#17456B"
+    secondary: "#419FB7"
+    success: "#419FB7"
+    base_font: {google: "Lato"}
+    heading_font: {google: "Lato"}
+    code_font: {google: "Source Code Pro"}
     pkgdown-nav-height: 100px
 development:
   mode: auto
