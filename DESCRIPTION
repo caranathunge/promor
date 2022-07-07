@@ -2,7 +2,9 @@ Package: promor
 Type: Package
 Title: Proteomics Data Analysis and Modeling
 Version: 0.1.0
-Author: Chathurani Ranathunge
+Authors@R: 
+    person("Chathurani", "Ranathunge", , "caranathunge86@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-1901-2119"))
 Maintainer: Chathurani Ranathunge<caranathunge86@gmail.com>
 Description: promor is a comprehensive R package for proteomics data analysis, visualization, and modeling.
 License: LGPL (>= 2.1)
