@@ -9,9 +9,8 @@
 <title>Proteomics data analysis with promor: no technical replicates • promor</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto-0.4.1/font.css" rel="stylesheet">
-<link href="../deps/_JetBrains%20Mono-0.4.1/font.css" rel="stylesheet">
-<link href="../deps/_Roboto%20Slab-0.4.1/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Lato-0.4.1/font.css" rel="stylesheet">
+<link href="../deps/_Source%20Code%20Pro-0.4.1/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Proteomics data analysis with promor: no technical replicates">
@@ -87,9 +86,9 @@
 
     
     
-<div class="section level2">
-<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h2>
+<div class="section level3">
+<h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h3>
 <p>This tutorial shows how you can use <code>promor</code> to analyse label-free quantification (LFQ) proteomics data that do <strong>NOT</strong> contain technical replicates.</p>
 <p>We recommend that you first go through the simple working example provided in <strong>Introduction to promor</strong> to get acquainted with <code>promor's</code> functionality.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -97,15 +96,15 @@
 <p>A tutorial for proteomics data <strong>with technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_with_techreps.html">promor: Technical replicates</a></p>
 <p>For this tutorial we will be using a previously published data set from <a href="https://europepmc.org/article/MED/24942700#id609082" class="external-link">Cox et al. (2014)</a>.<br></p>
 </div>
-<div class="section level2">
-<h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
-</h2>
+<div class="section level3">
+<h3 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
+</h3>
 <p><img src="../reference/figures/promor_ProtAnalysis_notechreps_small.png" alt="promor notechreps flowchart by caranathunge"><em>Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with no technical replicates</em></p>
 <p><strong>You can access the help pages for functions shown above and more using</strong> <code>?function_name</code></p>
 </div>
-<div class="section level2">
-<h2 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a>
+</h3>
 <p>To run <code>promor</code>, you need:</p>
 <ul>
 <li>A <strong>proteinGroups.txt</strong> file produced by <em>MaxQuant</em>
@@ -133,43 +132,47 @@
 <p><strong>sample_ID</strong> is a unique identifier for each sample.</p>
 <p><strong>tech_rep</strong> is a number denoting the technical replicate number. In this example, there are no technical replicates, so the column is left blank.</p>
 </div>
-<div class="section level2">
-<h2 id="create-a-raw_df-object">1. Create a <em>raw_df</em> object<a class="anchor" aria-label="anchor" href="#create-a-raw_df-object"></a>
-</h2>
+<div class="section level3">
+<h3 id="create-a-raw_df-object">1. Create a <em>raw_df</em> object<a class="anchor" aria-label="anchor" href="#create-a-raw_df-object"></a>
+</h3>
 <p>Let’s first create a <em>raw_df</em> object with the input files.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Create a raw_df object with default settings.</span></span>
+<code class="sourceCode R"><span><span class="co"># Create a raw_df object with default settings.</span></span>
 <span><span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_df.html">create_df</a></span><span class="op">(</span></span>
-<span>prot_groups <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt"</span>,</span>
-<span>exp_design <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"</span><span class="op">)</span></span>
+<span>  prot_groups <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt"</span>,</span>
+<span>  exp_design <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"</span></span>
+<span><span class="op">)</span></span>
 <span><span class="co">#&gt; 0 empty rows removed.</span></span>
 <span><span class="co">#&gt; 0 empty columns removed.</span></span>
 <span><span class="co">#&gt; 80 proteins (rows) only identified by site removed.</span></span>
 <span><span class="co">#&gt; 65 reverse proteins (rows) removed.</span></span>
 <span><span class="co">#&gt; 1923 proteins identified by 2 or fewer unique peptides removed.</span></span>
+<span></span>
+<span></span>
 <span><span class="co"># We can quickly check the dimensions of the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">raw</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4584    6</span></span></code></pre></div>
 <p>If you ran <code>create_df</code> with default settings, now your <em>raw_df</em> object contains log2 transformed LFQ protein intensity values. Run <code><a href="../reference/create_df.html">?create_df</a></code> for more information on available arguments.</p>
 </div>
-<div class="section level2">
-<h2 id="filter-proteins-by-groupwise-missing-data">2. Filter proteins by groupwise missing data<a class="anchor" aria-label="anchor" href="#filter-proteins-by-groupwise-missing-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="filter-proteins-by-groupwise-missing-data">2. Filter proteins by groupwise missing data<a class="anchor" aria-label="anchor" href="#filter-proteins-by-groupwise-missing-data"></a>
+</h3>
 <p>Next, we will remove proteins if they have more than 0.4% (default is 0.33%) missing data in either group.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Filter out proteins with high levels of missing data in each condition</span></span>
+<code class="sourceCode R"><span><span class="co"># Filter out proteins with high levels of missing data in either condition</span></span>
 <span><span class="va">raw_filtered</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterbygroup_na.html">filterbygroup_na</a></span><span class="op">(</span><span class="va">raw</span>, set_na <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 224 proteins with higher than 40% NAs in at least one group removed.</span></span>
+<span></span>
 <span><span class="co"># We can check the dimensions of the new data frame. Note that the number of rows have changed.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">raw_filtered</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4360    6</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="visualize-missing-data">3. Visualize missing data<a class="anchor" aria-label="anchor" href="#visualize-missing-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="visualize-missing-data">3. Visualize missing data<a class="anchor" aria-label="anchor" href="#visualize-missing-data"></a>
+</h3>
 <p>Now, we are going to see how missing data is distributed in the data. This will help us make an informed decision on how to impute missing data in the next step.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Visualize missing data in a subset of proteins. </span></span>
+<code class="sourceCode R"><span><span class="co"># Visualize missing data in a subset of proteins.</span></span>
 <span><span class="fu"><a href="../reference/heatmap_na.html">heatmap_na</a></span><span class="op">(</span><span class="va">raw_filtered</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_no_techreps_files/figure-html/heatmapna-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>Note that your proteins are alphabetically ordered by default, but if you would rather order them by the mean intensity to check if proteins with low intensities are more likely to have missing data, you can do the following:</p>
@@ -179,24 +182,24 @@
 <p><img src="promor_no_techreps_files/figure-html/heatmapna2-1.png" width="60%" style="display: block; margin: auto;"></p>
 <p>For larger data sets, you can choose to visualize subsets of the data</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#Visualize missing data in a subset of proteins. </span></span>
+<code class="sourceCode R"><span><span class="co"># Visualize missing data in a subset of proteins.</span></span>
 <span><span class="fu"><a href="../reference/heatmap_na.html">heatmap_na</a></span><span class="op">(</span><span class="va">raw_filtered</span>, protein_range <span class="op">=</span> <span class="fl">30</span><span class="op">:</span><span class="fl">70</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_no_techreps_files/figure-html/heatmapna1-1.png" width="60%" style="display: block; margin: auto;"></p>
 </div>
-<div class="section level2">
-<h2 id="impute-missing-data">4. Impute missing data<a class="anchor" aria-label="anchor" href="#impute-missing-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="impute-missing-data">4. Impute missing data<a class="anchor" aria-label="anchor" href="#impute-missing-data"></a>
+</h3>
 <p><em>promor</em> provides multiple missing data imputation methods. Default is <code>minProb</code>, which assumes that all missing data is MNAR (Missing Not at Random) type or left-censored missing values, and imputes them by random draws from a Gaussian distribution centered at a minimal value. More information about available imputation methods can be found in <a href="https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00981" class="external-link">Lazar et al. (2016)</a>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Impute missing data with minProb method</span></span>
 <span><span class="va">imp_df_mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_na.html">impute_na</a></span><span class="op">(</span><span class="va">raw_filtered</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#Alternatively, we can test a different imputation method that allows for missing data of both MAR and MNAR types.</span></span>
+<span><span class="co"># Alternatively, we can test a different imputation method that allows for missing data of both MAR and MNAR types.</span></span>
 <span><span class="va">imp_df_knn</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_na.html">impute_na</a></span><span class="op">(</span><span class="va">raw_filtered</span>, method <span class="op">=</span> <span class="st">"kNN"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="visualize-imputed-data">5. Visualize imputed data<a class="anchor" aria-label="anchor" href="#visualize-imputed-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="visualize-imputed-data">5. Visualize imputed data<a class="anchor" aria-label="anchor" href="#visualize-imputed-data"></a>
+</h3>
 <p>We can now visualize the impact of imputation on each sample’s intensity data. First, lets check the data imputed with <code>minProb</code> method.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualize the imputed data with sample-wise density plots.</span></span>
@@ -210,27 +213,28 @@
 <p><img src="promor_no_techreps_files/figure-html/imputeplotrf-1.png" width="2187.5" style="display: block; margin: auto;"></p>
 <p>Compared to <code>minProb</code>, <code>kNN</code> seems to have introduced fewer low intensity values to <code>H_3</code> data, so let’s use that data set in downstream steps.</p>
 </div>
-<div class="section level2">
-<h2 id="normalize-data">6. Normalize data<a class="anchor" aria-label="anchor" href="#normalize-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="normalize-data">6. Normalize data<a class="anchor" aria-label="anchor" href="#normalize-data"></a>
+</h3>
 <p>Next, we will normalize the imputed data with the default <code>quantile</code> method.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">norm_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalize_data.html">normalize_data</a></span><span class="op">(</span><span class="va">imp_df_knn</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="visualize-normalized-data">7. Visualize normalized data<a class="anchor" aria-label="anchor" href="#visualize-normalized-data"></a>
-</h2>
+<div class="section level3">
+<h3 id="visualize-normalized-data">7. Visualize normalized data<a class="anchor" aria-label="anchor" href="#visualize-normalized-data"></a>
+</h3>
 <p>Let’s check if our data set was successfully normalized.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/norm_plot.html">norm_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">imp_df_knn</span>, normalized <span class="op">=</span> <span class="va">norm_df</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_no_techreps_files/figure-html/normplot-1.png" width="700" style="display: block; margin: auto;"> For samples that show very little variability among them, such as those in this data set, it may be difficult to visualize the effect of normalization with boxplots. Let’s use <code>type = "density</code> to visualize the effect of normalization with density plots instead.</p>
+<p><img src="promor_no_techreps_files/figure-html/normplot-1.png" width="700" style="display: block; margin: auto;"></p>
+<p>For samples that show very little variability among them, such as those in this data set, it may be difficult to visualize the effect of normalization with boxplots. Let’s use <code>type = "density</code> to visualize the effect of normalization with density plots instead.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/norm_plot.html">norm_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">imp_df_knn</span>, normalized <span class="op">=</span> <span class="va">norm_df</span>, type <span class="op">=</span> <span class="st">"density"</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_no_techreps_files/figure-html/normplotd-1.png" width="700" style="display: block; margin: auto;"></p>
 </div>
-<div class="section level2">
-<h2 id="identify-differentially-expressed-proteins">8. Identify differentially expressed proteins<a class="anchor" aria-label="anchor" href="#identify-differentially-expressed-proteins"></a>
-</h2>
+<div class="section level3">
+<h3 id="identify-differentially-expressed-proteins">8. Identify differentially expressed proteins<a class="anchor" aria-label="anchor" href="#identify-differentially-expressed-proteins"></a>
+</h3>
 <p>We can now use the <code>norm_df</code> object we created in <strong>Step 7</strong> to perform differential expression analysis.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_dep.html">find_dep</a></span><span class="op">(</span><span class="va">norm_df</span><span class="op">)</span></span>
@@ -239,19 +243,20 @@
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_dep.html">find_dep</a></span><span class="op">(</span><span class="va">norm_df</span>, save_tophits <span class="op">=</span> <span class="cn">TRUE</span>, n_top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="generate-a-volcano-plot">9. Generate a volcano plot<a class="anchor" aria-label="anchor" href="#generate-a-volcano-plot"></a>
-</h2>
+<div class="section level3">
+<h3 id="generate-a-volcano-plot">9. Generate a volcano plot<a class="anchor" aria-label="anchor" href="#generate-a-volcano-plot"></a>
+</h3>
 <p>Let’s visualize the results from <strong>Step 8</strong> using a volcano plot.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/volcano_plot.html">volcano_plot</a></span><span class="op">(</span><span class="va">fit_df</span>, </span>
-<span>             text_size <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>             palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/volcano_plot.html">volcano_plot</a></span><span class="op">(</span><span class="va">fit_df</span>,</span>
+<span>  text_size <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  palette <span class="op">=</span> <span class="st">"mako"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_no_techreps_files/figure-html/volcanoplot-1.png" width="70%" style="display: block; margin: auto;"></p>
 </div>
-<div class="section level2">
-<h2 id="create-a-heatmap-of-differentially-expressed-proteins">10. Create a heatmap of differentially expressed proteins<a class="anchor" aria-label="anchor" href="#create-a-heatmap-of-differentially-expressed-proteins"></a>
-</h2>
+<div class="section level3">
+<h3 id="create-a-heatmap-of-differentially-expressed-proteins">10. Create a heatmap of differentially expressed proteins<a class="anchor" aria-label="anchor" href="#create-a-heatmap-of-differentially-expressed-proteins"></a>
+</h3>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/heatmap_de.html">heatmap_de</a></span><span class="op">(</span>fit_df <span class="op">=</span> <span class="va">fit_df</span>, norm_df <span class="op">=</span> <span class="va">norm_df</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_no_techreps_files/figure-html/heatmapde-1.png" width="700" style="display: block; margin: auto;"></p>
