@@ -25,12 +25,12 @@
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
-    <!-- inserted before the package title in the header ->
+    
     <a class="navbar-brand me-2" href="../index.html">promor</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
-    <!-- inserted before the navbar links -->
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -44,9 +44,9 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/intro_to_promor.html">Introduction to promor</a>
+    <a class="dropdown-item" href="../articles/promor_no_techreps.html">Proteomics data analysis: no technical replicates</a>
+    <a class="dropdown-item" href="../articles/promor_with_techreps.html">Proteomics data analysis: technical replicates</a>
     <a class="dropdown-item" href="../articles/promor_for_modeling.html">Modeling with promor</a>
-    <a class="dropdown-item" href="../articles/promor_no_techreps.html">Proteomics data analysis with promor: no technical replicates</a>
-    <a class="dropdown-item" href="../articles/promor_with_techreps.html">Proteomics data analysis with promor: technical replicates</a>
   </div>
 </li>
 <li class="nav-item">
@@ -59,6 +59,12 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
+  <a class="external-link nav-link" href="http://twitter.com/caranathunge" aria-label="Twitter">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
   <a class="external-link nav-link" href="https://github.com/caranathunge/promor/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -67,11 +73,9 @@
       </ul>
 </div>
 
-    <!-- inserted after the navbar links -->
+    
   </div>
 </nav><div class="container template-article">
-
-
 
 
 <div class="row">
@@ -86,6 +90,15 @@
 
     
     
+<style type="text/css">
+
+h1.title {
+  font-size: 35px;
+}
+h4.author {
+  font-size: 15px;
+}
+</style>
 <style type="text/css">
 blockquote {
     padding: 10px 20px;
@@ -103,17 +116,20 @@ blockquote {
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"intro_to_promor"</span><span class="op">)</span></span></code></pre></div>
 <p>A tutorial for <strong>proteomics data without technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_no_techreps.html">promor: No technical replicates</a></p>
 <p>A tutorial for <strong>proteomics data with technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_with_techreps.html">promor: Technical replicates</a></p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h3>
 <p>For this tutorial we will be using a previously published data set from <a href="https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3" class="external-link">Suvarna et al. (2021)</a>. In this study, authors used differentially expressed proteins between <strong>33 severe</strong> and <strong>18 non-severe</strong> COVID patients to build models to predict COVID severity. Here, we are using a subset of that data set (18 severe and 18 non-severe COVID patients).</p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h3>
 <p><img src="../reference/figures/promor_ProtModelingFlowChart_small.png" style="width:100.0%" alt="promor for modeling flowchart by caranathunge"><em>Figure 1. A schematic diagram showing the suggested promor workflow for building predictive models with protein candidates</em></p>
 <p><strong>You can access the help pages for functions shown above and more using</strong> <code>?function_name</code></p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a>
@@ -123,6 +139,7 @@ blockquote {
 <li><p>A <strong>fit_df</strong> object produced by running <code>find_dep</code> for differential expression analysis. For this example, we will be using <code>covid_fit_df</code> object provided with the package.</p></li>
 <li><p>An <strong>norm_df</strong> object which is a data frame of normalized protein intensities used as input for <code>find_dep</code>. We will be using <code>covid_norm_df</code> object provided with the package.</p></li>
 </ul>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="create-a-model_df-object">1. Create a <em>model_df</em> object<a class="anchor" aria-label="anchor" href="#create-a-model_df-object"></a>
@@ -154,28 +171,13 @@ blockquote {
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Let's take a look at the first few rows of the model_df object</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">covid_model_df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   sp|O00391|QSOX1_HUMAN sp|P00746|CFAD_HUMAN sp|P02652|APOA2_HUMAN</span></span>
-<span><span class="co">#&gt; 1              22.40059             24.73720              28.66292</span></span>
-<span><span class="co">#&gt; 2              19.97970             26.80882              30.67527</span></span>
-<span><span class="co">#&gt; 3              21.12426             22.82051              30.16657</span></span>
-<span><span class="co">#&gt; 4              20.21675             27.64256              30.67527</span></span>
-<span><span class="co">#&gt; 5              20.92041             25.60917              31.48626</span></span>
-<span><span class="co">#&gt; 6              23.37177             22.71174              27.64256</span></span>
-<span><span class="co">#&gt;   sp|P02765|FETUA_HUMAN sp|P13796|PLSL_HUMAN sp|P22352|GPX3_HUMAN</span></span>
-<span><span class="co">#&gt; 1              30.67527             22.57517             23.96220</span></span>
-<span><span class="co">#&gt; 2              32.70218             17.63880             22.86492</span></span>
-<span><span class="co">#&gt; 3              29.19797             25.13590             23.92030</span></span>
-<span><span class="co">#&gt; 4              31.68780             18.80999             21.43144</span></span>
-<span><span class="co">#&gt; 5              31.96064             19.37365             23.31727</span></span>
-<span><span class="co">#&gt; 6              28.84603             26.09616             25.73887</span></span>
-<span><span class="co">#&gt;   sp|P25311|ZA2G_HUMAN sp|Q16610|ECM1_HUMAN  condition</span></span>
-<span><span class="co">#&gt; 1             27.70882             25.18199     Severe</span></span>
-<span><span class="co">#&gt; 2             25.23133             27.22918 Non.Severe</span></span>
-<span><span class="co">#&gt; 3             27.87499             24.97819     Severe</span></span>
-<span><span class="co">#&gt; 4             24.84503             28.42881 Non.Severe</span></span>
-<span><span class="co">#&gt; 5             26.49553             27.08827     Severe</span></span>
-<span><span class="co">#&gt; 6             28.51444             23.87346     Severe</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">covid_model_df</span><span class="op">)</span></span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sp|O00391|QSOX1_HUMAN"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sp|P00746|CFAD_HUMAN"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sp|P02652|APOA2_HUMAN"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sp|P02765|FETUA_HUMAN"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["sp|P13796|PLSL_HUMAN"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["sp|P22352|GPX3_HUMAN"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sp|P25311|ZA2G_HUMAN"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sp|Q16610|ECM1_HUMAN"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["condition"],"name":[9],"type":["fct"],"align":["left"]}],"data":[{"1":"22.40059","2":"24.73720","3":"28.66292","4":"30.67527","5":"22.57517","6":"23.96220","7":"27.70882","8":"25.18199","9":"Severe","_rn_":"1"},{"1":"19.97970","2":"26.80882","3":"30.67527","4":"32.70218","5":"17.63880","6":"22.86492","7":"25.23133","8":"27.22918","9":"Non.Severe","_rn_":"2"},{"1":"21.12426","2":"22.82051","3":"30.16657","4":"29.19797","5":"25.13590","6":"23.92030","7":"27.87499","8":"24.97819","9":"Severe","_rn_":"3"},{"1":"20.21675","2":"27.64256","3":"30.67527","4":"31.68780","5":"18.80999","6":"21.43144","7":"24.84503","8":"28.42881","9":"Non.Severe","_rn_":"4"},{"1":"20.92041","2":"25.60917","3":"31.48626","4":"31.96064","5":"19.37365","6":"23.31727","7":"26.49553","8":"27.08827","9":"Severe","_rn_":"5"},{"1":"23.37177","2":"22.71174","3":"27.64256","4":"28.84603","5":"26.09616","6":"25.73887","7":"28.51444","8":"23.87346","9":"Severe","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="visualize-protein-feature-variation-among-conditions-classes">2. Visualize protein (feature) variation among conditions (classes)<a class="anchor" aria-label="anchor" href="#visualize-protein-feature-variation-among-conditions-classes"></a>
@@ -216,6 +218,7 @@ blockquote {
 <ul>
 <li>At this stage, if you decide to remove a protein or some proteins from the <code>model_df</code> object, you can do so with <code>rem_feature</code>.</li>
 </ul>
+<hr>
 </div>
 </div>
 <div class="section level3">
@@ -239,6 +242,7 @@ blockquote {
 <span></span>
 <span><span class="co"># Similarly, access the test data set</span></span>
 <span><span class="va">covid_split_df</span><span class="op">$</span><span class="va">test</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="train-machine-learning-models-on-the-training-data-set">4. Train machine learning models on the training data set<a class="anchor" aria-label="anchor" href="#train-machine-learning-models-on-the-training-data-set"></a>
@@ -272,6 +276,7 @@ blockquote {
 <span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span>,</span>
 <span>  algorithm_list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"glm"</span>, <span class="st">"rf"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="check-model-performance">5. Check model performance<a class="anchor" aria-label="anchor" href="#check-model-performance"></a>
@@ -296,6 +301,7 @@ blockquote {
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_for_modeling_files/figure-html/performplotd-1.png" width="80%" style="display: block; margin: auto;"></p>
 <p>*It looks like, except for <code>"glm"</code> method, all others performed fairly well.</p>
+<hr>
 </div>
 </div>
 <div class="section level3">
@@ -331,6 +337,7 @@ blockquote {
 <ul>
 <li>At this stage you can again use <code>rem_feature</code> function to <strong>remove proteins with lower importance</strong> in the models and <strong>repeat steps from Step 3</strong>.</li>
 </ul>
+<hr>
 </div>
 </div>
 <div class="section level3">
@@ -353,6 +360,7 @@ blockquote {
 <span>  type <span class="op">=</span> <span class="st">"raw"</span>,</span>
 <span>  save_confusionmatrix <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="build-receiver-operating-characteristic-roc-curves">8. Build Receiver Operating Characteristic (ROC) curves<a class="anchor" aria-label="anchor" href="#build-receiver-operating-characteristic-roc-curves"></a>
@@ -382,7 +390,7 @@ blockquote {
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Chathurani Ranathunge.</p>
+<p>Developed by <a href="https://www.linkedin.com/in/chathurani-ranathunge" class="external-link">Chathurani Ranathunge</a>, <a href="https://hrbrc.org" class="external-link">Hampton Roads Biomedical Research Consortium</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
