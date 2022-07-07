@@ -4,6 +4,13 @@ template:
   bootswatch: flatly
   theme: github-light
   mathjax: yes
+  toc:
+    inline: true
+    depth: 3
+  includes:
+    before_title: <!-- inserted before the package title in the header ->
+    before_navbar: <!-- inserted before the navbar links -->
+    after_navbar: <!-- inserted after the navbar links -->
   bslib:
     primary: "#17456B"
     secondary: "#FFB000"
