@@ -1,16 +1,29 @@
 ---
 title: "Modeling with promor"
-author: "Chathurani Ranathunge"
+author: Chathurani Ranathunge
 package: promor
 output:
-  html_document:
+  rmarkdown::html_document:
      df_print: paged
      toc: true
-     toc_depth: 4
-  rmarkdown::html_vignette:
-    number_sections: yes
-
+     toc_float: true
+     toc_depth: 3
+pkgdown:
+  as_is: true
 ---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 35px;
+}
+h4.author {
+  font-size: 15px;
+}
+</style>
+
+
+
 ```{css style settings, echo = FALSE}
 blockquote {
     padding: 10px 20px;
@@ -19,6 +32,7 @@ blockquote {
     border-left: 5px solid #eee;
 }
 ```
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -42,9 +56,13 @@ A tutorial for **proteomics data without technical replicates** is provided here
 A tutorial for **proteomics data with technical replicates** is provided here:
 [promor: Technical replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
 
+---
+
 ### Data
 
 For this tutorial we will be using a previously published data set from [Suvarna et al. (2021)](https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3). In this study, authors used differentially expressed proteins between **33 severe** and **18 non-severe** COVID patients to build models to predict COVID severity. Here, we are using a subset of that data set (18 severe and 18 non-severe COVID patients).
+
+---
 
 ### Workflow
 
@@ -52,6 +70,8 @@ For this tutorial we will be using a previously published data set from [Suvarna
 *Figure 1. A schematic diagram showing the suggested promor workflow for building predictive models with protein candidates*
 
 **You can access the help pages for functions shown above and more using** `?function_name`
+
+---
 
 ### Input data
 
@@ -61,6 +81,7 @@ To build predictive models with *promor*, you need:
 
 -  An **norm_df** object which is a data frame of normalized protein intensities used as input for `find_dep`. We will be using `covid_norm_df` object provided with the package.
 
+---
 
 ### 1. Create a *model_df* object
 
@@ -89,6 +110,7 @@ covid_model_df <- pre_process(
 head(covid_model_df)
 ```
 
+---
 
 ### 2. Visualize protein (feature) variation among conditions (classes)
 
@@ -124,6 +146,7 @@ feature_plot(
 
 * At this stage, if you decide to remove a protein or some proteins from the `model_df` object, you can do so with `rem_feature`.
 
+---
 
 ### 3. Split *model_df* object into training and test data sets
 Next, we will split the `model_df` object into training and test data sets **while maintaining class or condition proportions in each set**.
@@ -148,6 +171,7 @@ covid_split_df$training
 covid_split_df$test
 ```
 
+---
 
 ### 4. Train machine learning models on the training data set
 
@@ -177,6 +201,7 @@ covid_model_list <- train_models(
 )
 ```
 
+---
 
 ### 5. Check model performance
 
@@ -200,6 +225,8 @@ performance_plot(
 ```
 
 *It looks like, except for `"glm"` method, all others performed fairly well.
+
+---
 
 ### 6. Check variable importance
 
@@ -232,6 +259,8 @@ varimp_plot(
 
 * At this stage you can again use `rem_feature` function to **remove proteins with lower importance** in the models and **repeat steps from Step 3**.
 
+---
+
 ### 7. Test models on the test data set
 
 We are now ready to test our models on never-before-seen data or our test data set.
@@ -256,6 +285,8 @@ covid_pred_list <- test_models(
   save_confusionmatrix = TRUE
 )
 ```
+
+---
 
 ### 8. Build Receiver Operating Characteristic (ROC) curves
 

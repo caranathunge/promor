@@ -1,17 +1,27 @@
 ---
-title: 'Proteomics data analysis with promor: technical replicates'
-author: "Chathurani Ranathunge"
+title: "Proteomics data analysis: technical replicates"
+author: Chathurani Ranathunge
 package: promor
 output:
-  html_document:
-    latex_engine: xelatex
-    df_print: paged
-    toc: true
-    toc_depth: 3
-  rmarkdown::html_vignette:
-    number_sections: yes
-
+  rmarkdown::html_document:
+     df_print: paged
+     toc: true
+     toc_float: true
+     toc_depth: 3
+pkgdown:
+  as_is: true
 ---
+
+<style type="text/css">
+
+h1.title {
+  font-size: 35px;
+}
+h4.author {
+  font-size: 15px;
+}
+</style>
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -35,12 +45,16 @@ A tutorial for proteomics data **without technical replicates** is provided here
 
 For this tutorial we will be using a previously published data set from [Ramond et al. (2015)](https://www.mcponline.org/article/S1535-9476(20)33188-1/fulltext). In this experiment there are two conditions or groups (D8 and WT) with three biological replicates each, and three technical replicates for each biological replicate.\
 
+---
+
 ### Workflow
 
 ![promor notechreps flowchart by caranathunge](../man/figures/promor_ProtAnalysis_techreps_small.png) 
 *Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with technical replicates*
 
 **You can access the help pages for functions shown above and more using** `?function_name`
+
+---
 
 ### Input data
 
@@ -71,6 +85,8 @@ head(exp_design, n = 12)
 
 **tech_rep** is a number denoting the technical replicate number. In this example, there are three technical replicates for each biological replicate (see **sample_ID**).
 
+---
+
 ### 1. Create a *raw_df* object
 
 Let's first create a *raw_df* object with the input files. Note: we have indicated that the data include technical replicates with `tech_reps = TRUE`.
@@ -87,6 +103,8 @@ head(raw)
 ```
 
 If you ran `create_df` with default settings, now your *raw_df* object contains log2 transformed LFQ protein intensity values and zeros have been converted to NAs. Run `?create_df` for more information on available arguments.
+
+---
 
 ### 2. Correlation plots: technical replicates
 
@@ -110,6 +128,8 @@ Additionally, if you identify pairs of technical replicates with weak correlatio
 
 Our technical replicates appear to show strong correlation, therefore we will use all three per sample to calculate average intensities in the next step.
 
+---
+
 ### 3. Average intensities across technical replicates
 
 Now, we are ready to calculate average intensity across technical replicates for each sample.
@@ -120,6 +140,8 @@ raw_ave <- aver_techreps(raw)
 # A quick check on the dimensions of the data frame show that the number of columns is reduced from 18 to 6 as we averaged the tech.replicates.
 dim(raw_ave)
 ```
+
+---
 
 ### 4. Filter proteins by groupwise missing data
 
@@ -132,6 +154,8 @@ raw_filtered <- filterbygroup_na(raw_ave, set_na = 0.40)
 # We can check the dimensions of the new data frame. Note that the number of rows has changed.
 dim(raw_filtered)
 ```
+
+---
 
 ### 5. Visualize missing data
 
@@ -156,6 +180,8 @@ For larger data sets, you can choose to visualize subsets of the data.
 heatmap_na(raw_filtered, protein_range = 1:40)
 ```
 
+---
+
 ### 6. Impute missing data
 
 *promor* provides multiple missing data imputation methods. Default is `minProb`, which assumes that all missing data is MNAR (Missing Not at Random) type. More information about available imputation methods can be found in [Lazar et al. (2016)](https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00981).
@@ -168,6 +194,8 @@ imp_df_mp <- impute_na(raw_filtered)
 # Alternatively, we can test a different imputation method.
 imp_df_svd <- impute_na(raw_filtered, method = "SVD")
 ```
+
+---
 
 ### 7. Visualize imputed data
 
@@ -197,6 +225,8 @@ Additionally, we can also visualize the imputed data of all six samples with a g
 impute_plot(original = raw_filtered, imputed = imp_df_svd, global = TRUE)
 ```
 
+---
+
 ### 8. Normalize data
 
 Next, we will normalize the imputed data with the default `quantile` method.
@@ -205,6 +235,7 @@ Next, we will normalize the imputed data with the default `quantile` method.
 norm_df <- normalize_data(imp_df_svd)
 ```
 
+---
 
 ### 9. Visualize normalized data
 
@@ -213,6 +244,8 @@ Let's check if our data set was successfully normalized with a density plot.
 ```{r normplot, warning = FALSE, results = 'hide', fig.align = 'center', out.width='60%'}
 norm_plot(original = imp_df_svd, normalized = norm_df, type = "density")
 ```
+
+---
 
 ### 10. Identify differentially expressed proteins
 
@@ -228,6 +261,8 @@ You can also choose to save the top 10 hits in a text file as follows:
 fit_df <- find_dep(norm_df, save_tophits = TRUE, n_top = 10)
 ```
 
+---
+
 ### 11. Generate a volcano plot
 
 Let's visualize the results from **Step 10** using a volcano plot.
@@ -235,6 +270,8 @@ Let's visualize the results from **Step 10** using a volcano plot.
 ```{r volcanoplot, warning = FALSE, results ='hide', fig.align = 'center', out.width='60%',}
 volcano_plot(fit_df)
 ```
+
+---
 
 ### 12. Create a heatmap of differentially expressed proteins
 
