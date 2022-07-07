@@ -5,6 +5,7 @@ package: promor
 output:
   html_document:
     toc: true
+    toc_depth: 3
     df_print: paged
   rmarkdown::html_vignette:
     number_sections: yes
@@ -18,10 +19,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Introduction
+### Introduction
+
 This tutorial shows how you can use `promor` to analyse label-free quantification (LFQ) proteomics data that do **NOT**  contain technical replicates. 
 
 We recommend that you first go through the simple working example provided in **Introduction to promor** to get acquainted with `promor's` functionality.
+
 ```{r, eval=FALSE}
 vignette("intro_to_promor")
 ```
@@ -31,14 +34,15 @@ A tutorial for proteomics data **with technical replicates** is provided here:
 
 For this tutorial we will be using a previously published data set from [Cox et al. (2014)](https://europepmc.org/article/MED/24942700#id609082).\
 
-## Workflow
+### Workflow
 
 ![promor notechreps flowchart by caranathunge](../man/figures/promor_ProtAnalysis_notechreps_small.png) 
 *Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with no technical replicates*
 
 **You can access the help pages for functions shown above and more using** `?function_name`
 
-## Input data
+### Input data
+
 To run `promor`, you need:
 
 -  A **proteinGroups.txt** file produced by *MaxQuant*
@@ -65,33 +69,42 @@ head(exp_design)
 
 **tech_rep** is a number denoting the technical replicate number. In this example, there are no technical replicates, so the column is left blank.
 
-## 1. Create a *raw_df* object
+### 1. Create a *raw_df* object
+
 Let's first create a *raw_df* object with the input files. 
+
 ```{r createdf, warning=FALSE}
-#Create a raw_df object with default settings.
+# Create a raw_df object with default settings.
 raw <- create_df(
-prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt")
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+)
+
+
 # We can quickly check the dimensions of the data frame
 dim(raw)
 ```
 
 If you ran `create_df` with default settings, now your *raw_df* object contains log2 transformed LFQ protein intensity values. Run `?create_df` for more information on available arguments.
 
-## 2. Filter proteins by groupwise missing data
+### 2. Filter proteins by groupwise missing data
+
 Next, we will remove proteins if they have more than 0.4% (default is 0.33%) missing data in either group.
+
 ```{r filterbygroupna, warning = FALSE}
-#Filter out proteins with high levels of missing data in each condition
+# Filter out proteins with high levels of missing data in either condition
 raw_filtered <- filterbygroup_na(raw, set_na = 0.4)
+
 # We can check the dimensions of the new data frame. Note that the number of rows have changed.
 dim(raw_filtered)
 ```
 
-## 3. Visualize missing data
+### 3. Visualize missing data
+
 Now, we are going to see how missing data is distributed in the data. This will help us make an informed decision on how to impute missing data in the next step. 
 
 ```{r heatmapna, warning = FALSE, results = 'hide', out.width= '60%', fig.align = 'center'}
-#Visualize missing data in a subset of proteins. 
+# Visualize missing data in a subset of proteins.
 heatmap_na(raw_filtered, palette = "mako")
 ```
 
@@ -106,11 +119,12 @@ heatmap_na(raw_filtered, reorder_y = TRUE, palette = "mako")
 For larger data sets, you can choose to visualize subsets of the data
 
 ```{r heatmapna1, warning = FALSE, results = 'hide', out.width= '60%' , fig.align = 'center'}
-#Visualize missing data in a subset of proteins. 
+# Visualize missing data in a subset of proteins.
 heatmap_na(raw_filtered, protein_range = 30:70, palette = "mako")
 ```
 
-## 4. Impute missing data
+### 4. Impute missing data
+
 *promor* provides multiple missing data imputation methods. Default is `minProb`, which assumes that all missing data is MNAR (Missing Not at Random) type or left-censored missing values, and imputes them by random draws from a Gaussian distribution centered at a minimal value. More information about available imputation methods can be found in [Lazar et al. (2016)](https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00981).
 
 
@@ -118,12 +132,12 @@ heatmap_na(raw_filtered, protein_range = 30:70, palette = "mako")
 # Impute missing data with minProb method
 imp_df_mp <- impute_na(raw_filtered)
 
-#Alternatively, we can test a different imputation method that allows for missing data of both MAR and MNAR types.
+# Alternatively, we can test a different imputation method that allows for missing data of both MAR and MNAR types.
 imp_df_knn <- impute_na(raw_filtered, method = "kNN")
-
 ```
 
-## 5. Visualize imputed data
+### 5. Visualize imputed data
+
 We can now visualize the impact of imputation on each sample's intensity data. 
 First, lets check the data imputed with `minProb` method.
 
@@ -143,25 +157,31 @@ impute_plot(original = raw_filtered, imputed = imp_df_knn, global = FALSE, n_row
 
 Compared to `minProb`, `kNN` seems to have introduced fewer low intensity values to `H_3` data, so let's use that data set in downstream steps.
 
-## 6. Normalize data
+### 6. Normalize data
 
 Next, we will normalize the imputed data with the default `quantile` method.
+
 ```{r norm, warning = FALSE, results='hide'}
 norm_df <- normalize_data(imp_df_knn)
 ```
 
-## 7. Visualize normalized data
+### 7. Visualize normalized data
+
 Let's check if our data set was successfully normalized.
+
 ```{r normplot, warning = FALSE, results = 'hide', fig.align = 'center'}
 norm_plot(original = imp_df_knn, normalized = norm_df, palette = "mako")
 ```
+
 For samples that show very little variability among them, such as those in this data set, it may be difficult to visualize the effect of normalization with boxplots. Let's use `type = "density` to visualize the effect of normalization with density plots instead.
+
 ```{r normplotd, warning = FALSE, results = 'hide', fig.align = 'center'}
 norm_plot(original = imp_df_knn, normalized = norm_df, type = "density", palette = "mako")
 ```
 
 
-## 8. Identify differentially expressed proteins
+### 8. Identify differentially expressed proteins
+
 We can now use the `norm_df` object we created in **Step 7** to perform differential expression analysis.
 
 ```{r finddep, warning = FALSE, results = 'hide'}
@@ -169,23 +189,25 @@ fit_df <- find_dep(norm_df)
 ```
 
 You can also choose to save the top 10 hits in a text file as follows:
+
 ```{r tophits, warning = FALSE, eval = FALSE, results = 'hide'}
 fit_df <- find_dep(norm_df, save_tophits = TRUE, n_top = 10)
 ```
 
 
 
-## 9. Generate a volcano plot
+### 9. Generate a volcano plot
+
 Let's visualize the results from **Step 8** using a volcano plot.
 
-
 ```{r volcanoplot, warning = FALSE, results ='hide', out.width = '70%', fig.align ='center'}
-volcano_plot(fit_df, 
-             text_size = 5,
-             palette = "mako")
+volcano_plot(fit_df,
+  text_size = 5,
+  palette = "mako"
+)
 ```
 
-## 10. Create a heatmap of differentially expressed proteins
+### 10. Create a heatmap of differentially expressed proteins
 
 ```{r heatmapde, warning = FALSE, results ='hide', fig.align = 'center'}
 heatmap_de(fit_df = fit_df, norm_df = norm_df, palette = "mako")

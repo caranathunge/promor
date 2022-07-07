@@ -3,7 +3,8 @@ title: "Introduction to promor"
 output:
   html_document:
      df_print: paged
-     toc: true  
+     toc: true
+     toc_depth: 3  
   rmarkdown::html_vignette:
     number_sections: yes
   
@@ -14,20 +15,24 @@ vignette: >
 
 ---
 
-## Introduction
+### Introduction
+
 * `promor` is a user-friendly, comprehensive R package that combines proteomics 
 data analysis with machine learning-based modeling. 
+
 * `promor` streamlines differential expression analysis of 
 **label-free quantification (LFQ)** proteomics data and building predictive 
 models with top protein candidates.
+
 * Input files for `promor` are the [**proteinGroups.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
 file produced by **MaxQuant** and an [**expDesign.txt**](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt) file, which contains the 
 experimental design of your proteomics data.
+
 * `promor` provides a wealth of data analysis and visualization tools at the 
 protein level to analyze label-free proteomics data.
 
 
-## Installation
+### Installation
 
 You can install the development version of promor from 
 [GitHub](https://github.com/) with:
@@ -40,72 +45,92 @@ install.packages("devtools")
 devtools::install_github("caranathunge/promor")
 ```
 
-## Proteomics data analysis with promor
+### Proteomics data analysis with promor
+
 ```{r, echo = FALSE, out.width = "100%"}
 knitr::include_graphics("../man/figures/promor_ProtAnalysisFlowChart_small.png")
 ```
 
 *Figure 1. A schematic diagram of suggested workflows for proteomics data analysis with promor.*
 
-### Example
+\
+
+#### Example
 
 Here is a minimal working example showing how to identify differentially
 expressed proteins between two conditions using `promor` in five simple steps.
+
 We use a previously published data set from [Cox et al. (2014)](https://europepmc.org/article/MED/24942700#id609082) (PRIDE ID: PXD000279).
 
 ```{r example, results = 'hide', warning=FALSE, eval = FALSE}
-#Load promor
+# Load promor
 library(promor)
-#Create a raw_df object with the files provided in this github account.
+
+# Create a raw_df object with the files provided in this github account.
 raw <- create_df(
-prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
-  )
-#Filter out proteins with high levels of missing data in each condition
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+)
+
+# Filter out proteins with high levels of missing data in either condition/group
 raw_filtered <- filterbygroup_na(raw)
-#Impute missing data and create an imp_df object.
+
+# Impute missing data and create an imp_df object.
 imp_df <- impute_na(raw_filtered)
-#Normalize data and create a norm_df object
+
+# Normalize data and create a norm_df object
 norm_df <- normalize_data(imp_df)
-#Perform differential expression analysis and create a fit_df object
+
+# Perform differential expression analysis and create a fit_df object
 fit_df <- find_dep(norm_df)
 ```
+
 Lets take a look at the results using a volcano plot.
+
 ```{r volcanoplot, warning = FALSE,  dpi = 300, out.width = '70%', fig.align ='center', eval = FALSE}
- volcano_plot(fit_df, text_size = 5)
+volcano_plot(fit_df, text_size = 5)
 ```
+
 <center>
 
 ![](../man/figures/README-volcanoplot-1.png){width=70%}
 
 </center>
-## Modeling with promor
+
+### Modeling with promor
+
 ```{r, echo = FALSE, out.width = "100%"}
 knitr::include_graphics("../man/figures/promor_ProtModelingFlowChart_small.png")
 ```
 
 *Figure 2. A schematic diagram of suggested workflows for building predictive models with promor.*
 
-### Example
+\
+
+#### Example
 
 The following minimal working example shows you how to use your results from  differential expression analysis to build machine learning-based predictive models using *promor*. 
 
 We use a previously published data set from [Suvarna et al. (2021)](https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3) that used differentially expressed proteins between severe and non-severe COVID patients to build models to predict COVID severity.
 
 ```{r modeling_example, results = 'hide', warning = FALSE,message = F, eval = FALSE}
-#First, let's make a model_df object of top differentially expressed proteins. 
-#We will be using example fit_df and norm_df objects provided with the package.
-covid_model_df <- pre_process(fit_df = covid_fit_df, 
-                              norm_df = covid_norm_df)
-#Next, we split the data into training and test data sets
+# First, let's make a model_df object of top differentially expressed proteins.
+# We will be using example fit_df and norm_df objects provided with the package.
+covid_model_df <- pre_process(
+  fit_df = covid_fit_df,
+  norm_df = covid_norm_df
+)
+# Next, we split the data into training and test data sets
 covid_split_df <- split_data(model_df = covid_model_df)
 
-#Let's train our models using the default list of machine learning algorithms
+# Let's train our models using the default list of machine learning algorithms
 covid_model_list <- train_models(split_df = covid_split_df)
 
-#We can now use our models to predict the test data
-covid_prob_list <- test_models(model_list = covid_model_list, 
-                               split_df = covid_split_df)
+# We can now use our models to predict the test data
+covid_prob_list <- test_models(
+  model_list = covid_model_list,
+  split_df = covid_split_df
+)
 ```
 
 
@@ -113,9 +138,10 @@ Let's make ROC plots to check how the different models performed.
 
 ```{r rocplot, warning = FALSE, dpi = 300, out.width = '90%', fig.align ='center', message = F, eval = FALSE}
 
-roc_plot(probability_list = covid_prob_list,
-         split_df = covid_split_df)
-
+roc_plot(
+  probability_list = covid_prob_list,
+  split_df = covid_split_df
+)
 ```
 
 <center>
@@ -123,7 +149,8 @@ roc_plot(probability_list = covid_prob_list,
 ![](../man/figures/README-rocplot-1.png){width=70%}
 
 </center>
-## Tutorials
+
+### Tutorials
 
 You can choose a tutorial from the list below that best fits your experiment 
 and the structure of your proteomics data.
