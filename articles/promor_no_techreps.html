@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="promor">
-<title>Proteomics data analysis with promor: no technical replicates • promor</title>
+<title>Proteomics data analysis: no technical replicates • promor</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Lato-0.4.1/font.css" rel="stylesheet">
 <link href="../deps/_Source%20Code%20Pro-0.4.1/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Proteomics data analysis with promor: no technical replicates">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Proteomics data analysis: no technical replicates">
 <meta property="og:description" content="promor">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -25,12 +25,12 @@
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
-    <!-- inserted before the package title in the header ->
+    
     <a class="navbar-brand me-2" href="../index.html">promor</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
-    <!-- inserted before the navbar links -->
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -44,9 +44,9 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/intro_to_promor.html">Introduction to promor</a>
+    <a class="dropdown-item" href="../articles/promor_no_techreps.html">Proteomics data analysis: no technical replicates</a>
+    <a class="dropdown-item" href="../articles/promor_with_techreps.html">Proteomics data analysis: technical replicates</a>
     <a class="dropdown-item" href="../articles/promor_for_modeling.html">Modeling with promor</a>
-    <a class="dropdown-item" href="../articles/promor_no_techreps.html">Proteomics data analysis with promor: no technical replicates</a>
-    <a class="dropdown-item" href="../articles/promor_with_techreps.html">Proteomics data analysis with promor: technical replicates</a>
   </div>
 </li>
 <li class="nav-item">
@@ -59,6 +59,12 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
+  <a class="external-link nav-link" href="http://twitter.com/caranathunge" aria-label="Twitter">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
   <a class="external-link nav-link" href="https://github.com/caranathunge/promor/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
@@ -67,16 +73,14 @@
       </ul>
 </div>
 
-    <!-- inserted after the navbar links -->
+    
   </div>
 </nav><div class="container template-article">
 
 
-
-
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Proteomics data analysis with promor: no technical replicates</h1>
+      <img src="" class="logo" alt=""><h1>Proteomics data analysis: no technical replicates</h1>
                         <h4 data-toc-skip class="author">Chathurani Ranathunge</h4>
             
       
@@ -86,6 +90,15 @@
 
     
     
+<style type="text/css">
+
+h1.title {
+  font-size: 35px;
+}
+h4.author {
+  font-size: 15px;
+}
+</style>
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
@@ -95,12 +108,14 @@
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"intro_to_promor"</span><span class="op">)</span></span></code></pre></div>
 <p>A tutorial for proteomics data <strong>with technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_with_techreps.html">promor: Technical replicates</a></p>
 <p>For this tutorial we will be using a previously published data set from <a href="https://europepmc.org/article/MED/24942700#id609082" class="external-link">Cox et al. (2014)</a>.<br></p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h3>
 <p><img src="../reference/figures/promor_ProtAnalysis_notechreps_small.png" alt="promor notechreps flowchart by caranathunge"><em>Figure 1. A schematic diagram highlighting the suggested promor workflow for proteomics data with no technical replicates</em></p>
 <p><strong>You can access the help pages for functions shown above and more using</strong> <code>?function_name</code></p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="input-data">Input data<a class="anchor" aria-label="anchor" href="#input-data"></a>
@@ -119,18 +134,17 @@
 <span><span class="co"># Let's load the expDesign.txt file</span></span>
 <span><span class="va">exp_design</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"</span>, sep <span class="op">=</span> <span class="st">"\t"</span><span class="op">)</span></span>
 <span><span class="co"># Take a peek inside the file</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">exp_design</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   mq_label condition sample_ID tech_rep</span></span>
-<span><span class="co">#&gt; 1       H1         H         1       NA</span></span>
-<span><span class="co">#&gt; 2       H2         H         2       NA</span></span>
-<span><span class="co">#&gt; 3       H3         H         3       NA</span></span>
-<span><span class="co">#&gt; 4       L1         L         1       NA</span></span>
-<span><span class="co">#&gt; 5       L2         L         2       NA</span></span>
-<span><span class="co">#&gt; 6       L3         L         3       NA</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">exp_design</span><span class="op">)</span></span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mq_label"],"name":[1],"type":["chr"],"align":["left"]},{"label":["condition"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sample_ID"],"name":[3],"type":["int"],"align":["right"]},{"label":["tech_rep"],"name":[4],"type":["lgl"],"align":["right"]}],"data":[{"1":"H1","2":"H","3":"1","4":"NA","_rn_":"1"},{"1":"H2","2":"H","3":"2","4":"NA","_rn_":"2"},{"1":"H3","2":"H","3":"3","4":"NA","_rn_":"3"},{"1":"L1","2":"L","3":"1","4":"NA","_rn_":"4"},{"1":"L2","2":"L","3":"2","4":"NA","_rn_":"5"},{"1":"L3","2":"L","3":"3","4":"NA","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <p><strong>mq_label</strong> is the sample label that you provided when running <em>MaxQuant</em>. You can easily find them in your <em>proteinGroups.txt</em> file. Hint: In LFQ intensity columns, the term “LFQ intensity” is immediately followed by the label you provided when running <em>MaxQuant</em>. This is your <strong>mq_label</strong>.</p>
 <p><strong>condition</strong> is the condition or group that your samples belong to. In this example “H” refers to HeLa cells, and “L” refers to <em>E. coli</em> cells.</p>
 <p><strong>sample_ID</strong> is a unique identifier for each sample.</p>
 <p><strong>tech_rep</strong> is a number denoting the technical replicate number. In this example, there are no technical replicates, so the column is left blank.</p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="create-a-raw_df-object">1. Create a <em>raw_df</em> object<a class="anchor" aria-label="anchor" href="#create-a-raw_df-object"></a>
@@ -153,6 +167,7 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">raw</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4584    6</span></span></code></pre></div>
 <p>If you ran <code>create_df</code> with default settings, now your <em>raw_df</em> object contains log2 transformed LFQ protein intensity values. Run <code><a href="../reference/create_df.html">?create_df</a></code> for more information on available arguments.</p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="filter-proteins-by-groupwise-missing-data">2. Filter proteins by groupwise missing data<a class="anchor" aria-label="anchor" href="#filter-proteins-by-groupwise-missing-data"></a>
@@ -166,6 +181,7 @@
 <span><span class="co"># We can check the dimensions of the new data frame. Note that the number of rows have changed.</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">raw_filtered</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4360    6</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="visualize-missing-data">3. Visualize missing data<a class="anchor" aria-label="anchor" href="#visualize-missing-data"></a>
@@ -185,6 +201,7 @@
 <code class="sourceCode R"><span><span class="co"># Visualize missing data in a subset of proteins.</span></span>
 <span><span class="fu"><a href="../reference/heatmap_na.html">heatmap_na</a></span><span class="op">(</span><span class="va">raw_filtered</span>, protein_range <span class="op">=</span> <span class="fl">30</span><span class="op">:</span><span class="fl">70</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_no_techreps_files/figure-html/heatmapna1-1.png" width="60%" style="display: block; margin: auto;"></p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="impute-missing-data">4. Impute missing data<a class="anchor" aria-label="anchor" href="#impute-missing-data"></a>
@@ -196,6 +213,7 @@
 <span></span>
 <span><span class="co"># Alternatively, we can test a different imputation method that allows for missing data of both MAR and MNAR types.</span></span>
 <span><span class="va">imp_df_knn</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_na.html">impute_na</a></span><span class="op">(</span><span class="va">raw_filtered</span>, method <span class="op">=</span> <span class="st">"kNN"</span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="visualize-imputed-data">5. Visualize imputed data<a class="anchor" aria-label="anchor" href="#visualize-imputed-data"></a>
@@ -204,14 +222,15 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualize the imputed data with sample-wise density plots.</span></span>
 <span><span class="fu"><a href="../reference/impute_plot.html">impute_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">raw_filtered</span>, imputed <span class="op">=</span> <span class="va">imp_df_mp</span>, global <span class="op">=</span> <span class="cn">FALSE</span>, n_row <span class="op">=</span> <span class="fl">3</span>, n_col <span class="op">=</span> <span class="fl">3</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_no_techreps_files/figure-html/imputeplotmp-1.png" width="2187.5" style="display: block; margin: auto;"></p>
+<p><img src="promor_no_techreps_files/figure-html/imputeplotmp-1.png" width="2100" style="display: block; margin: auto;"></p>
 <p>It looks like, for most samples, imputation has not changed the distribution of data by much, which is a good sign. However, sample <code>H_3</code> seems to have been imputed with a fair amount of low intensity values.<br></p>
 <p>Let’s look at the data imputed with the <code>kNN</code> method next.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Visualize the imputed data with sample-wise density plots.</span></span>
 <span><span class="fu"><a href="../reference/impute_plot.html">impute_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">raw_filtered</span>, imputed <span class="op">=</span> <span class="va">imp_df_knn</span>, global <span class="op">=</span> <span class="cn">FALSE</span>, n_row <span class="op">=</span> <span class="fl">3</span>, n_col <span class="op">=</span> <span class="fl">3</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_no_techreps_files/figure-html/imputeplotrf-1.png" width="2187.5" style="display: block; margin: auto;"></p>
+<p><img src="promor_no_techreps_files/figure-html/imputeplotrf-1.png" width="2100" style="display: block; margin: auto;"></p>
 <p>Compared to <code>minProb</code>, <code>kNN</code> seems to have introduced fewer low intensity values to <code>H_3</code> data, so let’s use that data set in downstream steps.</p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="normalize-data">6. Normalize data<a class="anchor" aria-label="anchor" href="#normalize-data"></a>
@@ -219,6 +238,7 @@
 <p>Next, we will normalize the imputed data with the default <code>quantile</code> method.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">norm_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/normalize_data.html">normalize_data</a></span><span class="op">(</span><span class="va">imp_df_knn</span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="visualize-normalized-data">7. Visualize normalized data<a class="anchor" aria-label="anchor" href="#visualize-normalized-data"></a>
@@ -226,11 +246,12 @@
 <p>Let’s check if our data set was successfully normalized.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/norm_plot.html">norm_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">imp_df_knn</span>, normalized <span class="op">=</span> <span class="va">norm_df</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_no_techreps_files/figure-html/normplot-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="promor_no_techreps_files/figure-html/normplot-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>For samples that show very little variability among them, such as those in this data set, it may be difficult to visualize the effect of normalization with boxplots. Let’s use <code>type = "density</code> to visualize the effect of normalization with density plots instead.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/norm_plot.html">norm_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">imp_df_knn</span>, normalized <span class="op">=</span> <span class="va">norm_df</span>, type <span class="op">=</span> <span class="st">"density"</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_no_techreps_files/figure-html/normplotd-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="promor_no_techreps_files/figure-html/normplotd-1.png" width="672" style="display: block; margin: auto;"></p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="identify-differentially-expressed-proteins">8. Identify differentially expressed proteins<a class="anchor" aria-label="anchor" href="#identify-differentially-expressed-proteins"></a>
@@ -242,6 +263,7 @@
 <p>You can also choose to save the top 10 hits in a text file as follows:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_dep.html">find_dep</a></span><span class="op">(</span><span class="va">norm_df</span>, save_tophits <span class="op">=</span> <span class="cn">TRUE</span>, n_top <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="generate-a-volcano-plot">9. Generate a volcano plot<a class="anchor" aria-label="anchor" href="#generate-a-volcano-plot"></a>
@@ -253,13 +275,14 @@
 <span>  palette <span class="op">=</span> <span class="st">"mako"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_no_techreps_files/figure-html/volcanoplot-1.png" width="70%" style="display: block; margin: auto;"></p>
+<hr>
 </div>
 <div class="section level3">
 <h3 id="create-a-heatmap-of-differentially-expressed-proteins">10. Create a heatmap of differentially expressed proteins<a class="anchor" aria-label="anchor" href="#create-a-heatmap-of-differentially-expressed-proteins"></a>
 </h3>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/heatmap_de.html">heatmap_de</a></span><span class="op">(</span>fit_df <span class="op">=</span> <span class="va">fit_df</span>, norm_df <span class="op">=</span> <span class="va">norm_df</span>, palette <span class="op">=</span> <span class="st">"mako"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_no_techreps_files/figure-html/heatmapde-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="promor_no_techreps_files/figure-html/heatmapde-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -269,7 +292,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Chathurani Ranathunge.</p>
+<p>Developed by <a href="https://www.linkedin.com/in/chathurani-ranathunge" class="external-link">Chathurani Ranathunge</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
