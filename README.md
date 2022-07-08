@@ -10,8 +10,6 @@
 status](https://www.r-pkg.org/badges/version/promor)](https://cran.r-project.org/package=promor)
 <!-- badges: end -->
 
-### Introduction
-
 -   `promor` is a user-friendly, comprehensive R package that combines
     proteomics data analysis with machine learning-based modeling.
 
@@ -93,7 +91,7 @@ volcano_plot(fit_df, text_size = 5)
 
 <center>
 
-<img src="./man/figures/README-volcanoplot-1.png" style="width:70.0%" />
+<img src="./man/figures/README-volcanoplot-1.png" style="width:68.0%" />
 
 </center>
 
