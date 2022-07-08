@@ -1,6 +1,6 @@
 Package: promor
 Type: Package
-Title: Label-free Proteomics Data Analysis and Modeling Tools
+Title: Proteomics Data Analysis and Modeling Tools
 Version: 0.1.0
 Authors@R: person("Chathurani", "Ranathunge", , "caranathunge86@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0003-1901-2119"))
