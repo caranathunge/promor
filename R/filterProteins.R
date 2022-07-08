@@ -133,7 +133,7 @@ filterbygroup_na <- function(raw_df,
 #' @param abs_group Name of the group in which proteins are not expressed.
 #' @param pres_group Name of the group in which proteins are expressed.
 #' @param set_na The percentage of missing data allowed in \code{pres_group}.
-#' Default is 0.34 (one thrid of the samples in the group).
+#' Default is 0.34 (one third of the samples in the group).
 #' @param save Logical. If \code{TRUE} (default), it saves the output in a text
 #' file named "Group_\code{pres_group}_only.txt."
 #'
