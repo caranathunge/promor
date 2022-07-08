@@ -22,7 +22,6 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/promor)](https://cran.r-project.org/package=promor)
 <!-- badges: end -->
 
-### Introduction
 
 * `promor` is a user-friendly, comprehensive R package that combines proteomics 
 data analysis with machine learning-based modeling. 
