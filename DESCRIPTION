@@ -2,7 +2,7 @@ Package: promor
 Type: Package
 Title: Label-free Proteomics Data Analysis and Modeling Tools
 Version: 0.1.0
-Authors@R: person("Chathurani", "Ranathunge", , "caranathunge86@gmail.com", role = c("aut", "cre"),
+Authors@R: person("Chathurani", "Ranathunge", , "caranathunge86@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0003-1901-2119"))
 Maintainer: Chathurani Ranathunge<caranathunge86@gmail.com>
 Description: A comprehensive, user-friendly package for label-free proteomics data analysis and machine learning-based modeling. Data generated from 'MaxQuant' can be easily used to conduct differential expression analysis, build predictive models with top protein candidates, and assess model performance.
