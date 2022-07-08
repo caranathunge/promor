@@ -1,10 +1,9 @@
 ---
 title: "Introduction to promor"
 output:
-  rmarkdown::html_document:
+  rmarkdown::html_vignette:
      df_print: paged
      toc: true
-     toc_float: true
      toc_depth: 3
 pkgdown:
   as_is: true
