@@ -32,12 +32,12 @@ data analysis with machine learning-based modeling.
 **label-free quantification (LFQ)** proteomics data and building predictive 
 models with top protein candidates.
 
-* Input files for `promor` are the [proteinGroups.txt ](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
-file produced by **MaxQuant** and an [expDesign.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt) file, which contains the 
-experimental design of your proteomics data.
-
-* `promor` provides a wealth of data analysis and visualization tools at the 
+* `promor` provides a range of quality control and visualization tools at the 
 protein level to analyze label-free proteomics data.
+
+* Input files for `promor` are the [proteinGroups.txt ](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
+file produced by [**MaxQuant**](https://maxquant.org) and an [expDesign.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt) file, which contains the 
+experimental design of your proteomics data.
 
 ---
 
