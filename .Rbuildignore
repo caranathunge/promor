@@ -12,3 +12,4 @@
 ^vignettes/promor_with_techreps\.Rmd$
 ^vignettes/promor_for_modeling\.Rmd$
 ^LICENSE\.md$
+^cran-comments\.md$
