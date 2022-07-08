@@ -259,8 +259,7 @@ h4.author {
 <p>It looks like some samples have been imputed with an excess of low intensity values.<br></p>
 <p>Let’s look at the data imputed with the <code>SVD</code> method next.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Visualize the imputed data with a global density plot.</span></span>
-<span><span class="fu"><a href="../reference/impute_plot.html">impute_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">raw_filtered</span>, imputed <span class="op">=</span> <span class="va">imp_df_svd</span>, global <span class="op">=</span> <span class="cn">FALSE</span>, n_row <span class="op">=</span> <span class="fl">3</span>, n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/impute_plot.html">impute_plot</a></span><span class="op">(</span>original <span class="op">=</span> <span class="va">raw_filtered</span>, imputed <span class="op">=</span> <span class="va">imp_df_svd</span>, global <span class="op">=</span> <span class="cn">FALSE</span>, n_row <span class="op">=</span> <span class="fl">3</span>, n_col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_with_techreps_files/figure-html/imputeplotrf-1.png" width="2100" style="display: block; margin: auto;"></p>
 <p>Compared to <code>minProb</code>, <code>SVD</code> seems to have introduced fewer low intensity values, so let’s use that data set in downstream steps.</p>
 <p>Additionally, we can also visualize the imputed data of all six samples with a global density plot.</p>
