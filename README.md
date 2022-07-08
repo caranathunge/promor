@@ -32,7 +32,7 @@ status](https://www.r-pkg.org/badges/version/promor)](https://cran.r-project.org
 ### Installation
 
 You can install the development version of promor from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/caranathunge/promor) with:
 
 ``` r
 # install devtools, if you haven't already:

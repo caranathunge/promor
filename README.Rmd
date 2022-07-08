@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 # promor <img src="man/figures/logo.png" align="right" height="200" style="float:right; height:200px;">
 
+
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
 [![CRAN status](https://www.r-pkg.org/badges/version/promor)](https://cran.r-project.org/package=promor)
@@ -37,12 +38,12 @@ protein level to analyze label-free proteomics data.
 file produced by [**MaxQuant**](https://maxquant.org) and an [expDesign.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt) file, which contains the 
 experimental design of your proteomics data.
 
----
+___
 
 ### Installation
 
 You can install the development version of promor from 
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/caranathunge/promor) with:
 
 ``` r
 # install devtools, if you haven't already:
