@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# promor <img src="man/figures/promor_logo.png" align="right" height="200" style="float:right; height:200px;">
+# promor <img src="man/figures/logo.png" align="right" height="200" style="float:right; height:200px;">
 
 <!-- badges: start -->
 
