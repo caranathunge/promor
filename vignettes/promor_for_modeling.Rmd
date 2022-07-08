@@ -102,7 +102,7 @@ library(promor)
 
 # Create a model_df object with the top differentially expressed proteins.
 covid_model_df <- pre_process(
-  fit_df = covid_fit_df,
+  fit_df = covid_fit_df, 
   norm_df = covid_norm_df
 )
 
