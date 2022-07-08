@@ -177,7 +177,7 @@ For larger data sets, you can choose to visualize subsets of the data.
 
 ```{r heatmapna3, warning = FALSE, results = 'hide', out.width='50%', fig.align = 'center'}
 # Visualize missing data in a subset of proteins.
-heatmap_na(raw_filtered, protein_range = 1:40)
+heatmap_na(raw_filtered, protein_range = 1:30, label_proteins = TRUE)
 ```
 
 ---
