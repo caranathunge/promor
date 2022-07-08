@@ -1,4 +1,5 @@
 url: https://caranathunge.github.io/promor/
+
 template:
   bootstrap: 5
   bootswatch: flatly
@@ -12,8 +13,10 @@ template:
     heading_font: {google: "Lato"}
     code_font: {google: "Source Code Pro"}
     pkgdown-nav-height: 100px
+
 development:
   mode: auto
+
 navbar:
   structure:
     right: [twitter, github]
@@ -22,6 +25,7 @@ navbar:
       icon: fa-twitter
       href: http://twitter.com/caranathunge
       aria-label: Twitter
+
 articles:
 - title: Getting started
   navbar: ~
@@ -38,6 +42,60 @@ articles:
   navbar: ~
   contents:
   - promor_for_modeling
+
+reference:
+- title: Proteomics Data Analysis
+- subtitle: Pre-processing
+  contents:
+  - create_df
+  - aver_techreps
+- subtitle: Quality Control
+  contents:
+  - filterbygroup_na
+  - rem_sample
+  - impute_na
+  - normalize_data
+- subtitle: Differential Expression Analysis
+  - find_dep
+- subtitle: Visualization
+  contents:
+  - corr_plot
+  - heatmap_na
+  - impute_plot
+  - norm_plot
+  - volcano_plot
+  - heatmap_de
+- subtitle: Miscellaneous
+  - onegroup_only
+
+- title: Building Models
+- subtitle: Pre-processing
+  contents:
+  - pre_process
+  - rem_feature
+  - split_data
+- subtitle: Modeling
+  contents:
+  - train_models
+  - test_models
+- subtitle: Visualization
+  contents:
+  - feature_plot
+  - varimp_plot
+  - performance_plot
+  - roc_plot
+
+- title: Data
+  contents:
+  - covid_fit_df
+  - covid_norm_df
+  - ecoli_norm_df
+  - ecoli_fit_df
+
+news:
+releases:
+  - text: "Version 0.1.0"
+
 authors:
   Chathurani Ranathunge:
     href: "https://www.linkedin.com/in/chathurani-ranathunge"
