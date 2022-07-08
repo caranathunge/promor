@@ -212,7 +212,6 @@ It looks like some samples have been imputed with an excess of low intensity val
 Let's look at the data imputed with the `SVD` method next.
 
 ```{r imputeplotrf, warning = FALSE, results='hide', fig.align = 'center', dpi = 300}
-# Visualize the imputed data with a global density plot.
 impute_plot(original = raw_filtered, imputed = imp_df_svd, global = FALSE, n_row = 3, n_col = 2)
 ```
 
