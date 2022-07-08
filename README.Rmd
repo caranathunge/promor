@@ -1,8 +1,6 @@
 ---
 output: 
   github_document:
-    toc: true
-    toc_depth: 3
     number_sections: FALSE
 ---
 
@@ -17,10 +15,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# promor
+# promor <img src="man/figures/promor_logo.png" align="right" height="200" style="float:right; height:200px;">
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/promor)](https://cran.r-project.org/package=promor)
 <!-- badges: end -->
 
 ### Introduction

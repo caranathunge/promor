@@ -1,19 +1,13 @@
 
--   [promor](#promor)
-    -   [Introduction](#introduction)
-    -   [Installation](#installation)
-    -   [Proteomics data analysis with
-        promor](#proteomics-data-analysis-with-promor)
-    -   [Modeling with promor](#modeling-with-promor)
-    -   [Tutorials](#tutorials)
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# promor
+# promor <img src="man/figures/promor_logo.png" align="right" height="200" style="float:right; height:200px;">
 
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/promor)](https://cran.r-project.org/package=promor)
 <!-- badges: end -->
 
 ### Introduction
