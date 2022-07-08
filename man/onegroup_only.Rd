@@ -14,7 +14,7 @@ onegroup_only(raw_df, abs_group, pres_group, set_na = 0.34, save = TRUE)
 \item{pres_group}{Name of the group in which proteins are expressed.}
 
 \item{set_na}{The percentage of missing data allowed in \code{pres_group}.
-Default is 0.34 (one thrid of the samples in the group).}
+Default is 0.34 (one third of the samples in the group).}
 
 \item{save}{Logical. If \code{TRUE} (default), it saves the output in a text
 file named "Group_\code{pres_group}_only.txt."}
