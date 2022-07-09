@@ -3,7 +3,7 @@
 
 # promor <img src="man/figures/logo.png" align="right" height="200" style="float:right; height:200px;">
 
-  
+### Proteomics Data Analysis and Modeling Tools
 
 <!-- badges: start -->
 
