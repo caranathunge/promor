@@ -8,8 +8,6 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/promor)](https://cran.r-project.org/package=promor)
 <!-- badges: end -->
 
 -   `promor` is a user-friendly, comprehensive R package that combines
