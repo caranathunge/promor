@@ -99,9 +99,10 @@ volcano_plot(fit_df, text_size = 5)
 
 <center>
 
-![](./man/figures/README-volcanoplot-1.png){width=68%}
+![](./man/figures/README-volcanoplot-1.png){width=70%}
 
 </center>
+
 
 ---
 
