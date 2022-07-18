@@ -1,3 +1,4 @@
+
 ---
 output: 
   github_document:
@@ -177,6 +178,4 @@ vignette("intro_to_promor", package = "promor")
 
 4. If you would like to use your proteomics data to build predictive models:
 [promor: Modeling](https://caranathunge.github.io/promor/articles/promor_for_modeling.html)
-
-
 
