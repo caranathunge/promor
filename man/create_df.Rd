@@ -71,7 +71,7 @@ rows from the data  frame.
 \item Finally, the function log transforms the LFQ intensity values.}
 }
 \examples{
-\dontrun{
+\donttest{
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",

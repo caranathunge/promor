@@ -31,10 +31,11 @@
 #' will be labeled with their Majority Protein IDs. Defualt is \code{FALSE}.
 #' @param text_size Text size for axis labels. Default is \code{10}.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
+#' @param file_name File name to save the heatmap. Default is
+#' \code{"Missing_data_heatmap"}.
 #' @param file_type File type to save the heatmap. Default is \code{"pdf"}.
-#' @param file_name File name to save the heatmap.
-#' Default is \code{"Missing_data_heatmap"}.
 #' @param plot_width Width of the plot. Default is \code{15}.
 #' @param plot_height Height of the plot. Default is \code{15}.
 #' @param dpi Plot resolution. Default is \code{80}.
@@ -50,7 +51,7 @@
 #' @seealso \code{\link{create_df}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -96,6 +97,7 @@ heatmap_na <- function(raw_df,
                        text_size = 10,
                        save = FALSE,
                        file_type = "pdf",
+                       file_path = NULL,
                        file_name = "Missing_data_heatmap",
                        plot_width = 15,
                        plot_height = 15,
@@ -218,9 +220,15 @@ heatmap_na <- function(raw_df,
         axis.text.y = element_text(size = text_size)
       )
   }
+
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   # Save the heatmap as a pdf
   if (save == TRUE) {
-    ggplot2::ggsave(paste0(file_name, ".", file_type),
+    ggplot2::ggsave(paste0(file_path, "/", file_name, ".", file_type),
       hmap,
       dpi = dpi,
       width = plot_width,
@@ -265,13 +273,15 @@ heatmap_na <- function(raw_df,
 #' \code{"RF"} method. Default is \code{20}.
 #' @param n_pcs Number of principal components to calculate when using the
 #' \code{"SVD"} method. Default is 2.
+#' @param seed Numerical. Random number seed. Default is \code{NULL}
 #'
 #' @details \itemize{\item Ideally, you should first remove proteins with
 #' high levels of missing data using the \code{filterbygroup_na} function
 #' before running \code{impute_na} on the \code{raw_df} object.
 #' \item \code{impute_na} function imputes missing values using a
 #' user-specified imputation method from the available options, \code{minProb},
-#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}}.
+#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}
+#' \item Make sure to fix the random number seed with \code{seed} for reproducibility}.
 #'
 #' @seealso More information on the available imputation methods can be found
 #' in their respective packages.
@@ -290,7 +300,7 @@ heatmap_na <- function(raw_df,
 #' with no missing values.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -299,24 +309,27 @@ heatmap_na <- function(raw_df,
 #'
 #' ## Impute missing values in the data frame using the default minProb
 #' ## method.
-#' imp_df1 <- impute_na(raw_df)
+#' imp_df1 <- impute_na(raw_df, seed = 3312)
 #'
 #' ## Impute using the RF method with the number of iterations set at 5
 #' ## and number of trees set at 100.
-#' imp_df2 <- impute_na(raw_df, method = "RF", maxiter = 5, ntree = 100)
+#' imp_df2 <- impute_na(raw_df, method = "RF",
+#' maxiter = 5, ntree = 100,
+#' seed = 3312)
 #'
 #' ## Using the kNN method.
-#' imp_df3 <- impute_na(raw_df, method = "kNN")
+#' imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
 #'
 #' ## Using the SVD method with n_pcs set to 3.
-#' imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3)
+#' imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
 #'
 #' ## Using the minDet method with q set at 0.001.
-#' imp_df5 <- impute_na(raw, method = "minDet", q = 0.001)
+#' imp_df5 <- impute_na(raw, method = "minDet", q = 0.001, seed = 3312)
 #' }
 #' @references Lazar, Cosmin, et al. "Accounting for the multiple natures of
 #' missing values in label-free quantitative proteomics data sets to compare
 #' imputation strategies." Journal of proteome research 15.4 (2016): 1116-1125.
+#'
 #' @export
 impute_na <- function(raw_df,
                       method = "minProb",
@@ -324,7 +337,8 @@ impute_na <- function(raw_df,
                       q = 0.01,
                       maxiter = 10,
                       ntree = 20,
-                      n_pcs = 2) {
+                      n_pcs = 2,
+                      seed = NULL) {
 
   # Setting global variables to NULL
   value <- protgroup <- NULL
@@ -332,13 +346,13 @@ impute_na <- function(raw_df,
   # Run the user-specified imputation method
 
   if (method == "minDet") {
-    set.seed(327)
+    set.seed(seed)
     df_imputed_mindet <- impute.MinDet(raw_df,
       q = q
     )
     return(df_imputed_mindet)
   } else if (method == "RF") {
-    set.seed(327)
+    set.seed(seed)
     df_imp_temp <- missForest::missForest(raw_df,
       maxiter = maxiter,
       ntree = ntree,
@@ -347,12 +361,12 @@ impute_na <- function(raw_df,
     df_imputed_rf <- df_imp_temp$ximp
     return(df_imputed_rf)
   } else if (method == "kNN") {
-    set.seed(327)
+    set.seed(seed)
     df_imputed_knn <- VIM::kNN(raw_df, imp_var = FALSE)
     rownames(df_imputed_knn) <- rownames(raw_df)
     return(df_imputed_knn)
   } else if (method == "SVD") {
-    set.seed(327)
+    set.seed(seed)
     raw_df <- as.matrix(raw_df)
     raw_df[is.nan(raw_df)] <- NA
     df_imp_temp <- pcaMethods::pca(
@@ -364,7 +378,7 @@ impute_na <- function(raw_df,
     df_imputed_svd <- as.data.frame(completeObs(df_imp_temp))
     return(df_imputed_svd)
   } else if (method == "minProb") {
-    set.seed(327)
+    set.seed(seed)
     df_imputed_minprob <- impute.Min.Prob(raw_df,
       q = q,
       tune_sigma = tune_sigma
@@ -400,8 +414,9 @@ impute_na <- function(raw_df,
 #' @param n_col Used if \code{global = FALSE} to indicate the number of
 #' columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
-#' @param file_name file_name File name to save the density plot/s.
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
+#' @param file_name File name to save the density plot/s.
 #' Default is \code{"Impute_plot."}
 #' @param file_type File type to save the density plot/s.
 #' Default is \code{"pdf"}.
@@ -425,7 +440,7 @@ impute_na <- function(raw_df,
 #' @return A \code{ggplot2} plot object.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -455,6 +470,7 @@ impute_plot <- function(original,
                         n_row,
                         n_col,
                         save = FALSE,
+                        file_path = NULL,
                         file_name = "Impute_plot",
                         file_type = "pdf",
                         plot_width = 7,
@@ -577,8 +593,14 @@ impute_plot <- function(original,
         ncol = n_col,
         strip.position = "top"
       )
+
+    #Set temporary file_path if not specified
+    if(is.null(file_path)){
+      file_path <- tempdir()
+    }
+
     if (save == TRUE) {
-      ggplot2::ggsave(paste0(file_name, ".", file_type),
+      ggplot2::ggsave(paste0(file_path, "/", file_name, ".", file_type),
         s_densplot,
         dpi = dpi,
         width = plot_width * n_col,

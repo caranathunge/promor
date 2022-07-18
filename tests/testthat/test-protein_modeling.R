@@ -178,7 +178,7 @@ test_split_df <- list(training = structure(list(protein_1 = c(
 # Test if function works
 test_that("split_data works", {
   suppressMessages(expect_equal(
-    split_data(fake_model_df, train_size = 0.7), test_split_df
+    split_data(fake_model_df, train_size = 0.7, seed = 8314), test_split_df
   ))
 })
 
@@ -191,7 +191,7 @@ svm_acc <- round(0.962963, digits = 4)
 # Test if function works
 test_that("train_models works", {
   suppressWarnings(suppressMessages(model_list <- train_models(test_split_df,
-    algorithm_list = c("rf", "glm", "svmRadial")
+    algorithm_list = c("rf", "glm", "svmRadial"), seed = 351
   )))
 
   rf <- model_list$rf$finalModel$confusion[1, 1]

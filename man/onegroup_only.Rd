@@ -4,7 +4,14 @@
 \alias{onegroup_only}
 \title{Proteins that are only expressed in a given group}
 \usage{
-onegroup_only(raw_df, abs_group, pres_group, set_na = 0.34, save = TRUE)
+onegroup_only(
+  raw_df,
+  abs_group,
+  pres_group,
+  set_na = 0.34,
+  save = FALSE,
+  file_path = NULL
+)
 }
 \arguments{
 \item{raw_df}{A \code{raw_df} object (output of \code{\link{create_df}})}
@@ -18,6 +25,8 @@ Default is 0.34 (one third of the samples in the group).}
 
 \item{save}{Logical. If \code{TRUE} (default), it saves the output in a text
 file named "Group_\code{pres_group}_only.txt."}
+
+\item{file_path}{A string containing the directory path to save the file.}
 }
 \value{
 A list of majority protein IDs.
@@ -34,10 +43,12 @@ notation. (Use \code{head(raw_df)} to check the structure of your
 \code{raw_df} object.)
 \itemize{\item Given a pair of groups, \code{onegroup_only}
 function finds proteins that are only expressed in \code{pres_group} while
-completely absent or not expressed in \code{abs_group}.}
+completely absent or not expressed in \code{abs_group}.
+\item A text file containing majority protein IDs will be saved in a
+temporary directory if \code{file_path} is not specified.}
 }
 \examples{
-\dontrun{
+\donttest{
 
 # Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
@@ -45,8 +56,11 @@ prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_dat
 exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 )
 
-## Save a list of proteins only expressed in group L, but absent in group H.
-onegroup_only(raw_df, abs_group = "H", pres_group = "L")
+## Save a list of proteins only expressed in group L, but absent in group H, in the
+## working directory.
+onegroup_only(raw_df, abs_group = "H",
+pres_group = "L", save = TRUE,
+file_path = ".")
 }
 
 }

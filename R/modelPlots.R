@@ -22,8 +22,9 @@
 #' @param n_row Number of rows to print the plots.
 #' @param n_col Number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
-#' @param file_name file_name File name to save the plot.
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
+#' @param file_name File name to save the plot.
 #' Default is \code{"Feature_plot."}
 #' @param file_type File type to save the plot.
 #' Default is \code{"pdf"}.
@@ -38,8 +39,9 @@
 #' @seealso
 #' \itemize{
 #' \item \code{pre_process}, \code{rem_feature}}
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Create a model_df object with default settings.
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
@@ -61,6 +63,7 @@ feature_plot <- function(model_df,
                          n_row,
                          n_col,
                          save = FALSE,
+                         file_path = NULL,
                          file_name = "Feature_plot",
                          file_type = "pdf",
                          dpi = 80,
@@ -154,8 +157,14 @@ feature_plot <- function(model_df,
         axis.title.y = element_text(size = text_size)
       )
   }
+
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   if (save == TRUE) {
-    ggplot2::ggsave(paste0(file_name, ".", file_type),
+    ggplot2::ggsave(paste0(file_path, "/", file_name, ".", file_type),
       pred_plot,
       dpi = dpi,
       width = plot_width,
@@ -192,8 +201,9 @@ feature_plot <- function(model_df,
 #' @param n_row Number of rows to print the plots.
 #' @param n_col Number of columns to print the plots.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
-#' @param file_name file_name File name to save the plot.
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
+#' @param file_name File name to save the plot.
 #' Default is \code{"VarImp_plot."}
 #' @param file_type File type to save the plot.
 #' Default is \code{"pdf"}.
@@ -217,7 +227,7 @@ feature_plot <- function(model_df,
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Create a model_df object
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
@@ -249,6 +259,7 @@ varimp_plot <- function(model_list,
                         n_row,
                         n_col,
                         save = FALSE,
+                        file_path = NULL,
                         file_name = "VarImp_plot",
                         file_type = "pdf",
                         dpi = 80,
@@ -427,8 +438,13 @@ varimp_plot <- function(model_list,
     })
   }
 
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   if (save == TRUE) {
-    ggplot2::ggsave(paste0(file_name, ".", file_type),
+    ggplot2::ggsave(paste0(file_path, "/", file_name, ".", file_type),
       marrangeGrob(
         grobs = vi_plots,
         nrow = n_row,
@@ -468,8 +484,9 @@ varimp_plot <- function(model_list,
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
-#' @param file_name file_name File name to save the plot.
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
+#' @param file_name File name to save the plot.
 #' Default is \code{"Performance_plot."}
 #' @param file_type File type to save the plot.
 #' Default is \code{"pdf"}.
@@ -494,8 +511,9 @@ varimp_plot <- function(model_list,
 #' \item \code{\link[caret:train]{train}}
 #' \item \code{\link[caret:trainControl]{trainControl}}
 #' }
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Create a model_df object
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
@@ -521,6 +539,7 @@ performance_plot <- function(model_list,
                              text_size = 10,
                              palette = "viridis",
                              save = FALSE,
+                             file_path = NULL,
                              file_name = "Performance_plot",
                              file_type = "pdf",
                              plot_width = 7,
@@ -631,8 +650,13 @@ performance_plot <- function(model_list,
       )
   }
 
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   if (save == TRUE) {
-    ggplot2::ggsave(paste0(file_name, ".", file_type),
+    ggplot2::ggsave(paste0(file_path, "/", file_name, ".", file_type),
       perform_plot,
       dpi = dpi,
       width = plot_width,
@@ -672,8 +696,9 @@ performance_plot <- function(model_list,
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
-#' @param file_name file_name File name to save the plot.
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
+#' @param file_name File name to save the plot.
 #' Default is \code{"ROC_plot."}
 #' @param file_type File type to save the plot.
 #' Default is \code{"pdf"}.
@@ -692,8 +717,9 @@ performance_plot <- function(model_list,
 #' \item \code{test_models}
 #' \item\code{\link[pROC:roc]{roc}}
 #' }
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Create a model_df object
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #'
@@ -723,6 +749,7 @@ roc_plot <- function(probability_list,
                      text_size = 10,
                      palette = "viridis",
                      save = FALSE,
+                     file_path = NULL,
                      file_name = "ROC_plot",
                      file_type = "pdf",
                      plot_width = 7,
@@ -877,8 +904,16 @@ roc_plot <- function(probability_list,
         label.size = NA
       )
   }
+
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   if (save == TRUE) {
     ggplot2::ggsave(paste0(
+      file_path,
+      "/",
       file_name,
       ".",
       file_type

@@ -17,6 +17,7 @@ volcano_plot(
   label_top = FALSE,
   n_top = 10,
   save = FALSE,
+  file_path = NULL,
   file_name = "Volcano_plot",
   file_type = "pdf",
   plot_height = 7,
@@ -58,8 +59,10 @@ dots to indicate protein names.}
 \item{n_top}{The number of top hits to label with protein name when
 \code{label_top = TRUE.} Default is \code{10}.}
 
-\item{save}{Logical. If \code{TRUE}, saves a copy of the plot in the
-working directory.}
+\item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
+directory provided in \code{file_path}.}
+
+\item{file_path}{A string containing the directory path to save the file.}
 
 \item{file_name}{File name to save the plot. Default is "Volcano_plot."}
 
@@ -86,7 +89,7 @@ with \code{find_dep.}
 \item User has the option to choose criteria that denote significance.}
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Create a volcano plot with default settings.
 volcano_plot(ecoli_fit_df)

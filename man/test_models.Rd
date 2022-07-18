@@ -9,6 +9,7 @@ test_models(
   split_df,
   type = "prob",
   save_confusionmatrix = FALSE,
+  file_path = NULL,
   ...
 )
 }
@@ -23,8 +24,11 @@ class probabilities, and "raw" to output class predictions.}
 
 \item{save_confusionmatrix}{Logical. If \code{TRUE}, a tab-delimited
 text file ("Confusion_matrices.txt") with confusion matrices in the
-long-form data format will be saved in the working directory.
+long-form data format will be saved in the directory specified by
+\code{file_path}.
 See below for more details.}
+
+\item{file_path}{A string containing the directory path to save the file.}
 
 \item{...}{Additional arguments to be passed on to
 \code{\link[stats:predict]{predict}}.}
@@ -48,7 +52,7 @@ models obtained from \code{train_models} to predict a given test data set.
 probabilities that can be used to generate ROC curves using \code{roc_plot}.}
 }
 \examples{
-\dontrun{
+\donttest{
 ## Create a model_df object
 covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 
@@ -61,12 +65,13 @@ covid_model_list <- train_models(covid_split_df)
 # Test a list of models on a test data set and output class probabilities,
 covid_prob_list <- test_models(model_list = covid_model_list, split_df = covid_split_df)
 
-# Save confusion matrices and output class predictions
+# Save confusion matrices in the working directory and output class predictions
 covid_pred_list <- test_models(
   model_list = covid_model_list,
   split_df = covid_split_df,
   type = "raw",
-  save_confusionmatrix = TRUE
+  save_confusionmatrix = TRUE,
+  file_path = "."
 )
 }
 }

@@ -14,6 +14,7 @@ heatmap_de(
   palette = "viridis",
   text_size = 10,
   save = FALSE,
+  file_path = NULL,
   file_name = "HeatmapDE",
   file_type = "pdf",
   dpi = 80,
@@ -45,8 +46,10 @@ for available options.}
 
 \item{text_size}{Text size for axis text, labels etc.}
 
-\item{save}{Logical. If \code{TRUE}, saves a copy of the plot in
-the working directory.}
+\item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
+directory provided in \code{file_path}.}
+
+\item{file_path}{A string containing the directory path to save the file.}
 
 \item{file_name}{File name to save the plot. Default is "HeatmapDE."}
 
@@ -70,7 +73,7 @@ By default the tiles in the heatmap are reordered by intensity values
 along both axes (x axis = samples, y axis = proteins).
 }
 \examples{
-\dontrun{
+\donttest{
 ## Build a heatmap of differentially expressed proteins using the provided
 ## example fit_df and norm_df data objects
 heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)

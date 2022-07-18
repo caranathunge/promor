@@ -22,7 +22,7 @@ follow the "Group_UniqueSampleID_TechnicalReplicate" notation. (Use
 \code{head(raw_df)} to see the structure of the \code{raw_df} object.)
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Use a data set containing technical replicates to create a raw_df object
 raw_df <- create_df(

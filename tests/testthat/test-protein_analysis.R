@@ -328,34 +328,40 @@ df_md <- structure(
 
 # testing minprob
 test_that("impute_na works for minprob", {
-  expect_equal(impute_na(df), df_mp)
+  expect_equal(impute_na(df,
+                         seed = 327),
+               df_mp)
 })
 
 # testing rf
 test_that("impute_na works for rf", {
   suppressWarnings(expect_equal(impute_na(df,
-    method = "RF"
+    method = "RF",
+    seed = 327
   ), df_rf))
 })
 
 # testing knn
 test_that("impute_na works for knn", {
   expect_equal(impute_na(df,
-    method = "kNN"
+    method = "kNN",
+    seed = 327
   ), df_knn)
 })
 
 # testing svd
 test_that("impute_na works for svd", {
   suppressMessages(expect_equal(impute_na(df,
-    method = "SVD"
+    method = "SVD",
+    seed = 327
   ), df_svd))
 })
 
 # testing minDet
 test_that("impute_na works for minDet", {
   expect_equal(impute_na(df,
-    method = "minDet"
+    method = "minDet",
+    seed = 327
   ), df_md)
 })
 

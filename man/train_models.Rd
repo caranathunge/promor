@@ -10,6 +10,7 @@ train_models(
   resample_iterations = 10,
   num_repeats = 3,
   algorithm_list,
+  seed = NULL,
   ...
 )
 }
@@ -34,6 +35,8 @@ the \code{caret} package can be found here:
 \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
 default options.}
 
+\item{seed}{Numerical. Random number seed. Default is \code{NULL}}
+
 \item{...}{Additional arguments to be passed on to
 \code{\link[caret:train]{train}} function in the \code{caret} package.}
 }
@@ -55,34 +58,42 @@ machine-learning algorithms, and output the best model for each algorithm.
 list of four classification-based machine-learning algorithms will be used
 for building and training models. Default \code{algorithm_list}:
 "svmRadial", "rf", "glm", "xgbLinear."
-\item Note: Models that fail to build are removed from the output. }
+\item Note: Models that fail to build are removed from the output.
+\item Make sure to fix the random number seed with
+\code{seed} for reproducibility}
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Create a model_df object
 covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 
 ## Split the data frame into training and test data sets
-covid_split_df <- split_data(covid_model_df)
+covid_split_df <- split_data(covid_model_df, seed = 8314)
 
 ## Fit models based on the default list of machine learning (ML) algorithms
-covid_model_list1 <- train_models(split_df = covid_split_df)
+covid_model_list1 <- train_models(split_df = covid_split_df, seed = 351)
 
 ## Fit models using a user-specified list of ML algorithms.
 covid_model_list2 <- train_models(
   covid_split_df,
-  algorithm_list = c("svmRadial", "glmboost")
+  algorithm_list = c("svmRadial", "glmboost"),
+  seed = 351
 )
 
 ## Change resampling method and resampling iterations.
 covid_model_list3 <- train_models(
   covid_split_df,
   resample_method = "cv",
-  resample_iterations = 50
+  resample_iterations = 50,
+  seed = 351
 )
 }
 
+}
+\references{
+Kuhn, Max. "Building predictive models in R using the caret
+package." Journal of statistical software 28 (2008): 1-26.
 }
 \seealso{
 \itemize{

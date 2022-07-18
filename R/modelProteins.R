@@ -27,7 +27,8 @@
 #' Default is \code{0.90}.
 #' @param save_corrmatrix Logical. If \code{TRUE}, saves a copy of the
 #' protein correlation matrix in a tab-delimited text file labeled
-#' "Protein_correlation.txt" in the working directory.
+#' "Protein_correlation.txt" in the directory specified by \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
 #' @param rem_highcorr Logical. If \code{TRUE} (default), removes highly
 #' correlated proteins (predictors or features).
 #'
@@ -49,8 +50,9 @@
 #' \itemize{
 #' \item \code{find_dep}, \code{normalize_data}
 #' \item \code{\link[caret:findCorrelation]{caret: findCorrelation}}}
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Create a model_df object with default settings.
 #' covid_model_df1 <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
@@ -74,6 +76,7 @@ pre_process <- function(fit_df,
                         find_highcorr = TRUE,
                         corr_cutoff = 0.90,
                         save_corrmatrix = FALSE,
+                        file_path = NULL,
                         rem_highcorr = TRUE) {
 
   #binding for global variable
@@ -152,9 +155,14 @@ pre_process <- function(fit_df,
   # Create a correlation matrix
   cor_matrix <- cor(topint_cor)
 
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   if (save_corrmatrix == TRUE) {
     write.table(cor_matrix,
-      file = "./Protein_correlation.txt",
+      file = paste0(file_path,"/Protein_correlation.txt"),
       row.names = TRUE,
       col.names = FALSE,
       sep = "\t",
@@ -230,7 +238,7 @@ pre_process <- function(fit_df,
 #' @seealso \code{\link{feature_plot}}, \code{\link{pre_process}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 ## Create a model_df object with default settings.
 #' model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
@@ -259,28 +267,31 @@ rem_feature <- function(model_df,
 #' @param model_df A \code{model_df} object from performing \code{pre_process}.
 #' @param train_size The size of the training data set as a proportion of the
 #' complete data set. Default is 0.8.
+#' @param seed Numerical. Random number seed. Default is \code{NULL}
 #'
 #' @details This function splits the \code{model_df} object in to training and
 #' test data sets using random sampling while preserving the original
-#' class distribution of the data.
+#' class distribution of the data. Make sure to fix the random number seed with
+#' \code{seed} for reproducibility
 #'
 #' @return A list of data frames.
 #' @seealso
 #' \itemize{
 #' \item \code{pre_process}
 #' \item \code{\link[caret:createDataPartition]{createDataPartition}}}
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Create a model_df object
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #'
 #' ## Split the data frame into training and test data sets using default settings
-#' covid_split_df1 <- split_data(covid_model_df)
+#' covid_split_df1 <- split_data(covid_model_df, seed = 8314)
 #'
 #' ## Split the data frame into training and test data sets with 70% of the
 #' ## data in training and 30% in test data sets
-#' covid_split_df2 <- split_data(covid_model_df, train_size = 0.7)
+#' covid_split_df2 <- split_data(covid_model_df, train_size = 0.7, seed = 8314)
 #'
 #' ## Access training data set
 #' covid_split_df1$training
@@ -291,8 +302,9 @@ rem_feature <- function(model_df,
 #'
 #' @export
 split_data <- function(model_df,
-                       train_size = 0.80) {
-  set.seed(8314)
+                       train_size = 0.80,
+                       seed = NULL) {
+  set.seed(seed)
   train_index <- createDataPartition(model_df$condition,
     p = train_size,
     list = FALSE
@@ -345,6 +357,7 @@ split_data <- function(model_df,
 #' the \code{caret} package can be found here:
 #' \url{http://topepo.github.io/caret/train-models-by-tag.html}. See below for
 #' default options.
+#' @param seed Numerical. Random number seed. Default is \code{NULL}
 #' @param ... Additional arguments to be passed on to
 #' \code{\link[caret:train]{train}} function in the \code{caret} package.
 #'
@@ -356,7 +369,9 @@ split_data <- function(model_df,
 #' list of four classification-based machine-learning algorithms will be used
 #' for building and training models. Default \code{algorithm_list}:
 #'  "svmRadial", "rf", "glm", "xgbLinear."
-#' \item Note: Models that fail to build are removed from the output. }
+#' \item Note: Models that fail to build are removed from the output.
+#' \item Make sure to fix the random number seed with
+#' \code{seed} for reproducibility}
 #'
 #' @return
 #' A list of class \code{train} for each machine-learning algorithm.
@@ -369,29 +384,35 @@ split_data <- function(model_df,
 #' \item \code{\link[caret:trainControl]{trainControl}}
 #' \item \code{\link[caret:train]{train}}
 #' }
+#'
+#' @references Kuhn, Max. "Building predictive models in R using the caret
+#' package." Journal of statistical software 28 (2008): 1-26.
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Create a model_df object
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #'
 #' ## Split the data frame into training and test data sets
-#' covid_split_df <- split_data(covid_model_df)
+#' covid_split_df <- split_data(covid_model_df, seed = 8314)
 #'
 #' ## Fit models based on the default list of machine learning (ML) algorithms
-#' covid_model_list1 <- train_models(split_df = covid_split_df)
+#' covid_model_list1 <- train_models(split_df = covid_split_df, seed = 351)
 #'
 #' ## Fit models using a user-specified list of ML algorithms.
 #' covid_model_list2 <- train_models(
 #'   covid_split_df,
-#'   algorithm_list = c("svmRadial", "glmboost")
+#'   algorithm_list = c("svmRadial", "glmboost"),
+#'   seed = 351
 #' )
 #'
 #' ## Change resampling method and resampling iterations.
 #' covid_model_list3 <- train_models(
 #'   covid_split_df,
 #'   resample_method = "cv",
-#'   resample_iterations = 50
+#'   resample_iterations = 50,
+#'   seed = 351
 #' )
 #' }
 #'
@@ -401,6 +422,7 @@ train_models <- function(split_df,
                          resample_iterations = 10,
                          num_repeats = 3,
                          algorithm_list,
+                         seed = NULL,
                          ...) {
 
   # If algorithm_list is not provided, use the default list of algorithms.
@@ -409,7 +431,7 @@ train_models <- function(split_df,
   }
 
   # Set trainControl parameters for resampling
-  set.seed(351)
+  set.seed(seed)
   fit_control <- trainControl(
     method = resample_method,
     number = resample_iterations,
@@ -427,7 +449,7 @@ train_models <- function(split_df,
     function(x) {
       tryCatch(
         {
-          set.seed(351)
+          set.seed(seed)
           message(paste0("\n", "Running ", x, "...", "\n"))
           train(condition ~ .,
             data = training_data,
@@ -471,8 +493,10 @@ train_models <- function(split_df,
 #' class probabilities, and "raw" to output class predictions.
 #' @param save_confusionmatrix Logical. If \code{TRUE}, a tab-delimited
 #' text file ("Confusion_matrices.txt") with confusion matrices in the
-#' long-form data format will be saved in the working directory.
+#' long-form data format will be saved in the directory specified by
+#' \code{file_path}.
 #' See below for more details.
+#' @param file_path A string containing the directory path to save the file.
 #' @param ... Additional arguments to be passed on to
 #' \code{\link[stats:predict]{predict}}.
 #'
@@ -496,8 +520,9 @@ train_models <- function(split_df,
 #' \item \code{\link[stats:predict]{predict}}
 #' \item \code{\link[caret:confusionMatrix]{confusionMatrix}}
 #' }
+#'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Create a model_df object
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #'
@@ -510,12 +535,13 @@ train_models <- function(split_df,
 #' # Test a list of models on a test data set and output class probabilities,
 #' covid_prob_list <- test_models(model_list = covid_model_list, split_df = covid_split_df)
 #'
-#' # Save confusion matrices and output class predictions
+#' # Save confusion matrices in the working directory and output class predictions
 #' covid_pred_list <- test_models(
 #'   model_list = covid_model_list,
 #'   split_df = covid_split_df,
 #'   type = "raw",
-#'   save_confusionmatrix = TRUE
+#'   save_confusionmatrix = TRUE,
+#'   file_path = "."
 #' )
 #' }
 #' @export
@@ -523,16 +549,16 @@ test_models <- function(model_list,
                         split_df,
                         type = "prob",
                         save_confusionmatrix = FALSE,
+                        file_path = NULL,
                         ...) {
 
   # Extract test data from the split_df object
   test_data <- split_df$test
 
-  # Predict test da
+  # Predict test data
   pred_list <- lapply(
     model_list,
     function(x) {
-      set.seed(351)
       message(paste0(
         "\n",
         "Testing ",
@@ -559,8 +585,11 @@ test_models <- function(model_list,
         )
       }
     )
-    # Print confusion matrices and stats
-    print(cm_list)
+
+    #Set temporary file_path if not specified
+    if(is.null(file_path)){
+      file_path <- tempdir()
+    }
 
     if (save_confusionmatrix == TRUE) {
 
@@ -592,7 +621,7 @@ test_models <- function(model_list,
 
       # Save data in a text file
       write.table(cm_dfm_long,
-        file = "Confusion_matrices.txt",
+        file = paste0(file_path, "/Confusion_matrices.txt"),
         sep = "\t",
         quote = FALSE,
         row.names = FALSE

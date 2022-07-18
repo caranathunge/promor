@@ -31,7 +31,7 @@
 #'
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -84,8 +84,9 @@ normalize_data <- function(imp_df,
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
-#' @param file_name file_name File name to save the plot.
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
+#' @param file_name File name to save the plot.
 #' Default is \code{"Norm_plot."}
 #' @param file_type File type to save the plot.
 #' Default is \code{"pdf"}.
@@ -106,7 +107,7 @@ normalize_data <- function(imp_df,
 #' @return A \code{ggplot2} plot object.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -134,6 +135,7 @@ norm_plot <- function(original,
                       text_size = 10,
                       palette = "viridis",
                       save = FALSE,
+                      file_path = NULL,
                       file_name = "Norm_plot",
                       file_type = "pdf",
                       dpi = 80,
@@ -233,8 +235,14 @@ norm_plot <- function(original,
         axis.text = element_text(size = text_size * 0.7)
       )
   }
+
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   if (save == TRUE) {
-    ggsave(paste0(file_name, ".", file_type),
+    ggsave(paste0(file_path, "/", file_name, ".", file_type),
       n_plot,
       dpi = dpi,
       width = plot_width,

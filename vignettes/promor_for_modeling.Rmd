@@ -157,8 +157,8 @@ Next, we will split the `model_df` object into training and test data sets **whi
 >* You can change these proportions by setting `train_size` to a higher or a lower value.
 
 ```{r splitdata, warning = FALSE, message = F}
-# Create a split_df object by splitting data into training and test data set
-covid_split_df <- split_data(model_df = covid_model_df)
+# Create a split_df object by splitting data into training and test data set. Don't forget to fix the random seed for reproducibility.
+covid_split_df <- split_data(model_df = covid_model_df, seed = 8314)
 ```
 
 Access items in the `split_df` object.
@@ -189,15 +189,16 @@ We will be using some functions from the `caret` package to train models on our 
 
 
 ```{r traindata, warning = FALSE, message = F, eval = TRUE}
-# Create a model_list object by training models on the training data set using the default list of algorithms.
-covid_model_list <- train_models(split_df = covid_split_df)
+# Create a model_list object by training models on the training data set using the default list of algorithms.Don't forget to fix the random seed for reproducibility.
+covid_model_list <- train_models(split_df = covid_split_df, seed = 351)
 ```
 
 ```{r customalgo, warning = FALSE, message = F, eval=FALSE}
 # Alternatively, you may use a custom list of algorithms.
 covid_model_list <- train_models(
   split_df = covid_split_df,
-  algorithm_list = c("glm", "rf")
+  algorithm_list = c("glm", "rf"),
+  seed = 351
 )
 ```
 

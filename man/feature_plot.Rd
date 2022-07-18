@@ -12,6 +12,7 @@ feature_plot(
   n_row,
   n_col,
   save = FALSE,
+  file_path = NULL,
   file_name = "Feature_plot",
   file_type = "pdf",
   dpi = 80,
@@ -38,9 +39,11 @@ for available options.}
 \item{n_col}{Number of columns to print the plots.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
-working directory.}
+directory provided in \code{file_path}.}
 
-\item{file_name}{file_name File name to save the plot.
+\item{file_path}{A string containing the directory path to save the file.}
+
+\item{file_name}{File name to save the plot.
 Default is \code{"Feature_plot."}}
 
 \item{file_type}{File type to save the plot.
@@ -64,7 +67,7 @@ This function visualizes condition-wise differences in protein
 intensity using boxplots and/or density plots.
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Create a model_df object with default settings.
 covid_model_df <- pre_process(covid_fit_df, covid_norm_df)

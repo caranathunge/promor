@@ -11,10 +11,11 @@
 #' @param norm_df A \code{norm_df} object.
 #' @param save_output Logical. If \code{TRUE} saves results from the
 #' differential expression analysis in a text file labeled "limma_output.txt"
-#' in the working directory.
+#' in the directory specified by \code{file_path}.
 #' @param save_tophits Logical. If \code{TRUE} saves \code{n_top}
 #' number of top hits from the differential expression analysis in a text file
-#' labeled "TopHits.txt" in the working directory.
+#' labeled "TopHits.txt" in the directory specified by \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
 #' @param lfc Minimum absolute log2-fold change to use as threshold for
 #' differential expression.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
@@ -33,7 +34,9 @@
 #' on lowest p-value and adjusted p-value.
 #' \item If the number of hits with absolute log fold change of more than 1 is
 #' less than \code{n_top}, \code{find_dep} prints only those with
-#' log-fold change > 1 to "TopHits.txt"}
+#' log-fold change > 1 to "TopHits.txt".
+#' \item If the \code{file_path} is not specified, text files will be saved in
+#' a temporary directory.}
 #'
 #' @return A \code{fit_df} object, which is similar to a \code{limma}
 #' \code{fit} object.
@@ -46,7 +49,7 @@
 #' \code{\link[limma]{limma}} package.}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #'
 #' ## Perform differential expression analysis using default settings
@@ -64,6 +67,7 @@
 find_dep <- function(norm_df,
                      save_output = FALSE,
                      save_tophits = FALSE,
+                     file_path = NULL,
                      cutoff = 0.05,
                      lfc = 1,
                      n_top = 20) {
@@ -90,10 +94,15 @@ find_dep <- function(norm_df,
     adjust.method = "BH"
   )
 
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
   # Write the results of the DE analysis to a text file (tab-separated)
   if (save_output == TRUE) {
     limma::write.fit(fit,
-      file = "limma_outout.txt",
+      file = paste0(file_path,"/limma_outout.txt"),
       adjust = "BH",
       results = dec_test
     )
@@ -147,21 +156,17 @@ find_dep <- function(norm_df,
   if (save_tophits == TRUE) {
     if (nrow(results_de) < n_top) {
       write.table(results_de[seq_len(nrow(results_de)), ],
-        file = "TopHits.txt",
+        file = paste0(file_path, "/TopHits.txt"),
         sep = "\t",
         quote = FALSE
       )
-      print(results_de[seq_len(nrow(results_de)), ])
     } else {
       write.table(results_de[1:n_top, ],
         file = "TopHits.txt",
         sep = "\t",
         quote = FALSE
       )
-      print(results_de[1:n_top, ])
     }
-  } else {
-    print(results_de[1:n_top, ])
   }
   return(fit)
 }
@@ -191,6 +196,9 @@ find_dep <- function(norm_df,
 #' \code{"viridis"}. See
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
 #' @param file_name File name to save the plot. Default is "Volcano_plot."
 #' @param file_type File type to save the plot. Default is \code{"pdf".}
 #' @param plot_height Height of the plot. Default is 7.
@@ -203,8 +211,6 @@ find_dep <- function(norm_df,
 #' @param n_top The number of top hits to label with protein name when
 #' \code{label_top = TRUE.} Default is \code{10}.
 #' @param dpi Plot resolution. Default is \code{80.}
-#' @param save Logical. If \code{TRUE}, saves a copy of the plot in the
-#' working directory.
 #'
 #' @details \itemize{\item Volcano plots show log-2-fold change on the x-axis
 #' and -log10(p-value) on the y-axis.\item \code{volcano_plot} requires a
@@ -223,7 +229,7 @@ find_dep <- function(norm_df,
 #' \code{\link[limma]{limma}} package.
 #' }
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Create a volcano plot with default settings.
 #' volcano_plot(ecoli_fit_df)
@@ -249,6 +255,7 @@ volcano_plot <- function(fit_df,
                          label_top = FALSE,
                          n_top = 10,
                          save = FALSE,
+                         file_path = NULL,
                          file_name = "Volcano_plot",
                          file_type = "pdf",
                          plot_height = 7,
@@ -359,9 +366,13 @@ volcano_plot <- function(fit_df,
       )
   }
 
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
 
   if (save == TRUE) {
-    ggplot2::ggsave(paste0(file_name, ".", file_type),
+    ggplot2::ggsave(paste0(file_path, "/", file_name, ".", file_type),
       de_volcanoplot,
       dpi = dpi,
       height = plot_height,
@@ -401,8 +412,9 @@ volcano_plot <- function(fit_df,
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param text_size Text size for axis text, labels etc.
-#' @param save Logical. If \code{TRUE}, saves a copy of the plot in
-#' the working directory.
+#' @param save Logical. If \code{TRUE} saves a copy of the plot in the
+#' directory provided in \code{file_path}.
+#' @param file_path A string containing the directory path to save the file.
 #' @param file_name File name to save the plot. Default is "HeatmapDE."
 #' @param file_type File type to save the plot. Default is \code{"pdf".}
 #' @param dpi Plot resolution. Default is \code{80.}
@@ -423,7 +435,7 @@ volcano_plot <- function(fit_df,
 #' \code{\link[limma]{limma}} package.}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ## Build a heatmap of differentially expressed proteins using the provided
 #' ## example fit_df and norm_df data objects
 #' heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)
@@ -450,6 +462,7 @@ heatmap_de <- function(fit_df,
                        palette = "viridis",
                        text_size = 10,
                        save = FALSE,
+                       file_path = NULL,
                        file_name = "HeatmapDE",
                        file_type = "pdf",
                        dpi = 80,
@@ -566,9 +579,13 @@ heatmap_de <- function(fit_df,
       ) +
       ggplot2::facet_grid(. ~ stage, scales = "free")
 
+    #Set temporary file_path if not specified
+    if(is.null(file_path)){
+      file_path <- tempdir()
+    }
 
     if (save == TRUE) {
-      ggplot2::ggsave(paste0(file_name, ".", file_type),
+      ggplot2::ggsave(paste0(file_path, "/", file_name, ".", file_type),
         top_heatmap,
         dpi = dpi,
         height = plot_height,

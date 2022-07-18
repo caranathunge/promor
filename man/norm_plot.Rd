@@ -11,6 +11,7 @@ norm_plot(
   text_size = 10,
   palette = "viridis",
   save = FALSE,
+  file_path = NULL,
   file_name = "Norm_plot",
   file_type = "pdf",
   dpi = 80,
@@ -38,9 +39,11 @@ is \code{"box."}}
 for available options.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
-working directory.}
+directory provided in \code{file_path}.}
 
-\item{file_name}{file_name File name to save the plot.
+\item{file_path}{A string containing the directory path to save the file.}
+
+\item{file_name}{File name to save the plot.
 Default is \code{"Norm_plot."}}
 
 \item{file_type}{File type to save the plot.
@@ -66,7 +69,7 @@ Given two data frames, one with data prior to normalization
 normalization on the protein intensity data.
 }
 \examples{
-\dontrun{
+\donttest{
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",

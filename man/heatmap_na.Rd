@@ -17,6 +17,7 @@ heatmap_na(
   text_size = 10,
   save = FALSE,
   file_type = "pdf",
+  file_path = NULL,
   file_name = "Missing_data_heatmap",
   plot_width = 15,
   plot_height = 15,
@@ -55,12 +56,14 @@ will be labeled with their Majority Protein IDs. Defualt is \code{FALSE}.}
 \item{text_size}{Text size for axis labels. Default is \code{10}.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
-working directory.}
+directory provided in \code{file_path}.}
 
 \item{file_type}{File type to save the heatmap. Default is \code{"pdf"}.}
 
-\item{file_name}{File name to save the heatmap.
-Default is \code{"Missing_data_heatmap"}.}
+\item{file_path}{A string containing the directory path to save the file.}
+
+\item{file_name}{File name to save the heatmap. Default is
+\code{"Missing_data_heatmap"}.}
 
 \item{plot_width}{Width of the plot. Default is \code{15}.}
 
@@ -82,7 +85,7 @@ heatmap. The user can choose to reorder the axes using the available functions
 missing data.
 }
 \examples{
-\dontrun{
+\donttest{
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",

@@ -38,7 +38,7 @@ proteins that exceeds the missing data threshold in \strong{either} group gets
 removed from the data frame.}
 }
 \examples{
-\dontrun{
+\donttest{
 
 # Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(

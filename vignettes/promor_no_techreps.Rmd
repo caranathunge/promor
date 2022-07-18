@@ -151,11 +151,11 @@ heatmap_na(raw_filtered, protein_range = 40:70, label_proteins = TRUE, palette =
 
 
 ```{r imputena, warning = FALSE, results='hide'}
-# Impute missing data with minProb method
-imp_df_mp <- impute_na(raw_filtered)
+# Impute missing data with minProb method. Don't forget to fix the random seed for reproducibility.
+imp_df_mp <- impute_na(raw_filtered, seed = 327)
 
 # Alternatively, we can test a different imputation method that allows for missing data of both MAR and MNAR types.
-imp_df_knn <- impute_na(raw_filtered, method = "kNN")
+imp_df_knn <- impute_na(raw_filtered, method = "kNN", seed = 327)
 ```
 
 ---

@@ -8,6 +8,7 @@ find_dep(
   norm_df,
   save_output = FALSE,
   save_tophits = FALSE,
+  file_path = NULL,
   cutoff = 0.05,
   lfc = 1,
   n_top = 20
@@ -18,11 +19,13 @@ find_dep(
 
 \item{save_output}{Logical. If \code{TRUE} saves results from the
 differential expression analysis in a text file labeled "limma_output.txt"
-in the working directory.}
+in the directory specified by \code{file_path}.}
 
 \item{save_tophits}{Logical. If \code{TRUE} saves \code{n_top}
 number of top hits from the differential expression analysis in a text file
-labeled "TopHits.txt" in the working directory.}
+labeled "TopHits.txt" in the directory specified by \code{file_path}.}
+
+\item{file_path}{A string containing the directory path to save the file.}
 
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
@@ -53,10 +56,12 @@ log fold change of more than 1, performs multiple correction with
 on lowest p-value and adjusted p-value.
 \item If the number of hits with absolute log fold change of more than 1 is
 less than \code{n_top}, \code{find_dep} prints only those with
-log-fold change > 1 to "TopHits.txt"}
+log-fold change > 1 to "TopHits.txt".
+\item If the \code{file_path} is not specified, text files will be saved in
+a temporary directory.}
 }
 \examples{
-\dontrun{
+\donttest{
 
 
 ## Perform differential expression analysis using default settings

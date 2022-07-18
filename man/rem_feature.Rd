@@ -32,7 +32,7 @@ visualize variable importance using \code{varimp_plot}.
 }
 }
 \examples{
-\dontrun{
+\donttest{
 
 model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
 

@@ -18,11 +18,12 @@ knitr::opts_chunk$set(
 
 # promor <img src="man/figures/logo.png" align="right" height="200" style="float:right; height:200px;">
 
-### Proteomics Data Analysis and Modeling
+### Proteomics Data Analysis and Modeling  
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
+
 
 * `promor` is a user-friendly, comprehensive R package that combines proteomics 
 data analysis with machine learning-based modeling. 

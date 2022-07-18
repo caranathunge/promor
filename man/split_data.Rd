@@ -4,13 +4,15 @@
 \alias{split_data}
 \title{Split the data frame to create training and test data}
 \usage{
-split_data(model_df, train_size = 0.8)
+split_data(model_df, train_size = 0.8, seed = NULL)
 }
 \arguments{
 \item{model_df}{A \code{model_df} object from performing \code{pre_process}.}
 
 \item{train_size}{The size of the training data set as a proportion of the
 complete data set. Default is 0.8.}
+
+\item{seed}{Numerical. Random number seed. Default is \code{NULL}}
 }
 \value{
 A list of data frames.
@@ -22,20 +24,21 @@ protein intensity data in a \code{model_df} object to create training and test d
 \details{
 This function splits the \code{model_df} object in to training and
 test data sets using random sampling while preserving the original
-class distribution of the data.
+class distribution of the data. Make sure to fix the random number seed with
+\code{seed} for reproducibility
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Create a model_df object
 covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 
 ## Split the data frame into training and test data sets using default settings
-covid_split_df1 <- split_data(covid_model_df)
+covid_split_df1 <- split_data(covid_model_df, seed = 8314)
 
 ## Split the data frame into training and test data sets with 70\% of the
 ## data in training and 30\% in test data sets
-covid_split_df2 <- split_data(covid_model_df, train_size = 0.7)
+covid_split_df2 <- split_data(covid_model_df, train_size = 0.7, seed = 8314)
 
 ## Access training data set
 covid_split_df1$training

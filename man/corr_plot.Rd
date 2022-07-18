@@ -14,7 +14,8 @@ corr_plot(
   text_size = 5,
   n_row = 4,
   n_col = 4,
-  dpi = 80
+  dpi = 80,
+  file_path = NULL
 )
 }
 \arguments{
@@ -27,7 +28,7 @@ containing technical replicates.}
 to \code{rep1}.}
 
 \item{save}{Logical. If \code{TRUE} saves a copy of the plot in the
-working directory.}
+directory provided in \code{file_path}.}
 
 \item{file_type}{File type to save the scatter plots.
 Default is \code{"pdf"}.}
@@ -47,6 +48,8 @@ Default is \code{4}.}
 page. Default is \code{4}.}
 
 \item{dpi}{Plot resolution. Default is \code{80}.}
+
+\item{file_path}{A string containing the directory path to save the file.}
 }
 \value{
 A list of \code{ggplot2} plot objects.
@@ -67,7 +70,7 @@ samples to display in a single page.
 }
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Use a data set containing technical replicates to create a raw_df object
 raw_df <- create_df(
@@ -76,8 +79,9 @@ exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data
 tech_reps = TRUE
 )
 
-## Compare technical replicates 1 vs. 2 for all samples.
-corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2)
+## Compare technical replicates 1 vs. 2 for all samples. Save a pdf in the
+## working directory.
+corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, save = TRUE, file_path = ".")
 }
 
 }

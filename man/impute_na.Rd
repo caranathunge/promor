@@ -11,7 +11,8 @@ impute_na(
   q = 0.01,
   maxiter = 10,
   ntree = 20,
-  n_pcs = 2
+  n_pcs = 2,
+  seed = NULL
 )
 }
 \arguments{
@@ -38,6 +39,8 @@ very low value. Default is 0.01.}
 
 \item{n_pcs}{Number of principal components to calculate when using the
 \code{"SVD"} method. Default is 2.}
+
+\item{seed}{Numerical. Random number seed. Default is \code{NULL}}
 }
 \value{
 An \code{imp_df} object, which is a data frame of protein intensities
@@ -53,10 +56,11 @@ high levels of missing data using the \code{filterbygroup_na} function
 before running \code{impute_na} on the \code{raw_df} object.
 \item \code{impute_na} function imputes missing values using a
 user-specified imputation method from the available options, \code{minProb},
-\code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}}.
+\code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}
+\item Make sure to fix the random number seed with \code{seed} for reproducibility}.
 }
 \examples{
-\dontrun{
+\donttest{
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -65,20 +69,22 @@ exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data
 
 ## Impute missing values in the data frame using the default minProb
 ## method.
-imp_df1 <- impute_na(raw_df)
+imp_df1 <- impute_na(raw_df, seed = 3312)
 
 ## Impute using the RF method with the number of iterations set at 5
 ## and number of trees set at 100.
-imp_df2 <- impute_na(raw_df, method = "RF", maxiter = 5, ntree = 100)
+imp_df2 <- impute_na(raw_df, method = "RF",
+maxiter = 5, ntree = 100,
+seed = 3312)
 
 ## Using the kNN method.
-imp_df3 <- impute_na(raw_df, method = "kNN")
+imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
 
 ## Using the SVD method with n_pcs set to 3.
-imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3)
+imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
 
 ## Using the minDet method with q set at 0.001.
-imp_df5 <- impute_na(raw, method = "minDet", q = 0.001)
+imp_df5 <- impute_na(raw, method = "minDet", q = 0.001, seed = 3312)
 }
 }
 \references{

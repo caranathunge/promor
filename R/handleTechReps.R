@@ -15,7 +15,7 @@
 #' @param rep_2 Numerical. Number of the second technical replicate to compare
 #' to \code{rep1}.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
-#' working directory.
+#' directory provided in \code{file_path}.
 #' @param file_type File type to save the scatter plots.
 #' Default is \code{"pdf"}.
 #' @param palette Viridis color palette option for plots. Default is
@@ -29,6 +29,7 @@
 #' @param n_col Numerical. Number of plots to print in a column in a single
 #' page. Default is \code{4}.
 #' @param dpi Plot resolution. Default is \code{80}.
+#' @param file_path A string containing the directory path to save the file.
 #'
 #' @details
 #' \itemize{\item Given a data frame of log-transformed intensities
@@ -44,7 +45,7 @@
 #' \code{create_df}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Use a data set containing technical replicates to create a raw_df object
 #' raw_df <- create_df(
@@ -53,8 +54,9 @@
 #' tech_reps = TRUE
 #' )
 #'
-#' ## Compare technical replicates 1 vs. 2 for all samples.
-#' corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2)
+#' ## Compare technical replicates 1 vs. 2 for all samples. Save a pdf in the
+#' ## working directory.
+#' corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, save = TRUE, file_path = ".")
 #' }
 #'
 #' @return
@@ -73,7 +75,8 @@ corr_plot <- function(raw_df,
                       text_size = 5,
                       n_row = 4,
                       n_col = 4,
-                      dpi = 80) {
+                      dpi = 80,
+                      file_path = NULL) {
 
   # Separate the sample id from the column names, remove duplicates, paste _ and
   # create a list. This is now a list of unique sample names used in the
@@ -134,9 +137,13 @@ corr_plot <- function(raw_df,
       ggplot2::ggtitle(gsub("\\_\\d+$", "", colnames(plot_data[[t]][1])))
   })
 
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
 
   if (save == TRUE) {
-    ggplot2::ggsave(paste0("TR", rep_1, "vs", "TR", rep_2, ".", file_type),
+    ggplot2::ggsave(paste0(file_path, "/TR", rep_1, "vs", "TR", rep_2, ".", file_type),
       marrangeGrob(
         grobs = plot_list,
         nrow = n_row,
@@ -175,7 +182,7 @@ corr_plot <- function(raw_df,
 #' @seealso \code{\link{corr_plot}}, \code{\link{create_df}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Use a data set containing technical replicates to create a raw_df object
 #' raw_df <- create_df(
@@ -224,7 +231,7 @@ rem_sample <- function(raw_df, rem) {
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' ## Use a data set containing technical replicates to create a raw_df object
 #' raw_df <- create_df(

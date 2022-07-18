@@ -31,7 +31,7 @@ remove that particular technical replicate by providing
 }
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Use a data set containing technical replicates to create a raw_df object
 raw_df <- create_df(

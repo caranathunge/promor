@@ -14,6 +14,7 @@ pre_process(
   find_highcorr = TRUE,
   corr_cutoff = 0.9,
   save_corrmatrix = FALSE,
+  file_path = NULL,
   rem_highcorr = TRUE
 )
 }
@@ -44,7 +45,9 @@ Default is \code{0.90}.}
 
 \item{save_corrmatrix}{Logical. If \code{TRUE}, saves a copy of the
 protein correlation matrix in a tab-delimited text file labeled
-"Protein_correlation.txt" in the working directory.}
+"Protein_correlation.txt" in the directory specified by \code{file_path}.}
+
+\item{file_path}{A string containing the directory path to save the file.}
 
 \item{rem_highcorr}{Logical. If \code{TRUE} (default), removes highly
 correlated proteins (predictors or features).}
@@ -72,7 +75,7 @@ expression, you may adjust \code{sig}, \code{fc}, and/or \code{sig_cutoff}
 accordingly to obtain more proteins for modeling.}
 }
 \examples{
-\dontrun{
+\donttest{
 
 ## Create a model_df object with default settings.
 covid_model_df1 <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)

@@ -32,7 +32,7 @@
 #' @seealso \code{\link{create_df}}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' # Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
@@ -136,6 +136,7 @@ filterbygroup_na <- function(raw_df,
 #' Default is 0.34 (one third of the samples in the group).
 #' @param save Logical. If \code{TRUE} (default), it saves the output in a text
 #' file named "Group_\code{pres_group}_only.txt."
+#' @param file_path A string containing the directory path to save the file.
 #'
 #' @details Note: \code{onegroup_only} function assumes that column names in
 #' the \code{raw_df} object provided as \code{df} follow "Group_UniqueSampleID"
@@ -143,12 +144,14 @@ filterbygroup_na <- function(raw_df,
 #' \code{raw_df} object.)
 #' \itemize{\item Given a pair of groups, \code{onegroup_only}
 #' function finds proteins that are only expressed in \code{pres_group} while
-#' completely absent or not expressed in \code{abs_group}.}
+#' completely absent or not expressed in \code{abs_group}.
+#' \item A text file containing majority protein IDs will be saved in a
+#' temporary directory if \code{file_path} is not specified.}
 #'
 #' @return A list of majority protein IDs.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' # Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
@@ -156,8 +159,11 @@ filterbygroup_na <- function(raw_df,
 #' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
-#' ## Save a list of proteins only expressed in group L, but absent in group H.
-#' onegroup_only(raw_df, abs_group = "H", pres_group = "L")
+#' ## Save a list of proteins only expressed in group L, but absent in group H, in the
+#' ## working directory.
+#' onegroup_only(raw_df, abs_group = "H",
+#' pres_group = "L", save = TRUE,
+#' file_path = ".")
 #' }
 #'
 #' @export
@@ -165,7 +171,8 @@ onegroup_only <- function(raw_df,
                           abs_group,
                           pres_group,
                           set_na = 0.34,
-                          save = TRUE) {
+                          save = FALSE,
+                          file_path = NULL) {
 
   # Extract group information from sample names in the data frame x
   group <- factor(c(sapply(strsplit(colnames(raw_df), "_"), getElement, 1)))
@@ -188,7 +195,7 @@ onegroup_only <- function(raw_df,
       / nrow(transdf[transdf$Group == abs_group, ]) == 1 &
         colSums(is.na(transdf[transdf$Group == pres_group, 1:n_proteins]))
         / nrow(transdf[transdf$Group == pres_group, ]) <= set_na,
-      print("TRUE"), print("FALSE")
+      "TRUE", "FALSE"
     )
   )
 
@@ -197,6 +204,12 @@ onegroup_only <- function(raw_df,
   # Print out a list of proteins only present in user specified group
   prot_list <- group_only[group_only[1] == "TRUE", 2]
 
+  #Set temporary file_path if not specified
+  if(is.null(file_path)){
+    file_path <- tempdir()
+  }
+
+  #Check if the list is empty
   if (identical(prot_list, character(0))) {
     message(paste0(
       "None of the proteins are expressed only in ",
@@ -205,7 +218,7 @@ onegroup_only <- function(raw_df,
   } else {
     if (save == TRUE) {
       cat(prot_list,
-        file = paste0("Group_", pres_group, "_only.txt"), sep = "\n"
+        file = paste0(file_path,"/Group_", pres_group, "_only.txt"), sep = "\n"
       )
     }
     return(prot_list)
