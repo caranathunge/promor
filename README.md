@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+\<
+
 # promor <img src="man/figures/logo.png" align="right" height="200" style="float:right; height:200px;">
 
 > Proteomics Data Analysis and Modeling Tools
@@ -13,6 +15,7 @@
 status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
 [![pkgdown](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml)
 [![pages-build-deployment](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment)
+[![codecov](https://codecov.io/gh/caranathunge/promor/branch/main/graph/badge.svg?token=R0Z7RQ9XH9)](https://codecov.io/gh/caranathunge/promor)
 
 <!-- badges: end -->
 
