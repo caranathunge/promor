@@ -38,8 +38,6 @@ proteins that exceeds the missing data threshold in \strong{either} group gets
 removed from the data frame.}
 }
 \examples{
-\donttest{
-
 # Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -54,7 +52,6 @@ rawdf_filt2 <- filterbygroup_na(raw_df, filter_condition = "each")
 
 ## Proportion of samples with NAs allowed in each group = 0.5
 rawdf_filt3 <- filterbygroup_na(raw_df, set_na = 0.5, filter_condition = "each")
-}
 
 }
 \seealso{

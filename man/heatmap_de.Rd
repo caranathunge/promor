@@ -73,7 +73,7 @@ By default the tiles in the heatmap are reordered by intensity values
 along both axes (x axis = samples, y axis = proteins).
 }
 \examples{
-\donttest{
+
 ## Build a heatmap of differentially expressed proteins using the provided
 ## example fit_df and norm_df data objects
 heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)
@@ -88,7 +88,6 @@ heatmap_de(covid_fit_df, covid_norm_df,
   cutoff = 0.05, sig = "P", n_top = 30,
   palette = "magma"
 )
-}
 
 }
 \seealso{

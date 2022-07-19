@@ -45,8 +45,6 @@
 #' \code{create_df}
 #'
 #' @examples
-#' \donttest{
-#'
 #' ## Use a data set containing technical replicates to create a raw_df object
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
@@ -54,10 +52,10 @@
 #' tech_reps = TRUE
 #' )
 #' }
-#' \dontrun{
-#' ## Compare technical replicates 1 vs. 2 for all samples and save plots in a pdf in
-#' ## the working directory.
-#' corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, save = TRUE, file_path = ".")
+#'
+#' \donttest{
+#' ## Compare technical replicates 1 vs. 2 for all samples
+#' corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2)
 #' }
 #'
 #' @return
@@ -183,8 +181,6 @@ corr_plot <- function(raw_df,
 #' @seealso \code{\link{corr_plot}}, \code{\link{create_df}}
 #'
 #' @examples
-#' \donttest{
-#'
 #' ## Use a data set containing technical replicates to create a raw_df object
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
@@ -199,7 +195,6 @@ corr_plot <- function(raw_df,
 #'
 #' ## Remove only technical replicate number 2 of "WT_4"
 #' raw_df2 <- rem_sample(raw_df, "WT_4_2")
-#' }
 #'
 #' @export
 rem_sample <- function(raw_df, rem) {
@@ -232,8 +227,6 @@ rem_sample <- function(raw_df, rem) {
 #' }
 #'
 #' @examples
-#' \donttest{
-#'
 #' ## Use a data set containing technical replicates to create a raw_df object
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
@@ -243,7 +236,6 @@ rem_sample <- function(raw_df, rem) {
 #'
 #' # Compute average intensities across technical replicates.
 #' rawdf_ave <- aver_techreps(raw_df)
-#' }
 #'
 #' @export
 aver_techreps <- function(raw_df) {

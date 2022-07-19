@@ -48,21 +48,15 @@ completely absent or not expressed in \code{abs_group}.
 temporary directory if \code{file_path} is not specified.}
 }
 \examples{
-\donttest{
-
 # Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
 exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 )
-}
-\dontrun{
-## Save a list of proteins only expressed in group L, but absent in group H, in the
-## working directory.
+
+## Find the proteins only expressed in group L, but absent in group H.
 onegroup_only(raw_df, abs_group = "H",
-pres_group = "L", save = TRUE,
-file_path = ".")
-}
+pres_group = "L")
 
 }
 \author{

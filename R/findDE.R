@@ -49,15 +49,12 @@
 #' \code{\link[limma]{limma}} package.}
 #'
 #' @examples
-#' \donttest{
-#'
 #'
 #' ## Perform differential expression analysis using default settings
 #' fit_df1 <- find_dep(ecoli_norm_df)
 #'
 #' ## Change p-value and adjusted p-value cutoff
 #' fit_df2 <- find_dep(ecoli_norm_df, cutoff = 0.1)
-#' }
 #'
 #' @references Ritchie, Matthew E., et al. "limma powers differential expression
 #' analyses for RNA-sequencing and microarray studies." Nucleic acids research
@@ -229,7 +226,6 @@ find_dep <- function(norm_df,
 #' \code{\link[limma]{limma}} package.
 #' }
 #' @examples
-#' \donttest{
 #'
 #' ## Create a volcano plot with default settings.
 #' volcano_plot(ecoli_fit_df)
@@ -240,7 +236,6 @@ find_dep <- function(norm_df,
 #' ## Label top 30 differentially expressed proteins and
 #' ## change the color palette of the plot
 #' volcano_plot(ecoli_fit_df, label_top = TRUE, n_top = 30, palette = "mako")
-#' }
 #'
 #' @export
 volcano_plot <- function(fit_df,
@@ -435,7 +430,7 @@ volcano_plot <- function(fit_df,
 #' \code{\link[limma]{limma}} package.}
 #'
 #' @examples
-#' \donttest{
+#'
 #' ## Build a heatmap of differentially expressed proteins using the provided
 #' ## example fit_df and norm_df data objects
 #' heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)
@@ -450,7 +445,6 @@ volcano_plot <- function(fit_df,
 #'   cutoff = 0.05, sig = "P", n_top = 30,
 #'   palette = "magma"
 #' )
-#' }
 #'
 #' @export
 heatmap_de <- function(fit_df,

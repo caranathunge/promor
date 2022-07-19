@@ -83,7 +83,7 @@ and rows to print the plots.
 data frame.}
 }
 \examples{
-\donttest{
+
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -103,7 +103,7 @@ impute_plot(raw_df, imp_df, global = FALSE)
 
 ## Print plots in user-specified numbers of rows and columns
 impute_plot(raw_df, imp_df, global = FALSE, n_col = 2, n_row = 3)
-}
+
 }
 \author{
 Chathurani Ranathunge

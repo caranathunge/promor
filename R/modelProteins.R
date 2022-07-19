@@ -52,7 +52,6 @@
 #' \item \code{\link[caret:findCorrelation]{caret: findCorrelation}}}
 #'
 #' @examples
-#' \donttest{
 #'
 #' ## Create a model_df object with default settings.
 #' covid_model_df1 <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
@@ -65,7 +64,7 @@
 #'
 #' ## Change the number of top differentially expressed proteins to include
 #' covid_model_df4 <- pre_process(covid_fit_df, covid_norm_df, sig = "P", n_top = 24)
-#' }
+#'
 #' @export
 pre_process <- function(fit_df,
                         norm_df,
@@ -238,14 +237,12 @@ pre_process <- function(fit_df,
 #' @seealso \code{\link{feature_plot}}, \code{\link{pre_process}}
 #'
 #' @examples
-#' \donttest{
 #'
 ## Create a model_df object with default settings.
 #' covid_model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
 #'
 #' ## Remove sp|P22352|GPX3_HUMAN protein from the model_df object
 #' covid_model_df1 <- rem_feature(covid_model_df, rem_protein = "sp|P22352|GPX3_HUMAN")
-#' }
 #'
 #' @export
 rem_feature <- function(model_df,
@@ -281,7 +278,6 @@ rem_feature <- function(model_df,
 #' \item \code{\link[caret:createDataPartition]{createDataPartition}}}
 #'
 #' @examples
-#' \donttest{
 #'
 #' ## Create a model_df object
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
@@ -298,7 +294,6 @@ rem_feature <- function(model_df,
 #'
 #' ## Access test data set
 #' covid_split_df1$test
-#' }
 #'
 #' @export
 split_data <- function(model_df,

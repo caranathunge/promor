@@ -22,8 +22,6 @@ follow the "Group_UniqueSampleID_TechnicalReplicate" notation. (Use
 \code{head(raw_df)} to see the structure of the \code{raw_df} object.)
 }
 \examples{
-\donttest{
-
 ## Use a data set containing technical replicates to create a raw_df object
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
@@ -33,7 +31,6 @@ tech_reps = TRUE
 
 # Compute average intensities across technical replicates.
 rawdf_ave <- aver_techreps(raw_df)
-}
 
 }
 \seealso{

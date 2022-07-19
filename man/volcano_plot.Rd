@@ -89,7 +89,6 @@ with \code{find_dep.}
 \item User has the option to choose criteria that denote significance.}
 }
 \examples{
-\donttest{
 
 ## Create a volcano plot with default settings.
 volcano_plot(ecoli_fit_df)
@@ -100,7 +99,6 @@ volcano_plot(ecoli_fit_df, cutoff = 0.1, sig = "P")
 ## Label top 30 differentially expressed proteins and
 ## change the color palette of the plot
 volcano_plot(ecoli_fit_df, label_top = TRUE, n_top = 30, palette = "mako")
-}
 
 }
 \seealso{

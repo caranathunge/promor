@@ -48,7 +48,6 @@
 #' proteins as rows and sample LFQ intensities as columns.
 #'
 #' @examples
-#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -68,7 +67,6 @@
 #' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
 #' uniq_pep = 1
 #' )
-#' }
 #' @export
 
 create_df <- function(prot_groups,
@@ -124,8 +122,8 @@ create_df <- function(prot_groups,
     # calculate number of rows and columns removed
     rem_row <- orig_rows - nrow(df)
     rem_col <- orig_col - ncol(df)
-    message(paste0(rem_row, " empty rows removed."))
-    message(paste0(rem_col, " empty columns removed."))
+    message(paste0(rem_row, " empty row(s) removed."))
+    message(paste0(rem_col, " empty column(s) removed."))
   } else {
     warning("Data frame may contain empty rows and/or columns.")
   }
@@ -143,7 +141,7 @@ create_df <- function(prot_groups,
       )
       message(paste0(
         orig_rows_1 - nrow(df),
-        " proteins (rows) only identified by site removed."
+        " protein(s) (rows) only identified by site removed."
       ))
     }
 
@@ -157,7 +155,7 @@ create_df <- function(prot_groups,
       )
       message(paste0(
         orig_rows_2 - nrow(df),
-        " reverse proteins (rows) removed."
+        " reverse protein(s) (rows) removed."
       ))
     }
 
@@ -178,7 +176,7 @@ create_df <- function(prot_groups,
       )
       message(paste0(
         orig_rows_3 - nrow(df),
-        " protein contaminants (rows) removed."
+        " protein contaminant(s) (rows) removed."
       ))
     }
 
@@ -191,7 +189,7 @@ create_df <- function(prot_groups,
         df$Unique.peptides > uniq_pep
       )
       message(paste0(
-        orig_rows_4 - nrow(df), " proteins identified by ",
+        orig_rows_4 - nrow(df), " protein(s) identified by ",
         uniq_pep, " or fewer unique peptides removed."
       ))
     }

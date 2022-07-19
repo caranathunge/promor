@@ -28,7 +28,6 @@ class distribution of the data. Make sure to fix the random number seed with
 \code{seed} for reproducibility
 }
 \examples{
-\donttest{
 
 ## Create a model_df object
 covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
@@ -45,7 +44,6 @@ covid_split_df1$training
 
 ## Access test data set
 covid_split_df1$test
-}
 
 }
 \seealso{

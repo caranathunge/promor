@@ -75,7 +75,6 @@ expression, you may adjust \code{sig}, \code{fc}, and/or \code{sig_cutoff}
 accordingly to obtain more proteins for modeling.}
 }
 \examples{
-\donttest{
 
 ## Create a model_df object with default settings.
 covid_model_df1 <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
@@ -88,7 +87,7 @@ covid_model_df3 <- pre_process(covid_fit_df, covid_norm_df, sig = "P")
 
 ## Change the number of top differentially expressed proteins to include
 covid_model_df4 <- pre_process(covid_fit_df, covid_norm_df, sig = "P", n_top = 24)
-}
+
 }
 \seealso{
 \itemize{

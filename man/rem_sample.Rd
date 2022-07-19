@@ -31,8 +31,6 @@ remove that particular technical replicate by providing
 }
 }
 \examples{
-\donttest{
-
 ## Use a data set containing technical replicates to create a raw_df object
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
@@ -47,7 +45,6 @@ raw_df1 <- rem_sample(raw_df, "WT_4")
 
 ## Remove only technical replicate number 2 of "WT_4"
 raw_df2 <- rem_sample(raw_df, "WT_4_2")
-}
 
 }
 \seealso{

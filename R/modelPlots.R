@@ -41,7 +41,6 @@
 #' \item \code{pre_process}, \code{rem_feature}}
 #'
 #' @examples
-#' \donttest{
 #'
 #' ## Create a model_df object with default settings.
 #' covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
@@ -54,7 +53,7 @@
 #'
 #' ## Change color palette
 #' feature_plot(covid_model_df, type = "density", n_row = 4, n_col = 2, palette = "rocket")
-#' }
+#'
 #' @export
 feature_plot <- function(model_df,
                          type = "box",

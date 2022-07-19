@@ -61,15 +61,12 @@ log-fold change > 1 to "TopHits.txt".
 a temporary directory.}
 }
 \examples{
-\donttest{
-
 
 ## Perform differential expression analysis using default settings
 fit_df1 <- find_dep(ecoli_norm_df)
 
 ## Change p-value and adjusted p-value cutoff
 fit_df2 <- find_dep(ecoli_norm_df, cutoff = 0.1)
-}
 
 }
 \references{

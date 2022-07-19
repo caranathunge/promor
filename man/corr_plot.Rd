@@ -69,23 +69,6 @@ samples provided in the data frame.
 samples to display in a single page.
 }
 }
-\examples{
-\donttest{
-
-## Use a data set containing technical replicates to create a raw_df object
-raw_df <- create_df(
-prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
-exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
-tech_reps = TRUE
-)
-}
-\dontrun{
-## Compare technical replicates 1 vs. 2 for all samples and save plots in a pdf in
-## the working directory.
-corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, save = TRUE, file_path = ".")
-}
-
-}
 \seealso{
 \code{create_df}
 }

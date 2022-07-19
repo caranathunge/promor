@@ -85,7 +85,6 @@ heatmap. The user can choose to reorder the axes using the available functions
 missing data.
 }
 \examples{
-\donttest{
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -116,7 +115,6 @@ heatmap_na(raw_df,
   reorder_x = TRUE, reorder_y = TRUE,
   label_proteins = TRUE
 )
-}
 
 }
 \seealso{

@@ -69,7 +69,7 @@ Given two data frames, one with data prior to normalization
 normalization on the protein intensity data.
 }
 \examples{
-\donttest{
+
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -88,7 +88,6 @@ norm_plot(original = imp_df, normalized = norm_df)
 
 ## Visualize normalization using density plots
 norm_plot(imp_df, norm_df, type = "density")
-}
 
 }
 \seealso{

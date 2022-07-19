@@ -51,7 +51,6 @@
 #' @seealso \code{\link{create_df}}
 #'
 #' @examples
-#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -82,7 +81,6 @@
 #'   reorder_x = TRUE, reorder_y = TRUE,
 #'   label_proteins = TRUE
 #' )
-#' }
 #'
 #' @export
 heatmap_na <- function(raw_df,
@@ -300,7 +298,6 @@ heatmap_na <- function(raw_df,
 #' with no missing values.
 #'
 #' @examples
-#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -311,21 +308,25 @@ heatmap_na <- function(raw_df,
 #' ## method.
 #' imp_df1 <- impute_na(raw_df, seed = 3312)
 #'
+#' \donttest{
 #' ## Impute using the RF method with the number of iterations set at 5
 #' ## and number of trees set at 100.
 #' imp_df2 <- impute_na(raw_df, method = "RF",
 #' maxiter = 5, ntree = 100,
 #' seed = 3312)
 #'
+#'
 #' ## Using the kNN method.
 #' imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
+#' }
+#'
 #'
 #' ## Using the SVD method with n_pcs set to 3.
 #' imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
 #'
 #' ## Using the minDet method with q set at 0.001.
 #' imp_df5 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
-#' }
+#'
 #' @references Lazar, Cosmin, et al. "Accounting for the multiple natures of
 #' missing values in label-free quantitative proteomics data sets to compare
 #' imputation strategies." Journal of proteome research 15.4 (2016): 1116-1125.
@@ -440,7 +441,7 @@ impute_na <- function(raw_df,
 #' @return A \code{ggplot2} plot object.
 #'
 #' @examples
-#' \donttest{
+#'
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -460,7 +461,7 @@ impute_na <- function(raw_df,
 #'
 #' ## Print plots in user-specified numbers of rows and columns
 #' impute_plot(raw_df, imp_df, global = FALSE, n_col = 2, n_row = 3)
-#' }
+#'
 #' @export
 impute_plot <- function(original,
                         imputed,
