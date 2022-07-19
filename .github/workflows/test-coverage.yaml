@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     steps:
       - uses: actions/checkout@v2
@@ -30,8 +31,8 @@ jobs:
         run: covr::codecov(quiet = FALSE)
         shell: Rscript {0}
 
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.0
+      - name: Upload coverage results to Codecov.io
+        uses: codecov/codecov-action@v2
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./codecov/reports/
+          version: "v0.1.15"
+
