@@ -8,7 +8,13 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/caranathunge/promor/branch/main/graph/badge.svg)](https://app.codecov.io/gh/caranathunge/promor?branch=main)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
 <!-- badges: end -->
+
+### Overview
 
 -   `promor` is a user-friendly, comprehensive R package that combines
     proteomics data analysis with machine learning-based modeling.
