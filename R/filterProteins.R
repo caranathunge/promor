@@ -32,6 +32,7 @@
 #' @seealso \code{\link{create_df}}
 #'
 #' @examples
+#' \donttest{
 #' # Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -47,6 +48,7 @@
 #' ## Proportion of samples with NAs allowed in each group = 0.5
 #' rawdf_filt3 <- filterbygroup_na(raw_df, set_na = 0.5, filter_condition = "each")
 #'
+#' }
 #' @export
 
 filterbygroup_na <- function(raw_df,

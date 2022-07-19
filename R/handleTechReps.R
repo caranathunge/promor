@@ -51,7 +51,7 @@
 #' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
 #' tech_reps = TRUE
 #' )
-#' }
+#'
 #'
 #' \donttest{
 #' ## Compare technical replicates 1 vs. 2 for all samples

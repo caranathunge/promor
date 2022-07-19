@@ -244,4 +244,8 @@ volcano_plot(fit_df,
 heatmap_de(fit_df = fit_df, norm_df = norm_df, palette = "mako")
 ```
 
+Save a copy of the plot in the working directory.
 
+```{r heatmapde1, warning = FALSE, results ='hide', fig.align = 'center', eval=FALSE}
+heatmap_de(fit_df = fit_df, norm_df = norm_df, palette = "mako", save = TRUE, file_path = ".")
+```

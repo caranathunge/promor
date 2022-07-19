@@ -278,12 +278,13 @@ covid_prob_list <- test_models(
 Alternatively, you can output a list of predictions and output a confusion matrix for further analysis.
 
 ```{r testdatar, warning = FALSE, message = F, eval = FALSE}
-# We run the function with type = "raw" to get a prediction list and output a confusion matrix
+# We run the function with type = "raw" to get a prediction list and output a confusion matrix. You can also provide a file path to save the text file in in your preferred directory. In this example, we are saving our text file in the working directory.
 covid_pred_list <- test_models(
   model_list = covid_model_list,
   split_df = covid_split_df,
   type = "raw",
-  save_confusionmatrix = TRUE
+  save_confusionmatrix = TRUE,
+  file_path = "."
 )
 ```
 
@@ -306,6 +307,15 @@ roc_plot(
 )
 ```
 
+Save a copy of the plot in the working directory.
 
-
+```{r rocplot1, dpi = 300, out.width = '80%', fig.asp=1,  fig.align ='center', warning = FALSE, message = F, eval= FALSE}
+# Make bar plots
+roc_plot(
+  probability_list = covid_prob_list,
+  split_df = covid_split_df,
+  save = TRUE,
+  file_path = "."
+)
+```
 

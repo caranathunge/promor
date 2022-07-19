@@ -188,7 +188,7 @@ heatmap_na(raw_filtered, protein_range = 1:30, label_proteins = TRUE)
 
 
 ```{r imputena, warning = FALSE, results='hide'}
-# Impute missing data with minProb method. don;t forget to fix the random seed for reproducibility.
+# Impute missing data with minProb method. Don't forget to fix the random seed for reproducibility.
 imp_df_mp <- impute_na(raw_filtered, seed = 327)
 
 # Alternatively, we can test a different imputation method.
@@ -281,5 +281,9 @@ We can also visualize the top hits from **Step 10** with a heatmap.
 heatmap_de(fit_df = fit_df, norm_df = norm_df)
 ```
 
+Save a copy of the plot in the working directory
 
+```{r heatmapde1, warning = FALSE, results ='hide', fig.align = 'center', eval=FALSE}
+heatmap_de(fit_df = fit_df, norm_df = norm_df, save = TRUE, file_path = ".")
+```
 

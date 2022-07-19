@@ -105,7 +105,7 @@ normalize_data <- function(imp_df,
 #' @return A \code{ggplot2} plot object.
 #'
 #' @examples
-#'
+#' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
 #' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -124,6 +124,7 @@ normalize_data <- function(imp_df,
 #'
 #' ## Visualize normalization using density plots
 #' norm_plot(imp_df, norm_df, type = "density")
+#' }
 #'
 #' @export
 norm_plot <- function(original,
