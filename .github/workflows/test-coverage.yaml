@@ -30,9 +30,4 @@ jobs:
         run: covr::codecov(quiet = FALSE)
         shell: Rscript {0}
 
-      - name: Upload coverage results to Codecov.io
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          version: "v0.1.15"
 
