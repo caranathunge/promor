@@ -3,7 +3,7 @@
 
 # promor <img src="man/figures/logo.png" align="right" height="200" style="float:right; height:200px;">
 
-### Proteomics Data Analysis and Modeling
+> Proteomics Data Analysis and Modeling Tools
 
 <!-- badges: start -->
 
@@ -11,6 +11,9 @@
 [![test-coverage](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
+[![pkgdown](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml)
+[![pages-build-deployment](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment)
+
 <!-- badges: end -->
 
 ### Overview
