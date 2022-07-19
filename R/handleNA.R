@@ -324,7 +324,7 @@ heatmap_na <- function(raw_df,
 #' imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
 #'
 #' ## Using the minDet method with q set at 0.001.
-#' imp_df5 <- impute_na(raw, method = "minDet", q = 0.001, seed = 3312)
+#' imp_df5 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
 #' }
 #' @references Lazar, Cosmin, et al. "Accounting for the multiple natures of
 #' missing values in label-free quantitative proteomics data sets to compare
