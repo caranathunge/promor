@@ -12,7 +12,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
 [![pkgdown](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml)
-[![pages-build-deployment](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment)
+[![pages-build-deployment](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment)
 
 <!-- badges: end -->
 
