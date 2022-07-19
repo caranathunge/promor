@@ -28,6 +28,7 @@ Imports:
     ggrepel,
     gridExtra,
     limma,
+    statmod,
     pcaMethods,
     VIM,
     missForest,

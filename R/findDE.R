@@ -5,6 +5,7 @@
 #' on protein intensity data with limma.
 #'
 #' @import limma
+#' @import statmod
 #' @importFrom stats model.matrix
 #' @importFrom utils write.table
 #'
