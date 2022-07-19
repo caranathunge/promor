@@ -164,9 +164,7 @@ analyses for RNA-sequencing and microarray studies." Nucleic acids research
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Perform differential expression analysis using default settings</span></span></span>
 <span class="r-in"><span><span class="va">fit_df1</span> <span class="op">&lt;-</span> <span class="fu">find_dep</span><span class="op">(</span><span class="va">ecoli_norm_df</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>3 very small variances detected, have been offset away from zero</span>
@@ -176,7 +174,6 @@ analyses for RNA-sequencing and microarray studies." Nucleic acids research
 <span class="r-in"><span><span class="va">fit_df2</span> <span class="op">&lt;-</span> <span class="fu">find_dep</span><span class="op">(</span><span class="va">ecoli_norm_df</span>, cutoff <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>3 very small variances detected, have been offset away from zero</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1227 siginificantly differentially expressed proteins found.</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

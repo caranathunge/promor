@@ -131,24 +131,20 @@ temporary directory if <code>file_path</code> is not specified.</p></li>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Generate a raw_df object with default settings. No technical replicates.</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Generate a raw_df object with default settings. No technical replicates.</span></span></span>
 <span class="r-in"><span><span class="va">raw_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="create_df.html">create_df</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>prot_groups <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt"</span>,</span></span>
 <span class="r-in"><span>exp_design <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 0 empty rows removed.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 0 empty columns removed.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 80 proteins (rows) only identified by site removed.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 65 reverse proteins (rows) removed.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1923 proteins identified by 2 or fewer unique peptides removed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 0 empty row(s) removed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 0 empty column(s) removed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 80 protein(s) (rows) only identified by site removed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 65 reverse protein(s) (rows) removed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1923 protein(s) identified by 2 or fewer unique peptides removed.</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Save a list of proteins only expressed in group L, but absent in group H, in the</span></span></span>
-<span class="r-in"><span><span class="co">## working directory.</span></span></span>
+<span class="r-in"><span><span class="co">## Find the proteins only expressed in group L, but absent in group H.</span></span></span>
 <span class="r-in"><span><span class="fu">onegroup_only</span><span class="op">(</span><span class="va">raw_df</span>, abs_group <span class="op">=</span> <span class="st">"H"</span>,</span></span>
-<span class="r-in"><span>pres_group <span class="op">=</span> <span class="st">"L"</span>, save <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>file_path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></span>
+<span class="r-in"><span>pres_group <span class="op">=</span> <span class="st">"L"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "H7C5A7;E9PJN0;A6NDT2;O14734;H0Y698;Q9BR14;E9PMC4;G5E995;E9PIS4"                                                                                                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "A8MXV4"                                                                                                                                                        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "A8MYT4;Q8NEB9"                                                                                                                                                 </span>
@@ -168,7 +164,6 @@ temporary directory if <code>file_path</code> is not specified.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [17] "Q8IYI6"                                                                                                                                                        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [18] "Q92572;F5H459"                                                                                                                                                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] "Q9C0B7"                                                                                                                                                        </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

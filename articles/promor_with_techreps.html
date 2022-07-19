@@ -164,11 +164,11 @@ h4.author {
 <span>  exp_design <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt"</span>,</span>
 <span>  tech_reps <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; 0 empty rows removed.</span></span>
-<span><span class="co">#&gt; 1 empty columns removed.</span></span>
-<span><span class="co">#&gt; 12 reverse proteins (rows) removed.</span></span>
-<span><span class="co">#&gt; 29 protein contaminants (rows) removed.</span></span>
-<span><span class="co">#&gt; 188 proteins identified by 2 or fewer unique peptides removed.</span></span>
+<span><span class="co">#&gt; 0 empty row(s) removed.</span></span>
+<span><span class="co">#&gt; 1 empty column(s) removed.</span></span>
+<span><span class="co">#&gt; 12 reverse protein(s) (rows) removed.</span></span>
+<span><span class="co">#&gt; 29 protein contaminant(s) (rows) removed.</span></span>
+<span><span class="co">#&gt; 188 protein(s) identified by 2 or fewer unique peptides removed.</span></span>
 <span><span class="co"># We can quickly check how the data frame looks like</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">raw</span><span class="op">)</span></span></code></pre></div>
 <div data-pagedtable="false">
@@ -248,7 +248,7 @@ h4.author {
 </h3>
 <p><em>promor</em> provides multiple missing data imputation methods. Default is <code>minProb</code>, which assumes that all missing data is MNAR (Missing Not at Random) type. More information about available imputation methods can be found in <a href="https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00981" class="external-link">Lazar et al. (2016)</a>.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Impute missing data with minProb method. don;t forget to fix the random seed for reproducibility.</span></span>
+<code class="sourceCode R"><span><span class="co"># Impute missing data with minProb method. Don't forget to fix the random seed for reproducibility.</span></span>
 <span><span class="va">imp_df_mp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_na.html">impute_na</a></span><span class="op">(</span><span class="va">raw_filtered</span>, seed <span class="op">=</span> <span class="fl">327</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Alternatively, we can test a different imputation method.</span></span>
@@ -322,6 +322,9 @@ h4.author {
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/heatmap_de.html">heatmap_de</a></span><span class="op">(</span>fit_df <span class="op">=</span> <span class="va">fit_df</span>, norm_df <span class="op">=</span> <span class="va">norm_df</span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_with_techreps_files/figure-html/heatmapde-1.png" width="672" style="display: block; margin: auto;"></p>
+<p>Save a copy of the plot in the working directory</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/heatmap_de.html">heatmap_de</a></span><span class="op">(</span>fit_df <span class="op">=</span> <span class="va">fit_df</span>, norm_df <span class="op">=</span> <span class="va">norm_df</span>, save <span class="op">=</span> <span class="cn">TRUE</span>, file_path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

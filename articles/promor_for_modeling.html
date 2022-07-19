@@ -361,12 +361,13 @@ blockquote {
 <span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can output a list of predictions and output a confusion matrix for further analysis.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># We run the function with type = "raw" to get a prediction list and output a confusion matrix</span></span>
+<code class="sourceCode R"><span><span class="co"># We run the function with type = "raw" to get a prediction list and output a confusion matrix. You can also provide a file path to save the text file in in your preferred directory. In this example, we are saving our text file in the working directory.</span></span>
 <span><span class="va">covid_pred_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/test_models.html">test_models</a></span><span class="op">(</span></span>
 <span>  model_list <span class="op">=</span> <span class="va">covid_model_list</span>,</span>
 <span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"raw"</span>,</span>
-<span>  save_confusionmatrix <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  save_confusionmatrix <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  file_path <span class="op">=</span> <span class="st">"."</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
@@ -389,6 +390,15 @@ blockquote {
 <span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_for_modeling_files/figure-html/rocplot-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p>Save a copy of the plot in the working directory.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Make bar plots</span></span>
+<span><span class="fu"><a href="../reference/roc_plot.html">roc_plot</a></span><span class="op">(</span></span>
+<span>  probability_list <span class="op">=</span> <span class="va">covid_prob_list</span>,</span>
+<span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span>,</span>
+<span>  save <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  file_path <span class="op">=</span> <span class="st">"."</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
