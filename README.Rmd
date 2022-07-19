@@ -16,23 +16,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-<
+
 
 # promor <img src="man/figures/logo.png" align="right" height="200" style="float:right; height:200px;">
 
-> Proteomics Data Analysis and Modeling Tools
+### Proteomics Data Analysis and Modeling Tools
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml)
-[![CRAN status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
-[![pkgdown](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/pkgdown.yaml)
-[![pages-build-deployment](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/caranathunge/promor/actions/workflows/pages/pages-build-deployment)
-[![codecov](https://codecov.io/gh/caranathunge/promor/branch/main/graph/badge.svg?token=R0Z7RQ9XH9)](https://codecov.io/gh/caranathunge/promor)
-
+[![License: LGPL v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.org/licenses/lgpl-2.1)
 <!-- badges: end -->
 
-### Overview
 
 * `promor` is a user-friendly, comprehensive R package that combines proteomics 
 data analysis with machine learning-based modeling. 
