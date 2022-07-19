@@ -78,9 +78,10 @@ prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_dat
 exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
 tech_reps = TRUE
 )
-
-## Compare technical replicates 1 vs. 2 for all samples. Save a pdf in the
-## working directory.
+}
+\dontrun{
+## Compare technical replicates 1 vs. 2 for all samples and save plots in a pdf in
+## the working directory.
 corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, save = TRUE, file_path = ".")
 }
 

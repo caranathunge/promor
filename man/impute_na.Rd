@@ -84,7 +84,7 @@ imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
 imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
 
 ## Using the minDet method with q set at 0.001.
-imp_df5 <- impute_na(raw, method = "minDet", q = 0.001, seed = 3312)
+imp_df5 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
 }
 }
 \references{

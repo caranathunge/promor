@@ -55,7 +55,8 @@ raw_df <- create_df(
 prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
 exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 )
-
+}
+\dontrun{
 ## Save a list of proteins only expressed in group L, but absent in group H, in the
 ## working directory.
 onegroup_only(raw_df, abs_group = "H",

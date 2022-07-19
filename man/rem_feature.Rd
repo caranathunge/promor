@@ -34,7 +34,7 @@ visualize variable importance using \code{varimp_plot}.
 \examples{
 \donttest{
 
-model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
+covid_model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
 
 ## Remove sp|P22352|GPX3_HUMAN protein from the model_df object
 covid_model_df1 <- rem_feature(covid_model_df, rem_protein = "sp|P22352|GPX3_HUMAN")

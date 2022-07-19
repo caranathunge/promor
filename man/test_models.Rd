@@ -64,7 +64,9 @@ covid_model_list <- train_models(covid_split_df)
 
 # Test a list of models on a test data set and output class probabilities,
 covid_prob_list <- test_models(model_list = covid_model_list, split_df = covid_split_df)
+}
 
+\dontrun{
 # Save confusion matrices in the working directory and output class predictions
 covid_pred_list <- test_models(
   model_list = covid_model_list,
@@ -74,6 +76,7 @@ covid_pred_list <- test_models(
   file_path = "."
 )
 }
+
 }
 \seealso{
 \itemize{

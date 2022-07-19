@@ -241,7 +241,7 @@ pre_process <- function(fit_df,
 #' \donttest{
 #'
 ## Create a model_df object with default settings.
-#' model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
+#' covid_model_df <- pre_process(fit_df = covid_fit_df, norm_df = covid_norm_df)
 #'
 #' ## Remove sp|P22352|GPX3_HUMAN protein from the model_df object
 #' covid_model_df1 <- rem_feature(covid_model_df, rem_protein = "sp|P22352|GPX3_HUMAN")
@@ -534,7 +534,9 @@ train_models <- function(split_df,
 #'
 #' # Test a list of models on a test data set and output class probabilities,
 #' covid_prob_list <- test_models(model_list = covid_model_list, split_df = covid_split_df)
+#' }
 #'
+#' \dontrun{
 #' # Save confusion matrices in the working directory and output class predictions
 #' covid_pred_list <- test_models(
 #'   model_list = covid_model_list,
@@ -544,6 +546,7 @@ train_models <- function(split_df,
 #'   file_path = "."
 #' )
 #' }
+#'
 #' @export
 test_models <- function(model_list,
                         split_df,
