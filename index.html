@@ -104,8 +104,11 @@
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p>You can install the development version of promor from <a href="https://github.com/caranathunge/promor" class="external-link">GitHub</a> with:</p>
+<p>Install the released version from CRAN</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"promor"</span><span class="op">)</span></span></code></pre></div>
+<p>Install development version from <a href="https://github.com/caranathunge/promor" class="external-link">GitHub</a></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install devtools, if you haven't already:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span></span>
@@ -121,7 +124,7 @@
 <h4 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h4>
 <p>Here is a minimal working example showing how to identify differentially expressed proteins between two conditions using <code>promor</code> in five simple steps. We use a previously published data set from <a href="https://europepmc.org/article/MED/24942700#id609082" class="external-link">Cox et al. (2014)</a> (PRIDE ID: PXD000279).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load promor</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/caranathunge/promor" class="external-link">promor</a></span><span class="op">)</span></span>
 <span></span>
@@ -143,7 +146,7 @@
 <span><span class="co"># Perform differential expression analysis and create a fit_df object</span></span>
 <span><span class="va">fit_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/find_dep.html">find_dep</a></span><span class="op">(</span><span class="va">norm_df</span><span class="op">)</span></span></code></pre></div>
 <p>Lets take a look at the results using a volcano plot.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/volcano_plot.html">volcano_plot</a></span><span class="op">(</span><span class="va">fit_df</span>, text_size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
 <center><p><img src="./reference/figures/README-volcanoplot-1.png" style="width:70.0%"></p></center>
 <hr>
@@ -158,7 +161,7 @@
 </h4>
 <p>The following minimal working example shows you how to use your results from differential expression analysis to build machine learning-based predictive models using <code>promor</code>.</p>
 <p>We use a previously published data set from <a href="https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3" class="external-link">Suvarna et al. (2021)</a> that used differentially expressed proteins between severe and non-severe COVID patients to build models to predict COVID severity.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># First, let's make a model_df object of top differentially expressed proteins.</span></span>
 <span><span class="co"># We will be using example fit_df and norm_df objects provided with the package.</span></span>
 <span><span class="va">covid_model_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/pre_process.html">pre_process</a></span><span class="op">(</span></span>
@@ -178,8 +181,9 @@
 <span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Let’s make ROC plots to check how the different models performed.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/roc_plot.html">roc_plot</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="reference/roc_plot.html">roc_plot</a></span><span class="op">(</span></span>
 <span>  probability_list <span class="op">=</span> <span class="va">covid_prob_list</span>,</span>
 <span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -192,7 +196,7 @@
 </h3>
 <p>You can choose a tutorial from the list below that best fits your experiment and the structure of your proteomics data.</p>
 <ol style="list-style-type: decimal"><li>This README file can be accessed from RStudio as follows,</li></ol>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"intro_to_promor"</span>, package <span class="op">=</span> <span class="st">"promor"</span><span class="op">)</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>If your data do NOT contain technical replicates: <a href="https://caranathunge.github.io/promor/articles/promor_no_techreps.html">promor: No technical replicates</a></p></li>
