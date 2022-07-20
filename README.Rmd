@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 ### Proteomics Data Analysis and Modeling Tools
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml)
 [![License: LGPL v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.org/licenses/lgpl-2.1)
@@ -47,8 +48,13 @@ ___
 
 ### Installation
 
-You can install the development version of promor from 
-[GitHub](https://github.com/caranathunge/promor) with:
+Install the released version from CRAN
+
+``` r
+install.packages("promor")
+```
+
+Install development version from [GitHub](https://github.com/caranathunge/promor)
 
 ``` r
 # install devtools, if you haven't already:

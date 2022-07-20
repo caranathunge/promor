@@ -7,6 +7,8 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml)
 [![License: LGPL
@@ -34,8 +36,14 @@ v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.
 
 ### Installation
 
-You can install the development version of promor from
-[GitHub](https://github.com/caranathunge/promor) with:
+Install the released version from CRAN
+
+``` r
+install.packages("promor")
+```
+
+Install development version from
+[GitHub](https://github.com/caranathunge/promor)
 
 ``` r
 # install devtools, if you haven't already:
@@ -142,6 +150,7 @@ covid_prob_list <- test_models(
 Let’s make ROC plots to check how the different models performed.
 
 ``` r
+
 roc_plot(
   probability_list = covid_prob_list,
   split_df = covid_split_df
