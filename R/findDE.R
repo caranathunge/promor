@@ -160,7 +160,7 @@ find_dep <- function(norm_df,
       )
     } else {
       write.table(results_de[1:n_top, ],
-        file = "TopHits.txt",
+                  file = paste0(file_path, "/TopHits.txt"),
         sep = "\t",
         quote = FALSE
       )
