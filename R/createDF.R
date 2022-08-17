@@ -169,6 +169,10 @@ create_df <- function(prot_groups,
         df,
         df$Potential.contaminant != "+"
       )
+      message(paste0(
+        orig_rows_3 - nrow(df),
+        " protein potential contaminant(s) (rows) removed."
+      ))
     }
 
     if ("Contaminant" %in% colnames(df)) {
