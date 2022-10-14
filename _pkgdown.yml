@@ -15,7 +15,7 @@ template:
     pkgdown-nav-height: 100px
 
 params:
-    ganalytics: UA-73084449-1
+    ganalytics: G-L7H9QD25V6
 
 development:
   mode: auto
