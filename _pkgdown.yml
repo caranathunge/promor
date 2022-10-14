@@ -13,7 +13,8 @@ template:
     heading_font: {google: "Lato"}
     code_font: {google: "Source Code Pro"}
     pkgdown-nav-height: 100px
-
+params:
+    ganalytics: UA-73084449-1
 development:
   mode: auto
 
