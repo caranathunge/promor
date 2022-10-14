@@ -33,7 +33,15 @@
 #' differential expression analysis.
 #' \item \code{save_tophits} first subsets the results to those with absolute
 #' log fold change of more than 1, performs multiple correction with
+<<<<<<< HEAD
 #' the method specified in \code{adj_method} and outputs the top \code{n_top}
+=======
+<<<<<<< HEAD
+#' the method specified in \code{adj_method} and outputs the top \code{n_top}
+=======
+#' the method specified in \code{adj_method}and outputs the top \code{n_top}
+>>>>>>> e6df18b39e9edba4b0321a779c675b4b660cfeaa
+>>>>>>> 54ae6cd82b3d347f616f9fc7c205baca5a0f792c
 #' results based on lowest p-value and adjusted p-value.
 #' \item If the number of hits with absolute log fold change of more than 1 is
 #' less than \code{n_top}, \code{find_dep} prints only those with
