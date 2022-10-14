@@ -7,6 +7,7 @@
 heatmap_de(
   fit_df,
   norm_df,
+  adj_method = "BH",
   cutoff = 0.05,
   lfc = 1,
   sig = "adjP",
@@ -27,6 +28,9 @@ heatmap_de(
 
 \item{norm_df}{The \code{norm_df} object from which the \code{fit_df} object
 was obtained.}
+
+\item{adj_method}{Method used for adjusting the p-values for multiple
+testing. Default is \code{"BH"}.}
 
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}

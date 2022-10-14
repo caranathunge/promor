@@ -9,6 +9,7 @@ find_dep(
   save_output = FALSE,
   save_tophits = FALSE,
   file_path = NULL,
+  adj_method = "BH",
   cutoff = 0.05,
   lfc = 1,
   n_top = 20
@@ -26,6 +27,9 @@ number of top hits from the differential expression analysis in a text file
 labeled "TopHits.txt" in the directory specified by \code{file_path}.}
 
 \item{file_path}{A string containing the directory path to save the file.}
+
+\item{adj_method}{Method used for adjusting the p-values for multiple
+testing. Default is \code{"BH"} for "Benjamini-Hochberg" method.}
 
 \item{cutoff}{Cutoff value for p-values and adjusted p-values. Default is
 0.05.}
@@ -52,8 +56,8 @@ imputed, and normalized before performing differential expression analysis.
 differential expression analysis.
 \item \code{save_tophits} first subsets the results to those with absolute
 log fold change of more than 1, performs multiple correction with
-"Benjamini Hochberg" method and outputs the top \code{n_top} results based
-on lowest p-value and adjusted p-value.
+the method specified in \code{adj_method} and outputs the top \code{n_top}
+results based on lowest p-value and adjusted p-value.
 \item If the number of hits with absolute log fold change of more than 1 is
 less than \code{n_top}, \code{find_dep} prints only those with
 log-fold change > 1 to "TopHits.txt".

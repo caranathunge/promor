@@ -27,11 +27,11 @@ heatmap_na(
 \arguments{
 \item{raw_df}{A \code{raw_df} object (output from \code{\link{create_df}}).}
 
-\item{protein_range}{The range of proteins to plot. Default is \code{ALL},
-meaning all the proteins in the data frame.}
+\item{protein_range}{The range or subset of proteins (rows) to plot. If not
+provided, all the proteins (rows) in the data frame will be used.}
 
-\item{sample_range}{The range of samples to plot. Default is \code{ALL},
-meaning all the samples in the data frame.}
+\item{sample_range}{The range of samples to plot. If not
+provided, all the samples (columns) in the data frame will be used.}
 
 \item{reorder_x}{Logical. If \code{TRUE} samples on the x axis are reordered
 using the function given in \code{x_fun}. Default is \code{FALSE}.}

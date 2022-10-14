@@ -80,7 +80,7 @@ tech_reps = TRUE
 
 \donttest{
 ## Compare technical replicates 1 vs. 2 for all samples
-corr_plot(raw_df, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2)
+corr_plot(raw_df, rep_1 = 1, rep_2 = 2)
 }
 
 }
