@@ -74,6 +74,7 @@ on protein intensity data with limma.</p>
 <span>  save_output <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  save_tophits <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  file_path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  adj_method <span class="op">=</span> <span class="st">"BH"</span>,</span>
 <span>  cutoff <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  lfc <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  n_top <span class="op">=</span> <span class="fl">20</span></span>
@@ -100,6 +101,11 @@ labeled "TopHits.txt" in the directory specified by <code>file_path</code>.</p><
 
 <dt>file_path</dt>
 <dd><p>A string containing the directory path to save the file.</p></dd>
+
+
+<dt>adj_method</dt>
+<dd><p>Method used for adjusting the p-values for multiple
+testing. Default is <code>"BH"</code> for "Benjamini-Hochberg" method.</p></dd>
 
 
 <dt>cutoff</dt>
@@ -133,8 +139,8 @@ the "TopHits.txt" file. Default is <code>20</code>.</p></dd>
 differential expression analysis.</p></li>
 <li><p><code>save_tophits</code> first subsets the results to those with absolute
 log fold change of more than 1, performs multiple correction with
-"Benjamini Hochberg" method and outputs the top <code>n_top</code> results based
-on lowest p-value and adjusted p-value.</p></li>
+the method specified in <code>adj_method</code> and outputs the top <code>n_top</code>
+results based on lowest p-value and adjusted p-value.</p></li>
 <li><p>If the number of hits with absolute log fold change of more than 1 is
 less than <code>n_top</code>, <code>find_dep</code> prints only those with
 log-fold change &gt; 1 to "TopHits.txt".</p></li>

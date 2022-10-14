@@ -72,6 +72,7 @@ expressed proteins between groups</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">heatmap_de</span><span class="op">(</span></span>
 <span>  <span class="va">fit_df</span>,</span>
 <span>  <span class="va">norm_df</span>,</span>
+<span>  adj_method <span class="op">=</span> <span class="st">"BH"</span>,</span>
 <span>  cutoff <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  lfc <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  sig <span class="op">=</span> <span class="st">"adjP"</span>,</span>
@@ -97,6 +98,11 @@ expressed proteins between groups</p>
 <dt>norm_df</dt>
 <dd><p>The <code>norm_df</code> object from which the <code>fit_df</code> object
 was obtained.</p></dd>
+
+
+<dt>adj_method</dt>
+<dd><p>Method used for adjusting the p-values for multiple
+testing. Default is <code>"BH"</code>.</p></dd>
 
 
 <dt>cutoff</dt>
