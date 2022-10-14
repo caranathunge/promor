@@ -7,6 +7,5 @@ citEntry(
   journal  = "bioRxiv",
   year     = "2022",
   url      = "https://www.biorxiv.org/content/early/2022/08/18/2022.08.17.503867",
-  textVersion = "Ranathunge, C.; Patel, S.S.; Pinky, L.; Correll, V.L.; Semmes, O.J.; Armstrong, R.K.; Combs, C.D.; Nyalwidhe, J.O. promor: a 813
-comprehensive R package for label-free proteomics data analysis and predictive modeling. bioRxiv 2022."
+  textVersion = "Ranathunge, C.; Patel, S.S.; Pinky, L.; Correll, V.L.; Semmes, O.J.; Armstrong, R.K.; Combs, C.D.; Nyalwidhe, J.O. promor: a comprehensive R package for label-free proteomics data analysis and predictive modeling. bioRxiv 2022."
 )
