@@ -19,6 +19,8 @@
 #' @param file_path A string containing the directory path to save the file.
 #' @param lfc Minimum absolute log2-fold change to use as threshold for
 #' differential expression.
+#' @param adj_method Method used for adjusting the p-values for multiple
+#' testing. Default is \code{"BH"} for "Benjamini-Hochberg" method.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
 #' 0.05.
 #' @param n_top The number of top differentially expressed proteins to save in
@@ -31,8 +33,8 @@
 #' differential expression analysis.
 #' \item \code{save_tophits} first subsets the results to those with absolute
 #' log fold change of more than 1, performs multiple correction with
-#' "Benjamini Hochberg" method and outputs the top \code{n_top} results based
-#' on lowest p-value and adjusted p-value.
+#' the method specified in \code{adj_method} and outputs the top \code{n_top}
+#' results based on lowest p-value and adjusted p-value.
 #' \item If the number of hits with absolute log fold change of more than 1 is
 #' less than \code{n_top}, \code{find_dep} prints only those with
 #' log-fold change > 1 to "TopHits.txt".
@@ -66,6 +68,7 @@ find_dep <- function(norm_df,
                      save_output = FALSE,
                      save_tophits = FALSE,
                      file_path = NULL,
+                     adj_method = "BH",
                      cutoff = 0.05,
                      lfc = 1,
                      n_top = 20) {
@@ -89,7 +92,7 @@ find_dep <- function(norm_df,
   # Make a a list of DE results based on provided criteria
   dec_test <- limma::decideTests(fit,
     lfc = lfc,
-    adjust.method = "BH"
+    adjust.method = adj_method
   )
 
   #Set temporary file_path if not specified
@@ -101,7 +104,7 @@ find_dep <- function(norm_df,
   if (save_output == TRUE) {
     limma::write.fit(fit,
       file = paste0(file_path,"/limma_outout.txt"),
-      adjust = "BH",
+      adjust = adj_method,
       results = dec_test
     )
   }
@@ -109,7 +112,7 @@ find_dep <- function(norm_df,
 
   results_de <- limma::topTable(fit,
     coef = 2,
-    adjust.method = "BH",
+    adjust.method = adj_method,
     n = Inf
   )
 
@@ -396,6 +399,8 @@ volcano_plot <- function(fit_df,
 #' @param fit_df A \code{fit_df} object from performing \code{find_dep}.
 #' @param norm_df The \code{norm_df} object from which the \code{fit_df} object
 #' was obtained.
+#' @param adj_method Method used for adjusting the p-values for multiple
+#' testing. Default is \code{"BH"}.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
 #' 0.05.
 #' @param lfc Minimum absolute log2-fold change to use as threshold for
@@ -450,6 +455,7 @@ volcano_plot <- function(fit_df,
 #' @export
 heatmap_de <- function(fit_df,
                        norm_df,
+                       adj_method = "BH",
                        cutoff = 0.05,
                        lfc = 1,
                        sig = "adjP",
@@ -471,7 +477,7 @@ heatmap_de <- function(fit_df,
   exp_de <- limma::topTable(fit_df,
     coef = colnames(fit_df)[2],
     n = length(fit_df$df.total),
-    adjust.method = "BH"
+    adjust.method = adj_method
   )
 
   # Pick the sig. proteins based on lowest p-value and highest logFC
