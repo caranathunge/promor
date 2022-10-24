@@ -46,6 +46,8 @@ protein level to analyze label-free proteomics data.
 file produced by [**MaxQuant**](https://maxquant.org) and an [expDesign.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt) file, which contains the 
 experimental design of your proteomics data.
 
+:rotating_light:**Check out our R Shiny app:** [PROMOR App](https://sgrbnf.shinyapps.io/PROMOR_App/)
+
 ___
 
 ### Installation

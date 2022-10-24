@@ -37,6 +37,9 @@ v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.
     file, which contains the experimental design of your proteomics
     data.
 
+:rotating_light:**Check out our R Shiny app:** [PROMOR
+App](https://sgrbnf.shinyapps.io/PROMOR_App/)
+
 ------------------------------------------------------------------------
 
 ### Installation
