@@ -26,8 +26,9 @@ v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.
     **label-free quantification (LFQ)** proteomics data and building
     predictive models with top protein candidates.
 
--   `promor` provides a range of quality control and visualization tools
-    at the protein level to analyze label-free proteomics data.
+-   With `promor` we provide a range of quality control and
+    visualization tools at the protein level to analyze label-free
+    proteomics data.
 
 -   Input files for `promor` are the
     [proteinGroups.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
