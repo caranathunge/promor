@@ -14,6 +14,17 @@ template:
     code_font: {google: "Source Code Pro"}
     pkgdown-nav-height: 100px
 
+  includes:
+    in_header: |
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-L7H9QD25V6"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-L7H9QD25V6');
+      </script>
 params:
     ganalytics: G-L7H9QD25V6
 
