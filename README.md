@@ -11,6 +11,8 @@
 status](https://www.r-pkg.org/badges/version/promor)](https://CRAN.R-project.org/package=promor)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/last-month/promor?color=blue)](https://r-pkg.org/pkg/promor)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/promor?color=blue)](https://r-pkg.org/pkg/promor)
 [![R-CMD-check](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/caranathunge/promor/actions/workflows/test-coverage.yaml)
 [![License: LGPL
@@ -152,6 +154,7 @@ covid_prob_list <- test_models(
 Let’s make ROC plots to check how the different models performed.
 
 ``` r
+
 roc_plot(
   probability_list = covid_prob_list,
   split_df = covid_split_df
