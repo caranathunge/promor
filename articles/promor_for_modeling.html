@@ -94,7 +94,8 @@ gtag('config', 'G-L7H9QD25V6');
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Modeling with promor</h1>
-                        <h4 data-toc-skip class="author">Chathurani Ranathunge</h4>
+                        <h4 data-toc-skip class="author">Chathurani
+Ranathunge</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/caranathunge/promor/blob/HEAD/vignettes/promor_for_modeling.Rmd" class="external-link"><code>vignettes/promor_for_modeling.Rmd</code></a></small>
@@ -123,25 +124,41 @@ blockquote {
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>This tutorial shows you how you can use <em>promor</em> to build predictive models using top differentially expressed proteins.</p>
-<p>We recommend that you first go through the simple working example provided in <strong>Introduction to promor</strong> to get acquainted with <em>promor</em>’s functionality.</p>
+<p>This tutorial shows you how you can use <em>promor</em> to build
+predictive models using top differentially expressed proteins.</p>
+<p>We recommend that you first go through the simple working example
+provided in <strong>Introduction to promor</strong> to get acquainted
+with <em>promor</em>’s functionality.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"intro_to_promor"</span><span class="op">)</span></span></code></pre></div>
-<p>A tutorial for <strong>proteomics data without technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_no_techreps.html">promor: No technical replicates</a></p>
-<p>A tutorial for <strong>proteomics data with technical replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_with_techreps.html">promor: Technical replicates</a></p>
+<p>A tutorial for <strong>proteomics data without technical
+replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_no_techreps.html">promor:
+No technical replicates</a></p>
+<p>A tutorial for <strong>proteomics data with technical
+replicates</strong> is provided here: <a href="https://caranathunge.github.io/promor/articles/promor_with_techreps.html">promor:
+Technical replicates</a></p>
 <hr>
 </div>
 <div class="section level3">
 <h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h3>
-<p>For this tutorial we will be using a previously published data set from <a href="https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3" class="external-link">Suvarna et al. (2021)</a>. In this study, authors used differentially expressed proteins between <strong>33 severe</strong> and <strong>18 non-severe</strong> COVID patients to build models to predict COVID severity. Here, we are using a subset of that data set (18 severe and 18 non-severe COVID patients).</p>
+<p>For this tutorial we will be using a previously published data set
+from <a href="https://www.frontiersin.org/articles/10.3389/fphys.2021.652799/full#h3" class="external-link">Suvarna
+et al. (2021)</a>. In this study, authors used differentially expressed
+proteins between <strong>33 severe</strong> and <strong>18
+non-severe</strong> COVID patients to build models to predict COVID
+severity. Here, we are using a subset of that data set (18 severe and 18
+non-severe COVID patients).</p>
 <hr>
 </div>
 <div class="section level3">
 <h3 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h3>
-<p><img src="../reference/figures/promor_ProtModelingFlowChart_small.png" style="width:100.0%" alt="promor for modeling flowchart by caranathunge"><em>Figure 1. A schematic diagram showing the suggested promor workflow for building predictive models with protein candidates</em></p>
-<p><strong>You can access the help pages for functions shown above and more using</strong> <code>?function_name</code></p>
+<p><img src="../reference/figures/promor_ProtModelingFlowChart_small.png" style="width:100.0%" alt="promor for modeling flowchart by caranathunge"><em>Figure 1. A
+schematic diagram showing the suggested promor workflow for building
+predictive models with protein candidates</em></p>
+<p><strong>You can access the help pages for functions shown above and
+more using</strong> <code>?function_name</code></p>
 <hr>
 </div>
 <div class="section level3">
@@ -149,26 +166,43 @@ blockquote {
 </h3>
 <p>To build predictive models with <em>promor</em>, you need:</p>
 <ul>
-<li><p>A <strong>fit_df</strong> object produced by running <code>find_dep</code> for differential expression analysis. For this example, we will be using <code>covid_fit_df</code> object provided with the package.</p></li>
-<li><p>An <strong>norm_df</strong> object which is a data frame of normalized protein intensities used as input for <code>find_dep</code>. We will be using <code>covid_norm_df</code> object provided with the package.</p></li>
+<li><p>A <strong>fit_df</strong> object produced by running
+<code>find_dep</code> for differential expression analysis. For this
+example, we will be using <code>covid_fit_df</code> object provided with
+the package.</p></li>
+<li><p>An <strong>norm_df</strong> object which is a data frame of
+normalized protein intensities used as input for <code>find_dep</code>.
+We will be using <code>covid_norm_df</code> object provided with the
+package.</p></li>
 </ul>
 <hr>
 </div>
 <div class="section level3">
 <h3 id="create-a-model_df-object">1. Create a <em>model_df</em> object<a class="anchor" aria-label="anchor" href="#create-a-model_df-object"></a>
 </h3>
-<p>Let’s first create a <em>model_df</em> object with the example <code>fit_df</code> and <code>norm_df</code> objects provided with the package.</p>
+<p>Let’s first create a <em>model_df</em> object with the example
+<code>fit_df</code> and <code>norm_df</code> objects provided with the
+package.</p>
 <blockquote>
 <p><strong>Notes</strong></p>
 <ul>
 <li>
-<code>pre_process</code> function uses information from the two objects to create a data frame of protein intensities in a suitable format for modeling.<br>
+<code>pre_process</code> function uses information from the two
+objects to create a data frame of protein intensities in a suitable
+format for modeling.<br>
 </li>
-<li>If you run this step with default options, highly correlated proteins (features) will be identified and removed from the data frame.<br>
+<li>If you run this step with default options, highly correlated
+proteins (features) will be identified and removed from the data
+frame.<br>
 </li>
-<li>Alternatively, you can set <code>find_highcorr = FALSE</code> and <code>rem_highcorr = FALSE</code>, but it is <strong>not recommended</strong>. You can also tweak the <code>corr_cutoff</code> to change the threshold for identifying highly correlated proteins.<br>
+<li>Alternatively, you can set <code>find_highcorr = FALSE</code> and
+<code>rem_highcorr = FALSE</code>, but it is <strong>not
+recommended</strong>. You can also tweak the <code>corr_cutoff</code> to
+change the threshold for identifying highly correlated proteins.<br>
 </li>
-<li>Note: if no or few differentially expressed proteins were identified at the given adjusted p-value cutoff, you can choose to relax these criteria to use more proteins in modeling.<br>
+<li>Note: if no or few differentially expressed proteins were identified
+at the given adjusted p-value cutoff, you can choose to relax these
+criteria to use more proteins in modeling.<br>
 </li>
 <li>See <code><a href="../reference/pre_process.html">?pre_process</a></code> for more information.</li>
 </ul>
@@ -193,15 +227,19 @@ blockquote {
 <hr>
 </div>
 <div class="section level3">
-<h3 id="visualize-protein-feature-variation-among-conditions-classes">2. Visualize protein (feature) variation among conditions (classes)<a class="anchor" aria-label="anchor" href="#visualize-protein-feature-variation-among-conditions-classes"></a>
+<h3 id="visualize-protein-feature-variation-among-conditions-classes">2. Visualize protein (feature) variation among conditions
+(classes)<a class="anchor" aria-label="anchor" href="#visualize-protein-feature-variation-among-conditions-classes"></a>
 </h3>
-<p>At this stage, we can visualize the feature variation among classes using box plots or density plots.</p>
+<p>At this stage, we can visualize the feature variation among classes
+using box plots or density plots.</p>
 <blockquote>
 <p><strong>Notes</strong></p>
 <ul>
-<li>Your best proteins (features) for modeling are those that show distinct patterns of variation among conditions.<br>
+<li>Your best proteins (features) for modeling are those that show
+distinct patterns of variation among conditions.<br>
 </li>
-<li>For example, these proteins may show mostly non-overlapping density distributions.</li>
+<li>For example, these proteins may show mostly non-overlapping density
+distributions.</li>
 </ul>
 </blockquote>
 <div class="section level4">
@@ -229,20 +267,27 @@ blockquote {
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_for_modeling_files/figure-html/featureplot_d-1.png" width="90%" style="display: block; margin: auto;"></p>
 <ul>
-<li>At this stage, if you decide to remove a protein or some proteins from the <code>model_df</code> object, you can do so with <code>rem_feature</code>.</li>
+<li>At this stage, if you decide to remove a protein or some proteins
+from the <code>model_df</code> object, you can do so with
+<code>rem_feature</code>.</li>
 </ul>
 <hr>
 </div>
 </div>
 <div class="section level3">
-<h3 id="split-model_df-object-into-training-and-test-data-sets">3. Split <em>model_df</em> object into training and test data sets<a class="anchor" aria-label="anchor" href="#split-model_df-object-into-training-and-test-data-sets"></a>
+<h3 id="split-model_df-object-into-training-and-test-data-sets">3. Split <em>model_df</em> object into training and test data
+sets<a class="anchor" aria-label="anchor" href="#split-model_df-object-into-training-and-test-data-sets"></a>
 </h3>
-<p>Next, we will split the <code>model_df</code> object into training and test data sets <strong>while maintaining class or condition proportions in each set</strong>.</p>
+<p>Next, we will split the <code>model_df</code> object into training
+and test data sets <strong>while maintaining class or condition
+proportions in each set</strong>.</p>
 <blockquote>
 <p><strong>Notes</strong></p>
 <ul>
-<li>By default, 80% of the data will be added to the training set while 20% will be added to the test set.</li>
-<li>You can change these proportions by setting <code>train_size</code> to a higher or a lower value.</li>
+<li>By default, 80% of the data will be added to the training set while
+20% will be added to the test set.</li>
+<li>You can change these proportions by setting <code>train_size</code>
+to a higher or a lower value.</li>
 </ul>
 </blockquote>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -260,13 +305,18 @@ blockquote {
 <div class="section level3">
 <h3 id="train-machine-learning-models-on-the-training-data-set">4. Train machine learning models on the training data set<a class="anchor" aria-label="anchor" href="#train-machine-learning-models-on-the-training-data-set"></a>
 </h3>
-<p>We will be using some functions from the <code>caret</code> package to train models on our training data set.</p>
+<p>We will be using some functions from the <code>caret</code> package
+to train models on our training data set.</p>
 <blockquote>
 <p><strong>Notes</strong></p>
 <ul>
-<li>A list of all the available machine learning algorithms can be found here: <a href="http://topepo.github.io/caret/train-models-by-tag.html" class="external-link uri">http://topepo.github.io/caret/train-models-by-tag.html</a>.</li>
-<li>Note that some algorithms may require additional arguments. See <code>caret</code> functions <code>train</code> and <code>trainControl</code> for more details.</li>
-<li>The default list of classification-based algorithms provided include:
+<li>A list of all the available machine learning algorithms can be found
+here: <a href="http://topepo.github.io/caret/train-models-by-tag.html" class="external-link uri">http://topepo.github.io/caret/train-models-by-tag.html</a>.</li>
+<li>Note that some algorithms may require additional arguments. See
+<code>caret</code> functions <code>train</code> and
+<code>trainControl</code> for more details.</li>
+<li>The default list of classification-based algorithms provided
+include:
 <ul>
 <li>
 <code>"svmRadial"</code> - A support vector machine algorithm</li>
@@ -275,7 +325,8 @@ blockquote {
 <li>
 <code>"rf"</code> - A random forest algorithm</li>
 <li>
-<code>"xgbLinear"</code> - An extreme gradient boosting algorithm</li>
+<code>"xgbLinear"</code> - An extreme gradient boosting
+algorithm</li>
 </ul>
 </li>
 </ul>
@@ -295,7 +346,8 @@ blockquote {
 <div class="section level3">
 <h3 id="check-model-performance">5. Check model performance<a class="anchor" aria-label="anchor" href="#check-model-performance"></a>
 </h3>
-<p>We can now check how models built with each algorithm performed on the resamples of the training data set.</p>
+<p>We can now check how models built with each algorithm performed on
+the resamples of the training data set.</p>
 <div class="section level4">
 <h4 id="performance-plots---box-plots">Performance plots - box plots<a class="anchor" aria-label="anchor" href="#performance-plots---box-plots"></a>
 </h4>
@@ -314,14 +366,16 @@ blockquote {
 <span>  type <span class="op">=</span> <span class="st">"dot"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_for_modeling_files/figure-html/performplotd-1.png" width="80%" style="display: block; margin: auto;"></p>
-<p>*It looks like, except for <code>"glm"</code> method, all others performed fairly well.</p>
+<p>*It looks like, except for <code>"glm"</code> method, all others
+performed fairly well.</p>
 <hr>
 </div>
 </div>
 <div class="section level3">
 <h3 id="check-variable-importance">6. Check variable importance<a class="anchor" aria-label="anchor" href="#check-variable-importance"></a>
 </h3>
-<p>We can check which proteins out of the 10 are most important in the models.</p>
+<p>We can check which proteins out of the 10 are most important in the
+models.</p>
 <div class="section level4">
 <h4 id="variable-importance-plots---lollipop-plots">Variable importance plots - lollipop plots<a class="anchor" aria-label="anchor" href="#variable-importance-plots---lollipop-plots"></a>
 </h4>
@@ -349,7 +403,9 @@ blockquote {
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="promor_for_modeling_files/figure-html/varimpb-1.png" width="80%" style="display: block; margin: auto;"></p>
 <ul>
-<li>At this stage you can again use <code>rem_feature</code> function to <strong>remove proteins with lower importance</strong> in the models and <strong>repeat steps from Step 3</strong>.</li>
+<li>At this stage you can again use <code>rem_feature</code> function to
+<strong>remove proteins with lower importance</strong> in the models and
+<strong>repeat steps from Step 3</strong>.</li>
 </ul>
 <hr>
 </div>
@@ -357,7 +413,8 @@ blockquote {
 <div class="section level3">
 <h3 id="test-models-on-the-test-data-set">7. Test models on the test data set<a class="anchor" aria-label="anchor" href="#test-models-on-the-test-data-set"></a>
 </h3>
-<p>We are now ready to test our models on never-before-seen data or our test data set.</p>
+<p>We are now ready to test our models on never-before-seen data or our
+test data set.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># First we run the function with type = "prob" to get a probability list</span></span>
 <span><span class="va">covid_prob_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/test_models.html">test_models</a></span><span class="op">(</span></span>
@@ -365,7 +422,8 @@ blockquote {
 <span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"prob"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p>Alternatively, you can output a list of predictions and output a confusion matrix for further analysis.</p>
+<p>Alternatively, you can output a list of predictions and output a
+confusion matrix for further analysis.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># We run the function with type = "raw" to get a prediction list and output a confusion matrix. You can also provide a file path to save the text file in in your preferred directory. In this example, we are saving our text file in the working directory.</span></span>
 <span><span class="va">covid_pred_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/test_models.html">test_models</a></span><span class="op">(</span></span>
@@ -380,13 +438,17 @@ blockquote {
 <div class="section level3">
 <h3 id="build-receiver-operating-characteristic-roc-curves">8. Build Receiver Operating Characteristic (ROC) curves<a class="anchor" aria-label="anchor" href="#build-receiver-operating-characteristic-roc-curves"></a>
 </h3>
-<p>Finally, we can build ROC plots to assess the predictive power of our models.</p>
+<p>Finally, we can build ROC plots to assess the predictive power of our
+models.</p>
 <blockquote>
 <p><strong>Notes</strong></p>
 <ul>
 <li>
-<code>roc_plot</code> function requires a <code>probability_list</code> object.</li>
-<li>Make sure to set <code>type = "prob"</code> when running <code>test_models</code> to output a <code>probability_list</code> object.</li>
+<code>roc_plot</code> function requires a
+<code>probability_list</code> object.</li>
+<li>Make sure to set <code>type = "prob"</code> when running
+<code>test_models</code> to output a <code>probability_list</code>
+object.</li>
 </ul>
 </blockquote>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
