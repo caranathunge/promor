@@ -28,7 +28,7 @@
 #' \code{\link[viridisLite:viridis]{viridis}}
 #' for available options.
 #' @param label_proteins If \code{TRUE} proteins on the y axis
-#' will be labeled with their Majority Protein IDs. Defualt is \code{FALSE}.
+#' will be labeled with their Majority Protein IDs. Default is \code{FALSE}.
 #' @param text_size Text size for axis labels. Default is \code{10}.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' directory provided in \code{file_path}.

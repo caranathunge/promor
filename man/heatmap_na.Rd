@@ -51,7 +51,7 @@ are \code{mean} and \code{sum}. Default is \code{mean}.}
 for available options.}
 
 \item{label_proteins}{If \code{TRUE} proteins on the y axis
-will be labeled with their Majority Protein IDs. Defualt is \code{FALSE}.}
+will be labeled with their Majority Protein IDs. Default is \code{FALSE}.}
 
 \item{text_size}{Text size for axis labels. Default is \code{10}.}
 
