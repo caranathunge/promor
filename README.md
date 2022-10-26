@@ -27,8 +27,8 @@ v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.
     predictive models with top protein candidates.
 
 -   With `promor` we provide a range of quality control and
-    visualization tools at the protein level to analyze label-free
-    proteomics data.
+    visualization tools to analyze label-free proteomics data at the
+    protein level.
 
 -   Input files for `promor` are the
     [proteinGroups.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
@@ -186,7 +186,7 @@ vignette("intro_to_promor", package = "promor")
     technical
     replicates](https://caranathunge.github.io/promor/articles/promor_no_techreps.html)
 
-3.  If your data contains technical replicates: [promor: Technical
+3.  If your data contain technical replicates: [promor: Technical
     replicates](https://caranathunge.github.io/promor/articles/promor_with_techreps.html)
 
 4.  If you would like to use your proteomics data to build predictive
