@@ -48,7 +48,7 @@ to indicate the p-value \code{cutoff.}}
 
 \item{palette}{Viridis color palette option for plots. Default is
 \code{"viridis"}. See
-\code{\link[viridisLite:viridis]{viridis}}
+\code{\link[viridis:viridis]{viridis}}
 for available options.}
 
 \item{text_size}{Text size for axis text, labels etc.}

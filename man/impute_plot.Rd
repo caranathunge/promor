@@ -36,7 +36,7 @@ produced. If \code{FALSE}, sample-wise density plots are produced.}
 
 \item{palette}{Viridis color palette option for plots. Default is
 \code{"viridis"}. See
-\code{\link[viridisLite:viridis]{viridis}}
+\code{\link[viridis:viridis]{viridis}}
 for available options.}
 
 \item{n_row}{Used if \code{global = FALSE} to indicate the number of rows

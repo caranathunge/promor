@@ -195,7 +195,7 @@ find_dep <- function(norm_df,
 #' to indicate the p-value \code{cutoff.}
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridisLite:viridis]{viridis}}
+#' \code{\link[viridis:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' directory provided in \code{file_path}.
@@ -410,7 +410,7 @@ volcano_plot <- function(fit_df,
 #' @param n_top Number of top hits to include in the heat map.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridisLite:viridis]{viridis}}
+#' \code{\link[viridis:viridis]{viridis}}
 #' for available options.
 #' @param text_size Text size for axis text, labels etc.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the

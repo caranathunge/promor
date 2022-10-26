@@ -25,7 +25,7 @@
 #' are \code{mean} and \code{sum}. Default is \code{mean}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridisLite:viridis]{viridis}}
+#' \code{\link[viridis:viridis]{viridis}}
 #' for available options.
 #' @param label_proteins If \code{TRUE} proteins on the y axis
 #' will be labeled with their Majority Protein IDs. Default is \code{FALSE}.
@@ -408,7 +408,7 @@ impute_na <- function(raw_df,
 #' \code{10}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridisLite:viridis]{viridis}}
+#' \code{\link[viridis:viridis]{viridis}}
 #' for available options.
 #' @param n_row Used if \code{global = FALSE} to indicate the number of rows
 #' to print the plots.

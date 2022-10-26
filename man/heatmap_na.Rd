@@ -47,7 +47,7 @@ are \code{mean} and \code{sum}. Default is \code{mean}.}
 
 \item{palette}{Viridis color palette option for plots. Default is
 \code{"viridis"}. See
-\code{\link[viridisLite:viridis]{viridis}}
+\code{\link[viridis:viridis]{viridis}}
 for available options.}
 
 \item{label_proteins}{If \code{TRUE} proteins on the y axis

@@ -79,7 +79,7 @@ normalize_data <- function(imp_df,
 #' \code{10}.
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
-#' \code{\link[viridisLite:viridis]{viridis}}
+#' \code{\link[viridis:viridis]{viridis}}
 #' for available options.
 #' @param save Logical. If \code{TRUE} saves a copy of the plot in the
 #' directory provided in \code{file_path}.
