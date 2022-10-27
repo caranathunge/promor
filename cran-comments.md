@@ -1,5 +1,8 @@
 # promor 0.1.1
 
+### R CMD check results - 10-27-2022
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
 ### Re-submission
 In this re-submission:
 
