@@ -7,9 +7,15 @@
 #'
 #' @importFrom utils read.csv
 #'
-#' @param prot_groups File path to proteinGroups.txt file produced by MaxQuant.
+#' @param prot_groups File path to a proteinGroups.txt file produced by MaxQuant
+#' or a standard input file containing a quantitative matrix on protein
+#' level where the proteins or protein groups are indicated by rows and the
+#' samples by columns.
 #' @param exp_design File path to a text file containing the experimental
 #' design.
+#' @param input_type Type of input file indicated by \code{prot_groups}.
+#' Available options are: "MaxQuant", if a proteinGroups.txt file is used, or
+#' "Standard" if a standard input file is used.
 #' @param filter_na Logical. If \code{TRUE}(default), filters out empty rows and
 #' columns from the data frame.
 #' @param filter_prot Logical. If \code{TRUE} (default), filters out
@@ -73,6 +79,7 @@
 
 create_df <- function(prot_groups,
                       exp_design,
+                      input_type = "MaxQuant",
                       filter_na = TRUE,
                       filter_prot = TRUE,
                       uniq_pep = 2,
