@@ -11,7 +11,7 @@ Description: A comprehensive, user-friendly package for label-free proteomics da
 License: LGPL (>= 2.1)
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Suggests: 
