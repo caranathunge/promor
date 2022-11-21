@@ -7,6 +7,8 @@
 create_df(
   prot_groups,
   exp_design,
+  input_type = "MaxQuant",
+  data_type = "LFQ",
   filter_na = TRUE,
   filter_prot = TRUE,
   uniq_pep = 2,
@@ -17,10 +19,23 @@ create_df(
 )
 }
 \arguments{
-\item{prot_groups}{File path to proteinGroups.txt file produced by MaxQuant.}
+\item{prot_groups}{File path to a proteinGroups.txt file produced by MaxQuant
+or a standard input file containing a quantitative matrix
+where the proteins or protein groups are indicated by rows and the
+samples by columns.}
 
 \item{exp_design}{File path to a text file containing the experimental
 design.}
+
+\item{input_type}{Type of input file indicated by \code{prot_groups}.
+Available options are: "MaxQuant", if a proteinGroups.txt file is used, or
+"Standard" if a standard input file is used. Default is "MaxQuant."}
+
+\item{data_type}{Type of sample protein intensity data columns to use from
+the proteinGroups.txt file. Some available options are "LFQ", "iBAQ",
+"Intensity". Default is "LFQ." User-defined prefixes in the proteinGroups.txt
+file are also allowed. \code{data_type} argument only applies when
+\code{input_type = "MaxQuant"}.}
 
 \item{filter_na}{Logical. If \code{TRUE}(default), filters out empty rows and
 columns from the data frame.}
@@ -28,11 +43,13 @@ columns from the data frame.}
 \item{filter_prot}{Logical. If \code{TRUE} (default), filters out
 reverse proteins, proteins only identified by site, potential contaminants,
 and proteins identified with less than the minimum number of unique peptides
-indicated by \code{uniq_pep}.}
+indicated by \code{uniq_pep}. Only applies when
+\code{input_type = "MaxQuant"}.}
 
 \item{uniq_pep}{Numerical. The minimum number of unique peptides required to
 identify a protein (default is 2). Proteins that are identified by less than
-this number of unique peptides are filtered out.}
+this number of unique peptides are filtered out. only applies when
+\code{input_type = "MaxQuant"}.}
 
 \item{tech_reps}{Logical. Indicate as \code{TRUE} if technical replicates
 are present in the data. Default is \code{FALSE}.}
@@ -46,8 +63,9 @@ transformed to the base indicated by \code{base}.}
 \item{base}{Numerical. Logarithm base. Default is 2.}
 }
 \value{
-A \code{raw_df} object which is a data frame containing selected
-proteins as rows and sample LFQ intensities as columns.
+A \code{raw_df} object which is a data frame containing protein
+intensities. Proteins or protein groups are indicated by rows and samples
+by columns.
 }
 \description{
 This function creates a data frame of label-free quantitative
@@ -55,41 +73,63 @@ This function creates a data frame of label-free quantitative
 }
 \details{
 \itemize{\item This function first reads in the proteinGroups.txt file
-produced by MaxQuant.
+produced by MaxQuant or a standard input file containing a quantitative
+matrix where the proteins or protein groups are indicated by rows and the
+samples by columns.
 \item It then reads in the expDesign.txt file provided as
 \code{exp_design} and extracts relevant information from it to add to the
 data frame.
 \item First, empty rows and columns are removed from the data frame.
-\item Next, it filters out reverse proteins, proteins that were
-only identified by site, and potential contaminants.
-\item Then it removes proteins identified with less than
+\item Next, if a proteinGroups.txt file is used, it filters out reverse
+proteins, proteins that were only identified by site, and potential
+contaminants.Then it removes proteins identified with less than
 the number of unique peptides indicated by \code{uniq_pep} from the
 data frame.
-\item Next, it extracts the LFQ intensity columns and the selected protein
-rows from the data  frame.
+\item Next, it extracts the intensity columns indicated by \code{data type}
+and the selected protein rows from the data frame.
 \item Converts missing values (zeros) to NAs.
-\item Finally, the function log transforms the LFQ intensity values.}
+\item Finally, the function log transforms the intensity values.}
 }
 \examples{
 \donttest{
+
+### Using a proteinGroups.txt file produced by MaxQuant as input.
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
-prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
+  input_type = "MaxQuant"
 )
 
 ## Data containing technical replicates
 raw_df <- create_df(
-prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
-exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
-tech_reps = TRUE
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed2.txt",
+  input_type = "MaxQuant",
+  tech_reps = TRUE
 )
 
 ## Alter the number of unique peptides needed to retain a protein
 raw_df <- create_df(
-prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
-uniq_pep = 1
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
+  input_type = "MaxQuant",
+  uniq_pep = 1
+)
+
+## Use "iBAQ" values instead of "LFQ" values
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
+  input_type = "MaxQuant",
+  data_type = "iBAQ"
+)
+
+### Using a universal standard input file instead of MaxQuant output.
+raw_df <- create_df(
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/st.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
+  input_type = "Standard"
 )
 }
 }
