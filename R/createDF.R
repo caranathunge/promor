@@ -15,7 +15,7 @@
 #' design.
 #' @param input_type Type of input file indicated by \code{prot_groups}.
 #' Available options are: "MaxQuant", if a proteinGroups.txt file is used, or
-#' "Standard" if a standard input file is used. Default is "MaxQuant."
+#' "standard" if a standard input file is used. Default is "MaxQuant."
 #' @param data_type Type of sample protein intensity data columns to use from
 #' the proteinGroups.txt file. Some available options are "LFQ", "iBAQ",
 #' "Intensity". Default is "LFQ." User-defined prefixes in the proteinGroups.txt
@@ -102,7 +102,7 @@
 #' raw_df <- create_df(
 #'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/st.txt",
 #'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
-#'   input_type = "Standard"
+#'   input_type = "standard"
 #' )
 #' }
 #' @export
