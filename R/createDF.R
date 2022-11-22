@@ -302,6 +302,7 @@ create_df <- function(prot_groups,
     # Convert matrix to dataframe and convert zeros to NAs
     df <- as.data.frame(df)
     df[df == 0] <- NA
+    message("Zeros have been replaced with NAs.")
   } else {
     warning("Zeros have not been converted to NAs in the data frame")
   }
@@ -309,6 +310,7 @@ create_df <- function(prot_groups,
   # log2 transform the data
   if (log_tr == TRUE) {
     df <- log(df, base)
+    message("Data have been log-transformed.")
   } else {
     warning("Intensities have not been log transformed")
   }
