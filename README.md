@@ -19,23 +19,31 @@ downloads](https://cranlogs.r-pkg.org/badges/grand-total/promor?color=blue)](htt
 v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.org/licenses/lgpl-2.1)
 <!-- badges: end -->
 
--   `promor` is a user-friendly, comprehensive R package that combines
-    proteomics data analysis with machine learning-based modeling.
+- `promor` is a user-friendly, comprehensive R package that combines
+  proteomics data analysis with machine learning-based modeling.
 
--   `promor` streamlines differential expression analysis of
-    **label-free quantification (LFQ)** proteomics data and building
-    predictive models with top protein candidates.
+- `promor` streamlines differential expression analysis of **label-free
+  quantification (LFQ)** proteomics data and building predictive models
+  with top protein candidates.
 
--   With `promor` we provide a range of quality control and
-    visualization tools to analyze label-free proteomics data at the
-    protein level.
+- With `promor` we provide a range of quality control and visualization
+  tools to analyze label-free proteomics data at the protein level.
 
--   Input files for `promor` are the
-    [proteinGroups.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
-    file produced by [**MaxQuant**](https://maxquant.org) and an
-    [expDesign.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt)
-    file, which contains the experimental design of your proteomics
-    data.
+- Input files for `promor` are a
+  [proteinGroups.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt)
+  file produced by [**MaxQuant**](https://maxquant.org) or a [standard
+  input
+  file](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/st.txt)
+  containing a quantitative matrix of protein intensities and an
+  [expDesign.txt](https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt)
+  file containing the experimental design of your proteomics data.
+
+- The standard input file should be a tab-delimited text file. Proteins
+  or protein groups should be indicated by rows and samples by columns.
+  Protein names should be listed in the first column and you may use a
+  column name of your choice for the first column. The remaining sample
+  column names should match the samples names indicated by the mq_label
+  column in the expDesign.txt file.
 
 :rotating_light:**Check out our R Shiny app:** [PROMOR
 App](https://sgrbnf.shinyapps.io/PROMOR_App/)
