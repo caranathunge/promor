@@ -29,7 +29,7 @@ design.}
 
 \item{input_type}{Type of input file indicated by \code{prot_groups}.
 Available options are: "MaxQuant", if a proteinGroups.txt file is used, or
-"Standard" if a standard input file is used. Default is "MaxQuant."}
+"standard" if a standard input file is used. Default is "MaxQuant."}
 
 \item{data_type}{Type of sample protein intensity data columns to use from
 the proteinGroups.txt file. Some available options are "LFQ", "iBAQ",
@@ -68,8 +68,7 @@ intensities. Proteins or protein groups are indicated by rows and samples
 by columns.
 }
 \description{
-This function creates a data frame of label-free quantitative
-(LFQ) protein intensities from MaxQuant's proteinGroups.txt file.
+This function creates a data frame of protein intensities
 }
 \details{
 \itemize{\item This function first reads in the proteinGroups.txt file
@@ -78,7 +77,8 @@ matrix where the proteins or protein groups are indicated by rows and the
 samples by columns.
 \item It then reads in the expDesign.txt file provided as
 \code{exp_design} and extracts relevant information from it to add to the
-data frame.
+data frame. an example of the expDesign.txt is provided
+\link[https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt]{here}.
 \item First, empty rows and columns are removed from the data frame.
 \item Next, if a proteinGroups.txt file is used, it filters out reverse
 proteins, proteins that were only identified by site, and potential
@@ -129,7 +129,7 @@ raw_df <- create_df(
 raw_df <- create_df(
   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/st.txt",
   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt",
-  input_type = "Standard"
+  input_type = "standard"
 )
 }
 }

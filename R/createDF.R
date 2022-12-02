@@ -1,7 +1,6 @@
-# Create data frame with LFQ intensities ----------------------------------
+# Create data frame with protein intensities ----------------------------------
 #' Create a data frame of protein intensities
-#' @description This function creates a data frame of label-free quantitative
-#' (LFQ) protein intensities from MaxQuant's proteinGroups.txt file.
+#' @description This function creates a data frame of protein intensities
 #'
 #' @author Chathurani Ranathunge
 #'
@@ -19,8 +18,8 @@
 #' @param data_type Type of sample protein intensity data columns to use from
 #' the proteinGroups.txt file. Some available options are "LFQ", "iBAQ",
 #' "Intensity". Default is "LFQ." User-defined prefixes in the proteinGroups.txt
-#' file are also allowed. \code{data_type} argument only applies when
-#' \code{input_type = "MaxQuant"}.
+#' file are also allowed. The \code{data_type} argument is case-sensitive, and
+#' only applies when \code{input_type = "MaxQuant"}.
 #' @param filter_na Logical. If \code{TRUE}(default), filters out empty rows and
 #' columns from the data frame.
 #' @param filter_prot Logical. If \code{TRUE} (default), filters out
@@ -47,7 +46,8 @@
 #' samples by columns.
 #' \item It then reads in the expDesign.txt file provided as
 #' \code{exp_design} and extracts relevant information from it to add to the
-#' data frame.
+#' data frame. an example of the expDesign.txt is provided
+#' \link[https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt]{here}.
 #' \item First, empty rows and columns are removed from the data frame.
 #' \item Next, if a proteinGroups.txt file is used, it filters out reverse
 #' proteins, proteins that were only identified by site, and potential
@@ -131,6 +131,13 @@ create_df <- function(prot_groups,
     sep = "\t"
   )
 
+  #convert data type to lowercase
+  input_type <- tolower(input_type)
+
+  #check if the correct input type was entered
+  stopifnot("input_type not recognized." = input_type == "maxquant" || input_type == "standard")
+
+
   if (tech_reps == TRUE) {
     # if tech_reps == TRUE, combine all columns to make new sample label
     design$new_label <- paste(design$condition,
@@ -173,7 +180,11 @@ create_df <- function(prot_groups,
   # Get number of rows in the df
   orig_rows_1 <- nrow(df)
 
-  if (input_type == "MaxQuant") {
+  if (input_type == "maxquant") {
+
+    #check if the data type is found in the prot_groups file
+    stopifnot("data_type not found in prot_groups." = any(grepl(data_type, colnames(df))))
+
     if (filter_prot == TRUE) {
       if ("Only.identified.by.site" %in% colnames(df)) {
         df <- subset(
@@ -265,7 +276,7 @@ create_df <- function(prot_groups,
 
   # If a standard table input is used
   if (input_type == "standard") {
-    # Extract maj.protein names fro the first column
+    # Extract maj.protein names from the first column
     maj_proteins <- df[, 1]
 
     # Extract sample names from the column names
