@@ -473,6 +473,9 @@ heatmap_de <- function(fit_df,
   # Binding the global variables to a local function
   logFC <- P.Value <- adj.P.Val <- intensity <- protein <- NULL
 
+  #convert norm_df or imp_df object into a matrix
+  norm_df <- as.matrix(norm_df)
+
   # Extract the required data from the fit object
   exp_de <- limma::topTable(fit_df,
     coef = colnames(fit_df)[2],
