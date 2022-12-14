@@ -34,8 +34,8 @@ Available options are: "MaxQuant", if a proteinGroups.txt file is used, or
 \item{data_type}{Type of sample protein intensity data columns to use from
 the proteinGroups.txt file. Some available options are "LFQ", "iBAQ",
 "Intensity". Default is "LFQ." User-defined prefixes in the proteinGroups.txt
-file are also allowed. \code{data_type} argument only applies when
-\code{input_type = "MaxQuant"}.}
+file are also allowed. The \code{data_type} argument is case-sensitive, and
+only applies when \code{input_type = "MaxQuant"}.}
 
 \item{filter_na}{Logical. If \code{TRUE}(default), filters out empty rows and
 columns from the data frame.}
