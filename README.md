@@ -42,7 +42,7 @@ v2.1](https://img.shields.io/badge/License-LGPL_v2.1-blue.svg)](https://www.gnu.
   or protein groups should be indicated by rows and samples by columns.
   Protein names should be listed in the first column and you may use a
   column name of your choice for the first column. The remaining sample
-  column names should match the samples names indicated by the mq_label
+  column names should match the sample names indicated by the mq_label
   column in the expDesign.txt file.
 
 :rotating_light:**Check out our R Shiny app:** [PROMOR
