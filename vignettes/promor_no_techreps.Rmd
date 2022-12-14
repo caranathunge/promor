@@ -70,7 +70,7 @@ To run `promor`, you need:
 
 ```{r inputfiles}
 # Load promor
-#library(promor)
+library(promor)
 # Let's load the expDesign.txt file
 exp_design <- read.csv("https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt", sep = "\t")
 # Take a peek inside the file
