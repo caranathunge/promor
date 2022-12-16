@@ -66,8 +66,8 @@ prior to imputation.}
 \examples{
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
-prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 )
 
 ## Impute missing values in the data frame using the default minProb
@@ -77,9 +77,11 @@ imp_df1 <- impute_na(raw_df, seed = 3312)
 \donttest{
 ## Impute using the RF method with the number of iterations set at 5
 ## and number of trees set at 100.
-imp_df2 <- impute_na(raw_df, method = "RF",
-maxiter = 5, ntree = 100,
-seed = 3312)
+imp_df2 <- impute_na(raw_df,
+  method = "RF",
+  maxiter = 5, ntree = 100,
+  seed = 3312
+)
 
 
 ## Using the kNN method.
