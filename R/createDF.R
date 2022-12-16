@@ -131,10 +131,10 @@ create_df <- function(prot_groups,
     sep = "\t"
   )
 
-  #convert data type to lowercase
+  # convert data type to lowercase
   input_type <- tolower(input_type)
 
-  #check if the correct input type was entered
+  # check if the correct input type was entered
   stopifnot("input_type not recognized." = input_type == "maxquant" || input_type == "standard")
 
 
@@ -181,8 +181,7 @@ create_df <- function(prot_groups,
   orig_rows_1 <- nrow(df)
 
   if (input_type == "maxquant") {
-
-    #check if the data type is found in the prot_groups file
+    # check if the data type is found in the prot_groups file
     stopifnot("data_type not found in prot_groups." = any(grepl(data_type, colnames(df))))
 
     if (filter_prot == TRUE) {

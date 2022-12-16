@@ -33,8 +33,8 @@
 #' @examples
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
@@ -111,8 +111,8 @@ normalize_data <- function(df,
 #' \donttest{
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
@@ -142,7 +142,6 @@ norm_plot <- function(original,
                       dpi = 80,
                       plot_width = 10,
                       plot_height = 7) {
-
   # Set global variables to null
   intensity <- value <- group <- NULL
 
@@ -237,8 +236,8 @@ norm_plot <- function(original,
       )
   }
 
-  #Set temporary file_path if not specified
-  if(is.null(file_path)){
+  # Set temporary file_path if not specified
+  if (is.null(file_path)) {
     file_path <- tempdir()
   }
 

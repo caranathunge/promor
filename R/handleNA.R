@@ -53,8 +53,8 @@
 #' @examples
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Missing data heatmap with default settings.
@@ -100,19 +100,18 @@ heatmap_na <- function(raw_df,
                        plot_width = 15,
                        plot_height = 15,
                        dpi = 80) {
-
   # Binding global variables to the local function
   value <- protgroup <- NULL
 
-  #Assign all rows and columns if protein_range and sample_range aren't defined
+  # Assign all rows and columns if protein_range and sample_range aren't defined
   if (missing(protein_range)) {
-    protein_range = 1 : nrow(raw_df)
+    protein_range <- 1:nrow(raw_df)
   }
-  if(missing(sample_range)){
-    sample_range = 1 : ncol(raw_df)
+  if (missing(sample_range)) {
+    sample_range <- 1:ncol(raw_df)
   }
 
-    raw_df <- as.matrix(raw_df[protein_range, sample_range])
+  raw_df <- as.matrix(raw_df[protein_range, sample_range])
 
 
   # Convert the data into long format for plotting and make necessary changes
@@ -219,8 +218,8 @@ heatmap_na <- function(raw_df,
       )
   }
 
-  #Set temporary file_path if not specified
-  if(is.null(file_path)){
+  # Set temporary file_path if not specified
+  if (is.null(file_path)) {
     file_path <- tempdir()
   }
 
@@ -304,8 +303,8 @@ heatmap_na <- function(raw_df,
 #' @examples
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
@@ -315,9 +314,11 @@ heatmap_na <- function(raw_df,
 #' \donttest{
 #' ## Impute using the RF method with the number of iterations set at 5
 #' ## and number of trees set at 100.
-#' imp_df2 <- impute_na(raw_df, method = "RF",
-#' maxiter = 5, ntree = 100,
-#' seed = 3312)
+#' imp_df2 <- impute_na(raw_df,
+#'   method = "RF",
+#'   maxiter = 5, ntree = 100,
+#'   seed = 3312
+#' )
 #'
 #'
 #' ## Using the kNN method.
@@ -347,7 +348,6 @@ impute_na <- function(df,
                       ntree = 20,
                       n_pcs = 2,
                       seed = NULL) {
-
   # Setting global variables to NULL
   value <- protgroup <- NULL
 
@@ -451,8 +451,8 @@ impute_na <- function(df,
 #'
 #' ## Generate a raw_df object with default settings. No technical replicates.
 #' raw_df <- create_df(
-#' prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-#' exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
+#'   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
+#'   exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
 #' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
@@ -484,7 +484,6 @@ impute_plot <- function(original,
                         plot_width = 7,
                         plot_height = 7,
                         dpi = 80) {
-
   # Set global variables to null
   value <- NULL
 
@@ -524,14 +523,15 @@ impute_plot <- function(original,
       dplot_data,
       ggplot2::aes(x = value)
     ) +
-      ggplot2::geom_density(ggplot2::aes(fill = factor(stage,
-        levels = c(
-          "Before imputation",
-          "After imputation"
-        )
-      )),
-      alpha = 0.7,
-      lwd = text_size * 0.02
+      ggplot2::geom_density(
+        ggplot2::aes(fill = factor(stage,
+          levels = c(
+            "Before imputation",
+            "After imputation"
+          )
+        )),
+        alpha = 0.7,
+        lwd = text_size * 0.02
       ) +
       ggplot2::xlab("Intensity") +
       ggplot2::ylab("Density") +
@@ -573,14 +573,15 @@ impute_plot <- function(original,
       dplot_data,
       ggplot2::aes(x = value)
     ) +
-      ggplot2::geom_density(ggplot2::aes(fill = factor(stage,
-        levels = c(
-          "Before imputation",
-          "After imputation"
-        )
-      )),
-      alpha = 0.7,
-      lwd = text_size * 0.02
+      ggplot2::geom_density(
+        ggplot2::aes(fill = factor(stage,
+          levels = c(
+            "Before imputation",
+            "After imputation"
+          )
+        )),
+        alpha = 0.7,
+        lwd = text_size * 0.02
       ) +
       ggplot2::xlab("Intensity") +
       ggplot2::ylab("Density") +
@@ -602,8 +603,8 @@ impute_plot <- function(original,
         strip.position = "top"
       )
 
-    #Set temporary file_path if not specified
-    if(is.null(file_path)){
+    # Set temporary file_path if not specified
+    if (is.null(file_path)) {
       file_path <- tempdir()
     }
 

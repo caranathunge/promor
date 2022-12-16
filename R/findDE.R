@@ -72,7 +72,6 @@ find_dep <- function(df,
                      cutoff = 0.05,
                      lfc = 1,
                      n_top = 20) {
-
   # Extract group information from colnames
   group <- factor(c(sapply(
     strsplit(colnames(df), "_"),
@@ -95,15 +94,15 @@ find_dep <- function(df,
     adjust.method = adj_method
   )
 
-  #Set temporary file_path if not specified
-  if(is.null(file_path)){
+  # Set temporary file_path if not specified
+  if (is.null(file_path)) {
     file_path <- tempdir()
   }
 
   # Write the results of the DE analysis to a text file (tab-separated)
   if (save_output == TRUE) {
     limma::write.fit(fit,
-      file = paste0(file_path,"/limma_outout.txt"),
+      file = paste0(file_path, "/limma_outout.txt"),
       adjust = adj_method,
       results = dec_test
     )
@@ -163,7 +162,7 @@ find_dep <- function(df,
       )
     } else {
       write.table(results_de[1:n_top, ],
-                  file = paste0(file_path, "/TopHits.txt"),
+        file = paste0(file_path, "/TopHits.txt"),
         sep = "\t",
         quote = FALSE
       )
@@ -260,7 +259,6 @@ volcano_plot <- function(fit_df,
                          plot_height = 7,
                          plot_width = 7,
                          dpi = 80) {
-
   # Set global variables to NULL
   logFC <- P.Value <- dep <- de_ap <- NULL
 
@@ -365,8 +363,8 @@ volcano_plot <- function(fit_df,
       )
   }
 
-  #Set temporary file_path if not specified
-  if(is.null(file_path)){
+  # Set temporary file_path if not specified
+  if (is.null(file_path)) {
     file_path <- tempdir()
   }
 
@@ -469,11 +467,10 @@ heatmap_de <- function(fit_df,
                        dpi = 80,
                        plot_height = 7,
                        plot_width = 7) {
-
   # Binding the global variables to a local function
   logFC <- P.Value <- adj.P.Val <- intensity <- protein <- NULL
 
-  #convert norm_df or imp_df object into a matrix
+  # convert norm_df or imp_df object into a matrix
   norm_df <- as.matrix(df)
 
   # Extract the required data from the fit object
@@ -507,7 +504,6 @@ heatmap_de <- function(fit_df,
     stop(message
     (paste0("No significant proteins found at ", sig, " < ", cutoff, ".")))
   } else {
-
     # Extract intensity values for top proteins based on logFC and p-val cutoff
     top_intensity <- subset(norm_df,
       rownames(norm_df) %in% top_proteins,
@@ -583,8 +579,8 @@ heatmap_de <- function(fit_df,
       ) +
       ggplot2::facet_grid(. ~ stage, scales = "free")
 
-    #Set temporary file_path if not specified
-    if(is.null(file_path)){
+    # Set temporary file_path if not specified
+    if (is.null(file_path)) {
       file_path <- tempdir()
     }
 
