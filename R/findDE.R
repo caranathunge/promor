@@ -9,7 +9,7 @@
 #' @importFrom stats model.matrix
 #' @importFrom utils write.table
 #'
-#' @param norm_df A \code{norm_df} object.
+#' @param df A \code{norm_df} object or an \code{imp_df} object.
 #' @param save_output Logical. If \code{TRUE} saves results from the
 #' differential expression analysis in a text file labeled "limma_output.txt"
 #' in the directory specified by \code{file_path}.
@@ -64,7 +64,7 @@
 #' 43.7 (2015): e47-e47.
 #'
 #' @export
-find_dep <- function(norm_df,
+find_dep <- function(df,
                      save_output = FALSE,
                      save_tophits = FALSE,
                      file_path = NULL,
@@ -75,7 +75,7 @@ find_dep <- function(norm_df,
 
   # Extract group information from colnames
   group <- factor(c(sapply(
-    strsplit(colnames(norm_df), "_"),
+    strsplit(colnames(df), "_"),
     getElement, 1
   )))
 
@@ -83,7 +83,7 @@ find_dep <- function(norm_df,
   design <- model.matrix(~group)
 
   # Fit the model to the protein intensity data based on the experimental design
-  fit <- limma::lmFit(norm_df, design)
+  fit <- limma::lmFit(df, design)
   fit <- limma::eBayes(fit,
     robust = T,
     trend = T
@@ -397,8 +397,8 @@ volcano_plot <- function(fit_df,
 #' @import viridis
 #'
 #' @param fit_df A \code{fit_df} object from performing \code{find_dep}.
-#' @param norm_df The \code{norm_df} object from which the \code{fit_df} object
-#' was obtained.
+#' @param df The \code{norm_df} object or the \code{imp_df} object from which
+#' the \code{fit_df} object was obtained.
 #' @param adj_method Method used for adjusting the p-values for multiple
 #' testing. Default is \code{"BH"}.
 #' @param cutoff Cutoff value for p-values and adjusted p-values. Default is
@@ -439,7 +439,7 @@ volcano_plot <- function(fit_df,
 #'
 #' ## Build a heatmap of differentially expressed proteins using the provided
 #' ## example fit_df and norm_df data objects
-#' heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)
+#' heatmap_de(covid_fit_df, covid_norm_df)
 #'
 #' ## Create a heatmap with P-value of 0.05 and log fold change of 1 as
 #' ## significance criteria.
@@ -454,7 +454,7 @@ volcano_plot <- function(fit_df,
 #'
 #' @export
 heatmap_de <- function(fit_df,
-                       norm_df,
+                       df,
                        adj_method = "BH",
                        cutoff = 0.05,
                        lfc = 1,
@@ -474,7 +474,7 @@ heatmap_de <- function(fit_df,
   logFC <- P.Value <- adj.P.Val <- intensity <- protein <- NULL
 
   #convert norm_df or imp_df object into a matrix
-  norm_df <- as.matrix(norm_df)
+  norm_df <- as.matrix(df)
 
   # Extract the required data from the fit object
   exp_de <- limma::topTable(fit_df,

@@ -355,13 +355,13 @@ impute_na <- function(df,
 
   if (method == "minDet") {
     set.seed(seed)
-    df_imputed_mindet <- impute.MinDet(raw_df,
+    df_imputed_mindet <- impute.MinDet(df,
       q = q
     )
     return(df_imputed_mindet)
   } else if (method == "RF") {
     set.seed(seed)
-    df_imp_temp <- missForest::missForest(raw_df,
+    df_imp_temp <- missForest::missForest(df,
       maxiter = maxiter,
       ntree = ntree,
       verbose = TRUE
@@ -370,15 +370,15 @@ impute_na <- function(df,
     return(df_imputed_rf)
   } else if (method == "kNN") {
     set.seed(seed)
-    df_imputed_knn <- VIM::kNN(raw_df, imp_var = FALSE)
-    rownames(df_imputed_knn) <- rownames(raw_df)
+    df_imputed_knn <- VIM::kNN(df, imp_var = FALSE)
+    rownames(df_imputed_knn) <- rownames(df)
     return(df_imputed_knn)
   } else if (method == "SVD") {
     set.seed(seed)
-    raw_df <- as.matrix(raw_df)
-    raw_df[is.nan(raw_df)] <- NA
+    df <- as.matrix(df)
+    df[is.nan(df)] <- NA
     df_imp_temp <- pcaMethods::pca(
-      object = raw_df,
+      object = df,
       method = "svdImpute",
       n_pcs = n_pcs,
       verbose = TRUE
@@ -387,7 +387,7 @@ impute_na <- function(df,
     return(df_imputed_svd)
   } else if (method == "minProb") {
     set.seed(seed)
-    df_imputed_minprob <- impute.Min.Prob(raw_df,
+    df_imputed_minprob <- impute.Min.Prob(df,
       q = q,
       tune_sigma = tune_sigma
     )
@@ -408,7 +408,7 @@ impute_na <- function(df,
 #' @param original A \code{raw_df} object (output of \code{\link{create_df}})
 #' containing missing values or a \code{norm_df} object containing normalized
 #' protein intensity data.
-#' @param imputed An \code{imp.df} object obtained from running \code{impute_na}
+#' @param imputed An \code{imp_df} object obtained from running \code{impute_na}
 #'  on the same data frame provided as \code{original}.
 #' @param global Logical. If \code{TRUE} ({default}), a global density plot is
 #' produced. If \code{FALSE}, sample-wise density plots are produced.
