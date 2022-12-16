@@ -6,7 +6,7 @@
 \usage{
 heatmap_de(
   fit_df,
-  norm_df,
+  df,
   adj_method = "BH",
   cutoff = 0.05,
   lfc = 1,
@@ -26,8 +26,8 @@ heatmap_de(
 \arguments{
 \item{fit_df}{A \code{fit_df} object from performing \code{find_dep}.}
 
-\item{norm_df}{The \code{norm_df} object from which the \code{fit_df} object
-was obtained.}
+\item{df}{The \code{norm_df} object or the \code{imp_df} object from which
+the \code{fit_df} object was obtained.}
 
 \item{adj_method}{Method used for adjusting the p-values for multiple
 testing. Default is \code{"BH"}.}
@@ -80,7 +80,7 @@ along both axes (x axis = samples, y axis = proteins).
 
 ## Build a heatmap of differentially expressed proteins using the provided
 ## example fit_df and norm_df data objects
-heatmap_de(fit_df = covid_fit_df, norm_df = covid_norm_df)
+heatmap_de(covid_fit_df, covid_norm_df)
 
 ## Create a heatmap with P-value of 0.05 and log fold change of 1 as
 ## significance criteria.

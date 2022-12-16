@@ -5,7 +5,7 @@
 \title{Identify differentially expressed proteins between groups}
 \usage{
 find_dep(
-  norm_df,
+  df,
   save_output = FALSE,
   save_tophits = FALSE,
   file_path = NULL,
@@ -16,7 +16,7 @@ find_dep(
 )
 }
 \arguments{
-\item{norm_df}{A \code{norm_df} object.}
+\item{df}{A \code{norm_df} object or an \code{imp_df} object.}
 
 \item{save_output}{Logical. If \code{TRUE} saves results from the
 differential expression analysis in a text file labeled "limma_output.txt"

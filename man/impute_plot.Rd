@@ -26,7 +26,7 @@ impute_plot(
 containing missing values or a \code{norm_df} object containing normalized
 protein intensity data.}
 
-\item{imputed}{An \code{imp.df} object obtained from running \code{impute_na}
+\item{imputed}{An \code{imp_df} object obtained from running \code{impute_na}
 on the same data frame provided as \code{original}.}
 
 \item{global}{Logical. If \code{TRUE} ({default}), a global density plot is

@@ -54,7 +54,7 @@
 
 normalize_data <- function(df,
                            method = "quantile") {
-  norm_df <- limma::normalizeBetweenArrays(imp_df,
+  norm_df <- limma::normalizeBetweenArrays(df,
     method = method
   )
 
