@@ -46,8 +46,8 @@
 #' samples by columns.
 #' \item It then reads in the expDesign.txt file provided as
 #' \code{exp_design} and extracts relevant information from it to add to the
-#' data frame. an example of the expDesign.txt is provided
-#' \link[https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt]{here}.
+#' data frame. an example of the expDesign.txt is provided here:
+#' \url{https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt}.
 #' \item First, empty rows and columns are removed from the data frame.
 #' \item Next, if a proteinGroups.txt file is used, it filters out reverse
 #' proteins, proteins that were only identified by site, and potential
