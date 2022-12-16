@@ -21,7 +21,7 @@ norm_plot(
 }
 \arguments{
 \item{original}{A \code{raw_df} object (output of \code{\link{create_df}})
-containing missing values, or ideally, an \code{imp_df} object after
+containing missing values, or an \code{imp_df} object after
 imputing the missing values with \code{impute_na}.}
 
 \item{normalized}{A \code{norm_df} object after normalizing the data frame

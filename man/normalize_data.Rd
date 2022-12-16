@@ -4,11 +4,11 @@
 \alias{normalize_data}
 \title{Normalize intensity data}
 \usage{
-normalize_data(imp_df, method = "quantile")
+normalize_data(df, method = "quantile")
 }
 \arguments{
-\item{imp_df}{An \code{imp_df} object with missing values imputed using
-\code{impute_na}.}
+\item{df}{An \code{imp_df} object with missing values imputed using
+\code{impute_na} or a \code{raw_df} object containing missing values.}
 
 \item{method}{Name of the normalization method to use. Choices are
 \code{"none", "scale", "quantile" or "cyclicloess."}
@@ -40,7 +40,7 @@ exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data
 )
 
 ## Impute missing values in the data frame using the default minProb
-## method.
+## method prioir to normalization.
 imp_df <- impute_na(raw_df)
 
 ## Normalize the imp_df object using the default quantile method
@@ -48,6 +48,9 @@ norm_df1 <- normalize_data(imp_df)
 
 ## Use the cyclicloess method
 norm_df2 <- normalize_data(imp_df, method = "cyclicloess")
+
+## Normalize data in the raw_df object prior to imputation.
+norm_df3 <- normalize_data(raw_df)
 
 }
 \seealso{

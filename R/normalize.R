@@ -5,8 +5,8 @@
 #' normalization method.
 #' @import limma
 #'
-#' @param imp_df An \code{imp_df} object with missing values imputed using
-#' \code{impute_na}.
+#' @param df An \code{imp_df} object with missing values imputed using
+#' \code{impute_na} or a \code{raw_df} object containing missing values.
 #' @param method Name of the normalization method to use. Choices are
 #' \code{"none", "scale", "quantile" or "cyclicloess."}
 #' Default is \code{"quantile."}
@@ -38,7 +38,7 @@
 #' )
 #'
 #' ## Impute missing values in the data frame using the default minProb
-#' ## method.
+#' ## method prioir to normalization.
 #' imp_df <- impute_na(raw_df)
 #'
 #' ## Normalize the imp_df object using the default quantile method
@@ -47,9 +47,12 @@
 #' ## Use the cyclicloess method
 #' norm_df2 <- normalize_data(imp_df, method = "cyclicloess")
 #'
+#' ## Normalize data in the raw_df object prior to imputation.
+#' norm_df3 <- normalize_data(raw_df)
+#'
 #' @export
 
-normalize_data <- function(imp_df,
+normalize_data <- function(df,
                            method = "quantile") {
   norm_df <- limma::normalizeBetweenArrays(imp_df,
     method = method
@@ -69,7 +72,7 @@ normalize_data <- function(imp_df,
 
 
 #' @param original A \code{raw_df} object (output of \code{\link{create_df}})
-#' containing missing values, or ideally, an \code{imp_df} object after
+#' containing missing values, or an \code{imp_df} object after
 #' imputing the missing values with \code{impute_na}.
 #' @param normalized A \code{norm_df} object after normalizing the data frame
 #' provided as \code{original} using \code{normalize_data}.

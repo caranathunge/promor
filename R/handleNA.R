@@ -254,8 +254,9 @@ heatmap_na <- function(raw_df,
 #' @importFrom stats median
 #'
 #'
-#' @param raw_df A \code{raw_df} object (output of \code{\link{create_df}})
-#' containing missing values.
+#' @param df A \code{raw_df} object (output of \code{\link{create_df}})
+#' containing missing values or a \code{norm_df} object after performing
+#' normalization.
 #' @param method Imputation method to use. Default is \code{"minProb"}.
 #' Available methods: \code{"minDet", "RF", "kNN", and "SVD"}.
 #' @param tune_sigma A scalar used in the \code{"minProb"} method for
@@ -275,10 +276,13 @@ heatmap_na <- function(raw_df,
 #'
 #' @details \itemize{\item Ideally, you should first remove proteins with
 #' high levels of missing data using the \code{filterbygroup_na} function
-#' before running \code{impute_na} on the \code{raw_df} object.
+#' before running \code{impute_na} on the \code{raw_df} object or the
+#' \code{norm_df} object.
 #' \item \code{impute_na} function imputes missing values using a
 #' user-specified imputation method from the available options, \code{minProb},
-#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}
+#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
+#' \item **Note: Some imputation methods may require that the data be normalized
+#' prior to imputation.**
 #' \item Make sure to fix the random number seed with \code{seed} for reproducibility}.
 #'
 #' @seealso More information on the available imputation methods can be found
@@ -327,12 +331,15 @@ heatmap_na <- function(raw_df,
 #' ## Using the minDet method with q set at 0.001.
 #' imp_df5 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
 #'
+#' ## Impute a normalized data set using the kNN method
+#' imp_df6 <- impute_na(ecoli_norm_df, method = "kNN")
+#'
 #' @references Lazar, Cosmin, et al. "Accounting for the multiple natures of
 #' missing values in label-free quantitative proteomics data sets to compare
 #' imputation strategies." Journal of proteome research 15.4 (2016): 1116-1125.
 #'
 #' @export
-impute_na <- function(raw_df,
+impute_na <- function(df,
                       method = "minProb",
                       tune_sigma = 1,
                       q = 0.01,
@@ -399,7 +406,8 @@ impute_na <- function(raw_df,
 #' @import viridis
 #'
 #' @param original A \code{raw_df} object (output of \code{\link{create_df}})
-#' containing missing values.
+#' containing missing values or a \code{norm_df} object containing normalized
+#' protein intensity data.
 #' @param imputed An \code{imp.df} object obtained from running \code{impute_na}
 #'  on the same data frame provided as \code{original}.
 #' @param global Logical. If \code{TRUE} ({default}), a global density plot is
@@ -427,10 +435,9 @@ impute_na <- function(raw_df,
 #'
 #' @details
 #' \itemize{\item Given two data frames, one with missing values
-#' (\code{raw_df} object) and the other, an imputed data frame
-#' (\code{imp_df} object) of the same data set, \code{impute_plot}
-#' generates global or sample-wise density plots to visualize the
-#' impact of imputation on the data set.
+#' and the other, an imputed data frame (\code{imp_df} object) of the same
+#' data set, \code{impute_plot} generates global or sample-wise density plots
+#' to visualize the impact of imputation on the data set.
 #' \item Note, when sample-wise option is selected (\code{global = FALSE}),
 #' \code{n_col} and \code{n_row} can be used to specify the number of columns
 #' and rows to print the plots.
