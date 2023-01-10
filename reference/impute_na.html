@@ -80,6 +80,8 @@ imputation method.</p>
 <span>  method <span class="op">=</span> <span class="st">"minProb"</span>,</span>
 <span>  tune_sigma <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  q <span class="op">=</span> <span class="fl">0.01</span>,</span>
+<span>  maxiter <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  ntree <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  n_pcs <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  seed <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -95,7 +97,7 @@ normalization.</p></dd>
 
 <dt>method</dt>
 <dd><p>Imputation method to use. Default is <code>"minProb"</code>.
-Available methods: <code>"minDet", "kNN", and "SVD"</code>.</p></dd>
+Available methods: <code>"minDet", "RF", "kNN", and "SVD"</code>.</p></dd>
 
 
 <dt>tune_sigma</dt>
@@ -109,6 +111,16 @@ Default is 1.</p></dd>
 <dd><p>A scalar used in <code>"minProb"</code> and <code>"minDet"</code> methods
 to obtain a low intensity value for imputation. <code>q</code> should be set to a
 very low value. Default is 0.01.</p></dd>
+
+
+<dt>maxiter</dt>
+<dd><p>Maximum number of iterations to be performed when using the
+<code>"RF"</code> method. Default is <code>10</code>.</p></dd>
+
+
+<dt>ntree</dt>
+<dd><p>Number of trees to grow in each forest when using the
+<code>"RF"</code> method. Default is <code>20</code>.</p></dd>
 
 
 <dt>n_pcs</dt>
@@ -132,7 +144,7 @@ with no missing values.</p>
     
 <ul><li><p><code>impute_na</code> function imputes missing values using a
 user-specified imputation method from the available options, <code>minProb</code>,
-<code>minDet</code>, <code>kNN</code>, and <code>SVD</code>.</p></li>
+<code>minDet</code>, <code>kNN</code>, <code>RF</code>, and <code>SVD</code>.</p></li>
 <li><p><strong>Note: Some imputation methods may require that the data be normalized
 prior to imputation.</strong></p></li>
 <li><p>Make sure to fix the random number seed with <code>seed</code> for reproducibility</p></li>
@@ -150,6 +162,8 @@ imputation strategies." Journal of proteome research 15.4 (2016): 1116-1125.</p>
 in their respective packages.</p><ul><li><p>For <code>minProb</code> and
 <code>minDet</code> methods, see
 <code>imputeLCMD</code> package.</p></li>
+<li><p>For Random Forest (<code>RF</code>) method, see
+<code><a href="https://rdrr.io/pkg/missForest/man/missForest.html" class="external-link">missForest</a></code>.</p></li>
 <li><p>For <code>kNN</code> method, see <code><a href="https://rdrr.io/pkg/VIM/man/kNN.html" class="external-link">kNN</a></code> from the
 <code><a href="https://rdrr.io/pkg/VIM/man/VIM-package.html" class="external-link">VIM</a></code> package.</p></li>
 <li><p>For <code>SVD</code> method, see <code><a href="https://rdrr.io/pkg/pcaMethods/man/pca.html" class="external-link">pca</a></code> from the
@@ -182,7 +196,41 @@ in their respective packages.</p><ul><li><p>For <code>minProb</code> and
 <span class="r-in"><span><span class="va">imp_df1</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co">## Impute using the kNN method.</span></span></span>
+<span class="r-in"><span><span class="co">## Impute using the RF method with the number of iterations set at 5</span></span></span>
+<span class="r-in"><span><span class="co">## and number of trees set at 100.</span></span></span>
+<span class="r-in"><span><span class="va">imp_df2</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>,</span></span>
+<span class="r-in"><span>  method <span class="op">=</span> <span class="st">"RF"</span>,</span></span>
+<span class="r-in"><span>  maxiter <span class="op">=</span> <span class="fl">5</span>, ntree <span class="op">=</span> <span class="fl">100</span>,</span></span>
+<span class="r-in"><span>  seed <span class="op">=</span> <span class="fl">3312</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 1 in progress...done!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.136547 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 0.001001133 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 38.256 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 2 in progress...done!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1323305 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 2.465832e-06 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 36.555 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 3 in progress...done!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1320162 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 9.145074e-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 35.54 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 4 in progress...done!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1319143 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 7.914833e-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 33.738 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 5 in progress...done!</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1322113 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 6.409383e-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 34.606 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Using the kNN method.</span></span></span>
 <span class="r-in"><span><span class="va">imp_df3</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, method <span class="op">=</span> <span class="st">"kNN"</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
