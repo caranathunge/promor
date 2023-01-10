@@ -349,10 +349,15 @@ include:
 <li>
 <code>"xgbLinear"</code> - An extreme gradient boosting
 algorithm</li>
+<li>
+<code>"naive_bayes"</code> - A naive bayes algorithm</li>
 </ul>
 </li>
 </ul>
 </blockquote>
+<p>For this data-set we chose four algorithms. They were chosen based on
+their suitability for building models using few features (eight
+proteins) and samples (35 samples).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Create a model_list object by training models on the training data set using a custom list of algorithms.Don't forget to fix the random seed for reproducibility.</span></span>
 <span><span class="va">covid_model_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/train_models.html">train_models</a></span><span class="op">(</span>split_df <span class="op">=</span> <span class="va">covid_split_df</span>, </span>
