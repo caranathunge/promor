@@ -243,6 +243,7 @@ heatmap_na <- function(raw_df,
 #' @description This function imputes missing values using a user-specified
 #' imputation method.
 #'
+#' @importFrom missForest missForest
 #' @importFrom pcaMethods pca
 #' @importFrom pcaMethods completeObs
 #' @importFrom VIM kNN
@@ -256,7 +257,7 @@ heatmap_na <- function(raw_df,
 #' containing missing values or a \code{norm_df} object after performing
 #' normalization.
 #' @param method Imputation method to use. Default is \code{"minProb"}.
-#' Available methods: \code{"minDet", "kNN", and "SVD"}.
+#' Available methods: \code{"minDet", "RF", "kNN", and "SVD"}.
 #' @param tune_sigma A scalar used in the \code{"minProb"} method for
 #' controlling the standard deviation of the Gaussian distribution
 #' from which random values are drawn for imputation.\cr
@@ -264,6 +265,10 @@ heatmap_na <- function(raw_df,
 #' @param q A scalar used in \code{"minProb"} and \code{"minDet"} methods
 #' to obtain a low intensity value for imputation. \code{q} should be set to a
 #' very low value. Default is 0.01.
+#' @param maxiter Maximum number of iterations to be performed when using the
+#' \code{"RF"} method. Default is \code{10}.
+#' @param ntree Number of trees to grow in each forest when using the
+#' \code{"RF"} method. Default is \code{20}.
 #' @param n_pcs Number of principal components to calculate when using the
 #' \code{"SVD"} method. Default is 2.
 #' @param seed Numerical. Random number seed. Default is \code{NULL}
@@ -274,7 +279,7 @@ heatmap_na <- function(raw_df,
 #' \code{norm_df} object.
 #' \item \code{impute_na} function imputes missing values using a
 #' user-specified imputation method from the available options, \code{minProb},
-#' \code{minDet}, \code{kNN}, and \code{SVD}.
+#' \code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
 #' \item **Note: Some imputation methods may require that the data be normalized
 #' prior to imputation.**
 #' \item Make sure to fix the random number seed with \code{seed} for reproducibility}.
@@ -285,6 +290,8 @@ heatmap_na <- function(raw_df,
 #' \item For \code{minProb} and
 #' \code{minDet} methods, see
 #' \code{imputeLCMD} package.
+#' \item For Random Forest (\code{RF}) method, see
+#'  \code{\link[missForest]{missForest}}.
 #' \item For \code{kNN} method, see \code{\link[VIM]{kNN}} from the
 #'  \code{\link[VIM]{VIM}} package.
 #' \item For \code{SVD} method, see \code{\link[pcaMethods]{pca}} from the
@@ -305,7 +312,16 @@ heatmap_na <- function(raw_df,
 #' imp_df1 <- impute_na(raw_df, seed = 3312)
 #'
 #' \donttest{
-#' ## Impute using the kNN method.
+#' ## Impute using the RF method with the number of iterations set at 5
+#' ## and number of trees set at 100.
+#' imp_df2 <- impute_na(raw_df,
+#'   method = "RF",
+#'   maxiter = 5, ntree = 100,
+#'   seed = 3312
+#' )
+#'
+#'
+#' ## Using the kNN method.
 #' imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
 #' }
 #'
@@ -328,6 +344,8 @@ impute_na <- function(df,
                       method = "minProb",
                       tune_sigma = 1,
                       q = 0.01,
+                      maxiter = 10,
+                      ntree = 20,
                       n_pcs = 2,
                       seed = NULL) {
   # Setting global variables to NULL
@@ -341,6 +359,15 @@ impute_na <- function(df,
       q = q
     )
     return(df_imputed_mindet)
+  } else if (method == "RF") {
+    set.seed(seed)
+    df_imp_temp <- missForest::missForest(df,
+      maxiter = maxiter,
+      ntree = ntree,
+      verbose = TRUE
+    )
+    df_imputed_rf <- df_imp_temp$ximp
+    return(df_imputed_rf)
   } else if (method == "kNN") {
     set.seed(seed)
     df_imputed_knn <- VIM::kNN(df, imp_var = FALSE)

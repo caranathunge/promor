@@ -336,7 +336,6 @@ split_data <- function(model_df,
 #' @import caret
 #' @importFrom kernlab sigest
 #' @import xgboost
-#' @import naivebayes
 #'
 #' @param split_df A \code{split_df} object from performing \code{split_data}.
 #' @param resample_method The resampling method to use. Default is
@@ -399,7 +398,7 @@ split_data <- function(model_df,
 #' ## Fit models using a user-specified list of ML algorithms.
 #' covid_model_list2 <- train_models(
 #'   covid_split_df,
-#'   algorithm_list = c("naive_bayes", "glmboost"),
+#'   algorithm_list = c("svmRadial", "glmboost"),
 #'   seed = 351
 #' )
 #'

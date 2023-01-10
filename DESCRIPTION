@@ -36,7 +36,6 @@ Imports:
     caret,
     kernlab,
     xgboost,
-    naivebayes,
     viridis,
     pROC
 LazyData: true
