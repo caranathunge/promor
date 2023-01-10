@@ -9,8 +9,6 @@ impute_na(
   method = "minProb",
   tune_sigma = 1,
   q = 0.01,
-  maxiter = 10,
-  ntree = 20,
   n_pcs = 2,
   seed = NULL
 )
@@ -21,7 +19,7 @@ containing missing values or a \code{norm_df} object after performing
 normalization.}
 
 \item{method}{Imputation method to use. Default is \code{"minProb"}.
-Available methods: \code{"minDet", "RF", "kNN", and "SVD"}.}
+Available methods: \code{"minDet", "kNN", and "SVD"}.}
 
 \item{tune_sigma}{A scalar used in the \code{"minProb"} method for
 controlling the standard deviation of the Gaussian distribution
@@ -31,12 +29,6 @@ Default is 1.}
 \item{q}{A scalar used in \code{"minProb"} and \code{"minDet"} methods
 to obtain a low intensity value for imputation. \code{q} should be set to a
 very low value. Default is 0.01.}
-
-\item{maxiter}{Maximum number of iterations to be performed when using the
-\code{"RF"} method. Default is \code{10}.}
-
-\item{ntree}{Number of trees to grow in each forest when using the
-\code{"RF"} method. Default is \code{20}.}
 
 \item{n_pcs}{Number of principal components to calculate when using the
 \code{"SVD"} method. Default is 2.}
@@ -58,7 +50,7 @@ before running \code{impute_na} on the \code{raw_df} object or the
 \code{norm_df} object.
 \item \code{impute_na} function imputes missing values using a
 user-specified imputation method from the available options, \code{minProb},
-\code{minDet}, \code{kNN}, \code{RF}, and \code{SVD}.
+\code{minDet}, \code{kNN}, and \code{SVD}.
 \item \strong{Note: Some imputation methods may require that the data be normalized
 prior to imputation.}
 \item Make sure to fix the random number seed with \code{seed} for reproducibility}.
@@ -75,16 +67,7 @@ raw_df <- create_df(
 imp_df1 <- impute_na(raw_df, seed = 3312)
 
 \donttest{
-## Impute using the RF method with the number of iterations set at 5
-## and number of trees set at 100.
-imp_df2 <- impute_na(raw_df,
-  method = "RF",
-  maxiter = 5, ntree = 100,
-  seed = 3312
-)
-
-
-## Using the kNN method.
+## Impute using the kNN method.
 imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
 }
 
@@ -111,8 +94,6 @@ in their respective packages.
 \item For \code{minProb} and
 \code{minDet} methods, see
 \code{imputeLCMD} package.
-\item For Random Forest (\code{RF}) method, see
-\code{\link[missForest]{missForest}}.
 \item For \code{kNN} method, see \code{\link[VIM]{kNN}} from the
 \code{\link[VIM]{VIM}} package.
 \item For \code{SVD} method, see \code{\link[pcaMethods]{pca}} from the

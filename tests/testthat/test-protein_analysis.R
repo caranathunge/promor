@@ -282,16 +282,6 @@ df_mp <- structure(
   class = "data.frame"
 )
 
-# rf - results
-df_rf <- structure(
-  list(
-    a = c(12, 34, 11, 83, 62.1633333333333, 67),
-    b = c(26.6, 32.15, 39, 29, 20, 22.3),
-    c = c(82, 40, 22, 53.125, 66.025, 70)
-  ),
-  row.names = c(NA, -6L),
-  class = "data.frame"
-)
 
 # knn - results
 df_knn <- structure(
@@ -331,14 +321,6 @@ test_that("impute_na works for minprob", {
   expect_equal(impute_na(df,
                          seed = 327),
                df_mp)
-})
-
-# testing rf
-test_that("impute_na works for rf", {
-  suppressWarnings(expect_equal(impute_na(df,
-    method = "RF",
-    seed = 327
-  ), df_rf))
 })
 
 # testing knn
