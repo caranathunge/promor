@@ -336,6 +336,7 @@ split_data <- function(model_df,
 #' @import caret
 #' @importFrom kernlab sigest
 #' @import xgboost
+#' @import naivebayes
 #'
 #' @param split_df A \code{split_df} object from performing \code{split_data}.
 #' @param resample_method The resampling method to use. Default is
@@ -363,7 +364,7 @@ split_data <- function(model_df,
 #' \item In the event that \code{algorithm_list} is not provided, a default
 #' list of four classification-based machine-learning algorithms will be used
 #' for building and training models. Default \code{algorithm_list}:
-#'  "svmRadial", "rf", "glm", "xgbLinear."
+#'  "svmRadial", "rf", "glm", "xgbLinear, and "naive_bayes."
 #' \item Note: Models that fail to build are removed from the output.
 #' \item Make sure to fix the random number seed with
 #' \code{seed} for reproducibility}
@@ -422,7 +423,7 @@ train_models <- function(split_df,
 
   # If algorithm_list is not provided, use the default list of algorithms.
   if (missing(algorithm_list)) {
-    algorithm_list <- c("svmRadial", "rf", "glm", "xgbLinear")
+    algorithm_list <- c("svmRadial", "rf", "glm", "xgbLinear", "naive_bayes")
   }
 
   # Set trainControl parameters for resampling

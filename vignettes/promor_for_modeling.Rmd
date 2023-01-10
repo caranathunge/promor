@@ -210,7 +210,9 @@ We will be using some functions from the `caret` package to train models on our 
 >     + `"glm"`- A generalized linear model algorithm
 >     + `"rf"` - A random forest algorithm
 >     + `"xgbLinear"` - An extreme gradient boosting algorithm
+>     + `"naive_bayes"` - A naive bayes algorithm
 
+For this data-set we chose four algorithms. They were chosen based on their suitability for building models using few features (eight proteins) and samples (35 samples). 
 
 ```{r traindata, warning = FALSE, message = F, eval = TRUE}
 # Create a model_list object by training models on the training data set using a custom list of algorithms.Don't forget to fix the random seed for reproducibility.
