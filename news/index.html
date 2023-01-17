@@ -16,7 +16,7 @@ gtag('config', 'G-L7H9QD25V6');
     
     <a class="navbar-brand me-2" href="../index.html">promor</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,6 +65,31 @@ gtag('config', 'G-L7H9QD25V6');
       <small>Source: <a href="https://github.com/caranathunge/promor/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.0" id="promor-020">promor 0.2.0<a class="anchor" aria-label="anchor" href="#promor-020"></a></h2>
+<div class="section level5">
+<h5 id="new-data-types-allowed-0-2-0">New data types allowed<a class="anchor" aria-label="anchor" href="#new-data-types-allowed-0-2-0"></a></h5>
+<ul><li>A new argument (<code>data_type</code>) added to the <code>create_df</code> function to accommodate other types of LFQ data (raw intensity, iBAQ).</li>
+</ul></div>
+<div class="section level5">
+<h5 id="a-new-input-type-added-0-2-0">A new input type added<a class="anchor" aria-label="anchor" href="#a-new-input-type-added-0-2-0"></a></h5>
+<ul><li>A new argument <code>input_type</code> added to the <code>create_df</code> function to allow users to input data from a standard quantitative matrix.</li>
+</ul></div>
+<div class="section level5">
+<h5 id="workflow-changes-0-2-0">Workflow changes<a class="anchor" aria-label="anchor" href="#workflow-changes-0-2-0"></a></h5>
+<ul><li>To allow for missing data imputation prior to or after data normalization step (depending on the imputation method used), the following changes were made:
+<ul><li>
+<code>norm_df</code> and <code>imp_df</code> arguments replaced with a generic <code>df</code> argument in the functions, <code>find_dep</code>, <code>impute_na</code>, <code>normalize_data</code>, and <code>heatmap_de</code>
+</li>
+<li>A note was added to the tutorials to clarify that for some imputation methods, such as the kNN method, data normalization should be performed prior to imputation.</li>
+</ul></li>
+</ul></div>
+<div class="section level5">
+<h5 id="default-machine-learning-algorithms-0-2-0">Default machine learning algorithms<a class="anchor" aria-label="anchor" href="#default-machine-learning-algorithms-0-2-0"></a></h5>
+<ul><li>
+<code>naive_bayes</code> added to the default <code>algorithm_list</code> argument in the <code>train_models</code> function.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="promor-011">promor 0.1.1<a class="anchor" aria-label="anchor" href="#promor-011"></a></h2><p class="text-muted">CRAN release: 2022-11-01</p>
 <div class="section level5">
