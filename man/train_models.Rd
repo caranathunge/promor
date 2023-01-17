@@ -57,7 +57,7 @@ machine-learning algorithms, and output the best model for each algorithm.
 \item In the event that \code{algorithm_list} is not provided, a default
 list of four classification-based machine-learning algorithms will be used
 for building and training models. Default \code{algorithm_list}:
-"svmRadial", "rf", "glm", "xgbLinear."
+"svmRadial", "rf", "glm", "xgbLinear, and "naive_bayes."
 \item Note: Models that fail to build are removed from the output.
 \item Make sure to fix the random number seed with
 \code{seed} for reproducibility}
