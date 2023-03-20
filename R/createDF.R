@@ -27,10 +27,9 @@
 #' and proteins identified with less than the minimum number of unique peptides
 #' indicated by \code{uniq_pep}. Only applies when
 #' \code{input_type = "MaxQuant"}.
-#' @param uniq_pep Numerical. The minimum number of unique peptides required to
-#' identify a protein (default is 2). Proteins that are identified by less than
-#' this number of unique peptides are filtered out. only applies when
-#' \code{input_type = "MaxQuant"}.
+#' @param uniq_pep Numerical. Proteins that are identified by this number or
+#' fewer number of unique peptides are filtered out (default is 2).Only applies
+#' when \code{input_type = "MaxQuant"}.
 #' @param tech_reps Logical. Indicate as \code{TRUE} if technical replicates
 #' are present in the data. Default is \code{FALSE}.
 #' @param zero_na Logical. If \code{TRUE} (default), zeros are considered
