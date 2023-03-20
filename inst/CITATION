@@ -8,5 +8,5 @@ citEntry(
   year = "2023",
   volume = "3",
   number = "1",
-  textVersion = "Ranathunge, C.; Patel, S.S.; Pinky, L.; Correll, V.L.; Chen, S.; Semmes, O.J.; Armstrong, R.K.; Combs, C.D.; Nyalwidhe, J.O. (2023). promor: a comprehensive R package for label-free proteomics data analysis and predictive modeling. Bioinformatics Advances, 3(1).
+  textVersion = "Ranathunge, C.; Patel, S.S.; Pinky, L.; Correll, V.L.; Chen, S.; Semmes, O.J.; Armstrong, R.K.; Combs, C.D.; Nyalwidhe, J.O. (2023). promor: a comprehensive R package for label-free proteomics data analysis and predictive modeling. Bioinformatics Advances, 3(1)".
   )
