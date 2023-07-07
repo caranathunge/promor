@@ -212,13 +212,14 @@ find_dep <- function(df,
 #' \code{label_top = TRUE.} Default is \code{10}.
 #' @param dpi Plot resolution. Default is \code{80.}
 #'
-#' @details \itemize{\item Volcano plots show log-2-fold change on the x-axis,
+#' @details \itemize{
+#' \item Volcano plots show log-2-fold change on the x-axis,
 #'  and based on the significance criteria chosen, either -log10(p-value) or
 #'  -log10(adjusted p-value) on the y-axis.
-#' \item \code{volcano_plot} requires a
-#' \code{fit_df} object from performing differential expression analysis
-#' with \code{find_dep.}
-#' \item User has the option to choose criteria that denote significance.}
+#' \item \code{volcano_plot} requires a \code{fit_df} object from performing
+#' differential expression analysis with \code{find_dep.}
+#' \item User has the option to choose criteria that denote significance.
+#' }
 #'
 #' @return
 #' A \code{ggplot2} plot object.
