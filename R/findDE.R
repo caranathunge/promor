@@ -191,7 +191,7 @@ find_dep <- function(df,
 #' @param line_fc Logical. If \code{TRUE}(default), a dotted line will be shown
 #' to indicate the \code{lfc} threshold in the plot.
 #' @param line_p Logical. If \code{TRUE}(default), a dotted line will be shown
-#' to indicate the p-value \code{cutoff.}
+#' to indicate the p-value or adjusted p-value \code{cutoff.}
 #' @param palette Viridis color palette option for plots. Default is
 #' \code{"viridis"}. See
 #' \code{\link[viridis:viridis]{viridis}}
@@ -212,8 +212,10 @@ find_dep <- function(df,
 #' \code{label_top = TRUE.} Default is \code{10}.
 #' @param dpi Plot resolution. Default is \code{80.}
 #'
-#' @details \itemize{\item Volcano plots show log-2-fold change on the x-axis
-#' and -log10(p-value) on the y-axis.\item \code{volcano_plot} requires a
+#' @details \itemize{\item Volcano plots show log-2-fold change on the x-axis,
+#'  and based on the significance criteria chosen, either -log10(p-value) or
+#'  -log10(adjusted p-value) on the y-axis.
+#' \item \code{volcano_plot} requires a
 #' \code{fit_df} object from performing differential expression analysis
 #' with \code{find_dep.}
 #' \item User has the option to choose criteria that denote significance.}
@@ -288,21 +290,24 @@ volcano_plot <- function(fit_df,
       ggplot2::geom_point(aes(color = dep),
         alpha = 0.7,
         size = text_size * 0.3
-      )
+      )+
+      ggplot2::ylab(expression("-log"[10] * "(P-value)"))
+
   } else {
     res_de <- res_de[order(-res_de$de_ap, res_de$adj.P.Val), ]
     de_volcanoplot <- ggplot2::ggplot(
       res_de,
       aes(
         x = logFC,
-        y = -log10(P.Value),
+        y = -log10(adj.P.Val),
         color = de_ap
       )
     ) +
       ggplot2::geom_point(aes(color = de_ap),
         alpha = 0.7,
         size = text_size * 0.3
-      )
+      )+
+      ggplot2::ylab(expression("-log"[10] * "(adj.P-value)"))
   }
 
 
