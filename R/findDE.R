@@ -314,7 +314,6 @@ volcano_plot <- function(fit_df,
 
   de_volcanoplot <- de_volcanoplot +
     ggplot2::xlab(expression("log"[2] * " fold change")) +
-    ggplot2::ylab(expression("-log"[10] * "(P-value)")) +
     viridis::scale_color_viridis(
       discrete = TRUE,
       direction = 1,
