@@ -1,3 +1,25 @@
+# promor 0.2.1
+
+### Submission
+
+### R CMD check results - 07-11-2023
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+#### Documentation updates
+* In previous versions, the functionality of the `uniq_pep` parameter 
+(see `create_df` help page) was incorrectly described. We corrected the 
+description to match its functionality as follows: "Numerical. Proteins that are
+identified by this number or fewer number of unique peptides are filtered out 
+(default is 2).Only applies when `input_type = "MaxQuant"`.
+
+#### Bug fixes
+* In previous versions, `volcano_plot` function plotted "-log~10~(P-value)" on 
+the y-axis by default even when `sig = "adjP"` and only colored the dots by 
+their  significance based on "adjP". In this version, `sig = "adjP"` shows 
+"-log~10~.adj. P-value" on the y-axis and colors the dots by their "adjP"
+significance.
+
+
 # promor 0.2.0
 
 ### Submission
