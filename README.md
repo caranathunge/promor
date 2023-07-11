@@ -118,7 +118,7 @@ volcano_plot(fit_df, text_size = 5)
 
 <center>
 
-<img src="./man/figures/README-volcanoplot-1.png" style="width:70.0%" />
+<img src="./man/figures/README-volcanoplot-2.png" style="width:70.0%" />
 
 </center>
 
