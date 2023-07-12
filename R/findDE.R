@@ -263,7 +263,7 @@ volcano_plot <- function(fit_df,
                          plot_width = 7,
                          dpi = 80) {
   # Set global variables to NULL
-  logFC <- P.Value <- dep <- de_ap <- NULL
+  logFC <- P.Value <- adj.P.Val <- dep <- de_ap <- NULL
 
 
   # Extract the required data from the fit object to make our own volcano plot
