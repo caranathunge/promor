@@ -1,5 +1,14 @@
 # promor 0.2.1
 
+### R CMD check results - 07-17-2023
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+### Re-submission
+In this re-submission:
+
+* Used bibentry() instead of citEntry() in the inst/CITATION file 
+as suggested by the CRAN team.
+
 ### Submission
 
 ### R CMD check results - 07-11-2023
