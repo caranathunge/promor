@@ -1,12 +1,11 @@
-citHeader("To cite promor in publications use:")
-
-citEntry(
-  entry    = "Article",
+bibentry(
+  bibtype    = "Article",
+  textVersion = "Ranathunge, C.; Patel, S.S.; Pinky, L.; Correll, V.L.; Semmes, O.J.; Armstrong, R.K.; Combs, C.D.; Nyalwidhe, J.O. 2023 promor: a comprehensive R package for label-free proteomics data analysis and predictive modeling. Bioinformatics Advances, 3(1)",
+  header = "To cite promor in publications use",
   title    = "promor: a comprehensive R package for label-free proteomics data analysis and predictive modeling",
   author   = "Ranathunge, Chathurani and Patel, Sagar S. and Pinky, Lubna and Correll, Vanessa L. and Chen, Shimin and Semmes, O. John and Armstrong, Robert K. and Combs, C. Donald and Nyalwidhe, Julius O.",
   journal = "Bioinformatics Advances",
   year = "2023",
   volume = "3",
-  number = "1",
-  textVersion = "Ranathunge, C.; Patel, S.S.; Pinky, L.; Correll, V.L.; Semmes, O.J.; Armstrong, R.K.; Combs, C.D.; Nyalwidhe, J.O. 2023 promor: a comprehensive R package for label-free proteomics data analysis and predictive modeling. Bioinformatics Advances, 3(1)"
+  number = "1"
   )
