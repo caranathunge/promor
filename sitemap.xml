@@ -1,126 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://caranathunge.github.io/promor/404.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/intro_to_promor.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/promor_for_modeling.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/promor_for_modeling_files/jqueryui-1.13.2/index.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/promor_no_techreps.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/promor_no_techreps_files/jqueryui-1.13.2/index.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/promor_with_techreps.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/articles/promor_with_techreps_files/jqueryui-1.13.2/index.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/index.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/aver_techreps.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/corr_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/covid_fit_df.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/covid_norm_df.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/create_df.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/ecoli_fit_df.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/ecoli_norm_df.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/feature_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/filterbygroup_na.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/find_dep.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/heatmap_de.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/heatmap_na.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/impute_na.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/impute_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/norm_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/normalize_data.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/onegroup_only.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/performance_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/pre_process.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/rem_feature.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/rem_sample.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/roc_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/split_data.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/test_models.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/train_models.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/varimp_plot.html</loc>
-  </url>
-  <url>
-    <loc>https://caranathunge.github.io/promor/reference/volcano_plot.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://caranathunge.github.io/promor/404.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/LICENSE.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/index.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/intro_to_promor.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/promor_for_modeling.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/promor_for_modeling_files/jqueryui-1.13.2/index.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/promor_no_techreps.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/promor_no_techreps_files/jqueryui-1.13.2/index.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/promor_with_techreps.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/articles/promor_with_techreps_files/jqueryui-1.13.2/index.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/authors.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/index.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/news/index.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/aver_techreps.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/corr_plot.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/covid_fit_df.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/covid_norm_df.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/create_df.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/ecoli_fit_df.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/ecoli_norm_df.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/feature_plot.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/filterbygroup_na.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/find_dep.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/heatmap_de.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/heatmap_na.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/impute_na.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/impute_plot.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/index.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/norm_plot.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/normalize_data.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/onegroup_only.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/performance_plot.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/pre_process.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/rem_feature.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/rem_sample.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/roc_plot.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/split_data.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/test_models.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/train_models.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/varimp_plot.html</loc></url>
+<url><loc>https://caranathunge.github.io/promor/reference/volcano_plot.html</loc></url>
 </urlset>
+
