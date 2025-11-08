@@ -364,6 +364,7 @@ impute_na <- function(df,
     df_imp_temp <- missForest::missForest(df,
       maxiter = maxiter,
       ntree = ntree,
+      backend = "randomForest",
       verbose = TRUE
     )
     df_imputed_rf <- df_imp_temp$ximp
