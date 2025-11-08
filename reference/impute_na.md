@@ -145,27 +145,27 @@ imp_df2 <- impute_na(raw_df,
 #>   missForest iteration 1 in progress...done!
 #>     estimated error(s): 0.1361906 
 #>     difference(s): 0.0009932238 
-#>     time: 9.858 seconds
+#>     time: 11.24 seconds
 #> 
 #>   missForest iteration 2 in progress...done!
 #>     estimated error(s): 0.1318301 
 #>     difference(s): 2.294329e-06 
-#>     time: 9.78 seconds
+#>     time: 10.759 seconds
 #> 
 #>   missForest iteration 3 in progress...done!
 #>     estimated error(s): 0.1318273 
 #>     difference(s): 8.586608e-07 
-#>     time: 9.523 seconds
+#>     time: 10.514 seconds
 #> 
 #>   missForest iteration 4 in progress...done!
 #>     estimated error(s): 0.1316124 
 #>     difference(s): 7.427129e-07 
-#>     time: 9.999 seconds
+#>     time: 10.632 seconds
 #> 
 #>   missForest iteration 5 in progress...done!
 #>     estimated error(s): 0.1314333 
 #>     difference(s): 6.803003e-07 
-#>     time: 9.697 seconds
+#>     time: 10.12 seconds
 #> 
 
 
