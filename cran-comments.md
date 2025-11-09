@@ -1,3 +1,9 @@
+# promor 0.2.2
+
+### R CMD check results - 07-17-2023
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+
 # promor 0.2.1
 
 ### R CMD check results - 07-17-2023

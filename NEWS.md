@@ -1,3 +1,9 @@
+# promor 0.2.2
+
+#### Bug fix
+* Fixed a bug associated with the recent missForest update.
+
+
 # promor 0.2.1
 
 #### Documentation updates
