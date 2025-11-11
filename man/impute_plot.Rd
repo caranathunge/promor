@@ -29,7 +29,7 @@ protein intensity data.}
 \item{imputed}{An \code{imp_df} object obtained from running \code{impute_na}
 on the same data frame provided as \code{original}.}
 
-\item{global}{Logical. If \code{TRUE} ({default}), a global density plot is
+\item{global}{Logical. If \code{TRUE} (default), a global density plot is
 produced. If \code{FALSE}, sample-wise density plots are produced.}
 
 \item{text_size}{Text size for plot labels, axis labels etc. Default is

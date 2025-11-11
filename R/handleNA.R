@@ -313,8 +313,6 @@ heatmap_na <- function(raw_df,
 #'
 #' ## Using the kNN method.
 #' imp_df2 <- impute_na(raw_df, method = "kNN", seed = 3312)
-#' }
-#'
 #'
 #' ## Using the SVD method with n_pcs set to 3.
 #' imp_df3 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)

@@ -63,42 +63,6 @@ user-specified imputation method from the available options, \code{minProb},
 prior to imputation.}
 \item Make sure to fix the random number seed with \code{seed} for reproducibility}.
 }
-\examples{
-## Generate a raw_df object with default settings. No technical replicates.
-raw_df <- create_df(
-  prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
-  exp_design = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/ed1.txt"
-)
-
-## Impute missing values in the data frame using the default minProb
-## method.
-imp_df1 <- impute_na(raw_df, seed = 3312)
-
-\donttest{
-## Impute using the RF method with the number of iterations set at 5
-## and number of trees set at 100.
-imp_df2 <- impute_na(raw_df,
-  method = "RF",
-  maxiter = 5, ntree = 100,
-  seed = 3312
-)
-
-
-## Using the kNN method.
-imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
-}
-
-
-## Using the SVD method with n_pcs set to 3.
-imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
-
-## Using the minDet method with q set at 0.001.
-imp_df5 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
-
-## Impute a normalized data set using the kNN method
-imp_df6 <- impute_na(ecoli_norm_df, method = "kNN")
-
-}
 \references{
 Lazar, Cosmin, et al. "Accounting for the multiple natures of
 missing values in label-free quantitative proteomics data sets to compare
