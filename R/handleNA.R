@@ -311,29 +311,19 @@ heatmap_na <- function(raw_df,
 #' ## method.
 #' imp_df1 <- impute_na(raw_df, seed = 3312)
 #'
-#' \donttest{
-#' ## Impute using the RF method with the number of iterations set at 5
-#' ## and number of trees set at 100.
-#' imp_df2 <- impute_na(raw_df,
-#'   method = "RF",
-#'   maxiter = 5, ntree = 100,
-#'   seed = 3312
-#' )
-#'
-#'
 #' ## Using the kNN method.
-#' imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
+#' imp_df2 <- impute_na(raw_df, method = "kNN", seed = 3312)
 #' }
 #'
 #'
 #' ## Using the SVD method with n_pcs set to 3.
-#' imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
+#' imp_df3 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
 #'
 #' ## Using the minDet method with q set at 0.001.
-#' imp_df5 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
+#' imp_df4 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
 #'
 #' ## Impute a normalized data set using the kNN method
-#' imp_df6 <- impute_na(ecoli_norm_df, method = "kNN")
+#' imp_df5 <- impute_na(ecoli_norm_df, method = "kNN")
 #'
 #' @references Lazar, Cosmin, et al. "Accounting for the multiple natures of
 #' missing values in label-free quantitative proteomics data sets to compare
@@ -411,7 +401,7 @@ impute_na <- function(df,
 #' protein intensity data.
 #' @param imputed An \code{imp_df} object obtained from running \code{impute_na}
 #'  on the same data frame provided as \code{original}.
-#' @param global Logical. If \code{TRUE} ({default}), a global density plot is
+#' @param global Logical. If \code{TRUE} (default), a global density plot is
 #' produced. If \code{FALSE}, sample-wise density plots are produced.
 #' @param text_size Text size for plot labels, axis labels etc. Default is
 #' \code{10}.
