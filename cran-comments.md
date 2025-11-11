@@ -1,6 +1,15 @@
 # promor 0.2.2
 
-### R CMD check results - 07-17-2023
+### Resubmission
+In this re-submission:
+
+* Fixed errors associated with missing data handling.
+* Fixed outdated URLs
+
+### R CMD check results - 11-11-2025
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+### R CMD check results - 11-08-2025
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 
