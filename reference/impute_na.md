@@ -134,43 +134,8 @@ raw_df <- create_df(
 ## method.
 imp_df1 <- impute_na(raw_df, seed = 3312)
 
-# \donttest{
-## Impute using the RF method with the number of iterations set at 5
-## and number of trees set at 100.
-imp_df2 <- impute_na(raw_df,
-  method = "RF",
-  maxiter = 5, ntree = 100,
-  seed = 3312
-)
-#>   missForest iteration 1 in progress...done!
-#>     estimated error(s): 0.1361906 
-#>     difference(s): 0.0009932238 
-#>     time: 9.852 seconds
-#> 
-#>   missForest iteration 2 in progress...done!
-#>     estimated error(s): 0.1318301 
-#>     difference(s): 2.294329e-06 
-#>     time: 9.7 seconds
-#> 
-#>   missForest iteration 3 in progress...done!
-#>     estimated error(s): 0.1318273 
-#>     difference(s): 8.586608e-07 
-#>     time: 9.62 seconds
-#> 
-#>   missForest iteration 4 in progress...done!
-#>     estimated error(s): 0.1316124 
-#>     difference(s): 7.427129e-07 
-#>     time: 9.43 seconds
-#> 
-#>   missForest iteration 5 in progress...done!
-#>     estimated error(s): 0.1314333 
-#>     difference(s): 6.803003e-07 
-#>     time: 9.587 seconds
-#> 
-
-
 ## Using the kNN method.
-imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
+imp_df2 <- impute_na(raw_df, method = "kNN", seed = 3312)
 #>      H_2      H_3      L_1      L_2      L_3      H_2      H_3      L_1 
 #> 18.85805 19.58752 19.10595 19.55137 18.57692 36.98375 37.25068 36.49326 
 #>      L_2      L_3 
@@ -195,17 +160,15 @@ imp_df3 <- impute_na(raw_df, method = "kNN", seed = 3312)
 #> 18.48731 18.85805 19.58752 19.10595 19.55137 37.19013 36.98375 37.25068 
 #>      L_1      L_2 
 #> 36.49326 36.27569 
-# }
-
 
 ## Using the SVD method with n_pcs set to 3.
-imp_df4 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
+imp_df3 <- impute_na(raw_df, method = "SVD", n_pcs = 3, seed = 3312)
 #> change in estimate:  0.007642841 
 
 ## Using the minDet method with q set at 0.001.
-imp_df5 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
+imp_df4 <- impute_na(raw_df, method = "minDet", q = 0.001, seed = 3312)
 
 ## Impute a normalized data set using the kNN method
-imp_df6 <- impute_na(ecoli_norm_df, method = "kNN")
+imp_df5 <- impute_na(ecoli_norm_df, method = "kNN")
 #> Warning: Nothing to impute, because no NA are present (also after using makeNA)
 ```

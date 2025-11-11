@@ -173,43 +173,8 @@ in their respective packages.</p><ul><li><p>For <code>minProb</code> and
 <span class="r-in"><span><span class="co">## method.</span></span></span>
 <span class="r-in"><span><span class="va">imp_df1</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span><span class="co">## Impute using the RF method with the number of iterations set at 5</span></span></span>
-<span class="r-in"><span><span class="co">## and number of trees set at 100.</span></span></span>
-<span class="r-in"><span><span class="va">imp_df2</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>,</span></span>
-<span class="r-in"><span>  method <span class="op">=</span> <span class="st">"RF"</span>,</span></span>
-<span class="r-in"><span>  maxiter <span class="op">=</span> <span class="fl">5</span>, ntree <span class="op">=</span> <span class="fl">100</span>,</span></span>
-<span class="r-in"><span>  seed <span class="op">=</span> <span class="fl">3312</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 1 in progress...done!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1361906 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 0.0009932238 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 9.852 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 2 in progress...done!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1318301 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 2.294329e-06 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 9.7 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 3 in progress...done!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1318273 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 8.586608e-07 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 9.62 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 4 in progress...done!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1316124 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 7.427129e-07 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 9.43 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   missForest iteration 5 in progress...done!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     estimated error(s): 0.1314333 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     difference(s): 6.803003e-07 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     time: 9.587 seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Using the kNN method.</span></span></span>
-<span class="r-in"><span><span class="va">imp_df3</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, method <span class="op">=</span> <span class="st">"kNN"</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">imp_df2</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, method <span class="op">=</span> <span class="st">"kNN"</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      H_2      H_3      L_1      L_2      L_3      H_2      H_3      L_1 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18.85805 19.58752 19.10595 19.55137 18.57692 36.98375 37.25068 36.49326 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      L_2      L_3 </span>
@@ -234,18 +199,16 @@ in their respective packages.</p><ul><li><p>For <code>minProb</code> and
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18.48731 18.85805 19.58752 19.10595 19.55137 37.19013 36.98375 37.25068 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      L_1      L_2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 36.49326 36.27569 </span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Using the SVD method with n_pcs set to 3.</span></span></span>
-<span class="r-in"><span><span class="va">imp_df4</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, method <span class="op">=</span> <span class="st">"SVD"</span>, n_pcs <span class="op">=</span> <span class="fl">3</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">imp_df3</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, method <span class="op">=</span> <span class="st">"SVD"</span>, n_pcs <span class="op">=</span> <span class="fl">3</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> change in estimate:  0.007642841 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Using the minDet method with q set at 0.001.</span></span></span>
-<span class="r-in"><span><span class="va">imp_df5</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, method <span class="op">=</span> <span class="st">"minDet"</span>, q <span class="op">=</span> <span class="fl">0.001</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">imp_df4</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">raw_df</span>, method <span class="op">=</span> <span class="st">"minDet"</span>, q <span class="op">=</span> <span class="fl">0.001</span>, seed <span class="op">=</span> <span class="fl">3312</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Impute a normalized data set using the kNN method</span></span></span>
-<span class="r-in"><span><span class="va">imp_df6</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">ecoli_norm_df</span>, method <span class="op">=</span> <span class="st">"kNN"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">imp_df5</span> <span class="op">&lt;-</span> <span class="fu">impute_na</span><span class="op">(</span><span class="va">ecoli_norm_df</span>, method <span class="op">=</span> <span class="st">"kNN"</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Nothing to impute, because no NA are present (also after using makeNA)</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
