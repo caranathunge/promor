@@ -134,6 +134,43 @@ covid_model_list <- train_models(covid_split_df)
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
@@ -174,11 +211,13 @@ roc_plot(covid_prob_list, covid_split_df)
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
-#> Setting direction: controls > cases
+#> Setting direction: controls < cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
+#> Warning: number of columns of result is not a multiple of vector length (arg 3)
+#> Warning: number of columns of result is not a multiple of vector length (arg 3)
 
 
 ## Plot all ROC curves in one plot
@@ -188,11 +227,13 @@ roc_plot(covid_prob_list, covid_split_df, multiple_plots = FALSE)
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
-#> Setting direction: controls > cases
+#> Setting direction: controls < cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
+#> Warning: number of columns of result is not a multiple of vector length (arg 3)
+#> Warning: number of columns of result is not a multiple of vector length (arg 3)
 
 
 ## Change color palette
@@ -202,11 +243,13 @@ roc_plot(covid_prob_list, covid_split_df, palette = "plasma")
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
-#> Setting direction: controls > cases
+#> Setting direction: controls < cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
+#> Warning: number of columns of result is not a multiple of vector length (arg 3)
+#> Warning: number of columns of result is not a multiple of vector length (arg 3)
 
 # }
 ```
