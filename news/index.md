@@ -2,6 +2,8 @@
 
 ## promor 0.2.2
 
+CRAN release: 2025-11-11
+
 ##### Bug fix
 
 - Fixed a bug associated with the recent missForest update.

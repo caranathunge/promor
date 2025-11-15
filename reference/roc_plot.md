@@ -134,6 +134,16 @@ covid_model_list <- train_models(covid_split_df)
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: algorithm did not converge
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
@@ -147,14 +157,6 @@ covid_model_list <- train_models(covid_split_df)
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
@@ -165,13 +167,7 @@ covid_model_list <- train_models(covid_split_df)
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
@@ -211,7 +207,7 @@ roc_plot(covid_prob_list, covid_split_df)
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
-#> Setting direction: controls < cases
+#> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
@@ -227,7 +223,7 @@ roc_plot(covid_prob_list, covid_split_df, multiple_plots = FALSE)
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
-#> Setting direction: controls < cases
+#> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
@@ -243,7 +239,7 @@ roc_plot(covid_prob_list, covid_split_df, palette = "plasma")
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
-#> Setting direction: controls < cases
+#> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe
 #> Setting direction: controls > cases
 #> Setting levels: control = Non.Severe, case = Severe

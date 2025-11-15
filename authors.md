@@ -10,7 +10,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/caranathunge/promor/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/caranathunge/promor/blob/v0.2.2/inst/CITATION)
 
 Ranathunge, C.; Patel, S.S.; Pinky, L.; Correll, V.L.; Semmes, O.J.;
 Armstrong, R.K.; Combs, C.D.; Nyalwidhe, J.O. 2023 promor: a
