@@ -2,6 +2,8 @@
 
 ## promor 0.2.3
 
+CRAN release: 2026-05-07
+
 ##### Minor fix
 
 - Fixed an error associated with a unit test.
