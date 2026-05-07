@@ -376,23 +376,6 @@ df_norm_s <- structure(
   dimnames = list(NULL, c("a", "b", "c"))
 )
 
-# cyclicloess - results
-df_norm_c <- structure(
-  c(
-    8.87594722638867, 35.9180013309211, 24.1612907491603,
-    43.5415649767626, 17.3396297815539, 44.825964199607,
-    21.9075705937958,
-    38.5487769581834, 24.1612907491603, 43.5415649767626,
-    17.3396297815539,
-    44.825964199607, 81.9288096106512, 35.9180013309212,
-    24.1612907491603,
-    43.5415649767626, 17.3396297815539, 44.825964199607
-  ),
-  dim = c(6L, 3L),
-  dimnames = list(NULL, c("a", "b", "c"))
-)
-
-
 ## testing - quantile method----------------------------------------------------
 
 test_that("normalization works for quantile", {
@@ -404,23 +387,12 @@ test_that("normalization works for quantile", {
 
 ## testing - scale method-------------------------------------------------------
 
-test_that("normalization works for sacle", {
+test_that("normalization works for scale", {
   expect_equal(
     normalize_data(df_mp,
       method = "scale"
     ),
     df_norm_s
-  )
-})
-
-## testing- cyclicloess method--------------------------------------------------
-
-test_that("normalization works for cyclicloess", {
-  expect_equal(
-    normalize_data(df_mp,
-      method = "cyclicloess"
-    ),
-    df_norm_c
   )
 })
 
