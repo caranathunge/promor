@@ -1,5 +1,11 @@
 # Changelog
 
+## promor 0.2.3
+
+##### Minor fix
+
+- Fixed an error associated with a unit test.
+
 ## promor 0.2.2
 
 CRAN release: 2025-11-11
