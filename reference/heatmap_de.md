@@ -123,6 +123,7 @@ Chathurani Ranathunge
 ## Examples
 
 ``` r
+
 ## Build a heatmap of differentially expressed proteins using the provided
 ## example fit_df and norm_df data objects
 heatmap_de(covid_fit_df, covid_norm_df)

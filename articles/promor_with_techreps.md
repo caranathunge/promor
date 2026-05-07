@@ -11,6 +11,7 @@ provided in **Introduction to promor** to get acquainted with `promor`’s
 functionality.
 
 ``` r
+
 vignette("intro_to_promor")
 ```
 
@@ -66,6 +67,7 @@ this file when you run *promor* with your own data. Let’s take a look at
 the sample *expDesign.txt* file that we will be using for this tutorial.
 
 ``` r
+
 # Load promor
 library(promor)
 # Let's load the expDesign.txt file
@@ -103,6 +105,7 @@ indicated that the data include technical replicates with
 `tech_reps = TRUE`.
 
 ``` r
+
 # Create a raw_df object with default settings.
 raw <- create_df(
   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg2.txt",
@@ -135,6 +138,7 @@ correlation. At this stage, we can quickly check if this is the case in
 our experiment.
 
 ``` r
+
 # Let's first check the correlation between tech.replicates 1 and 2
 corr_plot(raw, rep_1 = 1, rep_2 = 2, n_row = 3, n_col = 2, text_size = 12)
 ```
@@ -145,6 +149,7 @@ Similarly, we can visualize the correlation between technical replicates
 1 and 3.
 
 ``` r
+
 # Correlation between tech.replicates 1 and 3.
 corr_plot(raw, rep_1 = 1, rep_2 = 3, n_row = 3, n_col = 2, text_size = 12)
 ```
@@ -170,6 +175,7 @@ Now, we are ready to calculate average intensity across technical
 replicates for each sample.
 
 ``` r
+
 raw_ave <- aver_techreps(raw)
 
 # A quick check on the dimensions of the data frame show that the number of columns is reduced from 18 to 6 as we averaged the tech.replicates.
@@ -185,6 +191,7 @@ Next, we will remove proteins if they have more than 0.4% (default is
 0.33%) missing data in either group.
 
 ``` r
+
 # Filter out proteins with high levels of missing data in either condition
 raw_filtered <- filterbygroup_na(raw_ave, set_na = 0.40)
 #> 197 proteins with higher than 40% NAs in at least one group removed.
@@ -201,6 +208,7 @@ dim(raw_filtered)
 Now, we are going to see how missing data is distributed in the data.
 
 ``` r
+
 # Visualize missing data in a subset of proteins.
 heatmap_na(raw_filtered)
 ```
@@ -211,6 +219,7 @@ We can reorder proteins by their mean intensity to see if proteins with
 low intensity show higher levels of missing data
 
 ``` r
+
 # Visualize missing data in a subset of proteins.
 heatmap_na(raw_filtered, reorder_y = TRUE)
 ```
@@ -220,6 +229,7 @@ heatmap_na(raw_filtered, reorder_y = TRUE)
 For larger data sets, you can choose to visualize subsets of the data.
 
 ``` r
+
 # Visualize missing data in a subset of proteins.
 heatmap_na(raw_filtered, protein_range = 1:30, label_proteins = TRUE)
 ```
@@ -237,6 +247,7 @@ found in [Lazar et
 al. (2016)](https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00981).
 
 ``` r
+
 # Impute missing data with minProb method. Don't forget to fix the random seed for reproducibility.
 imp_df_mp <- impute_na(raw_filtered, seed = 327)
 ```
@@ -252,6 +263,7 @@ We can now visualize the impact of imputation on the intensity data.
 Lets check the data imputed with the `minProb` method.
 
 ``` r
+
 # Visualize the imputed data with a density plot.
 impute_plot(original = raw_filtered, imputed = imp_df_mp, global = TRUE)
 ```
@@ -265,6 +277,7 @@ We can also visualize the imputed data of each sample with density
 plots.
 
 ``` r
+
 # Visualize the imputed data with sample-wise density plots.
 impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, n_row = 3, n_col = 2)
 ```
@@ -283,6 +296,7 @@ Next, we will normalize the imputed data with the default `quantile`
 method.
 
 ``` r
+
 norm_df <- normalize_data(imp_df_mp)
 ```
 
@@ -294,6 +308,7 @@ Let’s check if our data set was successfully normalized with a density
 plot.
 
 ``` r
+
 norm_plot(original = imp_df_mp, normalized = norm_df, type = "density")
 ```
 
@@ -307,6 +322,7 @@ We will be using the non-normalized `imp_df` object we created in **Step
 6** to perform differential expression analysis.
 
 ``` r
+
 fit_df <- find_dep(imp_df_mp)
 #> 2 siginificantly differentially expressed proteins found.
 ```
@@ -314,6 +330,7 @@ fit_df <- find_dep(imp_df_mp)
 You can also choose to save the top 10 hits in a text file as follows:
 
 ``` r
+
 fit_df <- find_dep(imp_df_mp, save_tophits = TRUE, n_top = 10)
 ```
 
@@ -324,6 +341,7 @@ fit_df <- find_dep(imp_df_mp, save_tophits = TRUE, n_top = 10)
 Let’s visualize the results from **Step 10** using a volcano plot.
 
 ``` r
+
 volcano_plot(fit_df)
 ```
 
@@ -336,6 +354,7 @@ volcano_plot(fit_df)
 We can also visualize the top hits from **Step 10** with a heatmap.
 
 ``` r
+
 heatmap_de(fit_df, imp_df_mp)
 ```
 
@@ -344,5 +363,6 @@ heatmap_de(fit_df, imp_df_mp)
 Save a copy of the plot in the working directory
 
 ``` r
+
 heatmap_de(fit_df, imp_df_mp, save = TRUE, file_path = ".")
 ```

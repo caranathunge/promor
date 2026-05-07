@@ -1,4 +1,4 @@
-pandoc: 3.1.11
+pandoc: 3.8.3
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
@@ -6,7 +6,7 @@ articles:
   promor_for_modeling: promor_for_modeling.html
   promor_no_techreps: promor_no_techreps.html
   promor_with_techreps: promor_with_techreps.html
-last_built: 2025-11-15T05:19Z
+last_built: 2026-05-07T06:16Z
 urls:
   reference: https://caranathunge.github.io/promor/reference
   article: https://caranathunge.github.io/promor/articles

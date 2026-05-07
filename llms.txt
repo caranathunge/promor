@@ -38,6 +38,7 @@ App](https://sgrbnf.shinyapps.io/PROMOR_App/)
 Install the released version from CRAN
 
 ``` r
+
 install.packages("promor")
 ```
 
@@ -45,6 +46,7 @@ Install development version from
 [GitHub](https://github.com/caranathunge/promor)
 
 ``` r
+
 # install devtools, if you haven't already:
 install.packages("devtools")
 
@@ -70,6 +72,7 @@ al. (2014)](https://europepmc.org/article/MED/24942700#id609082) (PRIDE
 ID: PXD000279).
 
 ``` r
+
 # Load promor
 library(promor)
 
@@ -95,6 +98,7 @@ fit_df <- find_dep(norm_df)
 Lets take a look at the results using a volcano plot.
 
 ``` r
+
 volcano_plot(fit_df, text_size = 5)
 ```
 
@@ -121,6 +125,7 @@ that used differentially expressed proteins between severe and
 non-severe COVID patients to build models to predict COVID severity.
 
 ``` r
+
 # First, let's make a model_df object of top differentially expressed proteins.
 # We will be using example fit_df and norm_df objects provided with the package.
 covid_model_df <- pre_process(
@@ -145,6 +150,7 @@ Let’s make ROC plots to check how the different models performed.
 
 ``` r
 
+
 roc_plot(
   probability_list = covid_prob_list,
   split_df = covid_split_df
@@ -163,6 +169,7 @@ experiment and the structure of your proteomics data.
 1.  This README file can be accessed from RStudio as follows,
 
 ``` r
+
 vignette("intro_to_promor", package = "promor")
 ```
 

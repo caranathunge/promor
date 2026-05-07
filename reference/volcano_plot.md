@@ -142,6 +142,7 @@ Chathurani Ranathunge
 ## Examples
 
 ``` r
+
 ## Create a volcano plot with default settings.
 volcano_plot(ecoli_fit_df)
 
@@ -153,6 +154,5 @@ volcano_plot(ecoli_fit_df, cutoff = 0.1, sig = "P")
 ## Label top 30 differentially expressed proteins and
 ## change the color palette of the plot
 volcano_plot(ecoli_fit_df, label_top = TRUE, n_top = 30, palette = "mako")
-#> Warning: ggrepel: 27 unlabeled data points (too many overlaps). Consider increasing max.overlaps
 
 ```

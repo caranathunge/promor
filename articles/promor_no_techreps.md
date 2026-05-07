@@ -11,6 +11,7 @@ provided in **Introduction to promor** to get acquainted with `promor's`
 functionality.
 
 ``` r
+
 vignette("intro_to_promor")
 ```
 
@@ -63,6 +64,7 @@ this file when you run `promor` with your own data. Let’s take a look at
 the sample *expDesign.txt* file that we will be using for this tutorial.
 
 ``` r
+
 # Load promor
 library(promor)
 # Let's load the expDesign.txt file
@@ -99,6 +101,7 @@ intensity data type to use is “LFQ”, so LFQ intensity columns are
 extracted from the proteinGroups.txt file.
 
 ``` r
+
 # Create a raw_df object with default settings.
 raw <- create_df(
   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -124,6 +127,7 @@ other data types such as **iBAQ** from the proteinGroups.txt file as
 follows:
 
 ``` r
+
 # Create a raw_df object of ibaq values
 raw_1 <- create_df(
   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",
@@ -149,6 +153,7 @@ standard input file containing a quantitative matrix of protein
 intensities.
 
 ``` r
+
 # Create a raw_df object using a standard input file.
 raw_2 <- create_df(
   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/st.txt",
@@ -180,6 +185,7 @@ Next, we will remove proteins if they have more than 0.4% (default is
 that we created with the default settings as input).
 
 ``` r
+
 # Filter out proteins with high levels of missing data in either condition
 raw_filtered <- filterbygroup_na(raw, set_na = 0.4)
 #> 224 proteins with higher than 40% NAs in at least one group removed.
@@ -198,6 +204,7 @@ This will help us make an informed decision on how to impute missing
 data in the next step.
 
 ``` r
+
 # Visualize missing data in a subset of proteins.
 heatmap_na(raw_filtered, palette = "mako")
 ```
@@ -210,6 +217,7 @@ with low intensities are more likely to have missing data, you can do
 the following:
 
 ``` r
+
 # Order proteins by mean intensity.
 heatmap_na(raw_filtered, reorder_y = TRUE, palette = "mako")
 ```
@@ -219,6 +227,7 @@ heatmap_na(raw_filtered, reorder_y = TRUE, palette = "mako")
 For larger data sets, you can choose to visualize subsets of the data
 
 ``` r
+
 # Visualize missing data in a subset of proteins.
 heatmap_na(raw_filtered, protein_range = 40:70, label_proteins = TRUE, palette = "mako")
 ```
@@ -237,6 +246,7 @@ information about available imputation methods can be found in [Lazar et
 al. (2016)](https://pubs.acs.org/doi/10.1021/acs.jproteome.5b00981).
 
 ``` r
+
 # Impute missing data with minProb method. Don't forget to fix the random seed for reproducibility.
 imp_df_mp <- impute_na(raw_filtered, seed = 327)
 ```
@@ -244,6 +254,7 @@ imp_df_mp <- impute_na(raw_filtered, seed = 327)
 Alternatively, we can use a different imputation method as follows.
 
 ``` r
+
 # Impute missing data with minDet method. Don't forget to fix the random seed for reproducibility.
 imp_df_md <- impute_na(raw_filtered, method = "minDet", seed = 327)
 ```
@@ -259,6 +270,7 @@ We can now visualize the impact of imputation on the data set. Lets
 check the data imputed with `minProb` method.
 
 ``` r
+
 # Visualize the imputed data with sample-wise density plots.
 impute_plot(original = raw_filtered, imputed = imp_df_mp, n_row = 3, n_col = 3, palette = "mako")
 ```
@@ -269,6 +281,7 @@ We can also visualize the impact of imputation on each sample’s
 intensity data by setting `global = FALSE`.
 
 ``` r
+
 # Visualize the imputed data with sample-wise density plots.
 impute_plot(original = raw_filtered, imputed = imp_df_mp, global = FALSE, n_row = 3, n_col = 3, palette = "mako")
 ```
@@ -289,6 +302,7 @@ data set. Steps 6 and 7 are performed for visualization purposes only.**
 To normalize the imputed data with the default `quantile` method:
 
 ``` r
+
 norm_df <- normalize_data(imp_df_mp)
 ```
 
@@ -299,6 +313,7 @@ norm_df <- normalize_data(imp_df_mp)
 Let’s check the results from quantile normalization.
 
 ``` r
+
 norm_plot(original = imp_df_mp, normalized = norm_df, palette = "mako")
 ```
 
@@ -312,6 +327,7 @@ use `type = "density` to visualize the effect of normalization with
 density plots instead.
 
 ``` r
+
 norm_plot(original = imp_df_mp, normalized = norm_df, type = "density", palette = "mako")
 ```
 
@@ -325,6 +341,7 @@ We will be using the non-normalized `imp_df` object we created in **Step
 4** to perform differential expression analysis.
 
 ``` r
+
 fit_df <- find_dep(imp_df_mp)
 #> 1294 siginificantly differentially expressed proteins found.
 ```
@@ -332,6 +349,7 @@ fit_df <- find_dep(imp_df_mp)
 You can also choose to save the top 10 hits in a text file as follows:
 
 ``` r
+
 fit_df <- find_dep(imp_df_mp, save_tophits = TRUE, n_top = 10)
 ```
 
@@ -342,6 +360,7 @@ fit_df <- find_dep(imp_df_mp, save_tophits = TRUE, n_top = 10)
 Let’s visualize the results from **Step 8** using a volcano plot.
 
 ``` r
+
 volcano_plot(fit_df,
   text_size = 5,
   palette = "mako"
@@ -355,6 +374,7 @@ volcano_plot(fit_df,
 ### 10. Create a heatmap of differentially expressed proteins
 
 ``` r
+
 heatmap_de(fit_df, imp_df_mp, palette = "mako")
 ```
 
@@ -363,5 +383,6 @@ heatmap_de(fit_df, imp_df_mp, palette = "mako")
 Save a copy of the plot in the working directory.
 
 ``` r
+
 heatmap_de(fit_df, imp_df_mp, palette = "mako", save = TRUE, file_path = ".")
 ```

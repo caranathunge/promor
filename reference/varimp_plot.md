@@ -153,48 +153,2449 @@ covid_model_list <- train_models(covid_split_df)
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> Warning: glm.fit: algorithm did not converge
 #> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
-#> Warning: glm.fit: algorithm did not converge
-#> Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
 #> 
 #> Running xgbLinear...
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep1: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep2: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold01.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold02.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold03.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold04.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold05.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold06.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold07.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold08.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold09.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=0e+00, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=1e-01, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=1e-04, nrounds= 50, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=0e+00, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=1e-01, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=1e-04, nrounds=100, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=0e+00, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=1e-01, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=0e+00, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-01, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: Argument 'objective' is only for custom objectives. For built-in objectives, pass the objective under 'params'. This warning will become an error in a future version.
+#> Warning: model fit failed for Fold10.Rep3: lambda=1e-04, alpha=1e-04, nrounds=150, eta=0.3 Error in modelFit$xNames <- colnames(x) : 
+#>   ALTLIST classes must provide a Set_elt method [class: XGBAltrepPointerClass, pkg: xgboost]
+#> Warning: There were missing values in resampled performance measures.
+#> Something is wrong; all the Accuracy metric values are missing:
+#>     Accuracy       Kappa    
+#>  Min.   : NA   Min.   : NA  
+#>  1st Qu.: NA   1st Qu.: NA  
+#>  Median : NA   Median : NA  
+#>  Mean   :NaN   Mean   :NaN  
+#>  3rd Qu.: NA   3rd Qu.: NA  
+#>  Max.   : NA   Max.   : NA  
+#>  NAs    :27    NAs    :27   
+#> xgbLinear failed.
 #> 
 #> Running naive_bayes...
 #> Done!

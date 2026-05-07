@@ -112,6 +112,7 @@ Chathurani Ranathunge
 ## Examples
 
 ``` r
+
 ## Generate a raw_df object with default settings. No technical replicates.
 raw_df <- create_df(
   prot_groups = "https://raw.githubusercontent.com/caranathunge/promor_example_data/main/pg1.txt",

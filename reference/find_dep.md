@@ -102,6 +102,7 @@ Chathurani Ranathunge
 ## Examples
 
 ``` r
+
 ## Perform differential expression analysis using default settings
 fit_df1 <- find_dep(ecoli_norm_df)
 #> 1186 siginificantly differentially expressed proteins found.

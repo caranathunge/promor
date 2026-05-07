@@ -73,7 +73,7 @@ gtag('config', 'G-L7H9QD25V6');
 Ranathunge</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/caranathunge/promor/blob/v0.2.2/vignettes/promor_for_modeling.Rmd" class="external-link"><code>vignettes/promor_for_modeling.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/caranathunge/promor/blob/main/vignettes/promor_for_modeling.Rmd" class="external-link"><code>vignettes/promor_for_modeling.Rmd</code></a></small>
       <div class="d-none name"><code>promor_for_modeling.Rmd</code></div>
     </div>
 
@@ -249,7 +249,7 @@ distributions.</li>
 <span>  n_row <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  n_col <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_for_modeling_files/figure-html/featureplot-1.png" width="90%" style="display: block; margin: auto;"></p>
+<p><img src="promor_for_modeling_files/figure-html/featureplot-1.png" alt="" width="90%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
 <h4 id="feature-plots---density-plots">Feature plots - density plots<a class="anchor" aria-label="anchor" href="#feature-plots---density-plots"></a>
@@ -262,7 +262,7 @@ distributions.</li>
 <span>  n_row <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  n_col <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_for_modeling_files/figure-html/featureplot_d-1.png" width="90%" style="display: block; margin: auto;"></p>
+<p><img src="promor_for_modeling_files/figure-html/featureplot_d-1.png" alt="" width="90%" style="display: block; margin: auto;"></p>
 <ul>
 <li>At this stage, if you decide to remove a protein or some proteins
 from the <code>model_df</code> object, you can do so with
@@ -351,7 +351,7 @@ the resamples of the training data set.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Box plots (default) to visualize model performance</span></span>
 <span><span class="fu"><a href="../reference/performance_plot.html">performance_plot</a></span><span class="op">(</span>model_list <span class="op">=</span> <span class="va">covid_model_list</span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_for_modeling_files/figure-html/performplot-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="promor_for_modeling_files/figure-html/performplot-1.png" alt="" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
 <h4 id="performance-plots---dot-plots">Performance plots - dot plots<a class="anchor" aria-label="anchor" href="#performance-plots---dot-plots"></a>
@@ -362,7 +362,7 @@ the resamples of the training data set.</p>
 <span>  model_list <span class="op">=</span> <span class="va">covid_model_list</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"dot"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_for_modeling_files/figure-html/performplotd-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="promor_for_modeling_files/figure-html/performplotd-1.png" alt="" width="80%" style="display: block; margin: auto;"></p>
 <p>*It looks like both “knn” and “naive_bayes” methods performed fairly
 well.</p>
 <hr>
@@ -384,7 +384,7 @@ models.</p>
 <span>  n_row <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  n_col <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_for_modeling_files/figure-html/varimpl-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="promor_for_modeling_files/figure-html/varimpl-1.png" alt="" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level4">
 <h4 id="variable-importance-plots---bar-plots">Variable importance plots - bar plots<a class="anchor" aria-label="anchor" href="#variable-importance-plots---bar-plots"></a>
@@ -398,7 +398,7 @@ models.</p>
 <span>  n_row <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>  n_col <span class="op">=</span> <span class="fl">2</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_for_modeling_files/figure-html/varimpb-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="promor_for_modeling_files/figure-html/varimpb-1.png" alt="" width="80%" style="display: block; margin: auto;"></p>
 <ul>
 <li>At this stage you can again use <code>rem_feature</code> function to
 <strong>remove proteins with lower importance</strong> in the models and
@@ -454,7 +454,7 @@ object.</li>
 <span>  probability_list <span class="op">=</span> <span class="va">covid_prob_list</span>,</span>
 <span>  split_df <span class="op">=</span> <span class="va">covid_split_df</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="promor_for_modeling_files/figure-html/rocplot-1.png" width="80%" style="display: block; margin: auto;"></p>
+<p><img src="promor_for_modeling_files/figure-html/rocplot-1.png" alt="" width="80%" style="display: block; margin: auto;"></p>
 <p>Save a copy of the plot in the working directory.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Make roc curves</span></span>

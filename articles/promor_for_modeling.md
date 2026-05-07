@@ -10,6 +10,7 @@ provided in **Introduction to promor** to get acquainted with *promor*’s
 functionality.
 
 ``` r
+
 vignette("intro_to_promor")
 ```
 
@@ -38,6 +39,7 @@ pacakge and used in this tutorial, the following analytical steps were
 conducted:
 
 ``` r
+
 
 #Create a raw_df object with default settings
 covid_raw <- create_df(
@@ -111,6 +113,7 @@ Let’s first create a *model_df* object with the example `fit_df` and
 >   for more information.
 
 ``` r
+
 # Load promor
 library(promor)
 
@@ -141,6 +144,7 @@ using box plots or density plots.
 #### Feature plots - box plots
 
 ``` r
+
 # Box plots (default) to visualize feature variation
 feature_plot(
   model_df = covid_model_df,
@@ -154,6 +158,7 @@ feature_plot(
 #### Feature plots - density plots
 
 ``` r
+
 # Alternatively, make density plots
 feature_plot(
   model_df = covid_model_df,
@@ -183,6 +188,7 @@ sets **while maintaining class or condition proportions in each set**.
 >   or a lower value.
 
 ``` r
+
 # Create a split_df object by splitting data into training and test data set. Don't forget to fix the random seed for reproducibility.
 covid_split_df <- split_data(model_df = covid_model_df, seed = 8314)
 ```
@@ -190,6 +196,7 @@ covid_split_df <- split_data(model_df = covid_model_df, seed = 8314)
 Access items in the `split_df` object.
 
 ``` r
+
 # You can access the items in the training data set as follows,
 covid_split_df$training
 
@@ -224,6 +231,7 @@ their suitability for building models using few features (eight
 proteins) and samples (35 samples).
 
 ``` r
+
 # Create a model_list object by training models on the training data set using a custom list of algorithms.Don't forget to fix the random seed for reproducibility.
 covid_model_list <- train_models(split_df = covid_split_df, 
                                   algorithm_list = c("svmLinear", "rf", "naive_bayes", "knn"),
@@ -240,6 +248,7 @@ resamples of the training data set.
 #### Performance plots - box plots
 
 ``` r
+
 # Box plots (default) to visualize model performance
 performance_plot(model_list = covid_model_list)
 ```
@@ -249,6 +258,7 @@ performance_plot(model_list = covid_model_list)
 #### Performance plots - dot plots
 
 ``` r
+
 # Make dot plots
 performance_plot(
   model_list = covid_model_list,
@@ -271,6 +281,7 @@ models.
 #### Variable importance plots - lollipop plots
 
 ``` r
+
 # Make lollipop plots (default)
 varimp_plot(
   model_list = covid_model_list,
@@ -285,6 +296,7 @@ varimp_plot(
 #### Variable importance plots - bar plots
 
 ``` r
+
 # Make bar plots
 varimp_plot(
   model_list = covid_model_list,
@@ -309,6 +321,7 @@ We are now ready to test our models on never-before-seen data or our
 test data set.
 
 ``` r
+
 # First we run the function with type = "prob" to get a probability list
 covid_prob_list <- test_models(
   model_list = covid_model_list,
@@ -321,6 +334,7 @@ Alternatively, you can output a list of predictions and output a
 confusion matrix for further analysis.
 
 ``` r
+
 # We run the function with type = "raw" to get a prediction list and output a confusion matrix. You can also provide a file path to save the text file in in your preferred directory. In this example, we are saving our text file in the working directory.
 covid_pred_list <- test_models(
   model_list = covid_model_list,
@@ -345,6 +359,7 @@ models.
 >   output a `probability_list` object.
 
 ``` r
+
 # Make roc curves
 roc_plot(
   probability_list = covid_prob_list,
@@ -357,6 +372,7 @@ roc_plot(
 Save a copy of the plot in the working directory.
 
 ``` r
+
 # Make roc curves
 roc_plot(
   probability_list = covid_prob_list,

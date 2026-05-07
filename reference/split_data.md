@@ -48,6 +48,7 @@ Chathurani Ranathunge
 ## Examples
 
 ``` r
+
 ## Create a model_df object
 covid_model_df <- pre_process(covid_fit_df, covid_norm_df)
 #> Total number of differentially expressed proteins (8) is less than n_top.
