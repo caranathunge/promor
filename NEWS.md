@@ -1,3 +1,9 @@
+# promor 0.2.3
+
+#### Minor fix
+* Fixed an error associated with a unit test.
+
+
 # promor 0.2.2
 
 #### Bug fix

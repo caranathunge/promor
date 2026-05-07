@@ -1,3 +1,14 @@
+# promor 0.2.3
+
+### Resubmission
+In this re-submission:
+
+* Fixed errors associated with a unit test.
+
+### R CMD check results - 05-07-2026
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+
 # promor 0.2.2
 
 ### Resubmission
